@@ -72,6 +72,12 @@ impl MessageCache {
         }
     }
 
+    /// Number of messages currently retained in the cache map.
+    #[cfg(feature = "fuzzing")]
+    pub(crate) fn len(&self) -> usize {
+        self.msgs.len()
+    }
+
     /// Put a message into the memory cache.
     ///
     /// Returns true if the message didn't already exist in the cache.

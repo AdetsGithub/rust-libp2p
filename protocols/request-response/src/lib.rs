@@ -69,6 +69,10 @@
 #[cfg(feature = "cbor")]
 pub mod cbor;
 mod codec;
+#[cfg(feature = "fuzzing")]
+mod fuzz;
+#[cfg(feature = "fuzzing")]
+mod fuzz_handler;
 mod handler;
 #[cfg(feature = "json")]
 pub mod json;
@@ -277,6 +281,12 @@ impl<TResponse> ResponseChannel<TResponse> {
     pub fn is_open(&self) -> bool {
         !self.sender.is_canceled()
     }
+
+    /// Build a channel from a oneshot sender (fuzz harness injectors).
+    #[cfg(feature = "fuzzing")]
+    pub fn fuzz_from_sender(sender: oneshot::Sender<TResponse>) -> Self {
+        Self { sender }
+    }
 }
 
 /// The ID of an inbound request.
@@ -292,6 +302,14 @@ impl fmt::Display for InboundRequestId {
     }
 }
 
+#[cfg(feature = "fuzzing")]
+impl InboundRequestId {
+    /// Synthetic id for fuzz injectors (QueryId-confusion / attribution tests).
+    pub fn fuzz(id: u64) -> Self {
+        Self(id)
+    }
+}
+
 /// The ID of an outbound request.
 ///
 /// Note: [`OutboundRequestId`]'s uniqueness is only guaranteed between
@@ -302,6 +320,14 @@ pub struct OutboundRequestId(u64);
 impl fmt::Display for OutboundRequestId {
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
         write!(f, "{}", self.0)
+    }
+}
+
+#[cfg(feature = "fuzzing")]
+impl OutboundRequestId {
+    /// Synthetic id for fuzz injectors (ghost responses / stale timeouts).
+    pub fn fuzz(id: u64) -> Self {
+        Self(id)
     }
 }
 
@@ -1061,3 +1087,11 @@ impl Connection {
         }
     }
 }
+
+#[cfg(feature = "fuzzing")]
+pub use fuzz::{
+    FuzzAction, FuzzCodec, MAX_ACTIONS, MAX_MSG_BYTES, PEER_POOL, fuzz_behaviour,
+    fuzz_local_peer_id, fuzz_protocol_name,
+};
+#[cfg(feature = "fuzzing")]
+pub use fuzz_handler::{fuzz_codec_roundtrip, pump_handler};

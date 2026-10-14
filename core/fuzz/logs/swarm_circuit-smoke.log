@@ -1,0 +1,606 @@
+warning: unreachable call
+   --> /home/adethya/Documents/rust-libp2p/swarm/src/connection/pool/task.rs:113:37
+    |
+113 |         Either::Left((Ok(v), _)) => libp2p_core::util::unreachable(v),
+    |                                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ - any code following this expression is unreachable
+    |                                     |
+    |                                     unreachable call
+    |
+    = note: `#[warn(unreachable_code)]` (part of `#[warn(unused)]`) on by default
+
+warning: unreachable call
+   --> /home/adethya/Documents/rust-libp2p/swarm/src/connection/pool/task.rs:151:37
+    |
+151 |         Either::Left((Ok(v), _)) => libp2p_core::util::unreachable(v),
+    |                                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ - any code following this expression is unreachable
+    |                                     |
+    |                                     unreachable call
+
+warning: unreachable call
+   --> /home/adethya/Documents/rust-libp2p/swarm/src/behaviour/toggle.rs:211:41
+    |
+211 |             future::Either::Right(v) => libp2p_core::util::unreachable(v),
+    |                                         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ - any code following this expression is unreachable
+    |                                         |
+    |                                         unreachable call
+
+warning: unreachable call
+   --> /home/adethya/Documents/rust-libp2p/swarm/src/behaviour/toggle.rs:251:33
+    |
+251 |             Either::Right(v) => libp2p_core::util::unreachable(v),
+    |                                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ - any code following this expression is unreachable
+    |                                 |
+    |                                 unreachable call
+
+warning: unreachable call
+  --> /home/adethya/Documents/rust-libp2p/swarm/src/dummy.rs:51:9
+   |
+51 |         libp2p_core::util::unreachable(event)
+   |         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ ----- any code following this expression is unreachable
+   |         |
+   |         unreachable call
+
+warning: unreachable call
+  --> /home/adethya/Documents/rust-libp2p/swarm/src/dummy.rs:79:9
+   |
+79 |         libp2p_core::util::unreachable(event)
+   |         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ ----- any code following this expression is unreachable
+   |         |
+   |         unreachable call
+
+warning: unreachable call
+  --> /home/adethya/Documents/rust-libp2p/swarm/src/dummy.rs:96:19
+   |
+96 |             }) => libp2p_core::util::unreachable(protocol),
+   |                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ -------- any code following this expression is unreachable
+   |                   |
+   |                   unreachable call
+
+warning: unreachable call
+  --> /home/adethya/Documents/rust-libp2p/swarm/src/dummy.rs:99:19
+   |
+99 |             }) => libp2p_core::util::unreachable(protocol),
+   |                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ -------- any code following this expression is unreachable
+   |                   |
+   |                   unreachable call
+
+warning: unreachable call
+   --> /home/adethya/Documents/rust-libp2p/swarm/src/dummy.rs:102:49
+    |
+102 |                 StreamUpgradeError::Apply(e) => libp2p_core::util::unreachable(e),
+    |                                                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ - any code following this expression is unreachable
+    |                                                 |
+    |                                                 unreachable call
+
+warning: unreachable call
+  --> /home/adethya/Documents/rust-libp2p/swarm/src/handler/pending.rs:59:9
+   |
+59 |         libp2p_core::util::unreachable(v)
+   |         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ - any code following this expression is unreachable
+   |         |
+   |         unreachable call
+
+warning: unreachable call
+  --> /home/adethya/Documents/rust-libp2p/swarm/src/handler/pending.rs:76:19
+   |
+76 |             }) => libp2p_core::util::unreachable(protocol),
+   |                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ -------- any code following this expression is unreachable
+   |                   |
+   |                   unreachable call
+
+warning: unreachable call
+  --> /home/adethya/Documents/rust-libp2p/swarm/src/handler/pending.rs:81:17
+   |
+81 |                 libp2p_core::util::unreachable(protocol);
+   |                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ -------- any code following this expression is unreachable
+   |                 |
+   |                 unreachable call
+
+warning: `libp2p-swarm` (lib) generated 12 warnings
+warning: unreachable call
+   --> /home/adethya/Documents/rust-libp2p/protocols/request-response/src/handler.rs:239:45
+    |
+239 |             StreamUpgradeError::Apply(e) => libp2p_core::util::unreachable(e),
+    |                                             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ - any code following this expression is unreachable
+    |                                             |
+    |                                             unreachable call
+    |
+    = note: `#[warn(unreachable_code)]` (part of `#[warn(unused)]`) on by default
+
+warning: unreachable call
+   --> /home/adethya/Documents/rust-libp2p/protocols/request-response/src/handler.rs:255:9
+    |
+255 |         libp2p_core::util::unreachable(error)
+    |         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ ----- any code following this expression is unreachable
+    |         |
+    |         unreachable call
+
+warning: unreachable call
+   --> /home/adethya/Documents/rust-libp2p/protocols/kad/src/handler.rs:518:41
+    |
+518 |             future::Either::Right(p) => libp2p_core::util::unreachable(p),
+    |                                         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ - any code following this expression is unreachable
+    |                                         |
+    |                                         unreachable call
+    |
+    = note: `#[warn(unreachable_code)]` (part of `#[warn(unused)]`) on by default
+
+warning: unreachable call
+   --> /home/adethya/Documents/rust-libp2p/misc/connection-limits/src/lib.rs:464:9
+    |
+464 |         libp2p_core::util::unreachable(event)
+    |         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ ----- any code following this expression is unreachable
+    |         |
+    |         unreachable call
+    |
+    = note: `#[warn(unreachable_code)]` (part of `#[warn(unused)]`) on by default
+
+warning: unreachable call
+   --> /home/adethya/Documents/rust-libp2p/protocols/relay/src/behaviour/handler.rs:480:45
+    |
+480 |             StreamUpgradeError::Apply(v) => libp2p_core::util::unreachable(v),
+    |                                             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ - any code following this expression is unreachable
+    |                                             |
+    |                                             unreachable call
+    |
+    = note: `#[warn(unreachable_code)]` (part of `#[warn(unused)]`) on by default
+
+warning: unreachable call
+   --> /home/adethya/Documents/rust-libp2p/protocols/relay/src/behaviour.rs:572:33
+    |
+572 |             Either::Right(v) => libp2p_core::util::unreachable(v),
+    |                                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ - any code following this expression is unreachable
+    |                                 |
+    |                                 unreachable call
+
+warning: unreachable call
+   --> /home/adethya/Documents/rust-libp2p/protocols/relay/src/priv_client/handler.rs:453:56
+    |
+453 |             ConnectionEvent::ListenUpgradeError(ev) => libp2p_core::util::unreachable(ev.error),
+    |                                                        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ -------- any code following this expression is unreachable
+    |                                                        |
+    |                                                        unreachable call
+
+warning: unreachable call
+   --> /home/adethya/Documents/rust-libp2p/protocols/relay/src/priv_client/handler.rs:590:45
+    |
+590 |         StreamUpgradeError::Apply(never) => libp2p_core::util::unreachable(never),
+    |                                             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ ----- any code following this expression is unreachable
+    |                                             |
+    |                                             unreachable call
+
+warning: unreachable call
+   --> /home/adethya/Documents/rust-libp2p/protocols/relay/src/priv_client/handler.rs:601:45
+    |
+601 |         StreamUpgradeError::Apply(never) => libp2p_core::util::unreachable(never),
+    |                                             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ ----- any code following this expression is unreachable
+    |                                             |
+    |                                             unreachable call
+
+warning: unreachable call
+   --> /home/adethya/Documents/rust-libp2p/protocols/relay/src/priv_client.rs:295:33
+    |
+295 |             Either::Right(v) => libp2p_core::util::unreachable(v),
+    |                                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ - any code following this expression is unreachable
+    |                                 |
+    |                                 unreachable call
+
+warning: unreachable call
+   --> /home/adethya/Documents/rust-libp2p/protocols/dcutr/src/behaviour.rs:345:37
+    |
+345 |             Either::Right(never) => libp2p_core::util::unreachable(never),
+    |                                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ ----- any code following this expression is unreachable
+    |                                     |
+    |                                     unreachable call
+    |
+    = note: `#[warn(unreachable_code)]` (part of `#[warn(unused)]`) on by default
+
+warning: unreachable call
+   --> /home/adethya/Documents/rust-libp2p/protocols/dcutr/src/handler/relayed.rs:127:46
+    |
+127 |             future::Either::Right(output) => libp2p_core::util::unreachable(output),
+    |                                              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ ------ any code following this expression is unreachable
+    |                                              |
+    |                                              unreachable call
+
+warning: unreachable call
+   --> /home/adethya/Documents/rust-libp2p/protocols/dcutr/src/handler/relayed.rs:169:45
+    |
+169 |             StreamUpgradeError::Apply(v) => libp2p_core::util::unreachable(v),
+    |                                             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ - any code following this expression is unreachable
+    |                                             |
+    |                                             unreachable call
+
+warning: unreachable call
+   --> /home/adethya/Documents/rust-libp2p/protocols/gossipsub/src/handler.rs:531:45
+    |
+531 |                         Either::Right(v) => libp2p_core::util::unreachable(v),
+    |                                             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ - any code following this expression is unreachable
+    |                                             |
+    |                                             unreachable call
+    |
+    = note: `#[warn(unreachable_code)]` (part of `#[warn(unused)]`) on by default
+
+warning: unreachable call
+   --> /home/adethya/Documents/rust-libp2p/protocols/gossipsub/src/handler.rs:545:27
+    |
+545 |                     }) => libp2p_core::util::unreachable(e),
+    |                           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ - any code following this expression is unreachable
+    |                           |
+    |                           unreachable call
+
+warning: `libp2p-request-response` (lib) generated 2 warnings
+warning: `libp2p-kad` (lib) generated 1 warning
+warning: `libp2p-connection-limits` (lib) generated 1 warning
+warning: `libp2p-relay` (lib) generated 6 warnings
+warning: `libp2p-dcutr` (lib) generated 3 warnings
+warning: `libp2p-gossipsub` (lib) generated 2 warnings
+warning: unreachable call
+   --> /home/adethya/Documents/rust-libp2p/protocols/autonat/src/v2/client/handler/dial_request.rs:217:45
+    |
+217 |             StreamUpgradeError::Apply(v) => libp2p_core::util::unreachable(v),
+    |                                             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ - any code following this expression is unreachable
+    |                                             |
+    |                                             unreachable call
+    |
+    = note: `#[warn(unreachable_code)]` (part of `#[warn(unused)]`) on by default
+
+warning: unreachable call
+  --> /home/adethya/Documents/rust-libp2p/protocols/autonat/src/v2/client/handler/dial_back.rs:85:17
+   |
+85 |                 libp2p_core::util::unreachable(error);
+   |                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ ----- any code following this expression is unreachable
+   |                 |
+   |                 unreachable call
+
+warning: unreachable call
+   --> /home/adethya/Documents/rust-libp2p/protocols/autonat/src/v2/server/behaviour.rs:210:47
+    |
+210 |             Either::Left(Either::Right(v)) => libp2p_core::util::unreachable(v),
+    |                                               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ - any code following this expression is unreachable
+    |                                               |
+    |                                               unreachable call
+
+warning: `libp2p-autonat` (lib) generated 3 warnings
+    Finished `release` profile [optimized + debuginfo] target(s) in 0.64s
+warning: unreachable call
+   --> /home/adethya/Documents/rust-libp2p/swarm/src/connection/pool/task.rs:113:37
+    |
+113 |         Either::Left((Ok(v), _)) => libp2p_core::util::unreachable(v),
+    |                                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ - any code following this expression is unreachable
+    |                                     |
+    |                                     unreachable call
+    |
+    = note: `#[warn(unreachable_code)]` (part of `#[warn(unused)]`) on by default
+
+warning: unreachable call
+   --> /home/adethya/Documents/rust-libp2p/swarm/src/connection/pool/task.rs:151:37
+    |
+151 |         Either::Left((Ok(v), _)) => libp2p_core::util::unreachable(v),
+    |                                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ - any code following this expression is unreachable
+    |                                     |
+    |                                     unreachable call
+
+warning: unreachable call
+   --> /home/adethya/Documents/rust-libp2p/swarm/src/behaviour/toggle.rs:211:41
+    |
+211 |             future::Either::Right(v) => libp2p_core::util::unreachable(v),
+    |                                         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ - any code following this expression is unreachable
+    |                                         |
+    |                                         unreachable call
+
+warning: unreachable call
+   --> /home/adethya/Documents/rust-libp2p/swarm/src/behaviour/toggle.rs:251:33
+    |
+251 |             Either::Right(v) => libp2p_core::util::unreachable(v),
+    |                                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ - any code following this expression is unreachable
+    |                                 |
+    |                                 unreachable call
+
+warning: unreachable call
+  --> /home/adethya/Documents/rust-libp2p/swarm/src/dummy.rs:51:9
+   |
+51 |         libp2p_core::util::unreachable(event)
+   |         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ ----- any code following this expression is unreachable
+   |         |
+   |         unreachable call
+
+warning: unreachable call
+  --> /home/adethya/Documents/rust-libp2p/swarm/src/dummy.rs:79:9
+   |
+79 |         libp2p_core::util::unreachable(event)
+   |         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ ----- any code following this expression is unreachable
+   |         |
+   |         unreachable call
+
+warning: unreachable call
+  --> /home/adethya/Documents/rust-libp2p/swarm/src/dummy.rs:96:19
+   |
+96 |             }) => libp2p_core::util::unreachable(protocol),
+   |                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ -------- any code following this expression is unreachable
+   |                   |
+   |                   unreachable call
+
+warning: unreachable call
+  --> /home/adethya/Documents/rust-libp2p/swarm/src/dummy.rs:99:19
+   |
+99 |             }) => libp2p_core::util::unreachable(protocol),
+   |                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ -------- any code following this expression is unreachable
+   |                   |
+   |                   unreachable call
+
+warning: unreachable call
+   --> /home/adethya/Documents/rust-libp2p/swarm/src/dummy.rs:102:49
+    |
+102 |                 StreamUpgradeError::Apply(e) => libp2p_core::util::unreachable(e),
+    |                                                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ - any code following this expression is unreachable
+    |                                                 |
+    |                                                 unreachable call
+
+warning: unreachable call
+  --> /home/adethya/Documents/rust-libp2p/swarm/src/handler/pending.rs:59:9
+   |
+59 |         libp2p_core::util::unreachable(v)
+   |         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ - any code following this expression is unreachable
+   |         |
+   |         unreachable call
+
+warning: unreachable call
+  --> /home/adethya/Documents/rust-libp2p/swarm/src/handler/pending.rs:76:19
+   |
+76 |             }) => libp2p_core::util::unreachable(protocol),
+   |                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ -------- any code following this expression is unreachable
+   |                   |
+   |                   unreachable call
+
+warning: unreachable call
+  --> /home/adethya/Documents/rust-libp2p/swarm/src/handler/pending.rs:81:17
+   |
+81 |                 libp2p_core::util::unreachable(protocol);
+   |                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ -------- any code following this expression is unreachable
+   |                 |
+   |                 unreachable call
+
+warning: `libp2p-swarm` (lib) generated 12 warnings
+warning: unreachable call
+   --> /home/adethya/Documents/rust-libp2p/protocols/request-response/src/handler.rs:239:45
+    |
+239 |             StreamUpgradeError::Apply(e) => libp2p_core::util::unreachable(e),
+    |                                             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ - any code following this expression is unreachable
+    |                                             |
+    |                                             unreachable call
+    |
+    = note: `#[warn(unreachable_code)]` (part of `#[warn(unused)]`) on by default
+
+warning: unreachable call
+   --> /home/adethya/Documents/rust-libp2p/protocols/request-response/src/handler.rs:255:9
+    |
+255 |         libp2p_core::util::unreachable(error)
+    |         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ ----- any code following this expression is unreachable
+    |         |
+    |         unreachable call
+
+warning: unreachable call
+   --> /home/adethya/Documents/rust-libp2p/protocols/relay/src/behaviour/handler.rs:480:45
+    |
+480 |             StreamUpgradeError::Apply(v) => libp2p_core::util::unreachable(v),
+    |                                             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ - any code following this expression is unreachable
+    |                                             |
+    |                                             unreachable call
+    |
+    = note: `#[warn(unreachable_code)]` (part of `#[warn(unused)]`) on by default
+
+warning: unreachable call
+   --> /home/adethya/Documents/rust-libp2p/protocols/relay/src/behaviour.rs:572:33
+    |
+572 |             Either::Right(v) => libp2p_core::util::unreachable(v),
+    |                                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ - any code following this expression is unreachable
+    |                                 |
+    |                                 unreachable call
+
+warning: unreachable call
+   --> /home/adethya/Documents/rust-libp2p/protocols/relay/src/priv_client/handler.rs:453:56
+    |
+453 |             ConnectionEvent::ListenUpgradeError(ev) => libp2p_core::util::unreachable(ev.error),
+    |                                                        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ -------- any code following this expression is unreachable
+    |                                                        |
+    |                                                        unreachable call
+
+warning: unreachable call
+   --> /home/adethya/Documents/rust-libp2p/protocols/relay/src/priv_client/handler.rs:590:45
+    |
+590 |         StreamUpgradeError::Apply(never) => libp2p_core::util::unreachable(never),
+    |                                             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ ----- any code following this expression is unreachable
+    |                                             |
+    |                                             unreachable call
+
+warning: unreachable call
+   --> /home/adethya/Documents/rust-libp2p/protocols/relay/src/priv_client/handler.rs:601:45
+    |
+601 |         StreamUpgradeError::Apply(never) => libp2p_core::util::unreachable(never),
+    |                                             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ ----- any code following this expression is unreachable
+    |                                             |
+    |                                             unreachable call
+
+warning: unreachable call
+   --> /home/adethya/Documents/rust-libp2p/protocols/relay/src/priv_client.rs:295:33
+    |
+295 |             Either::Right(v) => libp2p_core::util::unreachable(v),
+    |                                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ - any code following this expression is unreachable
+    |                                 |
+    |                                 unreachable call
+
+warning: unreachable call
+   --> /home/adethya/Documents/rust-libp2p/misc/connection-limits/src/lib.rs:464:9
+    |
+464 |         libp2p_core::util::unreachable(event)
+    |         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ ----- any code following this expression is unreachable
+    |         |
+    |         unreachable call
+    |
+    = note: `#[warn(unreachable_code)]` (part of `#[warn(unused)]`) on by default
+
+warning: unreachable call
+   --> /home/adethya/Documents/rust-libp2p/protocols/kad/src/handler.rs:518:41
+    |
+518 |             future::Either::Right(p) => libp2p_core::util::unreachable(p),
+    |                                         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ - any code following this expression is unreachable
+    |                                         |
+    |                                         unreachable call
+    |
+    = note: `#[warn(unreachable_code)]` (part of `#[warn(unused)]`) on by default
+
+warning: unreachable call
+   --> /home/adethya/Documents/rust-libp2p/protocols/dcutr/src/behaviour.rs:345:37
+    |
+345 |             Either::Right(never) => libp2p_core::util::unreachable(never),
+    |                                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ ----- any code following this expression is unreachable
+    |                                     |
+    |                                     unreachable call
+    |
+    = note: `#[warn(unreachable_code)]` (part of `#[warn(unused)]`) on by default
+
+warning: unreachable call
+   --> /home/adethya/Documents/rust-libp2p/protocols/dcutr/src/handler/relayed.rs:127:46
+    |
+127 |             future::Either::Right(output) => libp2p_core::util::unreachable(output),
+    |                                              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ ------ any code following this expression is unreachable
+    |                                              |
+    |                                              unreachable call
+
+warning: unreachable call
+   --> /home/adethya/Documents/rust-libp2p/protocols/dcutr/src/handler/relayed.rs:169:45
+    |
+169 |             StreamUpgradeError::Apply(v) => libp2p_core::util::unreachable(v),
+    |                                             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ - any code following this expression is unreachable
+    |                                             |
+    |                                             unreachable call
+
+warning: unreachable call
+   --> /home/adethya/Documents/rust-libp2p/protocols/gossipsub/src/handler.rs:531:45
+    |
+531 |                         Either::Right(v) => libp2p_core::util::unreachable(v),
+    |                                             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ - any code following this expression is unreachable
+    |                                             |
+    |                                             unreachable call
+    |
+    = note: `#[warn(unreachable_code)]` (part of `#[warn(unused)]`) on by default
+
+warning: unreachable call
+   --> /home/adethya/Documents/rust-libp2p/protocols/gossipsub/src/handler.rs:545:27
+    |
+545 |                     }) => libp2p_core::util::unreachable(e),
+    |                           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ - any code following this expression is unreachable
+    |                           |
+    |                           unreachable call
+
+warning: `libp2p-request-response` (lib) generated 2 warnings
+warning: `libp2p-relay` (lib) generated 6 warnings
+warning: `libp2p-connection-limits` (lib) generated 1 warning
+warning: `libp2p-kad` (lib) generated 1 warning
+warning: `libp2p-dcutr` (lib) generated 3 warnings
+warning: `libp2p-gossipsub` (lib) generated 2 warnings
+warning: unreachable call
+   --> /home/adethya/Documents/rust-libp2p/protocols/autonat/src/v2/client/handler/dial_request.rs:217:45
+    |
+217 |             StreamUpgradeError::Apply(v) => libp2p_core::util::unreachable(v),
+    |                                             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ - any code following this expression is unreachable
+    |                                             |
+    |                                             unreachable call
+    |
+    = note: `#[warn(unreachable_code)]` (part of `#[warn(unused)]`) on by default
+
+warning: unreachable call
+  --> /home/adethya/Documents/rust-libp2p/protocols/autonat/src/v2/client/handler/dial_back.rs:85:17
+   |
+85 |                 libp2p_core::util::unreachable(error);
+   |                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ ----- any code following this expression is unreachable
+   |                 |
+   |                 unreachable call
+
+warning: unreachable call
+   --> /home/adethya/Documents/rust-libp2p/protocols/autonat/src/v2/server/behaviour.rs:210:47
+    |
+210 |             Either::Left(Either::Right(v)) => libp2p_core::util::unreachable(v),
+    |                                               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ - any code following this expression is unreachable
+    |                                               |
+    |                                               unreachable call
+
+warning: `libp2p-autonat` (lib) generated 3 warnings
+    Finished `release` profile [optimized + debuginfo] target(s) in 0.30s
+     Running `target/x86_64-unknown-linux-gnu/release/swarm_circuit -artifact_prefix=/home/adethya/Documents/rust-libp2p/core/fuzz/artifacts/swarm_circuit/ -print_funcs=0 -max_len=512 -len_control=0 -rss_limit_mb=4096 -runs=200 -seed=1 /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/swarm_circuit`
+INFO: Running with entropic power schedule (0xFF, 100).
+INFO: Seed: 1
+INFO: Loaded 1 modules   (146798 inline 8-bit counters): 146798 [0x5e650dcd4790, 0x5e650dcf84fe), 
+INFO: Loaded 1 PC tables (146798 PCs): 146798 [0x5e650dcf8500,0x5e650df35be0), 
+INFO:        4 files found in /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/swarm_circuit
+INFO: seed corpus: files: 4 min: 122b max: 282b total: 768b rss: 72Mb
+#9	INITED cov: 11809 ft: 26004 corp: 4/768b exec/s: 0 rss: 83Mb
+#11	NEW    cov: 11815 ft: 26019 corp: 5/1050b lim: 512 exec/s: 0 rss: 86Mb L: 282/282 MS: 1 ShuffleBytes-
+#13	NEW    cov: 11815 ft: 26024 corp: 6/1250b lim: 512 exec/s: 0 rss: 88Mb L: 200/282 MS: 1 EraseBytes-
+#15	NEW    cov: 11818 ft: 26217 corp: 7/1450b lim: 512 exec/s: 15 rss: 90Mb L: 200/282 MS: 1 ChangeByte-
+#17	NEW    cov: 11825 ft: 28316 corp: 8/1652b lim: 512 exec/s: 17 rss: 93Mb L: 202/282 MS: 1 CrossOver-
+#19	NEW    cov: 11839 ft: 28922 corp: 9/1935b lim: 512 exec/s: 19 rss: 95Mb L: 283/283 MS: 1 InsertByte-
+#21	NEW    cov: 11841 ft: 28926 corp: 10/2137b lim: 512 exec/s: 21 rss: 97Mb L: 202/283 MS: 1 ChangeBit-
+#23	NEW    cov: 11841 ft: 28992 corp: 11/2290b lim: 512 exec/s: 23 rss: 99Mb L: 153/283 MS: 1 EraseBytes-
+#25	NEW    cov: 11855 ft: 30325 corp: 12/2417b lim: 512 exec/s: 25 rss: 101Mb L: 127/283 MS: 1 CrossOver-
+#27	NEW    cov: 11855 ft: 30327 corp: 13/2619b lim: 512 exec/s: 27 rss: 103Mb L: 202/283 MS: 1 ChangeBinInt-
+#29	NEW    cov: 11855 ft: 30333 corp: 14/2822b lim: 512 exec/s: 14 rss: 106Mb L: 203/283 MS: 1 InsertByte-
+#31	NEW    cov: 11855 ft: 30411 corp: 15/3024b lim: 512 exec/s: 15 rss: 108Mb L: 202/283 MS: 1 ShuffleBytes-
+#32	pulse  cov: 11855 ft: 30551 corp: 15/3024b lim: 512 exec/s: 16 rss: 109Mb
+#33	NEW    cov: 11857 ft: 30551 corp: 16/3246b lim: 512 exec/s: 16 rss: 110Mb L: 222/283 MS: 1 InsertRepeatedBytes-
+#35	NEW    cov: 11859 ft: 30567 corp: 17/3399b lim: 512 exec/s: 17 rss: 112Mb L: 153/283 MS: 1 ChangeBinInt-
+#37	NEW    cov: 11859 ft: 31099 corp: 18/3694b lim: 512 exec/s: 18 rss: 114Mb L: 295/295 MS: 1 InsertRepeatedBytes-
+#39	NEW    cov: 11859 ft: 31101 corp: 19/3956b lim: 512 exec/s: 19 rss: 116Mb L: 262/295 MS: 1 CopyPart-
+#41	NEW    cov: 11859 ft: 31102 corp: 20/4283b lim: 512 exec/s: 20 rss: 117Mb L: 327/327 MS: 1 InsertRepeatedBytes-
+#49	NEW    cov: 11860 ft: 31105 corp: 21/4420b lim: 512 exec/s: 16 rss: 125Mb L: 137/327 MS: 4 CopyPart-ChangeByte-EraseBytes-ChangeByte-
+#51	NEW    cov: 11862 ft: 31109 corp: 22/4542b lim: 512 exec/s: 17 rss: 127Mb L: 122/327 MS: 1 ChangeBit-
+#53	NEW    cov: 11862 ft: 31685 corp: 23/4825b lim: 512 exec/s: 17 rss: 130Mb L: 283/327 MS: 1 CrossOver-
+#57	NEW    cov: 11862 ft: 31689 corp: 24/5088b lim: 512 exec/s: 14 rss: 134Mb L: 263/327 MS: 2 ChangeBit-InsertByte-
+#61	NEW    cov: 11862 ft: 32208 corp: 25/5470b lim: 512 exec/s: 15 rss: 137Mb L: 382/382 MS: 2 ChangeBinInt-InsertRepeatedBytes-
+#63	NEW    cov: 11863 ft: 32210 corp: 26/5752b lim: 512 exec/s: 15 rss: 139Mb L: 282/382 MS: 1 InsertRepeatedBytes-
+#64	pulse  cov: 11863 ft: 32233 corp: 26/5752b lim: 512 exec/s: 16 rss: 140Mb
+#65	NEW    cov: 11864 ft: 32233 corp: 27/5982b lim: 512 exec/s: 16 rss: 141Mb L: 230/382 MS: 1 InsertRepeatedBytes-
+#67	NEW    cov: 11865 ft: 32234 corp: 28/6266b lim: 512 exec/s: 16 rss: 144Mb L: 284/382 MS: 1 InsertByte-
+#69	NEW    cov: 11868 ft: 32246 corp: 29/6415b lim: 512 exec/s: 17 rss: 146Mb L: 149/382 MS: 1 EraseBytes-
+#71	NEW    cov: 11868 ft: 32356 corp: 30/6537b lim: 512 exec/s: 14 rss: 148Mb L: 122/382 MS: 1 ChangeByte-
+#73	NEW    cov: 11868 ft: 32363 corp: 31/6821b lim: 512 exec/s: 14 rss: 151Mb L: 284/382 MS: 1 ShuffleBytes-
+#75	NEW    cov: 11870 ft: 32366 corp: 32/7103b lim: 512 exec/s: 15 rss: 154Mb L: 282/382 MS: 1 ChangeBinInt-
+#77	NEW    cov: 11870 ft: 32507 corp: 33/7248b lim: 512 exec/s: 15 rss: 155Mb L: 145/382 MS: 1 CopyPart-
+#85	NEW    cov: 11870 ft: 32584 corp: 34/7590b lim: 512 exec/s: 14 rss: 162Mb L: 342/382 MS: 4 InsertRepeatedBytes-CopyPart-ChangeBinInt-CopyPart-
+#89	NEW    cov: 11870 ft: 32586 corp: 35/7892b lim: 512 exec/s: 14 rss: 167Mb L: 302/382 MS: 2 CMP-CopyPart- DE: "4333333\003"-
+#99	NEW    cov: 11870 ft: 32604 corp: 36/8270b lim: 512 exec/s: 14 rss: 176Mb L: 378/382 MS: 5 ShuffleBytes-CopyPart-CopyPart-CrossOver-CopyPart-
+#101	NEW    cov: 12106 ft: 34276 corp: 37/8480b lim: 512 exec/s: 14 rss: 179Mb L: 210/382 MS: 1 PersAutoDict- DE: "4333333\003"-
+#105	NEW    cov: 12106 ft: 34301 corp: 38/8742b lim: 512 exec/s: 15 rss: 183Mb L: 262/382 MS: 2 ChangeBit-CopyPart-
+#107	NEW    cov: 12106 ft: 34891 corp: 39/8986b lim: 512 exec/s: 13 rss: 185Mb L: 244/382 MS: 1 InsertRepeatedBytes-
+#109	NEW    cov: 12106 ft: 34926 corp: 40/9190b lim: 512 exec/s: 13 rss: 187Mb L: 204/382 MS: 1 InsertByte-
+#111	NEW    cov: 12109 ft: 35215 corp: 41/9352b lim: 512 exec/s: 13 rss: 195Mb L: 162/382 MS: 1 ChangeBinInt-
+#115	NEW    cov: 12118 ft: 35474 corp: 42/9509b lim: 512 exec/s: 14 rss: 200Mb L: 157/382 MS: 2 ChangeBit-PersAutoDict- DE: "4333333\003"-
+#117	NEW    cov: 12119 ft: 35478 corp: 43/9963b lim: 512 exec/s: 13 rss: 202Mb L: 454/454 MS: 1 CopyPart-
+#119	NEW    cov: 12119 ft: 35482 corp: 44/10167b lim: 512 exec/s: 13 rss: 205Mb L: 204/454 MS: 1 ChangeBit-
+#128	pulse  cov: 12119 ft: 35482 corp: 44/10167b lim: 512 exec/s: 12 rss: 213Mb
+#131	NEW    cov: 12121 ft: 35738 corp: 45/10294b lim: 512 exec/s: 13 rss: 216Mb L: 127/454 MS: 1 PersAutoDict- DE: "4333333\003"-
+#133	NEW    cov: 12123 ft: 35950 corp: 46/10585b lim: 512 exec/s: 13 rss: 219Mb L: 291/454 MS: 1 PersAutoDict- DE: "4333333\003"-
+#135	NEW    cov: 12125 ft: 36005 corp: 47/10787b lim: 512 exec/s: 13 rss: 221Mb L: 202/454 MS: 1 ChangeBit-
+#137	NEW    cov: 12132 ft: 36136 corp: 48/10950b lim: 512 exec/s: 12 rss: 229Mb L: 163/454 MS: 1 InsertByte-
+#147	NEW    cov: 12132 ft: 36157 corp: 49/11157b lim: 512 exec/s: 12 rss: 238Mb L: 207/454 MS: 5 ChangeBinInt-CMP-ChangeBinInt-InsertByte-CopyPart- DE: "\377\377\010\307"-
+#149	NEW    cov: 12132 ft: 36197 corp: 50/11396b lim: 512 exec/s: 12 rss: 241Mb L: 239/454 MS: 1 EraseBytes-
+#153	NEW    cov: 12132 ft: 36199 corp: 51/11618b lim: 512 exec/s: 12 rss: 245Mb L: 222/454 MS: 2 ChangeBit-ShuffleBytes-
+#155	NEW    cov: 12132 ft: 36215 corp: 52/11820b lim: 512 exec/s: 11 rss: 246Mb L: 202/454 MS: 1 CopyPart-
+#159	NEW    cov: 12132 ft: 36522 corp: 53/11948b lim: 512 exec/s: 12 rss: 250Mb L: 128/454 MS: 2 CopyPart-EraseBytes-
+#165	NEW    cov: 12132 ft: 36575 corp: 54/12209b lim: 512 exec/s: 11 rss: 255Mb L: 261/454 MS: 3 InsertByte-ChangeBinInt-InsertRepeatedBytes-
+#173	NEW    cov: 12132 ft: 36576 corp: 55/12411b lim: 512 exec/s: 12 rss: 263Mb L: 202/454 MS: 4 ChangeBit-ShuffleBytes-PersAutoDict-CMP- DE: "\377\377\010\307"-"\005\000\000\000\000\000\000\000"-
+#175	NEW    cov: 12132 ft: 36775 corp: 56/12573b lim: 512 exec/s: 11 rss: 271Mb L: 162/454 MS: 1 ChangeBit-
+#183	NEW    cov: 12132 ft: 36776 corp: 57/12865b lim: 512 exec/s: 11 rss: 280Mb L: 292/454 MS: 4 ShuffleBytes-ShuffleBytes-InsertRepeatedBytes-InsertByte-
+#187	NEW    cov: 12132 ft: 36777 corp: 58/13160b lim: 512 exec/s: 11 rss: 283Mb L: 295/454 MS: 2 ShuffleBytes-PersAutoDict- DE: "\005\000\000\000\000\000\000\000"-
+#191	NEW    cov: 12132 ft: 36929 corp: 59/13448b lim: 512 exec/s: 11 rss: 288Mb L: 288/454 MS: 2 InsertByte-CMP- DE: "\376\377\377\377"-
+#193	NEW    cov: 12140 ft: 37052 corp: 60/13570b lim: 512 exec/s: 11 rss: 290Mb L: 122/454 MS: 1 ChangeBinInt-
+#195	NEW    cov: 12143 ft: 37249 corp: 61/13772b lim: 512 exec/s: 11 rss: 292Mb L: 202/454 MS: 1 ChangeBit-
+#200	DONE   cov: 12143 ft: 37249 corp: 61/13772b lim: 512 exec/s: 11 rss: 296Mb
+###### Recommended dictionary. ######
+"4333333\003" # Uses: 4
+"\377\377\010\307" # Uses: 1
+"\005\000\000\000\000\000\000\000" # Uses: 1
+"\376\377\377\377" # Uses: 0
+###### End of recommended dictionary. ######
+Done 200 runs in 17 second(s)

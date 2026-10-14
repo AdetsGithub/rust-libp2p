@@ -2274,6 +2274,38 @@ where
         }
     }
 
+    /// Fuzzing: run one heartbeat tick without waiting on the timer.
+    #[cfg(feature = "fuzzing")]
+    pub fn fuzz_heartbeat(&mut self) {
+        self.heartbeat();
+    }
+
+    /// Fuzzing: current mcache message-map size (DoS soft assertion).
+    #[cfg(feature = "fuzzing")]
+    pub fn mcache_msg_count(&self) -> usize {
+        self.mcache.len()
+    }
+
+    /// Fuzzing: number of peers in `connected_peers`.
+    #[cfg(feature = "fuzzing")]
+    pub fn connected_peer_count(&self) -> usize {
+        self.connected_peers.len()
+    }
+
+    /// Fuzzing: peers discovered via PRUNE peer-exchange (`px_peers`).
+    #[cfg(feature = "fuzzing")]
+    pub fn fuzz_px_peer_count(&self) -> usize {
+        self.px_peers.len()
+    }
+
+    /// Fuzzing: set per-topic max transmit size for subsequent Handler construction
+    /// and local publish checks (`MessageTooLarge` / inbound
+    /// `MessageSizeTooLargeForTopic`).
+    #[cfg(feature = "fuzzing")]
+    pub fn fuzz_set_topic_max_transmit_size(&mut self, topic: TopicHash, max: usize) {
+        self.config.fuzz_set_topic_max_transmit_size(topic, max);
+    }
+
     /// Heartbeat function which shifts the memcache and updates the mesh.
     fn heartbeat(&mut self) {
         #[cfg(feature = "metrics")]

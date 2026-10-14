@@ -20,7 +20,7 @@
 
 //! Noise protocol handshake I/O.
 
-pub(super) mod proto {
+pub(crate) mod proto {
     #![allow(unreachable_pub)]
     include!("../generated/mod.rs");
     pub use self::payload_proto::{NoiseExtensions, NoiseHandshakePayload};

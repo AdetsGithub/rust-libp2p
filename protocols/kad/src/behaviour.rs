@@ -466,6 +466,66 @@ where
         Self::with_config(id, store, Default::default())
     }
 
+    /// Fuzzing: number of peers currently tracked as connected.
+    #[cfg(feature = "fuzzing")]
+    pub fn connected_peer_count(&self) -> usize {
+        self.connected_peers.len()
+    }
+
+    /// Fuzzing: number of queries currently in the pool.
+    #[cfg(feature = "fuzzing")]
+    pub fn query_count(&self) -> usize {
+        self.queries.iter().count()
+    }
+
+    /// Fuzzing: total routing-table entries across all k-buckets.
+    #[cfg(feature = "fuzzing")]
+    pub fn kbucket_entry_count(&mut self) -> usize {
+        self.kbuckets().map(|b| b.num_entries()).sum()
+    }
+
+    /// Fuzzing: whether `peer` is present (or pending) in the routing table.
+    ///
+    /// Used to assert the ConnectionClosed retention contract: addresses added
+    /// via [`Self::add_address`] stay after disconnect (status → Disconnected).
+    #[cfg(feature = "fuzzing")]
+    pub fn fuzz_routing_table_contains(&mut self, peer: &PeerId) -> bool {
+        let key = kbucket::Key::from(*peer);
+        matches!(
+            self.kbuckets.entry(&key),
+            Some(kbucket::Entry::Present(..)) | Some(kbucket::Entry::Pending(..))
+        )
+    }
+
+    /// Fuzzing: cut short put-record / add-provider job delays so the next
+    /// [`NetworkBehaviour::poll`] runs them (records must already be in the store).
+    #[cfg(feature = "fuzzing")]
+    pub fn fuzz_jobs_asap(&mut self) {
+        if let Some(job) = self.put_record_job.as_mut() {
+            job.asap(true);
+        }
+        if let Some(job) = self.add_provider_job.as_mut() {
+            job.asap();
+        }
+    }
+
+    /// Fuzzing: advance the query clock and queue Timeout events for expired queries.
+    ///
+    /// Rewinds in-flight query starts by `by`, then immediately takes any query
+    /// past [`Config::set_query_timeout`] (even if still `Waiting(Some(peer))`).
+    /// Timeout events are pushed to the Behaviour queue for the next poll.
+    #[cfg(feature = "fuzzing")]
+    pub fn fuzz_advance_query_clock(&mut self, by: Duration) {
+        self.queries.fuzz_rewind_starts(by);
+        let now = Instant::now();
+        for q in self.queries.fuzz_take_timed_out(now) {
+            if let Some(event) = self.query_timeout(q) {
+                self.queued_events
+                    .push_back(ToSwarm::GenerateEvent(event));
+            }
+        }
+    }
+
     /// Get the protocol name of this kademlia instance.
     pub fn protocol_names(&self) -> &[StreamProtocol] {
         self.protocol_config.protocol_names()

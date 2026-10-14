@@ -95,6 +95,12 @@ impl<TInner> Negotiated<TInner> {
         }
     }
 
+    /// Fuzzing/test helper: wrap an already-negotiated I/O resource.
+    #[cfg(feature = "fuzzing")]
+    pub fn for_fuzzing(io: TInner) -> Self {
+        Self::completed(io)
+    }
+
     /// Creates a `Negotiated` in state [`State::Expecting`] that is still
     /// expecting confirmation of the given `protocol`.
     pub(crate) fn expecting(

@@ -1,0 +1,6 @@
+# swarm_circuit action / multiaddr edges
+"p2p-circuit"
+"/memory/"
+"\x05\x00\x00\x00\x00\x00\x00\x00"
+"\xff\xff\x08\xc7"
+"4333333\x03"

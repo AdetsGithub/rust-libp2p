@@ -21,8 +21,18 @@
 use std::{
     collections::{HashMap, HashSet, VecDeque},
     pin::Pin,
-    sync::{Arc, Mutex, atomic::AtomicUsize},
     task::{Context, Poll, Waker},
+};
+
+#[cfg(feature = "loom")]
+use loom::sync::{
+    Arc, Mutex,
+    atomic::{AtomicUsize, Ordering},
+};
+#[cfg(not(feature = "loom"))]
+use std::sync::{
+    Arc, Mutex,
+    atomic::{AtomicUsize, Ordering},
 };
 
 use crate::{MessageId, types::RpcOut};
@@ -169,7 +179,7 @@ impl Queue {
 
 impl Clone for Queue {
     fn clone(&self) -> Self {
-        let new_id = self.count.fetch_add(1, std::sync::atomic::Ordering::SeqCst);
+        let new_id = self.count.fetch_add(1, Ordering::SeqCst);
         Self {
             priority: Shared {
                 inner: self.priority.inner.clone(),
@@ -265,6 +275,15 @@ impl Shared {
         shared.queue.retain(f);
     }
 
+    /// Mutate each queued message in place (fuzz harness: expire Publish delays).
+    #[cfg(feature = "fuzzing")]
+    pub(crate) fn for_each_mut<F: FnMut(&mut RpcOut)>(&mut self, mut f: F) {
+        let mut shared = self.inner.lock().expect("lock to not be poisoned");
+        for msg in shared.queue.iter_mut() {
+            f(msg);
+        }
+    }
+
     /// Check if the queue is empty.
     pub(crate) fn is_empty(&self) -> bool {
         let guard = self.inner.lock().expect("lock to not be poisoned");
@@ -299,4 +318,358 @@ impl Drop for Shared {
 struct SharedInner {
     queue: VecDeque<RpcOut>,
     pending_pops: HashMap<usize, Waker>,
+}
+
+/// Loom concurrency models for [`Shared`] / [`Queue`].
+///
+/// **Not** part of cargo-fuzz. Exhaustive scheduler exploration of Behaviour↔
+/// Handler Shared-queue races (priority vs non_priority, capacity / AllQueuesFull,
+/// dual-handler poll_pending, remove_data vs pop). Keep per-model branching small.
+///
+/// ```text
+/// cargo test -p libp2p-gossipsub --features loom --lib queue::loom_tests
+/// ```
+#[cfg(all(test, feature = "loom"))]
+mod loom_tests {
+    use std::{
+        pin::Pin,
+        task::{Context, Poll},
+        time::Duration,
+    };
+
+    use futures::task::noop_waker_ref;
+    use futures_timer::Delay;
+    use loom::{sync::Arc, thread};
+
+    use super::{Queue, Shared};
+    use crate::{
+        MessageId, TopicHash,
+        types::{RawMessage, RpcOut},
+    };
+
+    fn subscribe_msg(tag: u8) -> RpcOut {
+        RpcOut::Subscribe {
+            topic: TopicHash::from_raw(format!("loom-{tag}")),
+            requests_partial: false,
+            supports_partial: false,
+        }
+    }
+
+    fn ihave_msg(tag: u8) -> RpcOut {
+        use crate::types::IHave;
+        RpcOut::IHave(IHave {
+            topic_hash: TopicHash::from_raw(format!("loom-{tag}")),
+            message_ids: vec![],
+        })
+    }
+
+    fn publish_msg(tag: u8) -> RpcOut {
+        RpcOut::Publish {
+            message_id: MessageId(vec![tag]),
+            message: RawMessage {
+                source: None,
+                data: vec![tag],
+                sequence_number: Some(u64::from(tag)),
+                topic: TopicHash::from_raw(format!("loom-{tag}")),
+                signature: None,
+                key: None,
+                validated: true,
+            },
+            timeout: Delay::new(Duration::from_secs(3600)),
+        }
+    }
+
+    fn is_subscribe(rpc: &RpcOut) -> bool {
+        matches!(rpc, RpcOut::Subscribe { .. })
+    }
+
+    fn is_publish(rpc: &RpcOut) -> bool {
+        matches!(rpc, RpcOut::Publish { .. })
+    }
+
+    /// Behaviour clone try_push vs Handler clone try_pop — no lost / double-pop.
+    #[test]
+    fn queue_clone_push_pop_race() {
+        loom::model(|| {
+            let q = Queue::new(8);
+            let mut producer = q.clone();
+            let mut consumer = q.clone();
+
+            let t = thread::spawn(move || {
+                let _ = producer.try_push(subscribe_msg(1));
+                let _ = producer.try_push(subscribe_msg(2));
+            });
+
+            let mut got = 0usize;
+            for _ in 0..4 {
+                if consumer.try_pop().is_some() {
+                    got += 1;
+                }
+            }
+            t.join().unwrap();
+            while consumer.try_pop().is_some() {
+                got += 1;
+            }
+            assert_eq!(got, 2, "lost or duplicated messages: got={got}");
+        });
+    }
+
+    /// Bounded Shared: concurrent push (may full) + pop — len never exceeds capacity.
+    #[test]
+    fn shared_capacity_push_pop_race() {
+        loom::model(|| {
+            let shared = Shared::with_capacity(1);
+            let mut p = Shared {
+                inner: Arc::clone(&shared.inner),
+                capacity: shared.capacity,
+                id: 2,
+            };
+            let mut c = Shared {
+                inner: Arc::clone(&shared.inner),
+                capacity: shared.capacity,
+                id: 3,
+            };
+
+            let t = thread::spawn(move || {
+                let mut accepted = 0usize;
+                for i in 0..2u8 {
+                    if p.try_push(ihave_msg(i)).is_ok() {
+                        accepted += 1;
+                    }
+                }
+                accepted
+            });
+
+            let mut popped = 0usize;
+            if c.try_pop().is_some() {
+                popped += 1;
+            }
+            let accepted = t.join().unwrap();
+            while c.try_pop().is_some() {
+                popped += 1;
+            }
+            assert!(
+                popped <= accepted,
+                "popped more than accepted: popped={popped} accepted={accepted}"
+            );
+            assert!(
+                accepted <= 2,
+                "accepted more than attempted: {accepted}"
+            );
+            // Capacity 1: at most one in-flight beyond what we popped mid-race.
+            assert!(accepted - popped <= 1 || popped == accepted);
+        });
+    }
+
+    /// Empty poll registers waker; concurrent push drains `pending_pops` — one delivery.
+    #[test]
+    fn shared_poll_pending_then_push() {
+        loom::model(|| {
+            let mut waiter = Shared::new();
+            let mut pusher = Shared {
+                inner: Arc::clone(&waiter.inner),
+                capacity: None,
+                id: 2,
+            };
+
+            let t = thread::spawn(move || {
+                let waker = noop_waker_ref();
+                let mut cx = Context::from_waker(waker);
+                let got = matches!(Pin::new(&mut waiter).poll_pop(&mut cx), Poll::Ready(_));
+                (got, waiter)
+            });
+
+            let _ = pusher.try_push(subscribe_msg(9));
+
+            let (got_poll, mut waiter) = t.join().unwrap();
+            let mut delivered = usize::from(got_poll);
+            if waiter.try_pop().is_some() {
+                delivered += 1;
+            }
+            if pusher.try_pop().is_some() {
+                delivered += 1;
+            }
+            assert_eq!(delivered, 1, "lost or duplicated after poll+push: {delivered}");
+        });
+    }
+
+    /// Dual consumers race on Shared try_pop — each message delivered at most once.
+    #[test]
+    fn shared_dual_consumer_no_double_pop() {
+        loom::model(|| {
+            let mut source = Shared::new();
+            let _ = source.try_push(subscribe_msg(1));
+            let _ = source.try_push(subscribe_msg(2));
+
+            let mut a = Shared {
+                inner: Arc::clone(&source.inner),
+                capacity: None,
+                id: 2,
+            };
+            let mut b = Shared {
+                inner: Arc::clone(&source.inner),
+                capacity: None,
+                id: 3,
+            };
+
+            let t = thread::spawn(move || {
+                let mut n = 0usize;
+                while a.try_pop().is_some() {
+                    n += 1;
+                }
+                n
+            });
+
+            let mut n_b = 0usize;
+            while b.try_pop().is_some() {
+                n_b += 1;
+            }
+            let n_a = t.join().unwrap();
+            assert_eq!(n_a + n_b, 2, "double-pop or loss: a={n_a} b={n_b}");
+        });
+    }
+
+    /// Handler-shaped: Behaviour fills `non_priority` (cap 1) while Handler
+    /// `poll_pop` drains — Accepted + remaining ≤ attempts; no overflow past cap.
+    #[test]
+    fn handler_queue_publish_cap_vs_handler_poll() {
+        loom::model(|| {
+            let q = Queue::new(1);
+            let mut behaviour = q.clone();
+            let mut handler = q.clone();
+
+            let t = thread::spawn(move || {
+                let mut accepted = 0usize;
+                let mut rejected = 0usize;
+                for tag in [1u8, 2] {
+                    match behaviour.try_push(publish_msg(tag)) {
+                        Ok(()) => accepted += 1,
+                        Err(_) => rejected += 1,
+                    }
+                }
+                (accepted, rejected)
+            });
+
+            let waker = noop_waker_ref();
+            let mut cx = Context::from_waker(waker);
+            let mut drained = 0usize;
+            for _ in 0..3 {
+                if matches!(
+                    Pin::new(&mut handler).poll_pop(&mut cx),
+                    Poll::Ready(_)
+                ) {
+                    drained += 1;
+                }
+            }
+            let (accepted, rejected) = t.join().unwrap();
+            while handler.try_pop().is_some() {
+                drained += 1;
+            }
+            assert_eq!(accepted + rejected, 2);
+            assert_eq!(
+                drained, accepted,
+                "lost/extra Publish: drained={drained} accepted={accepted}"
+            );
+        });
+    }
+
+    /// Dual Handlers race `try_pop` with both priority + non_priority seeded —
+    /// each lane delivers exactly once (Subscribe XOR IHAVE per message).
+    #[test]
+    fn handler_queue_priority_lanes_dual_pop() {
+        loom::model(|| {
+            let q = Queue::new(4);
+            let mut seed = q.clone();
+            let _ = seed.try_push(ihave_msg(1));
+            let _ = seed.try_push(subscribe_msg(2));
+
+            let mut h0 = q.clone();
+            let mut h1 = q.clone();
+            let t = thread::spawn(move || h0.try_pop());
+            let b = h1.try_pop();
+            let a = t.join().unwrap();
+
+            let msgs: Vec<_> = [a, b].into_iter().flatten().collect();
+            assert_eq!(msgs.len(), 2, "lost message under dual-handler pop");
+            assert_eq!(
+                msgs.iter().filter(|m| is_subscribe(m)).count(),
+                1,
+                "Subscribe not delivered exactly once"
+            );
+            assert_eq!(
+                msgs.iter().filter(|m| matches!(m, RpcOut::IHave(_))).count(),
+                1,
+                "IHAVE not delivered exactly once"
+            );
+        });
+    }
+
+    /// Dual Handler clones both `poll_pop` Pending; one Behaviour push → one delivery.
+    #[test]
+    fn dual_handler_poll_pending_single_push() {
+        loom::model(|| {
+            let q = Queue::new(4);
+            let mut h0 = q.clone();
+            let mut h1 = q.clone();
+            let mut behaviour = q.clone();
+
+            let t0 = thread::spawn(move || {
+                let waker = noop_waker_ref();
+                let mut cx = Context::from_waker(waker);
+                let ready = matches!(Pin::new(&mut h0).poll_pop(&mut cx), Poll::Ready(_));
+                (ready, h0)
+            });
+            let t1 = thread::spawn(move || {
+                let waker = noop_waker_ref();
+                let mut cx = Context::from_waker(waker);
+                let ready = matches!(Pin::new(&mut h1).poll_pop(&mut cx), Poll::Ready(_));
+                (ready, h1)
+            });
+
+            let _ = behaviour.try_push(subscribe_msg(7));
+
+            let (r0, mut h0) = t0.join().unwrap();
+            let (r1, mut h1) = t1.join().unwrap();
+            let mut delivered = usize::from(r0) + usize::from(r1);
+            if h0.try_pop().is_some() {
+                delivered += 1;
+            }
+            if h1.try_pop().is_some() {
+                delivered += 1;
+            }
+            if behaviour.try_pop().is_some() {
+                delivered += 1;
+            }
+            assert_eq!(
+                delivered, 1,
+                "dual-handler poll+push lost/duplicated: {delivered}"
+            );
+        });
+    }
+
+    /// Behaviour `remove_data_messages` races Handler pop — Publish delivered XOR removed.
+    #[test]
+    fn remove_data_vs_handler_pop() {
+        loom::model(|| {
+            let q = Queue::new(4);
+            let mut behaviour = q.clone();
+            let mut handler = q.clone();
+            let mid = MessageId(vec![9]);
+            let _ = behaviour.try_push(publish_msg(9));
+
+            let remover = {
+                let mid = MessageId(mid.0.clone());
+                thread::spawn(move || behaviour.remove_data_messages(&[mid]))
+            };
+
+            let popped = handler.try_pop();
+            let removed = remover.join().unwrap();
+            let got_publish = popped.as_ref().is_some_and(is_publish);
+            assert_eq!(
+                usize::from(got_publish) + removed,
+                1,
+                "Publish XOR remove: popped={got_publish:?} removed={removed}"
+            );
+        });
+    }
 }

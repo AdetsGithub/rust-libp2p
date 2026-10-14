@@ -29,6 +29,11 @@ pub mod certificate;
 mod upgrade;
 mod verifier;
 
+#[cfg(feature = "fuzzing")]
+mod fuzz;
+#[cfg(feature = "fuzzing")]
+pub use fuzz::fuzz_tls;
+
 use std::sync::Arc;
 
 use certificate::AlwaysResolvesCert;
@@ -44,13 +49,45 @@ pub fn make_client_config(
     remote_peer_id: Option<PeerId>,
 ) -> Result<rustls::ClientConfig, certificate::GenError> {
     let (certificate, private_key) = certificate::generate(keypair)?;
+    make_client_config_with_material(keypair, certificate, &private_key, remote_peer_id)
+}
 
+/// Create a TLS client configuration from pre-generated cert material.
+///
+/// Exposed under `fuzzing` so transport harnesses (e.g. QUIC) can inject
+/// corrupted DER.
+#[cfg(feature = "fuzzing")]
+pub fn make_client_config_with_material(
+    keypair: &Keypair,
+    certificate: rustls::pki_types::CertificateDer<'static>,
+    private_key: &rustls::pki_types::PrivateKeyDer<'_>,
+    remote_peer_id: Option<PeerId>,
+) -> Result<rustls::ClientConfig, certificate::GenError> {
+    make_client_config_with_material_impl(keypair, certificate, private_key, remote_peer_id)
+}
+
+#[cfg(not(feature = "fuzzing"))]
+pub(crate) fn make_client_config_with_material(
+    keypair: &Keypair,
+    certificate: rustls::pki_types::CertificateDer<'static>,
+    private_key: &rustls::pki_types::PrivateKeyDer<'_>,
+    remote_peer_id: Option<PeerId>,
+) -> Result<rustls::ClientConfig, certificate::GenError> {
+    make_client_config_with_material_impl(keypair, certificate, private_key, remote_peer_id)
+}
+
+fn make_client_config_with_material_impl(
+    _keypair: &Keypair,
+    certificate: rustls::pki_types::CertificateDer<'static>,
+    private_key: &rustls::pki_types::PrivateKeyDer<'_>,
+    remote_peer_id: Option<PeerId>,
+) -> Result<rustls::ClientConfig, certificate::GenError> {
     let mut provider = rustls::crypto::aws_lc_rs::default_provider();
     provider.cipher_suites = verifier::CIPHERSUITES.to_vec();
 
     let cert_resolver = Arc::new(
-        AlwaysResolvesCert::new(certificate, &private_key)
-            .expect("Client cert key DER is valid; qed"),
+        AlwaysResolvesCert::new(certificate, private_key)
+            .map_err(|_| rcgen::Error::RingUnspecified)?,
     );
 
     let mut crypto = rustls::ClientConfig::builder_with_provider(provider.into())
@@ -72,13 +109,36 @@ pub fn make_server_config(
     keypair: &Keypair,
 ) -> Result<rustls::ServerConfig, certificate::GenError> {
     let (certificate, private_key) = certificate::generate(keypair)?;
+    make_server_config_with_material(certificate, &private_key)
+}
 
+/// Create a TLS server configuration from pre-generated cert material.
+#[cfg(feature = "fuzzing")]
+pub fn make_server_config_with_material(
+    certificate: rustls::pki_types::CertificateDer<'static>,
+    private_key: &rustls::pki_types::PrivateKeyDer<'_>,
+) -> Result<rustls::ServerConfig, certificate::GenError> {
+    make_server_config_with_material_impl(certificate, private_key)
+}
+
+#[cfg(not(feature = "fuzzing"))]
+pub(crate) fn make_server_config_with_material(
+    certificate: rustls::pki_types::CertificateDer<'static>,
+    private_key: &rustls::pki_types::PrivateKeyDer<'_>,
+) -> Result<rustls::ServerConfig, certificate::GenError> {
+    make_server_config_with_material_impl(certificate, private_key)
+}
+
+fn make_server_config_with_material_impl(
+    certificate: rustls::pki_types::CertificateDer<'static>,
+    private_key: &rustls::pki_types::PrivateKeyDer<'_>,
+) -> Result<rustls::ServerConfig, certificate::GenError> {
     let mut provider = rustls::crypto::aws_lc_rs::default_provider();
     provider.cipher_suites = verifier::CIPHERSUITES.to_vec();
 
     let cert_resolver = Arc::new(
-        AlwaysResolvesCert::new(certificate, &private_key)
-            .expect("Server cert key DER is valid; qed"),
+        AlwaysResolvesCert::new(certificate, private_key)
+            .map_err(|_| rcgen::Error::RingUnspecified)?,
     );
 
     let mut crypto = rustls::ServerConfig::builder_with_provider(provider.into())

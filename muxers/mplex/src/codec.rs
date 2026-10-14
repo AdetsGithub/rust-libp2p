@@ -360,6 +360,131 @@ impl Encoder for Codec {
     }
 }
 
+/// Encode one mplex frame: `varint((stream_id<<3)|flag) || varint(len) || payload`.
+///
+/// `flag` is masked to 3 bits (`0..=7`); values `0..=6` are valid Open/Data/…
+/// frames, `7` is the invalid-header reject path.
+#[cfg(feature = "fuzzing")]
+pub fn encode_structured_frame(flag: u8, stream_id: u64, payload: &[u8]) -> Vec<u8> {
+    let header = (stream_id << 3) | u64::from(flag & 7);
+    let mut out = Vec::with_capacity(16 + payload.len());
+    let mut header_buf = encode::u64_buffer();
+    out.extend_from_slice(encode::u64(header, &mut header_buf));
+    let mut len_buf = encode::usize_buffer();
+    out.extend_from_slice(encode::usize(payload.len(), &mut len_buf));
+    out.extend_from_slice(payload);
+    out
+}
+
+/// Concatenate structured frames (flag ∈ 0..=7, stream id, payload).
+#[cfg(feature = "fuzzing")]
+pub fn encode_structured_frames(frames: &[(u8, u64, Vec<u8>)]) -> Vec<u8> {
+    let mut out = Vec::new();
+    for (flag, id, payload) in frames {
+        out.extend_from_slice(&encode_structured_frame(*flag, *id, payload));
+    }
+    out
+}
+
+/// Fuzzing entry point for the mplex frame-header decoder.
+///
+/// Feeds bytes to [`Codec`] (optionally in chunks) and, for every frame
+/// recovered, runs a decode -> encode -> decode round-trip.
+///
+/// Invariants enforced (must hold for any input):
+/// - decoding arbitrary bytes never panics and always terminates;
+/// - a decoded frame re-encodes and decodes back to an equal frame.
+///
+/// Note: the on-wire role/flag is preserved when rebuilding the `LocalStreamId`
+/// (we copy the decoded role rather than flipping it via `into_local`), because
+/// the initiator/receiver flag encodes direction and a flip would change the
+/// wire flag. Exposed only under the `fuzzing` feature.
+#[cfg(feature = "fuzzing")]
+pub fn fuzz_frame_codec(data: &[u8]) {
+    fuzz_frame_codec_chunked(data, data.len().max(1));
+}
+
+/// Like [`fuzz_frame_codec`], but feeds `data` to the decoder in chunks of
+/// `chunk_size` bytes so the Begin/HasHeader/HasHeaderAndLen state machine
+/// sees fragmented varints and partial payloads.
+#[cfg(feature = "fuzzing")]
+pub fn fuzz_frame_codec_chunked(data: &[u8], chunk_size: usize) {
+    let chunk_size = chunk_size.max(1);
+    let mut decoder = Codec::new();
+    let mut src = BytesMut::new();
+    let mut offset = 0;
+
+    while offset <= data.len() {
+        if offset < data.len() {
+            let end = (offset + chunk_size).min(data.len());
+            src.extend_from_slice(&data[offset..end]);
+            offset = end;
+        } else {
+            // Final drain with whatever remains in `src`.
+            offset = data.len() + 1;
+        }
+
+        // `decode` returns `Ok(Some(_))` per complete frame, `Ok(None)` when more
+        // bytes would be needed, and `Err` on malformed input.
+        loop {
+            match decoder.decode(&mut src) {
+                Ok(Some(frame)) => {
+                    // Rebuild an equivalent `LocalStreamId`, preserving the wire role.
+                    let local = match frame.clone() {
+                        Frame::Open { stream_id } => Frame::Open {
+                            stream_id: LocalStreamId {
+                                num: stream_id.num,
+                                role: stream_id.role,
+                            },
+                        },
+                        Frame::Data { stream_id, data } => Frame::Data {
+                            stream_id: LocalStreamId {
+                                num: stream_id.num,
+                                role: stream_id.role,
+                            },
+                            data,
+                        },
+                        Frame::Close { stream_id } => Frame::Close {
+                            stream_id: LocalStreamId {
+                                num: stream_id.num,
+                                role: stream_id.role,
+                            },
+                        },
+                        Frame::Reset { stream_id } => Frame::Reset {
+                            stream_id: LocalStreamId {
+                                num: stream_id.num,
+                                role: stream_id.role,
+                            },
+                        },
+                    };
+
+                    let mut encoder = Codec::new();
+                    let mut out = BytesMut::new();
+                    encoder
+                        .encode(local, &mut out)
+                        .expect("re-encoding a just-decoded mplex frame must succeed");
+
+                    let reparsed = Codec::new()
+                        .decode(&mut out)
+                        .expect("decoding a re-encoded mplex frame must succeed")
+                        .expect("a re-encoded mplex frame must decode to a complete frame");
+
+                    assert_eq!(
+                        reparsed, frame,
+                        "mplex frame did not survive decode -> encode -> decode"
+                    );
+                }
+                Ok(None) => break,
+                Err(_) => return,
+            }
+        }
+
+        if offset > data.len() {
+            break;
+        }
+    }
+}
+
 #[cfg(test)]
 mod tests {
     use super::*;

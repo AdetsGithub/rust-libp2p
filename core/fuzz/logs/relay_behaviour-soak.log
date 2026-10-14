@@ -1,0 +1,758 @@
+warning: unreachable call
+   --> /home/adethya/Documents/rust-libp2p/swarm/src/connection/pool/task.rs:113:37
+    |
+113 |         Either::Left((Ok(v), _)) => libp2p_core::util::unreachable(v),
+    |                                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ - any code following this expression is unreachable
+    |                                     |
+    |                                     unreachable call
+    |
+    = note: `#[warn(unreachable_code)]` (part of `#[warn(unused)]`) on by default
+
+warning: unreachable call
+   --> /home/adethya/Documents/rust-libp2p/swarm/src/connection/pool/task.rs:151:37
+    |
+151 |         Either::Left((Ok(v), _)) => libp2p_core::util::unreachable(v),
+    |                                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ - any code following this expression is unreachable
+    |                                     |
+    |                                     unreachable call
+
+warning: unreachable call
+   --> /home/adethya/Documents/rust-libp2p/swarm/src/behaviour/toggle.rs:211:41
+    |
+211 |             future::Either::Right(v) => libp2p_core::util::unreachable(v),
+    |                                         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ - any code following this expression is unreachable
+    |                                         |
+    |                                         unreachable call
+
+warning: unreachable call
+   --> /home/adethya/Documents/rust-libp2p/swarm/src/behaviour/toggle.rs:251:33
+    |
+251 |             Either::Right(v) => libp2p_core::util::unreachable(v),
+    |                                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ - any code following this expression is unreachable
+    |                                 |
+    |                                 unreachable call
+
+warning: unreachable call
+  --> /home/adethya/Documents/rust-libp2p/swarm/src/dummy.rs:51:9
+   |
+51 |         libp2p_core::util::unreachable(event)
+   |         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ ----- any code following this expression is unreachable
+   |         |
+   |         unreachable call
+
+warning: unreachable call
+  --> /home/adethya/Documents/rust-libp2p/swarm/src/dummy.rs:79:9
+   |
+79 |         libp2p_core::util::unreachable(event)
+   |         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ ----- any code following this expression is unreachable
+   |         |
+   |         unreachable call
+
+warning: unreachable call
+  --> /home/adethya/Documents/rust-libp2p/swarm/src/dummy.rs:96:19
+   |
+96 |             }) => libp2p_core::util::unreachable(protocol),
+   |                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ -------- any code following this expression is unreachable
+   |                   |
+   |                   unreachable call
+
+warning: unreachable call
+  --> /home/adethya/Documents/rust-libp2p/swarm/src/dummy.rs:99:19
+   |
+99 |             }) => libp2p_core::util::unreachable(protocol),
+   |                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ -------- any code following this expression is unreachable
+   |                   |
+   |                   unreachable call
+
+warning: unreachable call
+   --> /home/adethya/Documents/rust-libp2p/swarm/src/dummy.rs:102:49
+    |
+102 |                 StreamUpgradeError::Apply(e) => libp2p_core::util::unreachable(e),
+    |                                                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ - any code following this expression is unreachable
+    |                                                 |
+    |                                                 unreachable call
+
+warning: unreachable call
+  --> /home/adethya/Documents/rust-libp2p/swarm/src/handler/pending.rs:59:9
+   |
+59 |         libp2p_core::util::unreachable(v)
+   |         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ - any code following this expression is unreachable
+   |         |
+   |         unreachable call
+
+warning: unreachable call
+  --> /home/adethya/Documents/rust-libp2p/swarm/src/handler/pending.rs:76:19
+   |
+76 |             }) => libp2p_core::util::unreachable(protocol),
+   |                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ -------- any code following this expression is unreachable
+   |                   |
+   |                   unreachable call
+
+warning: unreachable call
+  --> /home/adethya/Documents/rust-libp2p/swarm/src/handler/pending.rs:81:17
+   |
+81 |                 libp2p_core::util::unreachable(protocol);
+   |                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ -------- any code following this expression is unreachable
+   |                 |
+   |                 unreachable call
+
+warning: `libp2p-swarm` (lib) generated 12 warnings
+warning: unreachable call
+   --> /home/adethya/Documents/rust-libp2p/protocols/request-response/src/handler.rs:239:45
+    |
+239 |             StreamUpgradeError::Apply(e) => libp2p_core::util::unreachable(e),
+    |                                             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ - any code following this expression is unreachable
+    |                                             |
+    |                                             unreachable call
+    |
+    = note: `#[warn(unreachable_code)]` (part of `#[warn(unused)]`) on by default
+
+warning: unreachable call
+   --> /home/adethya/Documents/rust-libp2p/protocols/request-response/src/handler.rs:255:9
+    |
+255 |         libp2p_core::util::unreachable(error)
+    |         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ ----- any code following this expression is unreachable
+    |         |
+    |         unreachable call
+
+warning: unreachable call
+   --> /home/adethya/Documents/rust-libp2p/protocols/kad/src/handler.rs:518:41
+    |
+518 |             future::Either::Right(p) => libp2p_core::util::unreachable(p),
+    |                                         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ - any code following this expression is unreachable
+    |                                         |
+    |                                         unreachable call
+    |
+    = note: `#[warn(unreachable_code)]` (part of `#[warn(unused)]`) on by default
+
+warning: unreachable call
+   --> /home/adethya/Documents/rust-libp2p/protocols/relay/src/behaviour/handler.rs:480:45
+    |
+480 |             StreamUpgradeError::Apply(v) => libp2p_core::util::unreachable(v),
+    |                                             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ - any code following this expression is unreachable
+    |                                             |
+    |                                             unreachable call
+    |
+    = note: `#[warn(unreachable_code)]` (part of `#[warn(unused)]`) on by default
+
+warning: unreachable call
+   --> /home/adethya/Documents/rust-libp2p/protocols/relay/src/behaviour.rs:572:33
+    |
+572 |             Either::Right(v) => libp2p_core::util::unreachable(v),
+    |                                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ - any code following this expression is unreachable
+    |                                 |
+    |                                 unreachable call
+
+warning: unreachable call
+   --> /home/adethya/Documents/rust-libp2p/protocols/relay/src/priv_client/handler.rs:453:56
+    |
+453 |             ConnectionEvent::ListenUpgradeError(ev) => libp2p_core::util::unreachable(ev.error),
+    |                                                        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ -------- any code following this expression is unreachable
+    |                                                        |
+    |                                                        unreachable call
+
+warning: unreachable call
+   --> /home/adethya/Documents/rust-libp2p/protocols/relay/src/priv_client/handler.rs:590:45
+    |
+590 |         StreamUpgradeError::Apply(never) => libp2p_core::util::unreachable(never),
+    |                                             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ ----- any code following this expression is unreachable
+    |                                             |
+    |                                             unreachable call
+
+warning: unreachable call
+   --> /home/adethya/Documents/rust-libp2p/protocols/relay/src/priv_client/handler.rs:601:45
+    |
+601 |         StreamUpgradeError::Apply(never) => libp2p_core::util::unreachable(never),
+    |                                             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ ----- any code following this expression is unreachable
+    |                                             |
+    |                                             unreachable call
+
+warning: unreachable call
+   --> /home/adethya/Documents/rust-libp2p/protocols/relay/src/priv_client.rs:295:33
+    |
+295 |             Either::Right(v) => libp2p_core::util::unreachable(v),
+    |                                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ - any code following this expression is unreachable
+    |                                 |
+    |                                 unreachable call
+
+warning: unreachable call
+   --> /home/adethya/Documents/rust-libp2p/misc/connection-limits/src/lib.rs:464:9
+    |
+464 |         libp2p_core::util::unreachable(event)
+    |         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ ----- any code following this expression is unreachable
+    |         |
+    |         unreachable call
+    |
+    = note: `#[warn(unreachable_code)]` (part of `#[warn(unused)]`) on by default
+
+warning: unreachable call
+   --> /home/adethya/Documents/rust-libp2p/protocols/dcutr/src/behaviour.rs:345:37
+    |
+345 |             Either::Right(never) => libp2p_core::util::unreachable(never),
+    |                                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ ----- any code following this expression is unreachable
+    |                                     |
+    |                                     unreachable call
+    |
+    = note: `#[warn(unreachable_code)]` (part of `#[warn(unused)]`) on by default
+
+warning: unreachable call
+   --> /home/adethya/Documents/rust-libp2p/protocols/dcutr/src/handler/relayed.rs:127:46
+    |
+127 |             future::Either::Right(output) => libp2p_core::util::unreachable(output),
+    |                                              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ ------ any code following this expression is unreachable
+    |                                              |
+    |                                              unreachable call
+
+warning: unreachable call
+   --> /home/adethya/Documents/rust-libp2p/protocols/dcutr/src/handler/relayed.rs:169:45
+    |
+169 |             StreamUpgradeError::Apply(v) => libp2p_core::util::unreachable(v),
+    |                                             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ - any code following this expression is unreachable
+    |                                             |
+    |                                             unreachable call
+
+warning: unreachable call
+   --> /home/adethya/Documents/rust-libp2p/protocols/gossipsub/src/handler.rs:531:45
+    |
+531 |                         Either::Right(v) => libp2p_core::util::unreachable(v),
+    |                                             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ - any code following this expression is unreachable
+    |                                             |
+    |                                             unreachable call
+    |
+    = note: `#[warn(unreachable_code)]` (part of `#[warn(unused)]`) on by default
+
+warning: unreachable call
+   --> /home/adethya/Documents/rust-libp2p/protocols/gossipsub/src/handler.rs:545:27
+    |
+545 |                     }) => libp2p_core::util::unreachable(e),
+    |                           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ - any code following this expression is unreachable
+    |                           |
+    |                           unreachable call
+
+warning: `libp2p-request-response` (lib) generated 2 warnings
+warning: `libp2p-kad` (lib) generated 1 warning
+warning: `libp2p-relay` (lib) generated 6 warnings
+warning: `libp2p-connection-limits` (lib) generated 1 warning
+warning: `libp2p-dcutr` (lib) generated 3 warnings
+warning: `libp2p-gossipsub` (lib) generated 2 warnings
+warning: unreachable call
+   --> /home/adethya/Documents/rust-libp2p/protocols/autonat/src/v2/client/handler/dial_request.rs:217:45
+    |
+217 |             StreamUpgradeError::Apply(v) => libp2p_core::util::unreachable(v),
+    |                                             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ - any code following this expression is unreachable
+    |                                             |
+    |                                             unreachable call
+    |
+    = note: `#[warn(unreachable_code)]` (part of `#[warn(unused)]`) on by default
+
+warning: unreachable call
+  --> /home/adethya/Documents/rust-libp2p/protocols/autonat/src/v2/client/handler/dial_back.rs:85:17
+   |
+85 |                 libp2p_core::util::unreachable(error);
+   |                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ ----- any code following this expression is unreachable
+   |                 |
+   |                 unreachable call
+
+warning: unreachable call
+   --> /home/adethya/Documents/rust-libp2p/protocols/autonat/src/v2/server/behaviour.rs:210:47
+    |
+210 |             Either::Left(Either::Right(v)) => libp2p_core::util::unreachable(v),
+    |                                               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ - any code following this expression is unreachable
+    |                                               |
+    |                                               unreachable call
+
+warning: `libp2p-autonat` (lib) generated 3 warnings
+    Finished `release` profile [optimized + debuginfo] target(s) in 0.30s
+warning: unreachable call
+   --> /home/adethya/Documents/rust-libp2p/swarm/src/connection/pool/task.rs:113:37
+    |
+113 |         Either::Left((Ok(v), _)) => libp2p_core::util::unreachable(v),
+    |                                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ - any code following this expression is unreachable
+    |                                     |
+    |                                     unreachable call
+    |
+    = note: `#[warn(unreachable_code)]` (part of `#[warn(unused)]`) on by default
+
+warning: unreachable call
+   --> /home/adethya/Documents/rust-libp2p/swarm/src/connection/pool/task.rs:151:37
+    |
+151 |         Either::Left((Ok(v), _)) => libp2p_core::util::unreachable(v),
+    |                                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ - any code following this expression is unreachable
+    |                                     |
+    |                                     unreachable call
+
+warning: unreachable call
+   --> /home/adethya/Documents/rust-libp2p/swarm/src/behaviour/toggle.rs:211:41
+    |
+211 |             future::Either::Right(v) => libp2p_core::util::unreachable(v),
+    |                                         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ - any code following this expression is unreachable
+    |                                         |
+    |                                         unreachable call
+
+warning: unreachable call
+   --> /home/adethya/Documents/rust-libp2p/swarm/src/behaviour/toggle.rs:251:33
+    |
+251 |             Either::Right(v) => libp2p_core::util::unreachable(v),
+    |                                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ - any code following this expression is unreachable
+    |                                 |
+    |                                 unreachable call
+
+warning: unreachable call
+  --> /home/adethya/Documents/rust-libp2p/swarm/src/dummy.rs:51:9
+   |
+51 |         libp2p_core::util::unreachable(event)
+   |         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ ----- any code following this expression is unreachable
+   |         |
+   |         unreachable call
+
+warning: unreachable call
+  --> /home/adethya/Documents/rust-libp2p/swarm/src/dummy.rs:79:9
+   |
+79 |         libp2p_core::util::unreachable(event)
+   |         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ ----- any code following this expression is unreachable
+   |         |
+   |         unreachable call
+
+warning: unreachable call
+  --> /home/adethya/Documents/rust-libp2p/swarm/src/dummy.rs:96:19
+   |
+96 |             }) => libp2p_core::util::unreachable(protocol),
+   |                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ -------- any code following this expression is unreachable
+   |                   |
+   |                   unreachable call
+
+warning: unreachable call
+  --> /home/adethya/Documents/rust-libp2p/swarm/src/dummy.rs:99:19
+   |
+99 |             }) => libp2p_core::util::unreachable(protocol),
+   |                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ -------- any code following this expression is unreachable
+   |                   |
+   |                   unreachable call
+
+warning: unreachable call
+   --> /home/adethya/Documents/rust-libp2p/swarm/src/dummy.rs:102:49
+    |
+102 |                 StreamUpgradeError::Apply(e) => libp2p_core::util::unreachable(e),
+    |                                                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ - any code following this expression is unreachable
+    |                                                 |
+    |                                                 unreachable call
+
+warning: unreachable call
+  --> /home/adethya/Documents/rust-libp2p/swarm/src/handler/pending.rs:59:9
+   |
+59 |         libp2p_core::util::unreachable(v)
+   |         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ - any code following this expression is unreachable
+   |         |
+   |         unreachable call
+
+warning: unreachable call
+  --> /home/adethya/Documents/rust-libp2p/swarm/src/handler/pending.rs:76:19
+   |
+76 |             }) => libp2p_core::util::unreachable(protocol),
+   |                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ -------- any code following this expression is unreachable
+   |                   |
+   |                   unreachable call
+
+warning: unreachable call
+  --> /home/adethya/Documents/rust-libp2p/swarm/src/handler/pending.rs:81:17
+   |
+81 |                 libp2p_core::util::unreachable(protocol);
+   |                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ -------- any code following this expression is unreachable
+   |                 |
+   |                 unreachable call
+
+warning: `libp2p-swarm` (lib) generated 12 warnings
+warning: unreachable call
+   --> /home/adethya/Documents/rust-libp2p/protocols/request-response/src/handler.rs:239:45
+    |
+239 |             StreamUpgradeError::Apply(e) => libp2p_core::util::unreachable(e),
+    |                                             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ - any code following this expression is unreachable
+    |                                             |
+    |                                             unreachable call
+    |
+    = note: `#[warn(unreachable_code)]` (part of `#[warn(unused)]`) on by default
+
+warning: unreachable call
+   --> /home/adethya/Documents/rust-libp2p/protocols/request-response/src/handler.rs:255:9
+    |
+255 |         libp2p_core::util::unreachable(error)
+    |         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ ----- any code following this expression is unreachable
+    |         |
+    |         unreachable call
+
+warning: unreachable call
+   --> /home/adethya/Documents/rust-libp2p/protocols/kad/src/handler.rs:518:41
+    |
+518 |             future::Either::Right(p) => libp2p_core::util::unreachable(p),
+    |                                         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ - any code following this expression is unreachable
+    |                                         |
+    |                                         unreachable call
+    |
+    = note: `#[warn(unreachable_code)]` (part of `#[warn(unused)]`) on by default
+
+warning: unreachable call
+   --> /home/adethya/Documents/rust-libp2p/misc/connection-limits/src/lib.rs:464:9
+    |
+464 |         libp2p_core::util::unreachable(event)
+    |         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ ----- any code following this expression is unreachable
+    |         |
+    |         unreachable call
+    |
+    = note: `#[warn(unreachable_code)]` (part of `#[warn(unused)]`) on by default
+
+warning: unreachable call
+   --> /home/adethya/Documents/rust-libp2p/protocols/relay/src/behaviour/handler.rs:480:45
+    |
+480 |             StreamUpgradeError::Apply(v) => libp2p_core::util::unreachable(v),
+    |                                             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ - any code following this expression is unreachable
+    |                                             |
+    |                                             unreachable call
+    |
+    = note: `#[warn(unreachable_code)]` (part of `#[warn(unused)]`) on by default
+
+warning: unreachable call
+   --> /home/adethya/Documents/rust-libp2p/protocols/relay/src/behaviour.rs:572:33
+    |
+572 |             Either::Right(v) => libp2p_core::util::unreachable(v),
+    |                                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ - any code following this expression is unreachable
+    |                                 |
+    |                                 unreachable call
+
+warning: unreachable call
+   --> /home/adethya/Documents/rust-libp2p/protocols/relay/src/priv_client/handler.rs:453:56
+    |
+453 |             ConnectionEvent::ListenUpgradeError(ev) => libp2p_core::util::unreachable(ev.error),
+    |                                                        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ -------- any code following this expression is unreachable
+    |                                                        |
+    |                                                        unreachable call
+
+warning: unreachable call
+   --> /home/adethya/Documents/rust-libp2p/protocols/relay/src/priv_client/handler.rs:590:45
+    |
+590 |         StreamUpgradeError::Apply(never) => libp2p_core::util::unreachable(never),
+    |                                             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ ----- any code following this expression is unreachable
+    |                                             |
+    |                                             unreachable call
+
+warning: unreachable call
+   --> /home/adethya/Documents/rust-libp2p/protocols/relay/src/priv_client/handler.rs:601:45
+    |
+601 |         StreamUpgradeError::Apply(never) => libp2p_core::util::unreachable(never),
+    |                                             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ ----- any code following this expression is unreachable
+    |                                             |
+    |                                             unreachable call
+
+warning: unreachable call
+   --> /home/adethya/Documents/rust-libp2p/protocols/relay/src/priv_client.rs:295:33
+    |
+295 |             Either::Right(v) => libp2p_core::util::unreachable(v),
+    |                                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ - any code following this expression is unreachable
+    |                                 |
+    |                                 unreachable call
+
+warning: unreachable call
+   --> /home/adethya/Documents/rust-libp2p/protocols/dcutr/src/behaviour.rs:345:37
+    |
+345 |             Either::Right(never) => libp2p_core::util::unreachable(never),
+    |                                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ ----- any code following this expression is unreachable
+    |                                     |
+    |                                     unreachable call
+    |
+    = note: `#[warn(unreachable_code)]` (part of `#[warn(unused)]`) on by default
+
+warning: unreachable call
+   --> /home/adethya/Documents/rust-libp2p/protocols/dcutr/src/handler/relayed.rs:127:46
+    |
+127 |             future::Either::Right(output) => libp2p_core::util::unreachable(output),
+    |                                              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ ------ any code following this expression is unreachable
+    |                                              |
+    |                                              unreachable call
+
+warning: unreachable call
+   --> /home/adethya/Documents/rust-libp2p/protocols/dcutr/src/handler/relayed.rs:169:45
+    |
+169 |             StreamUpgradeError::Apply(v) => libp2p_core::util::unreachable(v),
+    |                                             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ - any code following this expression is unreachable
+    |                                             |
+    |                                             unreachable call
+
+warning: unreachable call
+   --> /home/adethya/Documents/rust-libp2p/protocols/gossipsub/src/handler.rs:531:45
+    |
+531 |                         Either::Right(v) => libp2p_core::util::unreachable(v),
+    |                                             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ - any code following this expression is unreachable
+    |                                             |
+    |                                             unreachable call
+    |
+    = note: `#[warn(unreachable_code)]` (part of `#[warn(unused)]`) on by default
+
+warning: unreachable call
+   --> /home/adethya/Documents/rust-libp2p/protocols/gossipsub/src/handler.rs:545:27
+    |
+545 |                     }) => libp2p_core::util::unreachable(e),
+    |                           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ - any code following this expression is unreachable
+    |                           |
+    |                           unreachable call
+
+warning: `libp2p-request-response` (lib) generated 2 warnings
+warning: `libp2p-kad` (lib) generated 1 warning
+warning: `libp2p-connection-limits` (lib) generated 1 warning
+warning: `libp2p-relay` (lib) generated 6 warnings
+warning: `libp2p-dcutr` (lib) generated 3 warnings
+warning: `libp2p-gossipsub` (lib) generated 2 warnings
+warning: unreachable call
+   --> /home/adethya/Documents/rust-libp2p/protocols/autonat/src/v2/client/handler/dial_request.rs:217:45
+    |
+217 |             StreamUpgradeError::Apply(v) => libp2p_core::util::unreachable(v),
+    |                                             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ - any code following this expression is unreachable
+    |                                             |
+    |                                             unreachable call
+    |
+    = note: `#[warn(unreachable_code)]` (part of `#[warn(unused)]`) on by default
+
+warning: unreachable call
+  --> /home/adethya/Documents/rust-libp2p/protocols/autonat/src/v2/client/handler/dial_back.rs:85:17
+   |
+85 |                 libp2p_core::util::unreachable(error);
+   |                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ ----- any code following this expression is unreachable
+   |                 |
+   |                 unreachable call
+
+warning: unreachable call
+   --> /home/adethya/Documents/rust-libp2p/protocols/autonat/src/v2/server/behaviour.rs:210:47
+    |
+210 |             Either::Left(Either::Right(v)) => libp2p_core::util::unreachable(v),
+    |                                               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ - any code following this expression is unreachable
+    |                                               |
+    |                                               unreachable call
+
+warning: `libp2p-autonat` (lib) generated 3 warnings
+    Finished `release` profile [optimized + debuginfo] target(s) in 0.30s
+     Running `target/x86_64-unknown-linux-gnu/release/relay_behaviour -artifact_prefix=/home/adethya/Documents/rust-libp2p/core/fuzz/artifacts/relay_behaviour/ -dict=dicts/relay_behaviour.dict -print_funcs=0 -max_len=4096 -len_control=0 -rss_limit_mb=4096 -max_total_time=90 /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/relay_behaviour`
+Dictionary: 7 entries
+INFO: Running with entropic power schedule (0xFF, 100).
+INFO: Seed: 3932853388
+INFO: Loaded 1 modules   (32513 inline 8-bit counters): 32513 [0x58403275ab40, 0x584032762a41), 
+INFO: Loaded 1 PC tables (32513 PCs): 32513 [0x584032762a48,0x5840327e1a58), 
+INFO:        3 files found in /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/relay_behaviour
+INFO: seed corpus: files: 3 min: 201b max: 201b total: 603b rss: 72Mb
+#4	INITED cov: 2321 ft: 2910 corp: 3/603b exec/s: 0 rss: 72Mb
+#5	NEW    cov: 2321 ft: 2911 corp: 4/805b lim: 4096 exec/s: 0 rss: 72Mb L: 202/202 MS: 1 InsertByte-
+#6	NEW    cov: 2324 ft: 2941 corp: 5/1007b lim: 4096 exec/s: 0 rss: 72Mb L: 202/202 MS: 1 InsertByte-
+#7	NEW    cov: 2324 ft: 2945 corp: 6/1209b lim: 4096 exec/s: 0 rss: 72Mb L: 202/202 MS: 1 ChangeByte-
+#11	NEW    cov: 2324 ft: 2947 corp: 7/1411b lim: 4096 exec/s: 0 rss: 72Mb L: 202/202 MS: 3 ChangeByte-ManualDict-ManualDict- DE: "\012\013\014\015"-"\010\001"-
+#12	NEW    cov: 2336 ft: 3007 corp: 8/1649b lim: 4096 exec/s: 0 rss: 72Mb L: 238/238 MS: 1 InsertRepeatedBytes-
+#15	NEW    cov: 2337 ft: 3009 corp: 9/1886b lim: 4096 exec/s: 0 rss: 72Mb L: 237/238 MS: 3 ChangeByte-EraseBytes-InsertRepeatedBytes-
+#21	NEW    cov: 2461 ft: 3163 corp: 10/2090b lim: 4096 exec/s: 21 rss: 72Mb L: 204/238 MS: 1 PersAutoDict- DE: "\010\001"-
+#22	NEW    cov: 2461 ft: 3255 corp: 11/2493b lim: 4096 exec/s: 22 rss: 72Mb L: 403/403 MS: 1 CrossOver-
+#23	NEW    cov: 2465 ft: 3259 corp: 12/2696b lim: 4096 exec/s: 23 rss: 72Mb L: 203/403 MS: 1 PersAutoDict- DE: "\010\001"-
+#26	NEW    cov: 2465 ft: 3261 corp: 13/3103b lim: 4096 exec/s: 26 rss: 72Mb L: 407/407 MS: 3 CMP-ManualDict-ManualDict- DE: "\377\377\377\377\377\377\377\007"-"\010\002"-"\010\002"-
+#29	NEW    cov: 2465 ft: 3302 corp: 14/3372b lim: 4096 exec/s: 29 rss: 72Mb L: 269/407 MS: 3 InsertRepeatedBytes-ManualDict-InsertRepeatedBytes- DE: "\012\013\014\015"-
+#30	NEW    cov: 2465 ft: 3331 corp: 15/3574b lim: 4096 exec/s: 30 rss: 72Mb L: 202/407 MS: 1 CrossOver-
+#31	NEW    cov: 2467 ft: 3335 corp: 16/3872b lim: 4096 exec/s: 31 rss: 72Mb L: 298/407 MS: 1 CopyPart-
+#33	NEW    cov: 2468 ft: 3337 corp: 17/4074b lim: 4096 exec/s: 16 rss: 72Mb L: 202/407 MS: 2 CopyPart-ChangeBit-
+#40	NEW    cov: 2485 ft: 4214 corp: 18/4278b lim: 4096 exec/s: 20 rss: 72Mb L: 204/407 MS: 2 ChangeByte-ChangeBinInt-
+#41	NEW    cov: 2485 ft: 4215 corp: 19/4482b lim: 4096 exec/s: 20 rss: 72Mb L: 204/407 MS: 1 ChangeBit-
+#44	NEW    cov: 2528 ft: 4283 corp: 20/4695b lim: 4096 exec/s: 22 rss: 74Mb L: 213/407 MS: 3 InsertRepeatedBytes-ChangeBit-EraseBytes-
+#59	NEW    cov: 2531 ft: 4598 corp: 21/5149b lim: 4096 exec/s: 19 rss: 80Mb L: 454/454 MS: 5 ChangeBit-InsertRepeatedBytes-CopyPart-ManualDict-CopyPart- DE: "\010\002"-
+#61	NEW    cov: 2536 ft: 4604 corp: 22/5428b lim: 4096 exec/s: 20 rss: 81Mb L: 279/454 MS: 2 EraseBytes-InsertRepeatedBytes-
+#63	NEW    cov: 2536 ft: 4606 corp: 23/5666b lim: 4096 exec/s: 15 rss: 82Mb L: 238/454 MS: 2 ChangeBit-ChangeByte-
+#64	pulse  cov: 2536 ft: 4606 corp: 23/5666b lim: 4096 exec/s: 16 rss: 83Mb
+#65	NEW    cov: 2539 ft: 4610 corp: 24/5913b lim: 4096 exec/s: 16 rss: 83Mb L: 247/454 MS: 2 ManualDict-InsertRepeatedBytes- DE: "\010\002"-
+#67	NEW    cov: 2539 ft: 4613 corp: 25/6115b lim: 4096 exec/s: 16 rss: 84Mb L: 202/454 MS: 2 ShuffleBytes-ChangeByte-
+#73	NEW    cov: 2539 ft: 4661 corp: 26/6754b lim: 4096 exec/s: 18 rss: 87Mb L: 639/639 MS: 1 CopyPart-
+#74	NEW    cov: 2539 ft: 4665 corp: 27/7393b lim: 4096 exec/s: 18 rss: 88Mb L: 639/639 MS: 1 ChangeBinInt-
+#80	NEW    cov: 2540 ft: 4666 corp: 28/7699b lim: 4096 exec/s: 16 rss: 90Mb L: 306/639 MS: 1 InsertRepeatedBytes-
+#84	NEW    cov: 2540 ft: 4708 corp: 29/7911b lim: 4096 exec/s: 16 rss: 93Mb L: 212/639 MS: 4 ManualDict-ShuffleBytes-ChangeBit-PersAutoDict- DE: "\012\013\014\015"-"\012\013\014\015"-
+#85	NEW    cov: 2542 ft: 4710 corp: 30/8124b lim: 4096 exec/s: 17 rss: 94Mb L: 213/639 MS: 1 ChangeByte-
+#87	NEW    cov: 2543 ft: 4711 corp: 31/8337b lim: 4096 exec/s: 17 rss: 95Mb L: 213/639 MS: 2 ShuffleBytes-ShuffleBytes-
+#90	NEW    cov: 2561 ft: 4977 corp: 32/8560b lim: 4096 exec/s: 18 rss: 97Mb L: 223/639 MS: 3 InsertRepeatedBytes-ManualDict-ChangeByte- DE: "\010\001"-
+#92	NEW    cov: 2561 ft: 5005 corp: 33/8798b lim: 4096 exec/s: 18 rss: 98Mb L: 238/639 MS: 2 ChangeBit-ChangeBinInt-
+#101	NEW    cov: 2562 ft: 5068 corp: 34/9044b lim: 4096 exec/s: 16 rss: 103Mb L: 246/639 MS: 4 ChangeBit-PersAutoDict-CMP-ChangeByte- DE: "\377\377\377\377\377\377\377\007"-"\023&\226 "-
+#109	NEW    cov: 2562 ft: 5099 corp: 35/9282b lim: 4096 exec/s: 18 rss: 106Mb L: 238/639 MS: 3 ChangeBit-ChangeBinInt-PersAutoDict- DE: "\023&\226 "-
+#114	NEW    cov: 2563 ft: 5113 corp: 36/9437b lim: 4096 exec/s: 16 rss: 109Mb L: 155/639 MS: 5 ChangeBit-EraseBytes-ShuffleBytes-CopyPart-ShuffleBytes-
+#117	NEW    cov: 2566 ft: 5117 corp: 37/9627b lim: 4096 exec/s: 16 rss: 110Mb L: 190/639 MS: 3 EraseBytes-CopyPart-ChangeBinInt-
+#128	pulse  cov: 2566 ft: 5117 corp: 37/9627b lim: 4096 exec/s: 18 rss: 116Mb
+#131	NEW    cov: 2590 ft: 5155 corp: 38/9731b lim: 4096 exec/s: 18 rss: 117Mb L: 104/639 MS: 4 ChangeByte-InsertByte-InsertByte-EraseBytes-
+#132	NEW    cov: 2592 ft: 5162 corp: 39/9934b lim: 4096 exec/s: 16 rss: 118Mb L: 203/639 MS: 1 CMP- DE: "\342C\2413"-
+#133	NEW    cov: 2592 ft: 5166 corp: 40/10259b lim: 4096 exec/s: 16 rss: 118Mb L: 325/639 MS: 1 InsertRepeatedBytes-
+#134	NEW    cov: 2592 ft: 5188 corp: 41/10470b lim: 4096 exec/s: 16 rss: 119Mb L: 211/639 MS: 1 CMP- DE: "\377\377\377\377\377\377\377\003"-
+#144	REDUCE cov: 2592 ft: 5188 corp: 41/10457b lim: 4096 exec/s: 18 rss: 124Mb L: 256/639 MS: 5 InsertRepeatedBytes-ShuffleBytes-InsertByte-PersAutoDict-EraseBytes- DE: "\377\377\377\377\377\377\377\003"-
+#151	NEW    cov: 2595 ft: 5195 corp: 42/10728b lim: 4096 exec/s: 16 rss: 127Mb L: 271/639 MS: 2 ShuffleBytes-CopyPart-
+#157	NEW    cov: 2595 ft: 5236 corp: 43/11018b lim: 4096 exec/s: 17 rss: 130Mb L: 290/639 MS: 1 InsertRepeatedBytes-
+#162	NEW    cov: 2595 ft: 5537 corp: 44/11163b lim: 4096 exec/s: 18 rss: 133Mb L: 145/639 MS: 5 EraseBytes-CrossOver-EraseBytes-ChangeBit-InsertByte-
+#165	NEW    cov: 2595 ft: 5543 corp: 45/11283b lim: 4096 exec/s: 16 rss: 134Mb L: 120/639 MS: 3 ManualDict-ChangeByte-EraseBytes- DE: "\007"-
+#176	NEW    cov: 2598 ft: 5546 corp: 46/11484b lim: 4096 exec/s: 17 rss: 140Mb L: 201/639 MS: 1 PersAutoDict- DE: "\007"-
+#182	NEW    cov: 2599 ft: 5548 corp: 47/11687b lim: 4096 exec/s: 16 rss: 143Mb L: 203/639 MS: 1 InsertByte-
+#184	NEW    cov: 2600 ft: 5549 corp: 48/12102b lim: 4096 exec/s: 16 rss: 144Mb L: 415/639 MS: 2 ChangeBit-PersAutoDict- DE: "\377\377\377\377\377\377\377\007"-
+#185	NEW    cov: 2601 ft: 5550 corp: 49/12206b lim: 4096 exec/s: 16 rss: 144Mb L: 104/639 MS: 1 ShuffleBytes-
+#194	NEW    cov: 2603 ft: 5552 corp: 50/12274b lim: 4096 exec/s: 17 rss: 149Mb L: 68/639 MS: 4 ChangeByte-ChangeByte-EraseBytes-EraseBytes-
+#200	NEW    cov: 2606 ft: 5555 corp: 51/12394b lim: 4096 exec/s: 16 rss: 152Mb L: 120/639 MS: 1 ChangeBinInt-
+#201	NEW    cov: 2606 ft: 5606 corp: 52/12795b lim: 4096 exec/s: 16 rss: 152Mb L: 401/639 MS: 1 EraseBytes-
+#204	NEW    cov: 2607 ft: 5613 corp: 53/13002b lim: 4096 exec/s: 17 rss: 154Mb L: 207/639 MS: 3 ChangeBit-ChangeByte-CMP- DE: "\177/\274\023"-
+#208	NEW    cov: 2607 ft: 5615 corp: 54/13456b lim: 4096 exec/s: 17 rss: 156Mb L: 454/639 MS: 4 ShuffleBytes-ChangeByte-ChangeBinInt-ManualDict- DE: "\007"-
+#210	NEW    cov: 2607 ft: 5616 corp: 55/13608b lim: 4096 exec/s: 17 rss: 157Mb L: 152/639 MS: 2 PersAutoDict-EraseBytes- DE: "\012\013\014\015"-
+#211	NEW    cov: 2607 ft: 5629 corp: 56/13825b lim: 4096 exec/s: 17 rss: 157Mb L: 217/639 MS: 1 PersAutoDict- DE: "\012\013\014\015"-
+#214	NEW    cov: 2608 ft: 5632 corp: 57/13912b lim: 4096 exec/s: 16 rss: 159Mb L: 87/639 MS: 3 InsertRepeatedBytes-ManualDict-ManualDict- DE: "\007"-"\012\013\014\015"-
+#215	NEW    cov: 2608 ft: 5635 corp: 58/14141b lim: 4096 exec/s: 16 rss: 160Mb L: 229/639 MS: 1 EraseBytes-
+#225	NEW    cov: 2608 ft: 5636 corp: 59/14369b lim: 4096 exec/s: 17 rss: 165Mb L: 228/639 MS: 5 ManualDict-ChangeBit-ShuffleBytes-ChangeByte-CrossOver- DE: "\021\022"-
+#230	NEW    cov: 2610 ft: 5639 corp: 60/14582b lim: 4096 exec/s: 16 rss: 167Mb L: 213/639 MS: 4 PersAutoDict-ManualDict-ChangeBinInt-CrossOver- DE: "\010\001"-"\021\022"-
+#232	NEW    cov: 2610 ft: 5763 corp: 61/14795b lim: 4096 exec/s: 16 rss: 169Mb L: 213/639 MS: 2 ChangeByte-ShuffleBytes-
+#233	NEW    cov: 2612 ft: 5777 corp: 62/15018b lim: 4096 exec/s: 16 rss: 170Mb L: 223/639 MS: 1 CMP- DE: "\377\001"-
+#235	NEW    cov: 2612 ft: 5785 corp: 63/15165b lim: 4096 exec/s: 16 rss: 171Mb L: 147/639 MS: 2 ChangeByte-EraseBytes-
+#236	NEW    cov: 2612 ft: 5788 corp: 64/15252b lim: 4096 exec/s: 16 rss: 171Mb L: 87/639 MS: 1 ManualDict- DE: "\021\022"-
+#237	REDUCE cov: 2612 ft: 5788 corp: 64/15211b lim: 4096 exec/s: 16 rss: 172Mb L: 162/639 MS: 1 EraseBytes-
+#244	NEW    cov: 2612 ft: 6045 corp: 65/15413b lim: 4096 exec/s: 16 rss: 176Mb L: 202/639 MS: 1 ShuffleBytes-
+#249	NEW    cov: 2612 ft: 6046 corp: 66/15707b lim: 4096 exec/s: 16 rss: 179Mb L: 294/639 MS: 5 CopyPart-ManualDict-PersAutoDict-ManualDict-ManualDict- DE: "\010\003"-"\177/\274\023"-"p2p-circuit"-"\012\013\014\015"-
+#252	NEW    cov: 2612 ft: 6047 corp: 67/16051b lim: 4096 exec/s: 16 rss: 181Mb L: 344/639 MS: 3 InsertRepeatedBytes-ChangeByte-ChangeBit-
+#253	NEW    cov: 2612 ft: 6048 corp: 68/16367b lim: 4096 exec/s: 16 rss: 181Mb L: 316/639 MS: 1 CopyPart-
+#256	pulse  cov: 2612 ft: 6048 corp: 68/16367b lim: 4096 exec/s: 17 rss: 183Mb
+#284	NEW    cov: 2613 ft: 6050 corp: 69/16Kb lim: 4096 exec/s: 16 rss: 197Mb L: 223/639 MS: 1 ChangeASCIIInt-
+#287	NEW    cov: 2614 ft: 6051 corp: 70/16Kb lim: 4096 exec/s: 16 rss: 198Mb L: 69/639 MS: 2 InsertByte-CrossOver-
+#288	NEW    cov: 2615 ft: 6053 corp: 71/16Kb lim: 4096 exec/s: 16 rss: 198Mb L: 251/639 MS: 1 ManualDict- DE: "\012\013\014\015"-
+#289	NEW    cov: 2615 ft: 6077 corp: 72/16Kb lim: 4096 exec/s: 17 rss: 199Mb L: 213/639 MS: 1 ManualDict- DE: "\021\022"-
+#291	NEW    cov: 2615 ft: 6085 corp: 73/17Kb lim: 4096 exec/s: 17 rss: 201Mb L: 299/639 MS: 2 ShuffleBytes-InsertRepeatedBytes-
+#303	NEW    cov: 2615 ft: 6088 corp: 74/17Kb lim: 4096 exec/s: 16 rss: 206Mb L: 219/639 MS: 2 ManualDict-PersAutoDict- DE: "\021\022"-"\177/\274\023"-
+#304	NEW    cov: 2615 ft: 6090 corp: 75/17Kb lim: 4096 exec/s: 16 rss: 207Mb L: 401/639 MS: 1 ChangeByte-
+#305	NEW    cov: 2615 ft: 6092 corp: 76/17Kb lim: 4096 exec/s: 16 rss: 207Mb L: 194/639 MS: 1 EraseBytes-
+#320	NEW    cov: 2615 ft: 6105 corp: 77/18Kb lim: 4096 exec/s: 16 rss: 215Mb L: 366/639 MS: 5 InsertRepeatedBytes-EraseBytes-InsertRepeatedBytes-ManualDict-InsertByte- DE: "\010\002"-
+#328	NEW    cov: 2615 ft: 6107 corp: 78/18Kb lim: 4096 exec/s: 16 rss: 219Mb L: 194/639 MS: 3 ManualDict-InsertRepeatedBytes-CMP- DE: "\010\001"-"\3771"-
+#330	REDUCE cov: 2615 ft: 6115 corp: 79/18Kb lim: 4096 exec/s: 16 rss: 220Mb L: 258/639 MS: 2 ChangeBit-ManualDict- DE: "\010\002"-
+#334	NEW    cov: 2615 ft: 6117 corp: 80/19Kb lim: 4096 exec/s: 16 rss: 222Mb L: 405/639 MS: 4 CrossOver-InsertByte-EraseBytes-InsertRepeatedBytes-
+#336	NEW    cov: 2615 ft: 6122 corp: 81/19Kb lim: 4096 exec/s: 16 rss: 223Mb L: 74/639 MS: 2 ShuffleBytes-EraseBytes-
+#344	NEW    cov: 2615 ft: 6128 corp: 82/19Kb lim: 4096 exec/s: 16 rss: 228Mb L: 331/639 MS: 2 ChangeBinInt-CrossOver-
+#347	NEW    cov: 2618 ft: 6131 corp: 83/19Kb lim: 4096 exec/s: 16 rss: 229Mb L: 307/639 MS: 3 ChangeByte-CMP-EraseBytes- DE: "\005\000\000\000\000\000\000\000"-
+#353	NEW    cov: 2618 ft: 6138 corp: 84/19Kb lim: 4096 exec/s: 16 rss: 232Mb L: 223/639 MS: 1 CopyPart-
+#358	NEW    cov: 2618 ft: 6146 corp: 85/20Kb lim: 4096 exec/s: 16 rss: 235Mb L: 226/639 MS: 5 InsertRepeatedBytes-ChangeBit-ChangeBinInt-ChangeByte-CopyPart-
+#365	NEW    cov: 2618 ft: 6153 corp: 86/20Kb lim: 4096 exec/s: 15 rss: 239Mb L: 271/639 MS: 2 ShuffleBytes-ChangeByte-
+#371	NEW    cov: 2618 ft: 6154 corp: 87/20Kb lim: 4096 exec/s: 16 rss: 243Mb L: 335/639 MS: 1 InsertRepeatedBytes-
+#379	NEW    cov: 2618 ft: 6156 corp: 88/21Kb lim: 4096 exec/s: 16 rss: 246Mb L: 377/639 MS: 3 PersAutoDict-ManualDict-EraseBytes- DE: "\021\022"-"\021\022"-
+#381	REDUCE cov: 2618 ft: 6156 corp: 88/20Kb lim: 4096 exec/s: 15 rss: 247Mb L: 176/639 MS: 2 ChangeBinInt-EraseBytes-
+#382	REDUCE cov: 2618 ft: 6156 corp: 88/20Kb lim: 4096 exec/s: 15 rss: 248Mb L: 139/639 MS: 1 EraseBytes-
+#387	NEW    cov: 2618 ft: 6163 corp: 89/21Kb lim: 4096 exec/s: 16 rss: 250Mb L: 488/639 MS: 5 CMP-CrossOver-ShuffleBytes-CMP-InsertRepeatedBytes- DE: "\001\000\000\000\000\000\000\000"-"\001\000\000\000\000\000\000\004"-
+#392	NEW    cov: 2618 ft: 6174 corp: 90/21Kb lim: 4096 exec/s: 16 rss: 252Mb L: 458/639 MS: 5 CopyPart-InsertByte-InsertRepeatedBytes-EraseBytes-CrossOver-
+#414	NEW    cov: 2618 ft: 6177 corp: 91/22Kb lim: 4096 exec/s: 16 rss: 263Mb L: 290/639 MS: 2 PersAutoDict-EraseBytes- DE: "\342C\2413"-
+#416	NEW    cov: 2618 ft: 6178 corp: 92/22Kb lim: 4096 exec/s: 16 rss: 265Mb L: 74/639 MS: 1 CopyPart-
+#419	NEW    cov: 2624 ft: 6192 corp: 93/22Kb lim: 4096 exec/s: 16 rss: 266Mb L: 214/639 MS: 3 ChangeBinInt-ManualDict-PersAutoDict- DE: "\010\003"-"p2p-circuit"-
+#431	REDUCE cov: 2624 ft: 6192 corp: 93/22Kb lim: 4096 exec/s: 15 rss: 273Mb L: 165/639 MS: 2 ChangeBinInt-EraseBytes-
+#437	NEW    cov: 2624 ft: 6199 corp: 94/22Kb lim: 4096 exec/s: 16 rss: 277Mb L: 72/639 MS: 5 EraseBytes-ChangeByte-ShuffleBytes-EraseBytes-CMP- DE: "\017\000\000\000\000\000\000\000"-
+#441	NEW    cov: 2624 ft: 6200 corp: 95/22Kb lim: 4096 exec/s: 16 rss: 279Mb L: 308/639 MS: 4 InsertRepeatedBytes-ShuffleBytes-EraseBytes-CopyPart-
+#446	NEW    cov: 2624 ft: 6203 corp: 96/23Kb lim: 4096 exec/s: 15 rss: 282Mb L: 345/639 MS: 5 ChangeByte-InsertRepeatedBytes-InsertRepeatedBytes-PersAutoDict-ChangeByte- DE: "\3771"-
+#450	NEW    cov: 2624 ft: 6208 corp: 97/23Kb lim: 4096 exec/s: 16 rss: 285Mb L: 130/639 MS: 2 EraseBytes-CMP- DE: "\010\001\022 \361\030\230\002W\257\375\277\010\011s\220@\201\333g#~\010\002\007u\020\353y\242\233CTcG\213"-
+#453	NEW    cov: 2624 ft: 6214 corp: 98/23Kb lim: 4096 exec/s: 16 rss: 286Mb L: 89/639 MS: 3 CopyPart-ShuffleBytes-ManualDict- DE: "\010\001"-
+#460	NEW    cov: 2625 ft: 6218 corp: 99/23Kb lim: 4096 exec/s: 15 rss: 290Mb L: 130/639 MS: 2 PersAutoDict-InsertRepeatedBytes- DE: "\001\000\000\000\000\000\000\004"-
+#462	NEW    cov: 2625 ft: 6226 corp: 100/23Kb lim: 4096 exec/s: 15 rss: 291Mb L: 154/639 MS: 2 CrossOver-CMP- DE: "\010\001\022 \015\3708\332\366C\370\036<\356*\220~>\305\036\211]]\357y\215\304\023\206\024\335}P\222=p"-
+#485	NEW    cov: 2625 ft: 6229 corp: 101/23Kb lim: 4096 exec/s: 16 rss: 302Mb L: 68/639 MS: 5 CopyPart-ChangeByte-ChangeBit-ShuffleBytes-ManualDict- DE: "\010\003"-
+#488	NEW    cov: 2627 ft: 6231 corp: 102/23Kb lim: 4096 exec/s: 16 rss: 304Mb L: 225/639 MS: 3 ChangeByte-InsertByte-InsertByte-
+#494	NEW    cov: 2628 ft: 6234 corp: 103/24Kb lim: 4096 exec/s: 15 rss: 307Mb L: 325/639 MS: 1 ChangeBit-
+#507	NEW    cov: 2628 ft: 6242 corp: 104/24Kb lim: 4096 exec/s: 16 rss: 312Mb L: 111/639 MS: 2 InsertByte-InsertRepeatedBytes-
+#512	pulse  cov: 2628 ft: 6242 corp: 104/24Kb lim: 4096 exec/s: 16 rss: 315Mb
+#513	NEW    cov: 2628 ft: 6243 corp: 105/24Kb lim: 4096 exec/s: 16 rss: 316Mb L: 70/639 MS: 1 InsertByte-
+#517	NEW    cov: 2628 ft: 6258 corp: 106/24Kb lim: 4096 exec/s: 16 rss: 318Mb L: 576/639 MS: 4 CrossOver-ShuffleBytes-ChangeByte-CopyPart-
+#520	NEW    cov: 2628 ft: 6259 corp: 107/25Kb lim: 4096 exec/s: 16 rss: 320Mb L: 155/639 MS: 2 CMP-ChangeBinInt- DE: "\001\000\000\000\000\000\000\000"-
+#534	NEW    cov: 2628 ft: 6262 corp: 108/25Kb lim: 4096 exec/s: 16 rss: 327Mb L: 303/639 MS: 4 InsertRepeatedBytes-CrossOver-CrossOver-CMP- DE: "\000\000\000\000\000\000\000\000"-
+#536	NEW    cov: 2628 ft: 6277 corp: 109/25Kb lim: 4096 exec/s: 16 rss: 328Mb L: 74/639 MS: 1 ManualDict- DE: "\010\001"-
+#539	NEW    cov: 2628 ft: 6278 corp: 110/25Kb lim: 4096 exec/s: 15 rss: 330Mb L: 290/639 MS: 3 PersAutoDict-ChangeBinInt-ChangeBinInt- DE: "\010\001\022 \015\3708\332\366C\370\036<\356*\220~>\305\036\211]]\357y\215\304\023\206\024\335}P\222=p"-
+#562	NEW    cov: 2628 ft: 6311 corp: 111/26Kb lim: 4096 exec/s: 16 rss: 343Mb L: 381/639 MS: 4 EraseBytes-ChangeBinInt-PersAutoDict-CrossOver- DE: "\021\022"-
+#564	NEW    cov: 2628 ft: 6321 corp: 112/26Kb lim: 4096 exec/s: 16 rss: 343Mb L: 366/639 MS: 2 ShuffleBytes-ShuffleBytes-
+#565	NEW    cov: 2628 ft: 6332 corp: 113/26Kb lim: 4096 exec/s: 16 rss: 344Mb L: 154/639 MS: 1 ChangeByte-
+#573	REDUCE cov: 2628 ft: 6332 corp: 113/26Kb lim: 4096 exec/s: 15 rss: 348Mb L: 282/639 MS: 3 ChangeByte-CMP-EraseBytes- DE: "\334\3554\016"-
+#580	NEW    cov: 2628 ft: 6353 corp: 114/26Kb lim: 4096 exec/s: 15 rss: 353Mb L: 157/639 MS: 4 InsertByte-ChangeByte-InsertByte-ChangeBit-
+#591	NEW    cov: 2629 ft: 6355 corp: 115/26Kb lim: 4096 exec/s: 15 rss: 359Mb L: 437/639 MS: 4 ChangeBinInt-CMP-ShuffleBytes-ChangeByte- DE: "\010\001\022 q\315\212:\3228\020\230\003]\256\016\215\374'\025\360\260n\340\325\336J\014@\336\342\206\306\177\240\347"-
+#593	NEW    cov: 2629 ft: 6365 corp: 116/27Kb lim: 4096 exec/s: 16 rss: 360Mb L: 272/639 MS: 2 CrossOver-EraseBytes-
+#604	NEW    cov: 2632 ft: 6371 corp: 117/27Kb lim: 4096 exec/s: 15 rss: 367Mb L: 129/639 MS: 1 EraseBytes-
+#618	NEW    cov: 2635 ft: 6375 corp: 118/27Kb lim: 4096 exec/s: 15 rss: 370Mb L: 398/639 MS: 4 ManualDict-CMP-InsertByte-CopyPart- DE: "\010\002"-"\377/\303\0140\303\0140"-
+#667	NEW    cov: 2636 ft: 6379 corp: 119/28Kb lim: 4096 exec/s: 15 rss: 371Mb L: 352/639 MS: 3 CMP-CMP-InsertRepeatedBytes- DE: "\001\000\000\005"-"\010\001\022 \015\3708\332\366C\370\036<\356*\220~>\305\036\211]]\357y\215\304\023\206\024\335}P\222=p"-
+#670	NEW    cov: 2636 ft: 6380 corp: 120/28Kb lim: 4096 exec/s: 15 rss: 371Mb L: 177/639 MS: 3 CopyPart-ChangeBinInt-ChangeBinInt-
+#678	NEW    cov: 2641 ft: 6388 corp: 121/28Kb lim: 4096 exec/s: 15 rss: 371Mb L: 218/639 MS: 3 CMP-ChangeByte-InsertByte- DE: "\004\000\000\000"-
+#684	NEW    cov: 2641 ft: 6389 corp: 122/28Kb lim: 4096 exec/s: 15 rss: 372Mb L: 47/639 MS: 1 EraseBytes-
+#686	REDUCE cov: 2643 ft: 6398 corp: 123/28Kb lim: 4096 exec/s: 15 rss: 372Mb L: 256/639 MS: 2 ChangeByte-PersAutoDict- DE: "\010\001\022 \361\030\230\002W\257\375\277\010\011s\220@\201\333g#~\010\002\007u\020\353y\242\233CTcG\213"-
+#717	REDUCE cov: 2643 ft: 6398 corp: 123/28Kb lim: 4096 exec/s: 15 rss: 372Mb L: 162/639 MS: 1 EraseBytes-
+#718	REDUCE cov: 2643 ft: 6402 corp: 124/29Kb lim: 4096 exec/s: 15 rss: 372Mb L: 327/639 MS: 1 InsertRepeatedBytes-
+#738	NEW    cov: 2643 ft: 6442 corp: 125/29Kb lim: 4096 exec/s: 15 rss: 373Mb L: 68/639 MS: 1 ChangeBinInt-
+#752	REDUCE cov: 2643 ft: 6443 corp: 126/29Kb lim: 4096 exec/s: 15 rss: 373Mb L: 140/639 MS: 1 InsertByte-
+#756	REDUCE cov: 2643 ft: 6444 corp: 127/29Kb lim: 4096 exec/s: 15 rss: 373Mb L: 142/639 MS: 4 InsertByte-ChangeByte-ChangeBit-ManualDict- DE: "\010\002"-
+#768	NEW    cov: 2643 ft: 6448 corp: 128/29Kb lim: 4096 exec/s: 15 rss: 373Mb L: 82/639 MS: 3 CrossOver-ManualDict-PersAutoDict- DE: "\010\001"-"\377/\303\0140\303\0140"-
+#777	NEW    cov: 2643 ft: 6455 corp: 129/29Kb lim: 4096 exec/s: 15 rss: 373Mb L: 169/639 MS: 2 ManualDict-InsertByte- DE: "p2p-circuit"-
+#798	NEW    cov: 2649 ft: 6471 corp: 130/29Kb lim: 4096 exec/s: 15 rss: 373Mb L: 180/639 MS: 1 EraseBytes-
+#803	NEW    cov: 2650 ft: 6472 corp: 131/30Kb lim: 4096 exec/s: 15 rss: 373Mb L: 290/639 MS: 5 InsertRepeatedBytes-ChangeByte-InsertRepeatedBytes-PersAutoDict-ChangeByte- DE: "\342C\2413"-
+#830	NEW    cov: 2650 ft: 6504 corp: 132/30Kb lim: 4096 exec/s: 15 rss: 373Mb L: 181/639 MS: 2 EraseBytes-PersAutoDict- DE: "\010\001\022 \015\3708\332\366C\370\036<\356*\220~>\305\036\211]]\357y\215\304\023\206\024\335}P\222=p"-
+#838	NEW    cov: 2650 ft: 6505 corp: 133/30Kb lim: 4096 exec/s: 15 rss: 373Mb L: 141/639 MS: 2 InsertByte-ChangeBit-
+#844	NEW    cov: 2650 ft: 6506 corp: 134/30Kb lim: 4096 exec/s: 15 rss: 373Mb L: 205/639 MS: 1 InsertByte-
+#872	NEW    cov: 2664 ft: 6520 corp: 135/31Kb lim: 4096 exec/s: 15 rss: 373Mb L: 472/639 MS: 3 ShuffleBytes-CrossOver-ChangeBinInt-
+#874	NEW    cov: 2664 ft: 6579 corp: 136/31Kb lim: 4096 exec/s: 15 rss: 373Mb L: 328/639 MS: 2 ShuffleBytes-InsertRepeatedBytes-
+#875	NEW    cov: 2664 ft: 6581 corp: 137/31Kb lim: 4096 exec/s: 15 rss: 373Mb L: 123/639 MS: 1 CrossOver-
+#889	NEW    cov: 2664 ft: 6582 corp: 138/31Kb lim: 4096 exec/s: 15 rss: 373Mb L: 143/639 MS: 4 ChangeByte-ChangeByte-EraseBytes-EraseBytes-
+#906	NEW    cov: 2664 ft: 6590 corp: 139/31Kb lim: 4096 exec/s: 15 rss: 373Mb L: 212/639 MS: 2 EraseBytes-InsertRepeatedBytes-
+#910	NEW    cov: 2664 ft: 6592 corp: 140/32Kb lim: 4096 exec/s: 15 rss: 373Mb L: 926/926 MS: 3 CopyPart-CMP-CopyPart- DE: "\004\000\000\000\000\000\000\000"-
+#914	NEW    cov: 2664 ft: 6595 corp: 141/32Kb lim: 4096 exec/s: 15 rss: 373Mb L: 176/926 MS: 4 ManualDict-EraseBytes-ManualDict-InsertRepeatedBytes- DE: "\010\001"-"\021\022"-
+#920	NEW    cov: 2664 ft: 6597 corp: 142/33Kb lim: 4096 exec/s: 15 rss: 373Mb L: 203/926 MS: 1 InsertByte-
+#951	NEW    cov: 2664 ft: 6605 corp: 143/33Kb lim: 4096 exec/s: 15 rss: 373Mb L: 376/926 MS: 1 EraseBytes-
+#956	NEW    cov: 2664 ft: 6608 corp: 144/33Kb lim: 4096 exec/s: 15 rss: 373Mb L: 26/926 MS: 5 PersAutoDict-EraseBytes-ChangeBit-ChangeByte-EraseBytes- DE: "\001\000\000\005"-
+#978	REDUCE cov: 2664 ft: 6608 corp: 144/33Kb lim: 4096 exec/s: 15 rss: 373Mb L: 452/926 MS: 2 PersAutoDict-EraseBytes- DE: "\010\001"-
+#981	REDUCE cov: 2664 ft: 6608 corp: 144/33Kb lim: 4096 exec/s: 15 rss: 373Mb L: 126/926 MS: 2 EraseBytes-CMP- DE: "\000\000\000\000"-
+#995	REDUCE cov: 2664 ft: 6613 corp: 145/33Kb lim: 4096 exec/s: 15 rss: 373Mb L: 166/926 MS: 3 CMP-ManualDict-ChangeBinInt- DE: "k\375\3736"-"\007"-
+#1001	NEW    cov: 2664 ft: 6617 corp: 146/33Kb lim: 4096 exec/s: 15 rss: 373Mb L: 366/926 MS: 1 ChangeBit-
+#1007	NEW    cov: 2667 ft: 6652 corp: 147/34Kb lim: 4096 exec/s: 15 rss: 373Mb L: 308/926 MS: 1 ChangeBinInt-
+#1011	NEW    cov: 2668 ft: 6658 corp: 148/34Kb lim: 4096 exec/s: 15 rss: 373Mb L: 131/926 MS: 3 ChangeByte-InsertByte-ChangeByte-
+#1024	pulse  cov: 2668 ft: 6658 corp: 148/34Kb lim: 4096 exec/s: 15 rss: 373Mb
+#1047	NEW    cov: 2668 ft: 6663 corp: 149/34Kb lim: 4096 exec/s: 15 rss: 373Mb L: 79/926 MS: 5 InsertByte-InsertByte-InsertByte-ChangeBinInt-PersAutoDict- DE: "\377\377\377\377\377\377\377\007"-
+#1057	REDUCE cov: 2668 ft: 6663 corp: 149/34Kb lim: 4096 exec/s: 15 rss: 373Mb L: 248/926 MS: 4 ChangeByte-ChangeBinInt-ShuffleBytes-EraseBytes-
+#1080	REDUCE cov: 2671 ft: 6666 corp: 150/34Kb lim: 4096 exec/s: 15 rss: 373Mb L: 145/926 MS: 2 EraseBytes-ChangeByte-
+#1092	NEW    cov: 2672 ft: 6667 corp: 151/34Kb lim: 4096 exec/s: 15 rss: 374Mb L: 53/926 MS: 2 InsertRepeatedBytes-ShuffleBytes-
+#1093	REDUCE cov: 2672 ft: 6667 corp: 151/34Kb lim: 4096 exec/s: 15 rss: 374Mb L: 207/926 MS: 1 EraseBytes-
+#1099	NEW    cov: 2672 ft: 6683 corp: 152/34Kb lim: 4096 exec/s: 15 rss: 374Mb L: 203/926 MS: 1 PersAutoDict- DE: "\001\000\000\000\000\000\000\000"-
+#1101	REDUCE cov: 2672 ft: 6683 corp: 152/34Kb lim: 4096 exec/s: 15 rss: 374Mb L: 217/926 MS: 2 ChangeBinInt-EraseBytes-
+#1106	NEW    cov: 2672 ft: 6690 corp: 153/34Kb lim: 4096 exec/s: 15 rss: 374Mb L: 75/926 MS: 4 ManualDict-ChangeByte-PersAutoDict-InsertByte- DE: "\010\001"-"\3771"-
+#1116	NEW    cov: 2672 ft: 6696 corp: 154/34Kb lim: 4096 exec/s: 15 rss: 374Mb L: 121/926 MS: 4 ShuffleBytes-InsertByte-ChangeBit-CrossOver-
+#1120	NEW    cov: 2672 ft: 6827 corp: 155/35Kb lim: 4096 exec/s: 15 rss: 374Mb L: 330/926 MS: 4 CrossOver-ShuffleBytes-ChangeBit-InsertRepeatedBytes-
+#1134	REDUCE cov: 2672 ft: 6827 corp: 155/35Kb lim: 4096 exec/s: 15 rss: 374Mb L: 325/926 MS: 4 PersAutoDict-EraseBytes-InsertByte-ManualDict- DE: "\377/\303\0140\303\0140"-"\007"-
+#1153	NEW    cov: 2672 ft: 6831 corp: 156/35Kb lim: 4096 exec/s: 15 rss: 374Mb L: 67/926 MS: 2 ShuffleBytes-EraseBytes-
+#1155	REDUCE cov: 2672 ft: 6831 corp: 156/35Kb lim: 4096 exec/s: 15 rss: 374Mb L: 295/926 MS: 2 InsertByte-EraseBytes-
+#1169	NEW    cov: 2694 ft: 7106 corp: 157/35Kb lim: 4096 exec/s: 15 rss: 374Mb L: 392/926 MS: 3 PersAutoDict-ShuffleBytes-InsertRepeatedBytes- DE: "\010\001\022 q\315\212:\3228\020\230\003]\256\016\215\374'\025\360\260n\340\325\336J\014@\336\342\206\306\177\240\347"-
+#1181	REDUCE cov: 2694 ft: 7106 corp: 157/35Kb lim: 4096 exec/s: 15 rss: 374Mb L: 200/926 MS: 1 EraseBytes-
+#1183	REDUCE cov: 2694 ft: 7106 corp: 157/35Kb lim: 4096 exec/s: 15 rss: 374Mb L: 156/926 MS: 1 EraseBytes-
+#1184	REDUCE cov: 2694 ft: 7106 corp: 157/35Kb lim: 4096 exec/s: 15 rss: 374Mb L: 388/926 MS: 1 EraseBytes-
+#1210	NEW    cov: 2694 ft: 7253 corp: 158/35Kb lim: 4096 exec/s: 15 rss: 374Mb L: 67/926 MS: 1 ChangeBit-
+#1216	NEW    cov: 2694 ft: 7256 corp: 159/35Kb lim: 4096 exec/s: 15 rss: 374Mb L: 221/926 MS: 5 ChangeBit-InsertRepeatedBytes-ChangeBinInt-ChangeByte-CopyPart-
+#1235	REDUCE cov: 2694 ft: 7256 corp: 159/35Kb lim: 4096 exec/s: 15 rss: 374Mb L: 457/926 MS: 4 ChangeByte-InsertByte-ChangeByte-EraseBytes-
+#1254	REDUCE cov: 2694 ft: 7262 corp: 160/35Kb lim: 4096 exec/s: 15 rss: 374Mb L: 174/926 MS: 5 CMP-InsertByte-PersAutoDict-CopyPart-ChangeBit- DE: "8L\362\346"-"\377\377\377\377\377\377\377\007"-
+#1256	NEW    cov: 2694 ft: 7264 corp: 161/36Kb lim: 4096 exec/s: 15 rss: 374Mb L: 308/926 MS: 2 ChangeBit-ChangeBinInt-
+#1326	NEW    cov: 2694 ft: 7266 corp: 162/36Kb lim: 4096 exec/s: 15 rss: 376Mb L: 159/926 MS: 4 CMP-ManualDict-InsertRepeatedBytes-ManualDict- DE: "\325\006(*"-"\007"-"\010\001"-
+#1331	NEW    cov: 2694 ft: 7267 corp: 163/36Kb lim: 4096 exec/s: 15 rss: 376Mb L: 177/926 MS: 5 PersAutoDict-ChangeBinInt-InsertByte-PersAutoDict-CMP- DE: "\010\001\022 \361\030\230\002W\257\375\277\010\011s\220@\201\333g#~\010\002\007u\020\353y\242\233CTcG\213"-"8L\362\346"-"\020\031\364|\276\020\000\000"-
+#1350	NEW    cov: 2694 ft: 7268 corp: 164/36Kb lim: 4096 exec/s: 15 rss: 376Mb L: 102/926 MS: 2 EraseBytes-CrossOver-
+#1351	NEW    cov: 2694 ft: 7275 corp: 165/36Kb lim: 4096 exec/s: 15 rss: 376Mb L: 154/926 MS: 1 EraseBytes-
+#1353	REDUCE cov: 2694 ft: 7275 corp: 165/36Kb lim: 4096 exec/s: 15 rss: 376Mb L: 108/926 MS: 1 EraseBytes-
+#1354	REDUCE cov: 2694 ft: 7275 corp: 165/36Kb lim: 4096 exec/s: 15 rss: 376Mb L: 202/926 MS: 1 EraseBytes-
+#1372	NEW    cov: 2694 ft: 7286 corp: 166/36Kb lim: 4096 exec/s: 15 rss: 376Mb L: 393/926 MS: 2 ChangeByte-InsertByte-
+#1379	NEW    cov: 2694 ft: 7287 corp: 167/36Kb lim: 4096 exec/s: 15 rss: 376Mb L: 67/926 MS: 1 CopyPart-
+#1384	NEW    cov: 2694 ft: 7292 corp: 168/37Kb lim: 4096 exec/s: 15 rss: 376Mb L: 69/926 MS: 4 ChangeBit-EraseBytes-ManualDict-EraseBytes- DE: "\010\003"-
+#1384	DONE   cov: 2694 ft: 7292 corp: 168/37Kb lim: 4096 exec/s: 15 rss: 376Mb
+###### Recommended dictionary. ######
+"\377\377\377\377\377\377\377\007" # Uses: 8
+"\023&\226 " # Uses: 4
+"\342C\2413" # Uses: 5
+"\377\377\377\377\377\377\377\003" # Uses: 3
+"\177/\274\023" # Uses: 5
+"\377\001" # Uses: 3
+"\3771" # Uses: 8
+"\005\000\000\000\000\000\000\000" # Uses: 1
+"\001\000\000\000\000\000\000\000" # Uses: 1
+"\001\000\000\000\000\000\000\004" # Uses: 3
+"\017\000\000\000\000\000\000\000" # Uses: 0
+"\010\001\022 \361\030\230\002W\257\375\277\010\011s\220@\201\333g#~\010\002\007u\020\353y\242\233CTcG\213" # Uses: 5
+"\010\001\022 \015\3708\332\366C\370\036<\356*\220~>\305\036\211]]\357y\215\304\023\206\024\335}P\222=p" # Uses: 5
+"\000\000\000\000\000\000\000\000" # Uses: 2
+"\334\3554\016" # Uses: 1
+"\010\001\022 q\315\212:\3228\020\230\003]\256\016\215\374'\025\360\260n\340\325\336J\014@\336\342\206\306\177\240\347" # Uses: 2
+"\377/\303\0140\303\0140" # Uses: 4
+"\001\000\000\005" # Uses: 2
+"\004\000\000\000" # Uses: 2
+"\004\000\000\000\000\000\000\000" # Uses: 1
+"\000\000\000\000" # Uses: 0
+"k\375\3736" # Uses: 2
+"8L\362\346" # Uses: 1
+"\325\006(*" # Uses: 1
+"\020\031\364|\276\020\000\000" # Uses: 0
+###### End of recommended dictionary. ######
+Done 1384 runs in 91 second(s)

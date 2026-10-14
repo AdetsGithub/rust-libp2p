@@ -229,6 +229,15 @@ impl Message {
     }
 }
 
+/// Fuzz entry: decode an arbitrary multistream-select message payload
+/// (frame body, *without* the outer length prefix).
+///
+/// Never panics; `Err` is a normal reject path (InvalidMessage / TooManyProtocols / …).
+#[cfg(feature = "fuzzing")]
+pub fn fuzz_message_decode(data: &[u8]) {
+    let _ = Message::decode(Bytes::copy_from_slice(data));
+}
+
 /// A `MessageIO` implements a [`Stream`] and [`Sink`] of [`Message`]s.
 #[pin_project::pin_project]
 pub(crate) struct MessageIO<R> {

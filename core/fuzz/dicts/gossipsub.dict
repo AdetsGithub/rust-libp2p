@@ -1,0 +1,39 @@
+# Gossipsub protobuf RPC fragments (prost field tags + control message hints).
+# InjectWire feeds unsigned-varint length-prefixed frames through GossipsubCodec;
+# InjectRpc still bypasses framing with inner Rpc protobuf bytes.
+
+# Rpc field tags (protobuf key = (field_number<<3)|wire_type)
+# subscriptions = 1 (len), publish = 2 (len), control = 3 (len)
+rpc_subscriptions="\x0A"
+rpc_publish="\x12"
+rpc_control="\x1A"
+
+# SubOpts: subscribe bool field 1, topic_id string field 2
+sub_subscribe_true="\x08\x01"
+sub_topic="\x12"
+
+# ControlMessage nested: ihave=1, iwant=2, graft=3, prune=4, idontwant=5
+ctrl_ihave="\x0A"
+ctrl_iwant="\x12"
+ctrl_graft="\x1A"
+ctrl_prune="\x22"
+ctrl_idontwant="\x2A"
+
+# Topic name fragments used by the harness topic pool
+topic_fuzz_0="fuzz-topic-0"
+topic_fuzz_1="fuzz-topic-1"
+
+# unsigned-varint length prefixes (small RPC bodies)
+uvi_1="\x01"
+uvi_16="\x10"
+uvi_32="\x20"
+uvi_64="\x40"
+
+# Oversize / bad-sig publish markers
+payload_A="AAAA"
+sig_de="\xDE\xDE\xDE\xDE"
+
+# Action-weight band helpers (RejectMsgId 8..=13, BlacklistPeer 26..=28)
+reject_band="\x08\x09\x0A\x0B\x0C\x0D"
+blacklist_band="\x1A\x1B\x1C"
+mid_slots="\x11\x22\x33\x44"

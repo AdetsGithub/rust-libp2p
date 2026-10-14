@@ -99,6 +99,29 @@ impl Behaviour {
         self.address_candidates.iter().cloned().collect()
     }
 
+    /// Outgoing hole-punch attempt map size (fuzz harness invariant checks).
+    #[cfg(feature = "fuzzing")]
+    pub fn fuzz_outgoing_attempt_count(&self) -> usize {
+        self.outgoing_direct_connection_attempts.len()
+    }
+
+    /// Total direct connection ids tracked (fuzz harness invariant checks).
+    #[cfg(feature = "fuzzing")]
+    pub fn fuzz_direct_connection_count(&self) -> usize {
+        self.direct_connections
+            .values()
+            .map(|set| set.len())
+            .sum()
+    }
+
+    /// Whether `peer` is tracked as having a direct connection.
+    #[cfg(feature = "fuzzing")]
+    pub fn fuzz_peer_has_direct_connection(&self, peer: PeerId) -> bool {
+        self.direct_connections
+            .get(&peer)
+            .is_some_and(|set| !set.is_empty())
+    }
+
     fn on_dial_failure(
         &mut self,
         DialFailure {

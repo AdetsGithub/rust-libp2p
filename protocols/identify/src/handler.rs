@@ -156,6 +156,12 @@ impl Handler {
         }
     }
 
+    /// Fuzzing: fire the periodic identify timer on the next handler poll.
+    #[cfg(feature = "fuzzing")]
+    pub fn fuzz_trigger_identify_now(&mut self) {
+        self.trigger_next_identify.reset(Duration::ZERO);
+    }
+
     fn on_fully_negotiated_inbound(
         &mut self,
         FullyNegotiatedInbound {

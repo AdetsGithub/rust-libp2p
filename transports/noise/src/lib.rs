@@ -60,6 +60,13 @@
 mod io;
 mod protocol;
 
+#[cfg(feature = "fuzzing")]
+mod fuzz;
+#[cfg(feature = "fuzzing")]
+pub use fuzz::{
+    encode_length_prefixed_frame, encode_structured_payload, fuzz_noise,
+};
+
 use std::{collections::HashSet, fmt::Write, pin::Pin};
 
 use futures::prelude::*;

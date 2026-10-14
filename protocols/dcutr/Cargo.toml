@@ -10,7 +10,12 @@ repository = "https://github.com/libp2p/rust-libp2p"
 keywords = ["peer-to-peer", "libp2p", "networking"]
 categories = ["network-programming", "asynchronous"]
 
+[features]
+# Exposes `fuzz_behaviour` / `FuzzAction` for cargo-fuzz. Not intended for production use.
+fuzzing = ["libp2p-swarm/fuzzing"]
+
 [dependencies]
+bytes.workspace = true
 asynchronous-codec = { workspace = true }
 either = "1.16"
 futures = { workspace = true }
@@ -18,7 +23,7 @@ futures-timer = { workspace = true }
 web-time = { workspace = true }
 libp2p-core = { workspace = true }
 libp2p-swarm = { workspace = true }
-libp2p-identity = { workspace = true }
+libp2p-identity = { workspace = true, features = ["rand"] }
 prost = { workspace = true }
 prost-codec = { workspace = true }
 thiserror = { workspace = true }

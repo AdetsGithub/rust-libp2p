@@ -1,0 +1,1365 @@
+==> cargo fuzz coverage dcutr_behaviour
+warning: unreachable call
+   --> /home/adethya/Documents/rust-libp2p/swarm/src/connection/pool/task.rs:113:37
+    |
+113 |         Either::Left((Ok(v), _)) => libp2p_core::util::unreachable(v),
+    |                                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ - any code following this expression is unreachable
+    |                                     |
+    |                                     unreachable call
+    |
+    = note: `#[warn(unreachable_code)]` (part of `#[warn(unused)]`) on by default
+
+warning: unreachable call
+   --> /home/adethya/Documents/rust-libp2p/swarm/src/connection/pool/task.rs:151:37
+    |
+151 |         Either::Left((Ok(v), _)) => libp2p_core::util::unreachable(v),
+    |                                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ - any code following this expression is unreachable
+    |                                     |
+    |                                     unreachable call
+
+warning: unreachable call
+   --> /home/adethya/Documents/rust-libp2p/swarm/src/behaviour/toggle.rs:211:41
+    |
+211 |             future::Either::Right(v) => libp2p_core::util::unreachable(v),
+    |                                         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ - any code following this expression is unreachable
+    |                                         |
+    |                                         unreachable call
+
+warning: unreachable call
+   --> /home/adethya/Documents/rust-libp2p/swarm/src/behaviour/toggle.rs:251:33
+    |
+251 |             Either::Right(v) => libp2p_core::util::unreachable(v),
+    |                                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ - any code following this expression is unreachable
+    |                                 |
+    |                                 unreachable call
+
+warning: unreachable call
+  --> /home/adethya/Documents/rust-libp2p/swarm/src/dummy.rs:51:9
+   |
+51 |         libp2p_core::util::unreachable(event)
+   |         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ ----- any code following this expression is unreachable
+   |         |
+   |         unreachable call
+
+warning: unreachable call
+  --> /home/adethya/Documents/rust-libp2p/swarm/src/dummy.rs:79:9
+   |
+79 |         libp2p_core::util::unreachable(event)
+   |         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ ----- any code following this expression is unreachable
+   |         |
+   |         unreachable call
+
+warning: unreachable call
+  --> /home/adethya/Documents/rust-libp2p/swarm/src/dummy.rs:96:19
+   |
+96 |             }) => libp2p_core::util::unreachable(protocol),
+   |                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ -------- any code following this expression is unreachable
+   |                   |
+   |                   unreachable call
+
+warning: unreachable call
+  --> /home/adethya/Documents/rust-libp2p/swarm/src/dummy.rs:99:19
+   |
+99 |             }) => libp2p_core::util::unreachable(protocol),
+   |                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ -------- any code following this expression is unreachable
+   |                   |
+   |                   unreachable call
+
+warning: unreachable call
+   --> /home/adethya/Documents/rust-libp2p/swarm/src/dummy.rs:102:49
+    |
+102 |                 StreamUpgradeError::Apply(e) => libp2p_core::util::unreachable(e),
+    |                                                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ - any code following this expression is unreachable
+    |                                                 |
+    |                                                 unreachable call
+
+warning: unreachable call
+  --> /home/adethya/Documents/rust-libp2p/swarm/src/handler/pending.rs:59:9
+   |
+59 |         libp2p_core::util::unreachable(v)
+   |         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ - any code following this expression is unreachable
+   |         |
+   |         unreachable call
+
+warning: unreachable call
+  --> /home/adethya/Documents/rust-libp2p/swarm/src/handler/pending.rs:76:19
+   |
+76 |             }) => libp2p_core::util::unreachable(protocol),
+   |                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ -------- any code following this expression is unreachable
+   |                   |
+   |                   unreachable call
+
+warning: unreachable call
+  --> /home/adethya/Documents/rust-libp2p/swarm/src/handler/pending.rs:81:17
+   |
+81 |                 libp2p_core::util::unreachable(protocol);
+   |                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ -------- any code following this expression is unreachable
+   |                 |
+   |                 unreachable call
+
+warning: `libp2p-swarm` (lib) generated 12 warnings
+warning: unreachable call
+   --> /home/adethya/Documents/rust-libp2p/protocols/request-response/src/handler.rs:239:45
+    |
+239 |             StreamUpgradeError::Apply(e) => libp2p_core::util::unreachable(e),
+    |                                             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ - any code following this expression is unreachable
+    |                                             |
+    |                                             unreachable call
+    |
+    = note: `#[warn(unreachable_code)]` (part of `#[warn(unused)]`) on by default
+
+warning: unreachable call
+   --> /home/adethya/Documents/rust-libp2p/protocols/request-response/src/handler.rs:255:9
+    |
+255 |         libp2p_core::util::unreachable(error)
+    |         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ ----- any code following this expression is unreachable
+    |         |
+    |         unreachable call
+
+warning: unreachable call
+   --> /home/adethya/Documents/rust-libp2p/protocols/kad/src/handler.rs:518:41
+    |
+518 |             future::Either::Right(p) => libp2p_core::util::unreachable(p),
+    |                                         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ - any code following this expression is unreachable
+    |                                         |
+    |                                         unreachable call
+    |
+    = note: `#[warn(unreachable_code)]` (part of `#[warn(unused)]`) on by default
+
+warning: unreachable call
+   --> /home/adethya/Documents/rust-libp2p/protocols/gossipsub/src/handler.rs:531:45
+    |
+531 |                         Either::Right(v) => libp2p_core::util::unreachable(v),
+    |                                             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ - any code following this expression is unreachable
+    |                                             |
+    |                                             unreachable call
+    |
+    = note: `#[warn(unreachable_code)]` (part of `#[warn(unused)]`) on by default
+
+warning: unreachable call
+   --> /home/adethya/Documents/rust-libp2p/protocols/gossipsub/src/handler.rs:545:27
+    |
+545 |                     }) => libp2p_core::util::unreachable(e),
+    |                           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ - any code following this expression is unreachable
+    |                           |
+    |                           unreachable call
+
+warning: unreachable call
+   --> /home/adethya/Documents/rust-libp2p/misc/connection-limits/src/lib.rs:464:9
+    |
+464 |         libp2p_core::util::unreachable(event)
+    |         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ ----- any code following this expression is unreachable
+    |         |
+    |         unreachable call
+    |
+    = note: `#[warn(unreachable_code)]` (part of `#[warn(unused)]`) on by default
+
+warning: unreachable call
+   --> /home/adethya/Documents/rust-libp2p/protocols/relay/src/behaviour/handler.rs:480:45
+    |
+480 |             StreamUpgradeError::Apply(v) => libp2p_core::util::unreachable(v),
+    |                                             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ - any code following this expression is unreachable
+    |                                             |
+    |                                             unreachable call
+    |
+    = note: `#[warn(unreachable_code)]` (part of `#[warn(unused)]`) on by default
+
+warning: unreachable call
+   --> /home/adethya/Documents/rust-libp2p/protocols/relay/src/behaviour.rs:572:33
+    |
+572 |             Either::Right(v) => libp2p_core::util::unreachable(v),
+    |                                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ - any code following this expression is unreachable
+    |                                 |
+    |                                 unreachable call
+
+warning: unreachable call
+   --> /home/adethya/Documents/rust-libp2p/protocols/relay/src/priv_client/handler.rs:453:56
+    |
+453 |             ConnectionEvent::ListenUpgradeError(ev) => libp2p_core::util::unreachable(ev.error),
+    |                                                        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ -------- any code following this expression is unreachable
+    |                                                        |
+    |                                                        unreachable call
+
+warning: unreachable call
+   --> /home/adethya/Documents/rust-libp2p/protocols/relay/src/priv_client/handler.rs:590:45
+    |
+590 |         StreamUpgradeError::Apply(never) => libp2p_core::util::unreachable(never),
+    |                                             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ ----- any code following this expression is unreachable
+    |                                             |
+    |                                             unreachable call
+
+warning: unreachable call
+   --> /home/adethya/Documents/rust-libp2p/protocols/relay/src/priv_client/handler.rs:601:45
+    |
+601 |         StreamUpgradeError::Apply(never) => libp2p_core::util::unreachable(never),
+    |                                             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ ----- any code following this expression is unreachable
+    |                                             |
+    |                                             unreachable call
+
+warning: unreachable call
+   --> /home/adethya/Documents/rust-libp2p/protocols/relay/src/priv_client.rs:295:33
+    |
+295 |             Either::Right(v) => libp2p_core::util::unreachable(v),
+    |                                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ - any code following this expression is unreachable
+    |                                 |
+    |                                 unreachable call
+
+warning: unreachable call
+   --> /home/adethya/Documents/rust-libp2p/protocols/dcutr/src/behaviour.rs:345:37
+    |
+345 |             Either::Right(never) => libp2p_core::util::unreachable(never),
+    |                                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ ----- any code following this expression is unreachable
+    |                                     |
+    |                                     unreachable call
+    |
+    = note: `#[warn(unreachable_code)]` (part of `#[warn(unused)]`) on by default
+
+warning: unreachable call
+   --> /home/adethya/Documents/rust-libp2p/protocols/dcutr/src/handler/relayed.rs:127:46
+    |
+127 |             future::Either::Right(output) => libp2p_core::util::unreachable(output),
+    |                                              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ ------ any code following this expression is unreachable
+    |                                              |
+    |                                              unreachable call
+
+warning: unreachable call
+   --> /home/adethya/Documents/rust-libp2p/protocols/dcutr/src/handler/relayed.rs:169:45
+    |
+169 |             StreamUpgradeError::Apply(v) => libp2p_core::util::unreachable(v),
+    |                                             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ - any code following this expression is unreachable
+    |                                             |
+    |                                             unreachable call
+
+warning: `libp2p-request-response` (lib) generated 2 warnings
+warning: `libp2p-kad` (lib) generated 1 warning
+warning: `libp2p-gossipsub` (lib) generated 2 warnings
+warning: `libp2p-connection-limits` (lib) generated 1 warning
+warning: `libp2p-relay` (lib) generated 6 warnings
+warning: `libp2p-dcutr` (lib) generated 3 warnings
+warning: unreachable call
+   --> /home/adethya/Documents/rust-libp2p/protocols/autonat/src/v2/client/handler/dial_request.rs:217:45
+    |
+217 |             StreamUpgradeError::Apply(v) => libp2p_core::util::unreachable(v),
+    |                                             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ - any code following this expression is unreachable
+    |                                             |
+    |                                             unreachable call
+    |
+    = note: `#[warn(unreachable_code)]` (part of `#[warn(unused)]`) on by default
+
+warning: unreachable call
+  --> /home/adethya/Documents/rust-libp2p/protocols/autonat/src/v2/client/handler/dial_back.rs:85:17
+   |
+85 |                 libp2p_core::util::unreachable(error);
+   |                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ ----- any code following this expression is unreachable
+   |                 |
+   |                 unreachable call
+
+warning: unreachable call
+   --> /home/adethya/Documents/rust-libp2p/protocols/autonat/src/v2/server/behaviour.rs:210:47
+    |
+210 |             Either::Left(Either::Right(v)) => libp2p_core::util::unreachable(v),
+    |                                               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ - any code following this expression is unreachable
+    |                                               |
+    |                                               unreachable call
+
+warning: `libp2p-autonat` (lib) generated 3 warnings
+   Compiling libp2p-core-fuzz v0.0.0 (/home/adethya/Documents/rust-libp2p/core/fuzz)
+    Finished `release` profile [optimized + debuginfo] target(s) in 3.79s
+Processing 511 input files using 5 workers (batch size: ~103)
+Worker 0: Generating coverage for 103 files
+Worker 2: Generating coverage for 103 files
+Worker 1: Generating coverage for 103 files
+Worker 3: Generating coverage for 103 files
+Worker 4: Generating coverage for 99 files
+Dictionary: 6 entries
+INFO: Running with entropic power schedule (0xFF, 100).
+INFO: Seed: 192942573
+Dictionary: 6 entries
+INFO: Running with entropic power schedule (0xFF, 100).
+INFO: Seed: 193409985
+Dictionary: 6 entries
+Dictionary: 6 entries
+INFO: Running with entropic power schedule (0xFF, 100).
+INFO: Seed: 196553448
+INFO: Running with entropic power schedule (0xFF, 100).
+INFO: Seed: 196779365
+Dictionary: 6 entries
+INFO: Running with entropic power schedule (0xFF, 100).
+INFO: Seed: 197485161
+INFO: Loaded 1 modules   (26377 inline 8-bit counters): 26377 [0x5618c614ec00, 0x5618c6155309), 
+INFO: Loaded 1 PC tables (26377 PCs): 26377 [0x5618c6155310,0x5618c61bc3a0), 
+INFO: Loaded 1 modules   (26377 inline 8-bit counters): 26377 [0x56b5f17cdc00, 0x56b5f17d4309), 
+INFO: Loaded 1 PC tables (26377 PCs): 26377 [0x56b5f17d4310,0x56b5f183b3a0), 
+/home/adethya/Documents/rust-libp2p/core/fuzz/target/x86_64-unknown-linux-gnu/coverage/x86_64-unknown-linux-gnu/release/dcutr_behaviour: Running 103 inputs 1 time(s) each.
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/dcutr_behaviour/237f6bf399defe500546099dc38219a0b2ee598b
+/home/adethya/Documents/rust-libp2p/core/fuzz/target/x86_64-unknown-linux-gnu/coverage/x86_64-unknown-linux-gnu/release/dcutr_behaviour: Running 103 inputs 1 time(s) each.
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/dcutr_behaviour/384ddf621c3c122b0fd2489c13ae86e759b20ec2
+INFO: Loaded 1 modules   (26377 inline 8-bit counters): 26377 [0x635d9f0e4c00, 0x635d9f0eb309), 
+INFO: Loaded 1 PC tables (26377 PCs): 26377 [0x635d9f0eb310,0x635d9f1523a0), 
+/home/adethya/Documents/rust-libp2p/core/fuzz/target/x86_64-unknown-linux-gnu/coverage/x86_64-unknown-linux-gnu/release/dcutr_behaviour: Running 103 inputs 1 time(s) each.
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/dcutr_behaviour/ad3b07fe8856b5f83a4ce29c8a15f359e0c17fb6
+INFO: Loaded 1 modules   (26377 inline 8-bit counters): 26377 [0x651640841c00, 0x651640848309), 
+INFO: Loaded 1 PC tables (26377 PCs): 26377 [0x651640848310,0x6516408af3a0), 
+/home/adethya/Documents/rust-libp2p/core/fuzz/target/x86_64-unknown-linux-gnu/coverage/x86_64-unknown-linux-gnu/release/dcutr_behaviour: Running 99 inputs 1 time(s) each.
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/dcutr_behaviour/f1050633c707867d3c25ed1366ab9b2c6e05b989
+INFO: Loaded 1 modules   (26377 inline 8-bit counters): 26377 [0x58a4046cfc00, 0x58a4046d6309), 
+INFO: Loaded 1 PC tables (26377 PCs): 26377 [0x58a4046d6310,0x58a40473d3a0), 
+/home/adethya/Documents/rust-libp2p/core/fuzz/target/x86_64-unknown-linux-gnu/coverage/x86_64-unknown-linux-gnu/release/dcutr_behaviour: Running 103 inputs 1 time(s) each.
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/dcutr_behaviour/6febf03e110083fc5ae6c2c76f21a952ab625087
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/dcutr_behaviour/237f6bf399defe500546099dc38219a0b2ee598b in 33 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/dcutr_behaviour/d549d4de43d42d20597766db797ae4575d760833
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/dcutr_behaviour/384ddf621c3c122b0fd2489c13ae86e759b20ec2 in 33 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/dcutr_behaviour/e7a206c4000cb4655d0b5690bcfca599f6e9c3c6
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/dcutr_behaviour/ad3b07fe8856b5f83a4ce29c8a15f359e0c17fb6 in 36 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/dcutr_behaviour/aa9794b660d20db79de9cbd7b941ee7e16897662
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/dcutr_behaviour/e7a206c4000cb4655d0b5690bcfca599f6e9c3c6 in 13 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/dcutr_behaviour/74937802e07bde4ebf26c9b635e9e5c169017899
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/dcutr_behaviour/d549d4de43d42d20597766db797ae4575d760833 in 14 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/dcutr_behaviour/b04b1b975b665891ffa84a51a2b112e7b2583483
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/dcutr_behaviour/f1050633c707867d3c25ed1366ab9b2c6e05b989 in 38 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/dcutr_behaviour/c19a4845f8308456836d563f717c4816a3fa2244
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/dcutr_behaviour/aa9794b660d20db79de9cbd7b941ee7e16897662 in 14 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/dcutr_behaviour/a5e05474e789d022c20ea6f799bea2a0a93f1ecc
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/dcutr_behaviour/74937802e07bde4ebf26c9b635e9e5c169017899 in 13 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/dcutr_behaviour/76956cc09bb147f19917ea396c2e1029af9060e7
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/dcutr_behaviour/b04b1b975b665891ffa84a51a2b112e7b2583483 in 21 ms
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/dcutr_behaviour/c19a4845f8308456836d563f717c4816a3fa2244 in 20 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/dcutr_behaviour/bbd236c7c2bc044ea4bb927c4ea6861e52355896
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/dcutr_behaviour/16ad861095082696e910ae557b2c98a812cd6d30
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/dcutr_behaviour/6febf03e110083fc5ae6c2c76f21a952ab625087 in 58 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/dcutr_behaviour/237b9f405eb1709fb50be779d9a00347d5ad1ac8
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/dcutr_behaviour/a5e05474e789d022c20ea6f799bea2a0a93f1ecc in 18 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/dcutr_behaviour/25916c5960f9f4e19131bd2beea774ff5b89e262
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/dcutr_behaviour/bbd236c7c2bc044ea4bb927c4ea6861e52355896 in 13 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/dcutr_behaviour/seed_outbound_fail
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/dcutr_behaviour/16ad861095082696e910ae557b2c98a812cd6d30 in 14 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/dcutr_behaviour/f7fa25ac629b6ebdb5f34c0012ca2765a7c28873
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/dcutr_behaviour/237b9f405eb1709fb50be779d9a00347d5ad1ac8 in 18 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/dcutr_behaviour/ca7254001ba0e057c88e3a720e9921b1a060924d
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/dcutr_behaviour/25916c5960f9f4e19131bd2beea774ff5b89e262 in 15 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/dcutr_behaviour/b902770d9d0cfc4ad73129247738557ed6361c5a
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/dcutr_behaviour/seed_outbound_fail in 13 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/dcutr_behaviour/d93e6165f3125f09297f12402a9f75c61ba2f9a2
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/dcutr_behaviour/f7fa25ac629b6ebdb5f34c0012ca2765a7c28873 in 14 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/dcutr_behaviour/578192190e0a219d5c836581e47bd44111aa1579
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/dcutr_behaviour/ca7254001ba0e057c88e3a720e9921b1a060924d in 14 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/dcutr_behaviour/b8192de04afc2235a2f4f890ee8a67a3c95ec4ae
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/dcutr_behaviour/b902770d9d0cfc4ad73129247738557ed6361c5a in 13 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/dcutr_behaviour/abb2bdd406ecf14fc67db29af477c15de5bd3e05
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/dcutr_behaviour/d93e6165f3125f09297f12402a9f75c61ba2f9a2 in 15 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/dcutr_behaviour/daf81795629c28af87747c9d0683634c1c127d41
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/dcutr_behaviour/578192190e0a219d5c836581e47bd44111aa1579 in 13 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/dcutr_behaviour/02341e3407f53e98f873a00453b488adc144e46a
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/dcutr_behaviour/76956cc09bb147f19917ea396c2e1029af9060e7 in 51 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/dcutr_behaviour/8373bc7aa39f5fd9879b21ead87e9644bbb030d8
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/dcutr_behaviour/b8192de04afc2235a2f4f890ee8a67a3c95ec4ae in 13 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/dcutr_behaviour/05464acc39dfacbc31c94256da6767629769ade1
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/dcutr_behaviour/abb2bdd406ecf14fc67db29af477c15de5bd3e05 in 12 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/dcutr_behaviour/edbbcec4bdbcad0870404640f87cfd39f89c0ea7
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/dcutr_behaviour/daf81795629c28af87747c9d0683634c1c127d41 in 11 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/dcutr_behaviour/25c5ad59da6f2c26742590430c355618d8549fad
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/dcutr_behaviour/02341e3407f53e98f873a00453b488adc144e46a in 12 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/dcutr_behaviour/a7ff13a67ba11ade323876164227a4005bed3834
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/dcutr_behaviour/edbbcec4bdbcad0870404640f87cfd39f89c0ea7 in 12 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/dcutr_behaviour/a212a5b432059ecf1747c3d9068ebd60cd9d07ed
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/dcutr_behaviour/05464acc39dfacbc31c94256da6767629769ade1 in 15 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/dcutr_behaviour/7095226c5424db91b09e1559fbc1c7fd80879fcd
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/dcutr_behaviour/25c5ad59da6f2c26742590430c355618d8549fad in 11 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/dcutr_behaviour/be206ba44547d8cdee70891b0e3cc5df317bcdbc
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/dcutr_behaviour/a7ff13a67ba11ade323876164227a4005bed3834 in 12 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/dcutr_behaviour/2dd27e685b20e4bfcb505d34d5b4f0997e23a03b
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/dcutr_behaviour/8373bc7aa39f5fd9879b21ead87e9644bbb030d8 in 34 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/dcutr_behaviour/c95d0f883d98ace722a339221e8ad043120eaeee
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/dcutr_behaviour/be206ba44547d8cdee70891b0e3cc5df317bcdbc in 15 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/dcutr_behaviour/eba3113171867bffef2479592166301770629d55
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/dcutr_behaviour/7095226c5424db91b09e1559fbc1c7fd80879fcd in 16 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/dcutr_behaviour/5870cd77fd6ce0946d4eddd57a5e7440d62ab39a
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/dcutr_behaviour/c95d0f883d98ace722a339221e8ad043120eaeee in 11 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/dcutr_behaviour/6c26ab114c90819a0433cd56d9040785a99aa06a
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/dcutr_behaviour/eba3113171867bffef2479592166301770629d55 in 11 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/dcutr_behaviour/f0aa87c88654c4f8a7212003539ce280860c1e63
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/dcutr_behaviour/2dd27e685b20e4bfcb505d34d5b4f0997e23a03b in 34 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/dcutr_behaviour/22fd4e550bfd3c20fc3ac23d47887eaeb766a332
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/dcutr_behaviour/6c26ab114c90819a0433cd56d9040785a99aa06a in 15 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/dcutr_behaviour/c6cfd69ee657e1dea83c1eec2de559571eb84890
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/dcutr_behaviour/f0aa87c88654c4f8a7212003539ce280860c1e63 in 16 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/dcutr_behaviour/65ef0b636b68f166a13cc1847f95cb33b0300b0d
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/dcutr_behaviour/a212a5b432059ecf1747c3d9068ebd60cd9d07ed in 49 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/dcutr_behaviour/41ecb8c866a5066970a13ae0f151e469d3605dde
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/dcutr_behaviour/5870cd77fd6ce0946d4eddd57a5e7440d62ab39a in 34 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/dcutr_behaviour/c8a285eba50d87c9e836b8373dedf54012cdeafc
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/dcutr_behaviour/c6cfd69ee657e1dea83c1eec2de559571eb84890 in 12 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/dcutr_behaviour/25e66902a633a85d26d768abe4e3e62a9468fd8b
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/dcutr_behaviour/22fd4e550bfd3c20fc3ac23d47887eaeb766a332 in 17 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/dcutr_behaviour/e2369472641c645c3fcc5a10b4f4af7e704fca0a
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/dcutr_behaviour/65ef0b636b68f166a13cc1847f95cb33b0300b0d in 14 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/dcutr_behaviour/seed_empty_sync_teardown
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/dcutr_behaviour/41ecb8c866a5066970a13ae0f151e469d3605dde in 13 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/dcutr_behaviour/9519dc32fbcfb3d0fed239e36c07a335085435f5
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/dcutr_behaviour/25e66902a633a85d26d768abe4e3e62a9468fd8b in 12 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/dcutr_behaviour/c5badb159e4c2c81461a4228b991d406c6cb0512
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/dcutr_behaviour/seed_empty_sync_teardown in 11 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/dcutr_behaviour/9c0ee3cf959cee85baf5f26fa46066a3e7f6be1b
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/dcutr_behaviour/e2369472641c645c3fcc5a10b4f4af7e704fca0a in 16 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/dcutr_behaviour/b5757af737953bcbe5c9c5d007e10aec486191ce
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/dcutr_behaviour/9519dc32fbcfb3d0fed239e36c07a335085435f5 in 13 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/dcutr_behaviour/e78e573f7b4757956e087eabc9f9c76071c7526c
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/dcutr_behaviour/9c0ee3cf959cee85baf5f26fa46066a3e7f6be1b in 11 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/dcutr_behaviour/88d0d9e9244357552008ae34c7340c7c04c29dbd
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/dcutr_behaviour/c8a285eba50d87c9e836b8373dedf54012cdeafc in 30 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/dcutr_behaviour/276d3b64b374e011017ba5f35adddebc27f923c3
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/dcutr_behaviour/e78e573f7b4757956e087eabc9f9c76071c7526c in 12 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/dcutr_behaviour/b0c14c2b6ab04a35e86920017a8f98d22cec9cfc
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/dcutr_behaviour/c5badb159e4c2c81461a4228b991d406c6cb0512 in 29 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/dcutr_behaviour/dd001b90bc3fe4c19ac0bbcc37acf76a0aa4868b
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/dcutr_behaviour/276d3b64b374e011017ba5f35adddebc27f923c3 in 13 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/dcutr_behaviour/87e20b0e6e487876a09a3ea44eecd47fb2785550
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/dcutr_behaviour/dd001b90bc3fe4c19ac0bbcc37acf76a0aa4868b in 12 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/dcutr_behaviour/30d49e612db40348c33131667ff581987a20b614
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/dcutr_behaviour/87e20b0e6e487876a09a3ea44eecd47fb2785550 in 12 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/dcutr_behaviour/336579eb98c54d84ad7c8f601682d206495cc79c
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/dcutr_behaviour/88d0d9e9244357552008ae34c7340c7c04c29dbd in 31 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/dcutr_behaviour/eb0c0c10bbe3ba9f22dfd56bca0de34038fb2972
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/dcutr_behaviour/b5757af737953bcbe5c9c5d007e10aec486191ce in 46 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/dcutr_behaviour/fb9823f0aaf69d9bd5f42cd93605cb8a972b2d66
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/dcutr_behaviour/30d49e612db40348c33131667ff581987a20b614 in 12 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/dcutr_behaviour/2c96f54c3204686d10006aa59fcc5dce3b8feb6c
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/dcutr_behaviour/b0c14c2b6ab04a35e86920017a8f98d22cec9cfc in 30 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/dcutr_behaviour/ca1d7314bc6c4c7dc4918ab01711c8ffdc5c92a1
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/dcutr_behaviour/336579eb98c54d84ad7c8f601682d206495cc79c in 16 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/dcutr_behaviour/e52e2f7c7d63073930021556bced874b7065ea0f
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/dcutr_behaviour/eb0c0c10bbe3ba9f22dfd56bca0de34038fb2972 in 11 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/dcutr_behaviour/08aef569a25ec247d950b12bafe06aefb58fd04d
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/dcutr_behaviour/fb9823f0aaf69d9bd5f42cd93605cb8a972b2d66 in 11 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/dcutr_behaviour/aa6a21b43aba976f624ec50a7ccdd72a6941b33c
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/dcutr_behaviour/ca1d7314bc6c4c7dc4918ab01711c8ffdc5c92a1 in 11 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/dcutr_behaviour/cc8cb032351215f4fe8c75aa4d596217d4ee361a
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/dcutr_behaviour/2c96f54c3204686d10006aa59fcc5dce3b8feb6c in 16 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/dcutr_behaviour/76e7edc1cb2d86c313bf6ca8b9472580bb384163
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/dcutr_behaviour/e52e2f7c7d63073930021556bced874b7065ea0f in 13 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/dcutr_behaviour/0d5f6cbdfc9536f19a51ec7b7d9e668a1b567977
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/dcutr_behaviour/aa6a21b43aba976f624ec50a7ccdd72a6941b33c in 11 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/dcutr_behaviour/65b95a9423ab04bbb55721cd081ba0e3f121d9b2
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/dcutr_behaviour/08aef569a25ec247d950b12bafe06aefb58fd04d in 16 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/dcutr_behaviour/a5c9af3bd16ebf8625b3a3ecc877ae36b137ce6d
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/dcutr_behaviour/76e7edc1cb2d86c313bf6ca8b9472580bb384163 in 10 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/dcutr_behaviour/abb398a66fd9b6881fde0f4672acd070c990073a
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/dcutr_behaviour/cc8cb032351215f4fe8c75aa4d596217d4ee361a in 19 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/dcutr_behaviour/75d4a783a9567117107e66594cb90ff4e2d26e3a
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/dcutr_behaviour/a5c9af3bd16ebf8625b3a3ecc877ae36b137ce6d in 10 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/dcutr_behaviour/76ad258d6f85459eccb7724dcd9e638f0e0eecdf
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/dcutr_behaviour/65b95a9423ab04bbb55721cd081ba0e3f121d9b2 in 12 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/dcutr_behaviour/3bcc94eae864d249502ca3f99790c89affb2b3ed
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/dcutr_behaviour/75d4a783a9567117107e66594cb90ff4e2d26e3a in 14 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/dcutr_behaviour/98d374f9052a4b5f55a7505f2e1e54fd072b1d5b
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/dcutr_behaviour/3bcc94eae864d249502ca3f99790c89affb2b3ed in 14 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/dcutr_behaviour/b87fdbf45c01198382812e3a28b10350f1cfdbcf
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/dcutr_behaviour/98d374f9052a4b5f55a7505f2e1e54fd072b1d5b in 11 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/dcutr_behaviour/f7cba46fbe54f0a7b78fb59dfee1dc6ed675f663
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/dcutr_behaviour/b87fdbf45c01198382812e3a28b10350f1cfdbcf in 12 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/dcutr_behaviour/9c81509ddda6da1f375478e7fef216f80eb5eb8a
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/dcutr_behaviour/abb398a66fd9b6881fde0f4672acd070c990073a in 33 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/dcutr_behaviour/55dcd1b38589833c577cca41608021152c6941f0
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/dcutr_behaviour/0d5f6cbdfc9536f19a51ec7b7d9e668a1b567977 in 52 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/dcutr_behaviour/755b623a298329156742be2b8df5b5bd85ab3300
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/dcutr_behaviour/f7cba46fbe54f0a7b78fb59dfee1dc6ed675f663 in 12 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/dcutr_behaviour/ee1b9c2e992c3c5366f32ac8f1152a30179561be
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/dcutr_behaviour/9c81509ddda6da1f375478e7fef216f80eb5eb8a in 12 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/dcutr_behaviour/85bcc9788e73bd86447dea42bb1079e62f325dfa
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/dcutr_behaviour/76ad258d6f85459eccb7724dcd9e638f0e0eecdf in 41 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/dcutr_behaviour/2c31380607f479032134cec0207d9dd894dbd623
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/dcutr_behaviour/ee1b9c2e992c3c5366f32ac8f1152a30179561be in 11 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/dcutr_behaviour/d351104997e8a8b6a650e377035970fa8aa82ff9
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/dcutr_behaviour/755b623a298329156742be2b8df5b5bd85ab3300 in 12 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/dcutr_behaviour/5ccbb1dd695313d0e7fcc5fed960b4a07e5fa4b3
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/dcutr_behaviour/85bcc9788e73bd86447dea42bb1079e62f325dfa in 11 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/dcutr_behaviour/ef42e4986d0ffd9defcf190cc23183eb80904396
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/dcutr_behaviour/2c31380607f479032134cec0207d9dd894dbd623 in 14 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/dcutr_behaviour/d34b82d63806ce8678161c48243f6625b5203e9d
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/dcutr_behaviour/d351104997e8a8b6a650e377035970fa8aa82ff9 in 12 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/dcutr_behaviour/f43f8e0da9e93749524897050d10ee39937f033f
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/dcutr_behaviour/5ccbb1dd695313d0e7fcc5fed960b4a07e5fa4b3 in 12 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/dcutr_behaviour/54d8effcc8cf77b2808004c918a705caea60d615
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/dcutr_behaviour/ef42e4986d0ffd9defcf190cc23183eb80904396 in 12 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/dcutr_behaviour/3593655e51d898e4aa925109bd41f2c84f64bfef
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/dcutr_behaviour/d34b82d63806ce8678161c48243f6625b5203e9d in 13 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/dcutr_behaviour/c8321833f4d89a727234eecf2b1909766648ad50
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/dcutr_behaviour/55dcd1b38589833c577cca41608021152c6941f0 in 44 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/dcutr_behaviour/7486fe013968c6685516a164e63429ecec04f68d
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/dcutr_behaviour/54d8effcc8cf77b2808004c918a705caea60d615 in 12 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/dcutr_behaviour/c41883b699e2a09a28c1f58bc73a63377c717028
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/dcutr_behaviour/3593655e51d898e4aa925109bd41f2c84f64bfef in 12 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/dcutr_behaviour/63caebc898b5c2bea101a3a19ebe2ceea2cab6d6
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/dcutr_behaviour/f43f8e0da9e93749524897050d10ee39937f033f in 18 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/dcutr_behaviour/e5636717f6a6f6dae0cf10932c88fb6cba6559cf
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/dcutr_behaviour/7486fe013968c6685516a164e63429ecec04f68d in 11 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/dcutr_behaviour/d0f1f5d3614f7dcb1548fdc81fa1850b082dfa6a
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/dcutr_behaviour/c41883b699e2a09a28c1f58bc73a63377c717028 in 12 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/dcutr_behaviour/eb751b8c3e6115dbe7de6e58395bd6b2af8ab937
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/dcutr_behaviour/e5636717f6a6f6dae0cf10932c88fb6cba6559cf in 11 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/dcutr_behaviour/1a0a3cbce6a666ee559057953d6df484e65b1f2b
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/dcutr_behaviour/63caebc898b5c2bea101a3a19ebe2ceea2cab6d6 in 17 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/dcutr_behaviour/c1bc03e8311ebe3352f889b0ea6bd8767f1f1554
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/dcutr_behaviour/c8321833f4d89a727234eecf2b1909766648ad50 in 31 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/dcutr_behaviour/21e9d5f72e3547b1561c5ed12cb8acde939681ff
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/dcutr_behaviour/1a0a3cbce6a666ee559057953d6df484e65b1f2b in 12 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/dcutr_behaviour/269606419e0a7d5ac6701e6a8a90dad4ca0eca3c
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/dcutr_behaviour/c1bc03e8311ebe3352f889b0ea6bd8767f1f1554 in 12 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/dcutr_behaviour/e7fac184a8ffc4b7998434602910e4e5cf77dcff
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/dcutr_behaviour/d0f1f5d3614f7dcb1548fdc81fa1850b082dfa6a in 27 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/dcutr_behaviour/df07067b8ae94e44ecbd2a05395048428bc4433c
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/dcutr_behaviour/eb751b8c3e6115dbe7de6e58395bd6b2af8ab937 in 26 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/dcutr_behaviour/18bfa87c2e4f62b8fb9b8ff8c3652ba02508f862
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/dcutr_behaviour/21e9d5f72e3547b1561c5ed12cb8acde939681ff in 14 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/dcutr_behaviour/40d44107d69116e59a6fb5fded58624a4c942d39
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/dcutr_behaviour/269606419e0a7d5ac6701e6a8a90dad4ca0eca3c in 17 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/dcutr_behaviour/ebd035847bf619fc1f2351cc5d0b2c2f6a31d24c
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/dcutr_behaviour/e7fac184a8ffc4b7998434602910e4e5cf77dcff in 17 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/dcutr_behaviour/f4d283e044ba4f70d8171b52686d416d7e85c907
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/dcutr_behaviour/df07067b8ae94e44ecbd2a05395048428bc4433c in 13 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/dcutr_behaviour/7bb0f0c8ef584e79dbc249ca2e6218c5fa3f384a
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/dcutr_behaviour/18bfa87c2e4f62b8fb9b8ff8c3652ba02508f862 in 14 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/dcutr_behaviour/0044250ddbd9c28b314d7fa9a5ec0dc0f0b3c397
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/dcutr_behaviour/40d44107d69116e59a6fb5fded58624a4c942d39 in 13 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/dcutr_behaviour/32589629d1c40952525a030df24a41096f646405
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/dcutr_behaviour/f4d283e044ba4f70d8171b52686d416d7e85c907 in 12 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/dcutr_behaviour/f545bfd03bb069e7938f467e70d7cab89a6648ed
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/dcutr_behaviour/ebd035847bf619fc1f2351cc5d0b2c2f6a31d24c in 16 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/dcutr_behaviour/46e8219ac49cd093a19a1432c9bb504cedf662a3
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/dcutr_behaviour/7bb0f0c8ef584e79dbc249ca2e6218c5fa3f384a in 13 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/dcutr_behaviour/57e05ee777b795b4963709709f76dae9dd851dc6
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/dcutr_behaviour/0044250ddbd9c28b314d7fa9a5ec0dc0f0b3c397 in 13 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/dcutr_behaviour/20cdfb7563536287ac275480ceb402971da5dbde
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/dcutr_behaviour/32589629d1c40952525a030df24a41096f646405 in 13 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/dcutr_behaviour/1d4c5e3414921dd18541ec0899d465aad5dcdb99
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/dcutr_behaviour/f545bfd03bb069e7938f467e70d7cab89a6648ed in 13 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/dcutr_behaviour/f3010806cb6ae7f3b519b561cd58598d5912feb6
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/dcutr_behaviour/46e8219ac49cd093a19a1432c9bb504cedf662a3 in 12 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/dcutr_behaviour/c360f427417d0c7f3daa8133f4106a8e6e277019
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/dcutr_behaviour/57e05ee777b795b4963709709f76dae9dd851dc6 in 13 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/dcutr_behaviour/0469e0e7f6f9af13b1ca87ea3d2ab331432f725b
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/dcutr_behaviour/1d4c5e3414921dd18541ec0899d465aad5dcdb99 in 11 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/dcutr_behaviour/670ea7d0c806a3f4d021c58d5e7d41a328feec0a
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/dcutr_behaviour/20cdfb7563536287ac275480ceb402971da5dbde in 16 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/dcutr_behaviour/e1b7d163257fc15835e58f8775231fc37b1f131d
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/dcutr_behaviour/f3010806cb6ae7f3b519b561cd58598d5912feb6 in 13 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/dcutr_behaviour/72fb5b4cef3dfa3d2f990e1eb70a33b75ee0225a
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/dcutr_behaviour/0469e0e7f6f9af13b1ca87ea3d2ab331432f725b in 13 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/dcutr_behaviour/7fea5e02ce8ee47a4ba98299818cb2b910d417d5
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/dcutr_behaviour/670ea7d0c806a3f4d021c58d5e7d41a328feec0a in 12 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/dcutr_behaviour/1d1d52f25d9b2a5e37a118e255336e5ee09217a7
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/dcutr_behaviour/e1b7d163257fc15835e58f8775231fc37b1f131d in 11 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/dcutr_behaviour/d4fc0cfc2a51a836651ee23a537b0faaf68feeb8
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/dcutr_behaviour/72fb5b4cef3dfa3d2f990e1eb70a33b75ee0225a in 10 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/dcutr_behaviour/50ababf85b6e9287778134f4311e763f6dc6c391
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/dcutr_behaviour/c360f427417d0c7f3daa8133f4106a8e6e277019 in 27 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/dcutr_behaviour/4a72e10c53368d5b067ac75b3de57dc40ecd8d83
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/dcutr_behaviour/7fea5e02ce8ee47a4ba98299818cb2b910d417d5 in 11 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/dcutr_behaviour/9db1802dd7b1fe034590967b2a02c5a4faa9821e
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/dcutr_behaviour/1d1d52f25d9b2a5e37a118e255336e5ee09217a7 in 11 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/dcutr_behaviour/4c47aaa7bf47fd6091547f99ee3162d3f18be051
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/dcutr_behaviour/50ababf85b6e9287778134f4311e763f6dc6c391 in 12 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/dcutr_behaviour/a5783c6163b59f8298b359e9aebc3de722e0958e
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/dcutr_behaviour/d4fc0cfc2a51a836651ee23a537b0faaf68feeb8 in 18 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/dcutr_behaviour/645677b1a1cf68b0e4c7d5941251add03ba4e928
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/dcutr_behaviour/9db1802dd7b1fe034590967b2a02c5a4faa9821e in 13 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/dcutr_behaviour/33cc57e702a7db918942d3c72896d0eb8bee5582
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/dcutr_behaviour/4a72e10c53368d5b067ac75b3de57dc40ecd8d83 in 16 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/dcutr_behaviour/4c22ca9af3490657fd865e7b8ce0cd839ad803a8
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/dcutr_behaviour/4c47aaa7bf47fd6091547f99ee3162d3f18be051 in 16 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/dcutr_behaviour/9b23301f3f0b8f83b8fbb2d8e63277e5bb629cd3
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/dcutr_behaviour/a5783c6163b59f8298b359e9aebc3de722e0958e in 16 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/dcutr_behaviour/d302eb1e8449724d13ed3528bf481a373353b9be
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/dcutr_behaviour/645677b1a1cf68b0e4c7d5941251add03ba4e928 in 16 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/dcutr_behaviour/8d2da52a9bc970130f3f1632febbe30cc65ae32c
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/dcutr_behaviour/33cc57e702a7db918942d3c72896d0eb8bee5582 in 13 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/dcutr_behaviour/8f8513c27fc5b9ea949cd27900105922e1e774b9
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/dcutr_behaviour/9b23301f3f0b8f83b8fbb2d8e63277e5bb629cd3 in 15 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/dcutr_behaviour/6222703ea78e5e01df6cadb1c10e2ca3b4a2d3bd
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/dcutr_behaviour/d302eb1e8449724d13ed3528bf481a373353b9be in 14 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/dcutr_behaviour/8fa304e2a3d6b2e45370bedc92cf2e303b99bbb2
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/dcutr_behaviour/8f8513c27fc5b9ea949cd27900105922e1e774b9 in 12 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/dcutr_behaviour/426f4863aeceecad8574cdfbee7fac4d7169abff
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/dcutr_behaviour/6222703ea78e5e01df6cadb1c10e2ca3b4a2d3bd in 12 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/dcutr_behaviour/052aef802389c38a9c998269fc91d1c5a9fdae79
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/dcutr_behaviour/8fa304e2a3d6b2e45370bedc92cf2e303b99bbb2 in 14 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/dcutr_behaviour/7b1a67972ac5088217961951976a509b644536d1
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/dcutr_behaviour/052aef802389c38a9c998269fc91d1c5a9fdae79 in 11 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/dcutr_behaviour/01fd3fd8d1a62206f3b0e4ccdd434d0906b79041
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/dcutr_behaviour/8d2da52a9bc970130f3f1632febbe30cc65ae32c in 30 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/dcutr_behaviour/74db8e215f155856bb2e9fab850b6d96e3176a51
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/dcutr_behaviour/7b1a67972ac5088217961951976a509b644536d1 in 11 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/dcutr_behaviour/b82475eda170f2fcf23dd44048cdc6840d019c3e
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/dcutr_behaviour/4c22ca9af3490657fd865e7b8ce0cd839ad803a8 in 51 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/dcutr_behaviour/f32f9851e874fea5c65013ef9bfd9acdb8768bca
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/dcutr_behaviour/74db8e215f155856bb2e9fab850b6d96e3176a51 in 11 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/dcutr_behaviour/816d495f5a7bac4a393d74445ad9a3747ecfc1ff
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/dcutr_behaviour/426f4863aeceecad8574cdfbee7fac4d7169abff in 33 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/dcutr_behaviour/4a63668dcee5143979a38263b2363d97a9b52efa
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/dcutr_behaviour/b82475eda170f2fcf23dd44048cdc6840d019c3e in 11 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/dcutr_behaviour/3b10cce6f0214c1dad11a940291b44f437cc1d8a
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/dcutr_behaviour/816d495f5a7bac4a393d74445ad9a3747ecfc1ff in 12 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/dcutr_behaviour/1cf966bca0424f867e5958fb40b9984c2f98f013
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/dcutr_behaviour/f32f9851e874fea5c65013ef9bfd9acdb8768bca in 15 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/dcutr_behaviour/e56d35421a08ccc5614525415649848a809a70da
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/dcutr_behaviour/4a63668dcee5143979a38263b2363d97a9b52efa in 12 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/dcutr_behaviour/592af9b57effed2629e37d2a1a5228c0eef1ef83
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/dcutr_behaviour/3b10cce6f0214c1dad11a940291b44f437cc1d8a in 11 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/dcutr_behaviour/80da66e3231d9ead95eca6926fef1b7e22e920bd
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/dcutr_behaviour/e56d35421a08ccc5614525415649848a809a70da in 14 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/dcutr_behaviour/c7f03f92a2fd757ce5136329faea7827d3fb74f1
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/dcutr_behaviour/592af9b57effed2629e37d2a1a5228c0eef1ef83 in 12 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/dcutr_behaviour/1a2b44b766c5cbee4d4c4ee6f267af3d1e59990b
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/dcutr_behaviour/1cf966bca0424f867e5958fb40b9984c2f98f013 in 17 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/dcutr_behaviour/4840203b31f3decce9f3df320af08e962bb1fe75
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/dcutr_behaviour/01fd3fd8d1a62206f3b0e4ccdd434d0906b79041 in 51 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/dcutr_behaviour/2b5614b2a224fff3e24821f326c3a760c35cd5f9
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/dcutr_behaviour/c7f03f92a2fd757ce5136329faea7827d3fb74f1 in 11 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/dcutr_behaviour/cc3d32fa481c540f9ef48fb714d0078d3fbd2e55
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/dcutr_behaviour/1a2b44b766c5cbee4d4c4ee6f267af3d1e59990b in 11 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/dcutr_behaviour/461119f44bc53571f667da4e8f7f34d3f9ce8ba5
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/dcutr_behaviour/4840203b31f3decce9f3df320af08e962bb1fe75 in 16 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/dcutr_behaviour/890f8150b5f58c7d6267931199dbe608b79511f0
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/dcutr_behaviour/2b5614b2a224fff3e24821f326c3a760c35cd5f9 in 13 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/dcutr_behaviour/75f7d21d9c00a1b99267c9168828e43c1a9a65be
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/dcutr_behaviour/cc3d32fa481c540f9ef48fb714d0078d3fbd2e55 in 14 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/dcutr_behaviour/2660bce9aa36a3cacdf57041b7fb586bfca1cd37
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/dcutr_behaviour/461119f44bc53571f667da4e8f7f34d3f9ce8ba5 in 13 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/dcutr_behaviour/c217889d28e5c2dd65236fe494985f0e79cbab22
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/dcutr_behaviour/80da66e3231d9ead95eca6926fef1b7e22e920bd in 37 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/dcutr_behaviour/680e177dfea6fda512976dfab90a1785d05678a8
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/dcutr_behaviour/890f8150b5f58c7d6267931199dbe608b79511f0 in 15 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/dcutr_behaviour/aaa1625ca4aa1d917636214dff096949d768716c
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/dcutr_behaviour/75f7d21d9c00a1b99267c9168828e43c1a9a65be in 12 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/dcutr_behaviour/438f6a8eb164ced1822997a6724b305b1c51a07d
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/dcutr_behaviour/2660bce9aa36a3cacdf57041b7fb586bfca1cd37 in 12 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/dcutr_behaviour/448e8c900d897b355de8432e787c3c79fe765fbe
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/dcutr_behaviour/680e177dfea6fda512976dfab90a1785d05678a8 in 12 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/dcutr_behaviour/8d6fae94f3ae06f5401655b4a6520a52f8a48dab
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/dcutr_behaviour/aaa1625ca4aa1d917636214dff096949d768716c in 14 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/dcutr_behaviour/609f829bb8a0ba2b38501007e531cdfd12a9dd36
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/dcutr_behaviour/438f6a8eb164ced1822997a6724b305b1c51a07d in 12 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/dcutr_behaviour/a7c133ec1ad0065ec3e3fe4be19f0a74ecbe5f48
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/dcutr_behaviour/8d6fae94f3ae06f5401655b4a6520a52f8a48dab in 12 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/dcutr_behaviour/d93adde7f4cdaed38874cf06efebbdd6478dcac6
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/dcutr_behaviour/448e8c900d897b355de8432e787c3c79fe765fbe in 19 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/dcutr_behaviour/11d6bd9430ac90a7804eabb32653abe222af60e4
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/dcutr_behaviour/c217889d28e5c2dd65236fe494985f0e79cbab22 in 33 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/dcutr_behaviour/0c388eaa57e795d6ceff3458e5924edb62e03c4e
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/dcutr_behaviour/609f829bb8a0ba2b38501007e531cdfd12a9dd36 in 12 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/dcutr_behaviour/23ab4c428dbf771108f37543b3061e6a3d7f1e0b
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/dcutr_behaviour/a7c133ec1ad0065ec3e3fe4be19f0a74ecbe5f48 in 12 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/dcutr_behaviour/35fe6d18e609cf8c0f6ad7fc46f6008b9b959bf0
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/dcutr_behaviour/d93adde7f4cdaed38874cf06efebbdd6478dcac6 in 12 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/dcutr_behaviour/c88f1157f6a3865f97c438b38441373e1dadeb29
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/dcutr_behaviour/11d6bd9430ac90a7804eabb32653abe222af60e4 in 13 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/dcutr_behaviour/cef1004adee8af5256ee25533b54459bf6b5c814
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/dcutr_behaviour/0c388eaa57e795d6ceff3458e5924edb62e03c4e in 14 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/dcutr_behaviour/6b15bcb16cc59ad41143bf8b9d1a258a80342ef2
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/dcutr_behaviour/cef1004adee8af5256ee25533b54459bf6b5c814 in 12 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/dcutr_behaviour/15df3bb51265dcfe15d12701e7d442b4ddb701dc
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/dcutr_behaviour/6b15bcb16cc59ad41143bf8b9d1a258a80342ef2 in 12 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/dcutr_behaviour/634c463f5b2411b7cc5b01a79dcf2ad705747ff8
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/dcutr_behaviour/23ab4c428dbf771108f37543b3061e6a3d7f1e0b in 34 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/dcutr_behaviour/ee3083c6bd6a0cf267ec8d1daeb0d26e2d79cf5b
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/dcutr_behaviour/c88f1157f6a3865f97c438b38441373e1dadeb29 in 30 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/dcutr_behaviour/77f23ac9a2bf829692616034f600d35943d290f0
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/dcutr_behaviour/15df3bb51265dcfe15d12701e7d442b4ddb701dc in 11 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/dcutr_behaviour/7fc32548223d212769724b4e948a36747f25fc82
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/dcutr_behaviour/35fe6d18e609cf8c0f6ad7fc46f6008b9b959bf0 in 37 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/dcutr_behaviour/e6db19e64b784f4369a0deb3255c16e682a0f7c4
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/dcutr_behaviour/634c463f5b2411b7cc5b01a79dcf2ad705747ff8 in 15 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/dcutr_behaviour/9a3a4ef9ea996d27e3941f9e9f0b5eb01a9ebaed
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/dcutr_behaviour/ee3083c6bd6a0cf267ec8d1daeb0d26e2d79cf5b in 11 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/dcutr_behaviour/9cf62ee914aad6276a8f860342ed015eb2493315
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/dcutr_behaviour/7fc32548223d212769724b4e948a36747f25fc82 in 11 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/dcutr_behaviour/ee78b4f4ae30b49a3b3b916ccf7496ad9bad134d
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/dcutr_behaviour/77f23ac9a2bf829692616034f600d35943d290f0 in 12 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/dcutr_behaviour/f06cfed4893416b9c86c5264fc5b01bdef835fd0
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/dcutr_behaviour/e6db19e64b784f4369a0deb3255c16e682a0f7c4 in 11 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/dcutr_behaviour/b5f3db4d9e6933262b4815574591ff3aec53c5bd
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/dcutr_behaviour/9a3a4ef9ea996d27e3941f9e9f0b5eb01a9ebaed in 11 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/dcutr_behaviour/ff5a398520bc04a8afa5b7044750c1a90007f96b
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/dcutr_behaviour/9cf62ee914aad6276a8f860342ed015eb2493315 in 12 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/dcutr_behaviour/376971fbb2b3dadd52b252e406ed14214fbf32f1
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/dcutr_behaviour/f06cfed4893416b9c86c5264fc5b01bdef835fd0 in 11 ms
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/dcutr_behaviour/ee78b4f4ae30b49a3b3b916ccf7496ad9bad134d in 12 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/dcutr_behaviour/3f4bcc869ac8e92610d1dc62f7f1c545e763e8fd
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/dcutr_behaviour/2be79f0e3d903a2a5586a95c540dbfc827f8ea22
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/dcutr_behaviour/3f4bcc869ac8e92610d1dc62f7f1c545e763e8fd in 11 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/dcutr_behaviour/aeec27ce93a4fc322b4bd9852a15d72e6cf0cae3
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/dcutr_behaviour/2be79f0e3d903a2a5586a95c540dbfc827f8ea22 in 12 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/dcutr_behaviour/615e5ed2f5694137630f1274674551f646a1e8c9
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/dcutr_behaviour/376971fbb2b3dadd52b252e406ed14214fbf32f1 in 15 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/dcutr_behaviour/a2bc2bf92aeeb61ed20734b6a2b2bb6ab8a0e516
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/dcutr_behaviour/b5f3db4d9e6933262b4815574591ff3aec53c5bd in 30 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/dcutr_behaviour/1f33dd208b1d9dd9f1dd6355cc2e5bb62fad3989
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/dcutr_behaviour/aeec27ce93a4fc322b4bd9852a15d72e6cf0cae3 in 15 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/dcutr_behaviour/047728da8f913c94f2363b805da9b37b30a04578
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/dcutr_behaviour/615e5ed2f5694137630f1274674551f646a1e8c9 in 15 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/dcutr_behaviour/e51e65595dcf6e60a9f6089fb0f4497c6216d357
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/dcutr_behaviour/a2bc2bf92aeeb61ed20734b6a2b2bb6ab8a0e516 in 15 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/dcutr_behaviour/4c7fd980a809e295a69df06749c534c039fcd16a
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/dcutr_behaviour/ff5a398520bc04a8afa5b7044750c1a90007f96b in 35 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/dcutr_behaviour/02d9f3c61eb49ab4d22b04b2f2c0be1301ac00d1
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/dcutr_behaviour/1f33dd208b1d9dd9f1dd6355cc2e5bb62fad3989 in 13 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/dcutr_behaviour/49df96070e3635eebdd1565d7c26805956f1c867
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/dcutr_behaviour/e51e65595dcf6e60a9f6089fb0f4497c6216d357 in 13 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/dcutr_behaviour/8ba9b8fb766f3d79659a46b99a6b742a23845b5a
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/dcutr_behaviour/4c7fd980a809e295a69df06749c534c039fcd16a in 13 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/dcutr_behaviour/662260fad1ed16aeea8ea47d25a838e28c24f9d6
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/dcutr_behaviour/02d9f3c61eb49ab4d22b04b2f2c0be1301ac00d1 in 13 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/dcutr_behaviour/17a3c276fdf5b7ebd048bf01d58736982b9be6c7
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/dcutr_behaviour/49df96070e3635eebdd1565d7c26805956f1c867 in 13 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/dcutr_behaviour/c677da91534e51018c1fc16ccbad69a8154b2279
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/dcutr_behaviour/8ba9b8fb766f3d79659a46b99a6b742a23845b5a in 13 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/dcutr_behaviour/ecce13d703430698c6916794cf4b3a6bd7b46bc9
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/dcutr_behaviour/17a3c276fdf5b7ebd048bf01d58736982b9be6c7 in 13 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/dcutr_behaviour/b4e883544bb91a240e14a085a73ffd52627b6fc5
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/dcutr_behaviour/662260fad1ed16aeea8ea47d25a838e28c24f9d6 in 16 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/dcutr_behaviour/154433faa2674a03d2f8cdf4f03da114d024d449
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/dcutr_behaviour/c677da91534e51018c1fc16ccbad69a8154b2279 in 12 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/dcutr_behaviour/9c8a601ff2748ee0b516562b8cbbbb2284aa0a83
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/dcutr_behaviour/047728da8f913c94f2363b805da9b37b30a04578 in 35 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/dcutr_behaviour/aaff15d389532ad58029e3f577cde76d531def45
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/dcutr_behaviour/9c8a601ff2748ee0b516562b8cbbbb2284aa0a83 in 11 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/dcutr_behaviour/7dd8fb585055133f261487f0b828f60f325e8799
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/dcutr_behaviour/aaff15d389532ad58029e3f577cde76d531def45 in 12 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/dcutr_behaviour/9e31ad372e40e2a7e944c1136d00bd3d902dfc49
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/dcutr_behaviour/154433faa2674a03d2f8cdf4f03da114d024d449 in 16 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/dcutr_behaviour/48ec438ae25dfc521a118b9b52c4bf99159a7eb6
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/dcutr_behaviour/7dd8fb585055133f261487f0b828f60f325e8799 in 11 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/dcutr_behaviour/1325388e5b48450249badd1e8f41d12ede3c0ba0
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/dcutr_behaviour/9e31ad372e40e2a7e944c1136d00bd3d902dfc49 in 11 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/dcutr_behaviour/86545d2cc0f6e1701125156f33197f07b914ddb2
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/dcutr_behaviour/48ec438ae25dfc521a118b9b52c4bf99159a7eb6 in 12 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/dcutr_behaviour/58e1c27055ad9611bc301b5eb3aa869fc8389da2
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/dcutr_behaviour/b4e883544bb91a240e14a085a73ffd52627b6fc5 in 32 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/dcutr_behaviour/dac38e064e53d6ce6d2b1c670274454f709dbd30
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/dcutr_behaviour/86545d2cc0f6e1701125156f33197f07b914ddb2 in 11 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/dcutr_behaviour/13651d36b83829061d04b53548bd594bccbe2320
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/dcutr_behaviour/1325388e5b48450249badd1e8f41d12ede3c0ba0 in 15 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/dcutr_behaviour/7b64360ea73a732e89e4cfac754f38b9a372c11d
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/dcutr_behaviour/58e1c27055ad9611bc301b5eb3aa869fc8389da2 in 11 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/dcutr_behaviour/87f3d3d27b069765b0cf0a05077f4fbd51626a6a
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/dcutr_behaviour/dac38e064e53d6ce6d2b1c670274454f709dbd30 in 11 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/dcutr_behaviour/c5ab2ce4420722d8b3d8352b52b9572c565fce74
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/dcutr_behaviour/ecce13d703430698c6916794cf4b3a6bd7b46bc9 in 48 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/dcutr_behaviour/2c04c77e458d0480d506eb29ce3cbde653bcfd1e
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/dcutr_behaviour/13651d36b83829061d04b53548bd594bccbe2320 in 12 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/dcutr_behaviour/e52842f2e16f39e9a2cd4dfc30ef4966c9de4aba
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/dcutr_behaviour/7b64360ea73a732e89e4cfac754f38b9a372c11d in 14 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/dcutr_behaviour/282189a42f3f6a6a1a3d3dd0c5bc19d14ae755c4
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/dcutr_behaviour/87f3d3d27b069765b0cf0a05077f4fbd51626a6a in 14 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/dcutr_behaviour/10f78ad6bb0d7574bf5e831b6f2f5007f833bb17
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/dcutr_behaviour/2c04c77e458d0480d506eb29ce3cbde653bcfd1e in 14 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/dcutr_behaviour/a8976e518a02a572493fe8596b6a69ff411340f3
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/dcutr_behaviour/c5ab2ce4420722d8b3d8352b52b9572c565fce74 in 18 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/dcutr_behaviour/e384585787ee16f97e2b5bbc3c9056f2709cbfa2
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/dcutr_behaviour/e52842f2e16f39e9a2cd4dfc30ef4966c9de4aba in 13 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/dcutr_behaviour/7171448449c98eaaccf87e50ea3f06c0e6c95da9
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/dcutr_behaviour/282189a42f3f6a6a1a3d3dd0c5bc19d14ae755c4 in 14 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/dcutr_behaviour/6e57eb6f73b1d1de0a1ee2edd87ca2a12a32a412
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/dcutr_behaviour/10f78ad6bb0d7574bf5e831b6f2f5007f833bb17 in 13 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/dcutr_behaviour/3ee9b823599039cf9790e4e84f02ce7aff107cdb
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/dcutr_behaviour/a8976e518a02a572493fe8596b6a69ff411340f3 in 14 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/dcutr_behaviour/28792f21a6aba04f5dbf2008dccd3eae9f82f866
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/dcutr_behaviour/e384585787ee16f97e2b5bbc3c9056f2709cbfa2 in 14 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/dcutr_behaviour/7e074d4a738c749dda670c86c677444e40f875a6
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/dcutr_behaviour/7171448449c98eaaccf87e50ea3f06c0e6c95da9 in 12 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/dcutr_behaviour/3ea988870e2975e6c92770e09c5deb135ee02370
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/dcutr_behaviour/3ee9b823599039cf9790e4e84f02ce7aff107cdb in 13 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/dcutr_behaviour/6ea5b72307a764b6246c1bd4a3e4af8203b77f04
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/dcutr_behaviour/6e57eb6f73b1d1de0a1ee2edd87ca2a12a32a412 in 14 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/dcutr_behaviour/385ed5d7526862cd660f8dacae550021f8a4a742
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/dcutr_behaviour/28792f21a6aba04f5dbf2008dccd3eae9f82f866 in 12 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/dcutr_behaviour/c0e8c350e840fcfdb235b8d8d5f4c3536cc7189e
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/dcutr_behaviour/7e074d4a738c749dda670c86c677444e40f875a6 in 12 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/dcutr_behaviour/8d908ce5e40ac3809a8b40f47d066bdd82adaf8b
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/dcutr_behaviour/3ea988870e2975e6c92770e09c5deb135ee02370 in 13 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/dcutr_behaviour/7ae5342694aca795b4b6e9c4ff1bb033e9951f68
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/dcutr_behaviour/385ed5d7526862cd660f8dacae550021f8a4a742 in 11 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/dcutr_behaviour/846df61eb8425de62fa32719c1162e744390739a
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/dcutr_behaviour/6ea5b72307a764b6246c1bd4a3e4af8203b77f04 in 12 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/dcutr_behaviour/70a6afe65c086b3bea610a4d7bc335f5d320d36a
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/dcutr_behaviour/c0e8c350e840fcfdb235b8d8d5f4c3536cc7189e in 13 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/dcutr_behaviour/a6f1c24edf422055079975e1f8d09f8543211816
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/dcutr_behaviour/8d908ce5e40ac3809a8b40f47d066bdd82adaf8b in 11 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/dcutr_behaviour/fe9dcb4487f3c437d81cb13081eb26396ae2e1ca
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/dcutr_behaviour/7ae5342694aca795b4b6e9c4ff1bb033e9951f68 in 12 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/dcutr_behaviour/68f5dadb49432ba4890bd8e0bd69f85f0df2c1ad
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/dcutr_behaviour/846df61eb8425de62fa32719c1162e744390739a in 14 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/dcutr_behaviour/d219bc26b88b71b890e193a7ec95c6dfc60e74a9
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/dcutr_behaviour/fe9dcb4487f3c437d81cb13081eb26396ae2e1ca in 12 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/dcutr_behaviour/575a67dbce0fe5c25b29c425ba66cebc706e2aa1
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/dcutr_behaviour/70a6afe65c086b3bea610a4d7bc335f5d320d36a in 18 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/dcutr_behaviour/d04eb245111175b46bc9767eed490fe083139e74
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/dcutr_behaviour/68f5dadb49432ba4890bd8e0bd69f85f0df2c1ad in 12 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/dcutr_behaviour/a7437f94f3db2d693e298e0e5ed6432e95bcee18
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/dcutr_behaviour/575a67dbce0fe5c25b29c425ba66cebc706e2aa1 in 12 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/dcutr_behaviour/5485b44cd75bbe2da30fd2e14cec863b57d85ba0
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/dcutr_behaviour/d219bc26b88b71b890e193a7ec95c6dfc60e74a9 in 16 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/dcutr_behaviour/f2ec6397510fc25f3fca7be82b58827a3562dddd
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/dcutr_behaviour/a7437f94f3db2d693e298e0e5ed6432e95bcee18 in 11 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/dcutr_behaviour/de053c956329d20f854fded88509a1ce79406922
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/dcutr_behaviour/d04eb245111175b46bc9767eed490fe083139e74 in 12 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/dcutr_behaviour/674ddf0a9b533984f91246ac982fdb682b72b57c
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/dcutr_behaviour/a6f1c24edf422055079975e1f8d09f8543211816 in 32 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/dcutr_behaviour/dcf5813c2a80ff0396e22d33b0b31c14a4350515
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/dcutr_behaviour/de053c956329d20f854fded88509a1ce79406922 in 12 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/dcutr_behaviour/9e6462b1732a706f226b87745fb988b79aeffe63
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/dcutr_behaviour/5485b44cd75bbe2da30fd2e14cec863b57d85ba0 in 18 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/dcutr_behaviour/70ccd703c1caa2d464207bf40b879f5de480929e
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/dcutr_behaviour/dcf5813c2a80ff0396e22d33b0b31c14a4350515 in 14 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/dcutr_behaviour/9afe4be242912324a509eab2bd5506ec2ca4aa2b
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/dcutr_behaviour/9e6462b1732a706f226b87745fb988b79aeffe63 in 13 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/dcutr_behaviour/d630d761ec3121c6fe5d97bf001262b3550ed833
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/dcutr_behaviour/70ccd703c1caa2d464207bf40b879f5de480929e in 13 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/dcutr_behaviour/70347252fecaebe4820204011b1e71db967a6054
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/dcutr_behaviour/f2ec6397510fc25f3fca7be82b58827a3562dddd in 30 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/dcutr_behaviour/c99c23f8e962ae25616fe396e16042fd82f489e7
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/dcutr_behaviour/9afe4be242912324a509eab2bd5506ec2ca4aa2b in 12 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/dcutr_behaviour/cf7351248b7e593ea52ebd426d70047d24b4c821
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/dcutr_behaviour/674ddf0a9b533984f91246ac982fdb682b72b57c in 34 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/dcutr_behaviour/a27a9993354c662276ca778c5264e40153e8dbe0
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/dcutr_behaviour/d630d761ec3121c6fe5d97bf001262b3550ed833 in 12 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/dcutr_behaviour/a43656a71ae57b9ad1b4a9a546d56c901b274818
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/dcutr_behaviour/c99c23f8e962ae25616fe396e16042fd82f489e7 in 15 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/dcutr_behaviour/9deeb1491d18cdbd09a3aa03d37afccf48a3d0ee
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/dcutr_behaviour/a43656a71ae57b9ad1b4a9a546d56c901b274818 in 11 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/dcutr_behaviour/15d389c0f11064bdcc5d8823edd37977ad6ca2e3
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/dcutr_behaviour/a27a9993354c662276ca778c5264e40153e8dbe0 in 16 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/dcutr_behaviour/5a9e94bad83d7887541fd24d9536b2c21b5e7fad
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/dcutr_behaviour/9deeb1491d18cdbd09a3aa03d37afccf48a3d0ee in 11 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/dcutr_behaviour/59339e44d7899cd6d4729f5034505c2f49a70d93
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/dcutr_behaviour/70347252fecaebe4820204011b1e71db967a6054 in 34 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/dcutr_behaviour/feb4afe5191aed1b9f27cb79187bb012cf5074dd
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/dcutr_behaviour/cf7351248b7e593ea52ebd426d70047d24b4c821 in 32 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/dcutr_behaviour/c55f6b939b19f5efcb83b4e5261b8f46404dabdf
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/dcutr_behaviour/15d389c0f11064bdcc5d8823edd37977ad6ca2e3 in 12 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/dcutr_behaviour/182aae978b2029916b13b003f161a342428a503b
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/dcutr_behaviour/5a9e94bad83d7887541fd24d9536b2c21b5e7fad in 12 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/dcutr_behaviour/3163673e3603706bb12706b13b6381b4d1989e11
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/dcutr_behaviour/59339e44d7899cd6d4729f5034505c2f49a70d93 in 13 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/dcutr_behaviour/ebf8c9a10a1cf676d3d6de8d45974e7d34b644f5
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/dcutr_behaviour/feb4afe5191aed1b9f27cb79187bb012cf5074dd in 12 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/dcutr_behaviour/35c68ad8b683345203fc96bb7ff0f38894ed8e54
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/dcutr_behaviour/c55f6b939b19f5efcb83b4e5261b8f46404dabdf in 12 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/dcutr_behaviour/6e5a3b41ad46c14a51cb7eba58925ceaec96f811
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/dcutr_behaviour/3163673e3603706bb12706b13b6381b4d1989e11 in 12 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/dcutr_behaviour/850affb3ba2dd3502e3f8ad10c541d223d27482c
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/dcutr_behaviour/182aae978b2029916b13b003f161a342428a503b in 15 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/dcutr_behaviour/2326f956b1f1c01cd44b6326fc1bfb4b204bf216
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/dcutr_behaviour/35c68ad8b683345203fc96bb7ff0f38894ed8e54 in 13 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/dcutr_behaviour/6d9b7f66e909240d4b3392c10788ead652ff50d7
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/dcutr_behaviour/ebf8c9a10a1cf676d3d6de8d45974e7d34b644f5 in 21 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/dcutr_behaviour/4727e8af6d97769761fb461e8eb7df01b1185813
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/dcutr_behaviour/2326f956b1f1c01cd44b6326fc1bfb4b204bf216 in 13 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/dcutr_behaviour/df0d6aee52f97c1094d71c99fd2f938305568656
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/dcutr_behaviour/6d9b7f66e909240d4b3392c10788ead652ff50d7 in 14 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/dcutr_behaviour/6f15dd2733fd0417557786144b6f638a9a781b65
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/dcutr_behaviour/4727e8af6d97769761fb461e8eb7df01b1185813 in 13 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/dcutr_behaviour/afe4968828c55fd45546e3b7d4920a2ecbd01ef2
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/dcutr_behaviour/6e5a3b41ad46c14a51cb7eba58925ceaec96f811 in 33 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/dcutr_behaviour/0cf609b0a21227fa83594ceeeba2df6dace055cb
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/dcutr_behaviour/6f15dd2733fd0417557786144b6f638a9a781b65 in 12 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/dcutr_behaviour/3180647a517505cc09b59fbfdde306ebe7346257
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/dcutr_behaviour/afe4968828c55fd45546e3b7d4920a2ecbd01ef2 in 13 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/dcutr_behaviour/f507beb567471cb49c947d5b15be49f7aaa86760
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/dcutr_behaviour/0cf609b0a21227fa83594ceeeba2df6dace055cb in 12 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/dcutr_behaviour/2f7c4f76a07b46fce5fabfde21be45fd60bd52b1
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/dcutr_behaviour/850affb3ba2dd3502e3f8ad10c541d223d27482c in 44 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/dcutr_behaviour/1778b674dcf23c4284e3a429530896ef42890b2b
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/dcutr_behaviour/f507beb567471cb49c947d5b15be49f7aaa86760 in 12 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/dcutr_behaviour/910d0a9fd3be6fb6ab586d237994f583c084d3a6
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/dcutr_behaviour/2f7c4f76a07b46fce5fabfde21be45fd60bd52b1 in 16 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/dcutr_behaviour/4c808f5ba2ebed64b0e4537a892861e980082043
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/dcutr_behaviour/df0d6aee52f97c1094d71c99fd2f938305568656 in 46 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/dcutr_behaviour/07bc28a99d311ff4a54b822f0e92bda53d1380f8
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/dcutr_behaviour/910d0a9fd3be6fb6ab586d237994f583c084d3a6 in 13 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/dcutr_behaviour/76c332f978fc596c872ca33de6ef40b1b72b40a5
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/dcutr_behaviour/4c808f5ba2ebed64b0e4537a892861e980082043 in 11 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/dcutr_behaviour/c4aa995c2cbd15a566c42a8c348058f2a2f8f6a0
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/dcutr_behaviour/1778b674dcf23c4284e3a429530896ef42890b2b in 36 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/dcutr_behaviour/3b72179ce0e8cc383c2c695493e6c77ae7654fc3
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/dcutr_behaviour/07bc28a99d311ff4a54b822f0e92bda53d1380f8 in 17 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/dcutr_behaviour/3c60e3399eca6b78eb1f07796b770895a5a51bb8
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/dcutr_behaviour/76c332f978fc596c872ca33de6ef40b1b72b40a5 in 13 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/dcutr_behaviour/bc0e0506f5abd38668f1ab30f1cba29de0aa58e3
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/dcutr_behaviour/c4aa995c2cbd15a566c42a8c348058f2a2f8f6a0 in 14 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/dcutr_behaviour/a25b24891637e64eaed565dcd60066d11d657314
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/dcutr_behaviour/3b72179ce0e8cc383c2c695493e6c77ae7654fc3 in 14 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/dcutr_behaviour/b62ecfdc2986110fe3e70c67bfd2eb68ddd5da9d
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/dcutr_behaviour/bc0e0506f5abd38668f1ab30f1cba29de0aa58e3 in 15 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/dcutr_behaviour/1e1a4d73cf2111d777189250c9862828ebff413c
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/dcutr_behaviour/3c60e3399eca6b78eb1f07796b770895a5a51bb8 in 17 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/dcutr_behaviour/856cfea83571af5fad01c3254325b5705dd46021
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/dcutr_behaviour/a25b24891637e64eaed565dcd60066d11d657314 in 12 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/dcutr_behaviour/59ee76076c382e79d6665f6e5f286a695a6cf49d
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/dcutr_behaviour/1e1a4d73cf2111d777189250c9862828ebff413c in 12 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/dcutr_behaviour/7210cc470bff4ea896283a4986b9ad4be9bf5d55
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/dcutr_behaviour/b62ecfdc2986110fe3e70c67bfd2eb68ddd5da9d in 13 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/dcutr_behaviour/d45fb327b86df8bb2508df497a28035f3a0e924e
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/dcutr_behaviour/3180647a517505cc09b59fbfdde306ebe7346257 in 73 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/dcutr_behaviour/951dcb550d77e3787799cbb242318cda6ef5bd65
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/dcutr_behaviour/59ee76076c382e79d6665f6e5f286a695a6cf49d in 15 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/dcutr_behaviour/d8759cef9db49ab8fbfea83f444df3681991e59c
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/dcutr_behaviour/7210cc470bff4ea896283a4986b9ad4be9bf5d55 in 11 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/dcutr_behaviour/b7146bfc4792195d2470a3477fe74e33123a061a
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/dcutr_behaviour/d45fb327b86df8bb2508df497a28035f3a0e924e in 12 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/dcutr_behaviour/6cad83152dbfe6fa3d1f6a790f03468f5d67c892
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/dcutr_behaviour/d8759cef9db49ab8fbfea83f444df3681991e59c in 11 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/dcutr_behaviour/ea32c0f1f2d85aa6834a2c7704d39916b4b86388
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/dcutr_behaviour/951dcb550d77e3787799cbb242318cda6ef5bd65 in 16 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/dcutr_behaviour/0bc0629323ab45dd5b719ca97577a88f6329159f
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/dcutr_behaviour/856cfea83571af5fad01c3254325b5705dd46021 in 31 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/dcutr_behaviour/e26d878c2804dd875fa3f6e04d53b241121146bf
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/dcutr_behaviour/ea32c0f1f2d85aa6834a2c7704d39916b4b86388 in 11 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/dcutr_behaviour/de33613ed84dd7f96b117ca1177dc4fe4eba16ab
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/dcutr_behaviour/b7146bfc4792195d2470a3477fe74e33123a061a in 18 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/dcutr_behaviour/39a6c415ce8dbf7b77f45e691126a755defa125e
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/dcutr_behaviour/e26d878c2804dd875fa3f6e04d53b241121146bf in 11 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/dcutr_behaviour/e43059e66731735d9651c89f78078c3d40691e11
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/dcutr_behaviour/0bc0629323ab45dd5b719ca97577a88f6329159f in 15 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/dcutr_behaviour/2689e516a21e71925e3b9048aaa999f49f7b053f
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/dcutr_behaviour/de33613ed84dd7f96b117ca1177dc4fe4eba16ab in 12 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/dcutr_behaviour/4756a6b57a6795d51461ae393322ebcd7d85dcb9
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/dcutr_behaviour/e43059e66731735d9651c89f78078c3d40691e11 in 12 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/dcutr_behaviour/1f55f22db99d1ad4117e735ad7184ef9126bc9b4
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/dcutr_behaviour/39a6c415ce8dbf7b77f45e691126a755defa125e in 16 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/dcutr_behaviour/65562fe14228e0b0f592e439b190addd0df74b6c
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/dcutr_behaviour/2689e516a21e71925e3b9048aaa999f49f7b053f in 12 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/dcutr_behaviour/4fc395d28a8f5b7f480c85c968f260f7103847f1
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/dcutr_behaviour/6cad83152dbfe6fa3d1f6a790f03468f5d67c892 in 35 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/dcutr_behaviour/b5cbf16114cae2df568dd6681ba96ac1f2472c5a
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/dcutr_behaviour/4756a6b57a6795d51461ae393322ebcd7d85dcb9 in 10 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/dcutr_behaviour/6c37a293f2501797cf2e8c29320a11eee645fc07
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/dcutr_behaviour/1f55f22db99d1ad4117e735ad7184ef9126bc9b4 in 11 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/dcutr_behaviour/d1cd5b06b1e5a5b0dacbc800f844693876cdbfc3
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/dcutr_behaviour/65562fe14228e0b0f592e439b190addd0df74b6c in 11 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/dcutr_behaviour/09757f550c2621e78e6159e2aa817e4df0af02c7
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/dcutr_behaviour/4fc395d28a8f5b7f480c85c968f260f7103847f1 in 12 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/dcutr_behaviour/6398f3bdceac36e2fb7c863c92166f0ae0db45ca
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/dcutr_behaviour/b5cbf16114cae2df568dd6681ba96ac1f2472c5a in 11 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/dcutr_behaviour/3e01283b00fe375916905e710ab3172d69cd24a4
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/dcutr_behaviour/6398f3bdceac36e2fb7c863c92166f0ae0db45ca in 13 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/dcutr_behaviour/595c476c285189075223198ff8501e82a36c5edb
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/dcutr_behaviour/3e01283b00fe375916905e710ab3172d69cd24a4 in 15 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/dcutr_behaviour/4f1a3413b6231a8854b930f5c69ad31a1517e2b9
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/dcutr_behaviour/6c37a293f2501797cf2e8c29320a11eee645fc07 in 28 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/dcutr_behaviour/68e85e837ee82062c08c3113abfd20277fe85411
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/dcutr_behaviour/4f1a3413b6231a8854b930f5c69ad31a1517e2b9 in 12 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/dcutr_behaviour/654c412e1811c9315a8c9e14a3cffe05a3a5b75f
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/dcutr_behaviour/09757f550c2621e78e6159e2aa817e4df0af02c7 in 29 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/dcutr_behaviour/63de486e7880815840b7ddf860a1fa4c9ba24110
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/dcutr_behaviour/d1cd5b06b1e5a5b0dacbc800f844693876cdbfc3 in 34 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/dcutr_behaviour/ca5b5849b4c1f6a9f410612ba5dd5c2bf0bd7d92
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/dcutr_behaviour/68e85e837ee82062c08c3113abfd20277fe85411 in 11 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/dcutr_behaviour/50e1e014021690bef5aff2042d84c7ae3059defa
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/dcutr_behaviour/63de486e7880815840b7ddf860a1fa4c9ba24110 in 11 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/dcutr_behaviour/544926319cd1fd8033e954a5fe4585af432d343d
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/dcutr_behaviour/654c412e1811c9315a8c9e14a3cffe05a3a5b75f in 11 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/dcutr_behaviour/f74fc1cd34215fb1c9c1b24bbd5f20a32e7f0459
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/dcutr_behaviour/595c476c285189075223198ff8501e82a36c5edb in 29 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/dcutr_behaviour/527ffab09cf8c298146ad0a51e79c2c286ec10f4
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/dcutr_behaviour/ca5b5849b4c1f6a9f410612ba5dd5c2bf0bd7d92 in 12 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/dcutr_behaviour/3c41ee7a5ab36703336ec1d8bd9cd0597f015b36
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/dcutr_behaviour/50e1e014021690bef5aff2042d84c7ae3059defa in 11 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/dcutr_behaviour/ab18b459984ec86fec0e6055945a9076f9a02560
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/dcutr_behaviour/544926319cd1fd8033e954a5fe4585af432d343d in 10 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/dcutr_behaviour/d034ded425bcc2420b3eabf0814befbbb14e25ec
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/dcutr_behaviour/f74fc1cd34215fb1c9c1b24bbd5f20a32e7f0459 in 12 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/dcutr_behaviour/a1ca24e44df5ffe53de30992fb47ed954557ca3d
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/dcutr_behaviour/527ffab09cf8c298146ad0a51e79c2c286ec10f4 in 11 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/dcutr_behaviour/cffc89acf1bf3df0247864dc741ac602c6ab89c1
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/dcutr_behaviour/3c41ee7a5ab36703336ec1d8bd9cd0597f015b36 in 11 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/dcutr_behaviour/856ee94a398e753ffbdab236ee6c9310dcf842d1
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/dcutr_behaviour/ab18b459984ec86fec0e6055945a9076f9a02560 in 11 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/dcutr_behaviour/a14b5a4ec4771136c9b8612601f440e55d5b017a
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/dcutr_behaviour/d034ded425bcc2420b3eabf0814befbbb14e25ec in 10 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/dcutr_behaviour/5074f5d471b6a288563835ac32ea919a7e9e43bd
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/dcutr_behaviour/cffc89acf1bf3df0247864dc741ac602c6ab89c1 in 10 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/dcutr_behaviour/ef91e0e237484ce1f700e0ee7a5700ee7417a949
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/dcutr_behaviour/a1ca24e44df5ffe53de30992fb47ed954557ca3d in 16 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/dcutr_behaviour/328df04425596ca78e18b8075a37bc991c5f2b94
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/dcutr_behaviour/856ee94a398e753ffbdab236ee6c9310dcf842d1 in 15 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/dcutr_behaviour/42507d8cde509f0406606fdc685c9b8aae6b92a0
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/dcutr_behaviour/5074f5d471b6a288563835ac32ea919a7e9e43bd in 11 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/dcutr_behaviour/9f79c3a4873deeae6dcc5e6b55c3f1d387d52fb8
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/dcutr_behaviour/a14b5a4ec4771136c9b8612601f440e55d5b017a in 19 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/dcutr_behaviour/9b6b2591c5b5fef064fc6d933b876e9425c2bf76
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/dcutr_behaviour/ef91e0e237484ce1f700e0ee7a5700ee7417a949 in 11 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/dcutr_behaviour/8e47aefc8879fdd65d2525d7d2e86063f5af5085
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/dcutr_behaviour/328df04425596ca78e18b8075a37bc991c5f2b94 in 12 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/dcutr_behaviour/61509914b5cb43ff7880da4d3d9b905f46c783d0
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/dcutr_behaviour/9f79c3a4873deeae6dcc5e6b55c3f1d387d52fb8 in 13 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/dcutr_behaviour/813ad49cf8ee0d9c33a5b097d2d9c3912355543d
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/dcutr_behaviour/42507d8cde509f0406606fdc685c9b8aae6b92a0 in 15 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/dcutr_behaviour/0d11d116a7337a8080a23f3999943d883fde392e
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/dcutr_behaviour/9b6b2591c5b5fef064fc6d933b876e9425c2bf76 in 14 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/dcutr_behaviour/716c9dc85db64a05a377b775b00e29a1447e4086
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/dcutr_behaviour/8e47aefc8879fdd65d2525d7d2e86063f5af5085 in 13 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/dcutr_behaviour/1bd69bdfa70f37beadcfcdd8c142b129289b5da1
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/dcutr_behaviour/61509914b5cb43ff7880da4d3d9b905f46c783d0 in 16 ms
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/dcutr_behaviour/813ad49cf8ee0d9c33a5b097d2d9c3912355543d in 12 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/dcutr_behaviour/6d83796149b9a4d1260f7941e9209f5f8adba5d4
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/dcutr_behaviour/7aa9d8da7563f9fbd1cf3cf60592899898468557
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/dcutr_behaviour/0d11d116a7337a8080a23f3999943d883fde392e in 13 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/dcutr_behaviour/e73a74251ff28467aea3abee1e43a9336898e2b0
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/dcutr_behaviour/716c9dc85db64a05a377b775b00e29a1447e4086 in 11 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/dcutr_behaviour/e15b64c816908bf5d9ddb8c3048ae005101da30f
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/dcutr_behaviour/1bd69bdfa70f37beadcfcdd8c142b129289b5da1 in 13 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/dcutr_behaviour/2ce65f017b7bd6df6c9051d413d4cbed0c514548
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/dcutr_behaviour/7aa9d8da7563f9fbd1cf3cf60592899898468557 in 13 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/dcutr_behaviour/b0ef8ed96b849e443652e473708c80f8ed780554
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/dcutr_behaviour/e15b64c816908bf5d9ddb8c3048ae005101da30f in 11 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/dcutr_behaviour/ce3e223c7f211b2bc84eb00add0a7e05b0183d6d
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/dcutr_behaviour/e73a74251ff28467aea3abee1e43a9336898e2b0 in 14 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/dcutr_behaviour/17c5f5ef3ca58a21ee7df7c72687180a4c6b3299
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/dcutr_behaviour/2ce65f017b7bd6df6c9051d413d4cbed0c514548 in 11 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/dcutr_behaviour/5f7a7553e157322f72008ed236c0054f31e48f06
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/dcutr_behaviour/6d83796149b9a4d1260f7941e9209f5f8adba5d4 in 25 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/dcutr_behaviour/ff192c1263cf3da8636b0299233c300c5b7c5366
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/dcutr_behaviour/b0ef8ed96b849e443652e473708c80f8ed780554 in 12 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/dcutr_behaviour/cc4fe0ea339cba6c8b0e63a715e94bcd0aeaeb02
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/dcutr_behaviour/17c5f5ef3ca58a21ee7df7c72687180a4c6b3299 in 11 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/dcutr_behaviour/973d9e0229ef42a1def929756606e97bd4ff2ff6
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/dcutr_behaviour/5f7a7553e157322f72008ed236c0054f31e48f06 in 11 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/dcutr_behaviour/421518427d6eee03a1610d0916aec9fad75f5756
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/dcutr_behaviour/ff192c1263cf3da8636b0299233c300c5b7c5366 in 10 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/dcutr_behaviour/065ce00534d8b099edfe631fbb84f59bc23ff613
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/dcutr_behaviour/cc4fe0ea339cba6c8b0e63a715e94bcd0aeaeb02 in 11 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/dcutr_behaviour/c1d21ec5c905568c0c7b537df1a0f48f32862270
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/dcutr_behaviour/421518427d6eee03a1610d0916aec9fad75f5756 in 10 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/dcutr_behaviour/99bffadf3da2142a6fe531ee703a3d572d823491
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/dcutr_behaviour/065ce00534d8b099edfe631fbb84f59bc23ff613 in 10 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/dcutr_behaviour/2eab16dc358bb40dd3ab9b1fc07802ca508a7c4f
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/dcutr_behaviour/c1d21ec5c905568c0c7b537df1a0f48f32862270 in 11 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/dcutr_behaviour/ee1c01acaf275e018a586196ebd6beaf90d41376
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/dcutr_behaviour/99bffadf3da2142a6fe531ee703a3d572d823491 in 10 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/dcutr_behaviour/68a87d83df986c0a6c2f21a5f35c01273612e970
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/dcutr_behaviour/ce3e223c7f211b2bc84eb00add0a7e05b0183d6d in 36 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/dcutr_behaviour/ba74436c7b243bbe7ba23ee3dbe2170993543345
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/dcutr_behaviour/973d9e0229ef42a1def929756606e97bd4ff2ff6 in 25 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/dcutr_behaviour/5668be8ba3c0b818d4b9f500bbe73ffaaca50684
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/dcutr_behaviour/2eab16dc358bb40dd3ab9b1fc07802ca508a7c4f in 11 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/dcutr_behaviour/fd7679c9b0749c6f61375e9176092c40e4f46b18
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/dcutr_behaviour/ee1c01acaf275e018a586196ebd6beaf90d41376 in 12 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/dcutr_behaviour/a30b4d4b9bc562b6dd2c52fd194ada71ea1dab5e
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/dcutr_behaviour/68a87d83df986c0a6c2f21a5f35c01273612e970 in 15 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/dcutr_behaviour/2c9237684cef707c6a3e6d4db3faeec6a24b7a29
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/dcutr_behaviour/5668be8ba3c0b818d4b9f500bbe73ffaaca50684 in 15 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/dcutr_behaviour/44340757c536f358ab7450ba0ab6b0fb70ea55e1
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/dcutr_behaviour/fd7679c9b0749c6f61375e9176092c40e4f46b18 in 18 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/dcutr_behaviour/153baf217a9a6e098ef439cb9e5a4e35daf71bc1
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/dcutr_behaviour/a30b4d4b9bc562b6dd2c52fd194ada71ea1dab5e in 15 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/dcutr_behaviour/d2923ec16b27e25878f784ad42483ccaf77e76b3
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/dcutr_behaviour/44340757c536f358ab7450ba0ab6b0fb70ea55e1 in 12 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/dcutr_behaviour/ae6113ac5d2529c26c5b777a22d2d137b7abac91
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/dcutr_behaviour/ba74436c7b243bbe7ba23ee3dbe2170993543345 in 32 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/dcutr_behaviour/d5450b5dacdd68497aff1d5a2ca916665ef4ada1
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/dcutr_behaviour/153baf217a9a6e098ef439cb9e5a4e35daf71bc1 in 11 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/dcutr_behaviour/2867cbb987748d28a5557e484cea7f341c3e92e1
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/dcutr_behaviour/d5450b5dacdd68497aff1d5a2ca916665ef4ada1 in 11 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/dcutr_behaviour/61a7138a8ca07afccfdc6f3056312f3592a44ea5
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/dcutr_behaviour/2c9237684cef707c6a3e6d4db3faeec6a24b7a29 in 33 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/dcutr_behaviour/08ad6419158d842156750d6c284b1c0dd2ec5557
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/dcutr_behaviour/2867cbb987748d28a5557e484cea7f341c3e92e1 in 11 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/dcutr_behaviour/c79976b8640a5fecafda565a4d05e95240a3e5ac
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/dcutr_behaviour/ae6113ac5d2529c26c5b777a22d2d137b7abac91 in 24 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/dcutr_behaviour/fe40af42588fcdf36837f4d8a5f5550d118273ad
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/dcutr_behaviour/61a7138a8ca07afccfdc6f3056312f3592a44ea5 in 11 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/dcutr_behaviour/c34a1d3d639e19ff566132a364fdca0847afcc08
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/dcutr_behaviour/08ad6419158d842156750d6c284b1c0dd2ec5557 in 11 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/dcutr_behaviour/7d8619a2774653fba6c1acdcd9b0799fafcf53aa
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/dcutr_behaviour/c79976b8640a5fecafda565a4d05e95240a3e5ac in 11 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/dcutr_behaviour/84de5b4bab016917d65028113f8a8ae588f99b41
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/dcutr_behaviour/fe40af42588fcdf36837f4d8a5f5550d118273ad in 11 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/dcutr_behaviour/18253d089f2a6be00ef3b440ccfe54ce2a9273fd
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/dcutr_behaviour/d2923ec16b27e25878f784ad42483ccaf77e76b3 in 42 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/dcutr_behaviour/d20caf81bf45af44a004c7c3486dc335ac602db4
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/dcutr_behaviour/7d8619a2774653fba6c1acdcd9b0799fafcf53aa in 11 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/dcutr_behaviour/932ff021fb6e5f0f6680d55d1f2b8117f584748d
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/dcutr_behaviour/c34a1d3d639e19ff566132a364fdca0847afcc08 in 12 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/dcutr_behaviour/267976044432df6e613f745ab09d62a48e688f7e
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/dcutr_behaviour/84de5b4bab016917d65028113f8a8ae588f99b41 in 18 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/dcutr_behaviour/c04b8a6e7b587234340e2410b00cdb956bb407cc
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/dcutr_behaviour/267976044432df6e613f745ab09d62a48e688f7e in 10 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/dcutr_behaviour/7e31b87da9cc85e876b256ccbb468cc65d85a268
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/dcutr_behaviour/d20caf81bf45af44a004c7c3486dc335ac602db4 in 11 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/dcutr_behaviour/11b734d508daf26cce5b41d6ab3bc30e4f7610a6
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/dcutr_behaviour/18253d089f2a6be00ef3b440ccfe54ce2a9273fd in 14 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/dcutr_behaviour/75d933b6ac2ae40d13bfa7c40508fe6b6ace2de2
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/dcutr_behaviour/932ff021fb6e5f0f6680d55d1f2b8117f584748d in 14 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/dcutr_behaviour/bc097a09fb7e13572fa4014b3b61fbf0c76e5469
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/dcutr_behaviour/7e31b87da9cc85e876b256ccbb468cc65d85a268 in 11 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/dcutr_behaviour/83f211bf8a39fe0321f2a2842590f66a2c55605b
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/dcutr_behaviour/75d933b6ac2ae40d13bfa7c40508fe6b6ace2de2 in 11 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/dcutr_behaviour/0a442d8d5433d09b3f8de97fb620240811a160f7
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/dcutr_behaviour/11b734d508daf26cce5b41d6ab3bc30e4f7610a6 in 12 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/dcutr_behaviour/196a6b993a88b778a8cf28bd55111d6da33032a2
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/dcutr_behaviour/c04b8a6e7b587234340e2410b00cdb956bb407cc in 16 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/dcutr_behaviour/94d4d1f8f6f08d25e5c70fea9ff81273ffd76a4f
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/dcutr_behaviour/bc097a09fb7e13572fa4014b3b61fbf0c76e5469 in 12 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/dcutr_behaviour/f925895d1142cb86831ad1e8d77782911071f8ac
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/dcutr_behaviour/83f211bf8a39fe0321f2a2842590f66a2c55605b in 12 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/dcutr_behaviour/6931b16c5dd57eb46e281a115258337b7dfbdebd
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/dcutr_behaviour/f925895d1142cb86831ad1e8d77782911071f8ac in 11 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/dcutr_behaviour/a92f7ae110d4170159f180c79a8504cd056693c8
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/dcutr_behaviour/6931b16c5dd57eb46e281a115258337b7dfbdebd in 11 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/dcutr_behaviour/4c7cfaaa13781552d4d7a8f5860318799dbdd18c
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/dcutr_behaviour/196a6b993a88b778a8cf28bd55111d6da33032a2 in 23 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/dcutr_behaviour/0f450e370c381569906934f24246dfc78c55370c
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/dcutr_behaviour/a92f7ae110d4170159f180c79a8504cd056693c8 in 13 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/dcutr_behaviour/b07e9c31b5994e12af2e195b9b6578263e153f54
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/dcutr_behaviour/0a442d8d5433d09b3f8de97fb620240811a160f7 in 28 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/dcutr_behaviour/d1809662d5f58ed9230aa5cf52e22bbcbbb1acb6
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/dcutr_behaviour/4c7cfaaa13781552d4d7a8f5860318799dbdd18c in 11 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/dcutr_behaviour/12c260d0662213ef314d7e83f10f38e3174b011c
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/dcutr_behaviour/0f450e370c381569906934f24246dfc78c55370c in 12 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/dcutr_behaviour/f2c3423c199703394769b8ec5e70a19213be3fbf
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/dcutr_behaviour/b07e9c31b5994e12af2e195b9b6578263e153f54 in 11 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/dcutr_behaviour/d6c723be1b5d4628ad296efe5d42f176db932cd4
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/dcutr_behaviour/12c260d0662213ef314d7e83f10f38e3174b011c in 11 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/dcutr_behaviour/48eac5c1cf146ab3cc45d522efa9590500d5387a
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/dcutr_behaviour/d6c723be1b5d4628ad296efe5d42f176db932cd4 in 11 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/dcutr_behaviour/41b72d96f17f84a62d5c17cbff3b07e21ff29fd5
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/dcutr_behaviour/94d4d1f8f6f08d25e5c70fea9ff81273ffd76a4f in 54 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/dcutr_behaviour/0a3b611740db5fe37fc94b35fd18168635127c8a
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/dcutr_behaviour/d1809662d5f58ed9230aa5cf52e22bbcbbb1acb6 in 28 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/dcutr_behaviour/8708ca167caaec85dee5f97e9f84abf772c41b76
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/dcutr_behaviour/0a3b611740db5fe37fc94b35fd18168635127c8a in 11 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/dcutr_behaviour/8b0a24448e616cfe62cf4af3f8fbf6330deafec2
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/dcutr_behaviour/48eac5c1cf146ab3cc45d522efa9590500d5387a in 23 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/dcutr_behaviour/f0c775365b75cbd9b1c6fc96ae268783e5722bdc
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/dcutr_behaviour/8708ca167caaec85dee5f97e9f84abf772c41b76 in 11 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/dcutr_behaviour/06ea94a38efa3322f2bd939f3bcceceaa7bd762b
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/dcutr_behaviour/f2c3423c199703394769b8ec5e70a19213be3fbf in 34 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/dcutr_behaviour/6eff9a61b2a9051ff2b07fd3215af7a2b1bd5085
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/dcutr_behaviour/41b72d96f17f84a62d5c17cbff3b07e21ff29fd5 in 27 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/dcutr_behaviour/a89d8ea9dea60c35561e61cce65d62fd6a3f1162
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/dcutr_behaviour/8b0a24448e616cfe62cf4af3f8fbf6330deafec2 in 12 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/dcutr_behaviour/ffbcd6f4d82f229b3c9a527dea3dad56a2642f56
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/dcutr_behaviour/f0c775365b75cbd9b1c6fc96ae268783e5722bdc in 12 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/dcutr_behaviour/e16ce1f5844b1f5520f048040daf4e0227c6924f
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/dcutr_behaviour/06ea94a38efa3322f2bd939f3bcceceaa7bd762b in 14 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/dcutr_behaviour/417d455216b0a35625977ec372da2e32b28f78ea
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/dcutr_behaviour/6eff9a61b2a9051ff2b07fd3215af7a2b1bd5085 in 13 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/dcutr_behaviour/568ff2a1c14a2199009396bb303cae22a1c564ba
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/dcutr_behaviour/a89d8ea9dea60c35561e61cce65d62fd6a3f1162 in 12 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/dcutr_behaviour/912e8f57b1386d5e1bd4cbae0271cb7fb0531962
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/dcutr_behaviour/e16ce1f5844b1f5520f048040daf4e0227c6924f in 12 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/dcutr_behaviour/7f58de2ed5f6df02e3eba71268e9f2fcaf20a8ff
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/dcutr_behaviour/568ff2a1c14a2199009396bb303cae22a1c564ba in 12 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/dcutr_behaviour/860c0b5aa100a488a26156e8dae0d5389611d81a
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/dcutr_behaviour/ffbcd6f4d82f229b3c9a527dea3dad56a2642f56 in 19 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/dcutr_behaviour/40bf31719758e92b4892a8af3664909fbd692a91
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/dcutr_behaviour/7f58de2ed5f6df02e3eba71268e9f2fcaf20a8ff in 12 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/dcutr_behaviour/9e280f961654c180c01b057f6b09130882f4b1c8
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/dcutr_behaviour/860c0b5aa100a488a26156e8dae0d5389611d81a in 11 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/dcutr_behaviour/fcb5939819c9618a9617204f4e864b4cc2d10160
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/dcutr_behaviour/40bf31719758e92b4892a8af3664909fbd692a91 in 12 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/dcutr_behaviour/7924a3ee1f6a6ad4dd4ec8b90502f0c18dbf1451
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/dcutr_behaviour/417d455216b0a35625977ec372da2e32b28f78ea in 29 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/dcutr_behaviour/b63c6d41da3cb87081fd5d6649c8521a8af25024
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/dcutr_behaviour/9e280f961654c180c01b057f6b09130882f4b1c8 in 12 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/dcutr_behaviour/2c8e6a9a708dd0163144143afb669c95a5934573
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/dcutr_behaviour/fcb5939819c9618a9617204f4e864b4cc2d10160 in 13 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/dcutr_behaviour/152a15a9685c4ae0ccd3eddf8a172b41045c6e84
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/dcutr_behaviour/7924a3ee1f6a6ad4dd4ec8b90502f0c18dbf1451 in 12 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/dcutr_behaviour/a08d978d775a88545850df36d5317b834aa6330c
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/dcutr_behaviour/912e8f57b1386d5e1bd4cbae0271cb7fb0531962 in 37 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/dcutr_behaviour/a21f6e01d638cbb47a05df8d77665c841088e79b
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/dcutr_behaviour/2c8e6a9a708dd0163144143afb669c95a5934573 in 12 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/dcutr_behaviour/0f08a1f6bef84933ff4c439302ed415de4368626
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/dcutr_behaviour/a08d978d775a88545850df36d5317b834aa6330c in 11 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/dcutr_behaviour/2577438603b8cf218689193ab6dc0c4f28e65805
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/dcutr_behaviour/a21f6e01d638cbb47a05df8d77665c841088e79b in 11 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/dcutr_behaviour/ed409270c2e47e76c742d329f290d4a456569178
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/dcutr_behaviour/2577438603b8cf218689193ab6dc0c4f28e65805 in 12 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/dcutr_behaviour/af64c1392a177a879c6cdc0914f7bcbdab376efe
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/dcutr_behaviour/b63c6d41da3cb87081fd5d6649c8521a8af25024 in 36 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/dcutr_behaviour/123fb98faa3ba6ecf872960f4a188ef0bc513b83
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/dcutr_behaviour/ed409270c2e47e76c742d329f290d4a456569178 in 13 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/dcutr_behaviour/da39cfa4e87567d6b20b2079ae0ccafdf3d61212
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/dcutr_behaviour/152a15a9685c4ae0ccd3eddf8a172b41045c6e84 in 39 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/dcutr_behaviour/5b76b04e1c6a714cea3e7744e76b371f0e6d6e3f
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/dcutr_behaviour/123fb98faa3ba6ecf872960f4a188ef0bc513b83 in 14 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/dcutr_behaviour/5fd0bc0c05b0ecf13874a8475773d9257625b405
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/dcutr_behaviour/da39cfa4e87567d6b20b2079ae0ccafdf3d61212 in 13 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/dcutr_behaviour/70c1d48980fedf5bed995b6b2b572f5e2ed187cf
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/dcutr_behaviour/5fd0bc0c05b0ecf13874a8475773d9257625b405 in 13 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/dcutr_behaviour/25dd58fe071bc6d3a6f7fcf2b5941ae45d005944
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/dcutr_behaviour/5b76b04e1c6a714cea3e7744e76b371f0e6d6e3f in 16 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/dcutr_behaviour/0ecad910ddde087a33f7ac53888d7dec948b6635
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/dcutr_behaviour/af64c1392a177a879c6cdc0914f7bcbdab376efe in 36 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/dcutr_behaviour/39f2088464757f5297acd17f95075b2e0fb8ba80
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/dcutr_behaviour/25dd58fe071bc6d3a6f7fcf2b5941ae45d005944 in 11 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/dcutr_behaviour/9f630a3d6b6339c7f3d92d0ee9d5976dc86df7fc
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/dcutr_behaviour/0ecad910ddde087a33f7ac53888d7dec948b6635 in 14 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/dcutr_behaviour/0f7f7ae6f31517e5a2284853a5b923d3d891fbbf
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/dcutr_behaviour/39f2088464757f5297acd17f95075b2e0fb8ba80 in 11 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/dcutr_behaviour/a1beded61a22095e599b50e8bc08baa2cc1c4588
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/dcutr_behaviour/70c1d48980fedf5bed995b6b2b572f5e2ed187cf in 28 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/dcutr_behaviour/22b862cc6d38bf542967bb5fd79de951977a3303
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/dcutr_behaviour/a1beded61a22095e599b50e8bc08baa2cc1c4588 in 11 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/dcutr_behaviour/0e124bfc27990c9e7e750841a1565f73bb4c81d4
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/dcutr_behaviour/0f7f7ae6f31517e5a2284853a5b923d3d891fbbf in 13 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/dcutr_behaviour/5c8e131f88d130c0e27cc4608b2c327935d53007
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/dcutr_behaviour/22b862cc6d38bf542967bb5fd79de951977a3303 in 11 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/dcutr_behaviour/d71a0fc5fff54b66daa16dad08ca60b6d835fbc1
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/dcutr_behaviour/0f08a1f6bef84933ff4c439302ed415de4368626 in 79 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/dcutr_behaviour/e69a7b807e9fa6c099d37b33b71ac17301d2f7eb
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/dcutr_behaviour/9f630a3d6b6339c7f3d92d0ee9d5976dc86df7fc in 28 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/dcutr_behaviour/453356b7a81c4390c13d90cb1913b76f40cbb028
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/dcutr_behaviour/0e124bfc27990c9e7e750841a1565f73bb4c81d4 in 11 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/dcutr_behaviour/seed_attempt_exceed
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/dcutr_behaviour/d71a0fc5fff54b66daa16dad08ca60b6d835fbc1 in 11 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/dcutr_behaviour/6dba826d7536514b0f5870c84c3ce8b3904b8253
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/dcutr_behaviour/5c8e131f88d130c0e27cc4608b2c327935d53007 in 12 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/dcutr_behaviour/f511af427b9d0d9dc9228dadb20d15d1e63db61a
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/dcutr_behaviour/e69a7b807e9fa6c099d37b33b71ac17301d2f7eb in 14 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/dcutr_behaviour/4fa3a48d77e5fba25aff55fb1377ab30a0b3c65e
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/dcutr_behaviour/453356b7a81c4390c13d90cb1913b76f40cbb028 in 12 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/dcutr_behaviour/af846d763d15305f59254d5fc21f568ad42cba9b
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/dcutr_behaviour/seed_attempt_exceed in 12 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/dcutr_behaviour/596d2408dca934c7d473d1c507c93496babae9c3
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/dcutr_behaviour/f511af427b9d0d9dc9228dadb20d15d1e63db61a in 13 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/dcutr_behaviour/8d00bbc6c8532030ad02a11a79d23fbf92879aa3
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/dcutr_behaviour/6dba826d7536514b0f5870c84c3ce8b3904b8253 in 16 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/dcutr_behaviour/271788df3c23e00dd9cd0faef0f5592dac2a94fc
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/dcutr_behaviour/4fa3a48d77e5fba25aff55fb1377ab30a0b3c65e in 15 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/dcutr_behaviour/4e4fcb063e1d226486a8190b18e5a04f17420cf1
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/dcutr_behaviour/af846d763d15305f59254d5fc21f568ad42cba9b in 13 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/dcutr_behaviour/96828f0f9033859d6e9f750b654b690c8043a137
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/dcutr_behaviour/271788df3c23e00dd9cd0faef0f5592dac2a94fc in 15 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/dcutr_behaviour/cc1663eb885750fde8043c411d24149e507d3221
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/dcutr_behaviour/4e4fcb063e1d226486a8190b18e5a04f17420cf1 in 14 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/dcutr_behaviour/c2379f63c014b62d0cfb7a776127bedc235d7e0e
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/dcutr_behaviour/96828f0f9033859d6e9f750b654b690c8043a137 in 13 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/dcutr_behaviour/66998e3fddc2efe697e4679f030c16f11e081bba
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/dcutr_behaviour/8d00bbc6c8532030ad02a11a79d23fbf92879aa3 in 25 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/dcutr_behaviour/308a5574efa5e3b9f31ed5525ac6fd106a066984
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/dcutr_behaviour/596d2408dca934c7d473d1c507c93496babae9c3 in 30 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/dcutr_behaviour/a9b283c0e275278adc2b2fe260e7a6497fa0b03c
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/dcutr_behaviour/cc1663eb885750fde8043c411d24149e507d3221 in 13 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/dcutr_behaviour/de49a34dabe36c7d008f54c73d8a796bf1b2ea79
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/dcutr_behaviour/66998e3fddc2efe697e4679f030c16f11e081bba in 11 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/dcutr_behaviour/09f308d6c13711ef22b26d5f25fea2688de4503f
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/dcutr_behaviour/c2379f63c014b62d0cfb7a776127bedc235d7e0e in 12 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/dcutr_behaviour/18604d031a05b9f83ac40a3c6a21c870a8054c7f
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/dcutr_behaviour/308a5574efa5e3b9f31ed5525ac6fd106a066984 in 12 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/dcutr_behaviour/cc9a181347d1e0e665cf8e001ebd569b1132740a
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/dcutr_behaviour/a9b283c0e275278adc2b2fe260e7a6497fa0b03c in 11 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/dcutr_behaviour/670453ebeeb11308015cfa607fb7263e84b9b772
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/dcutr_behaviour/de49a34dabe36c7d008f54c73d8a796bf1b2ea79 in 11 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/dcutr_behaviour/a86b85320baf219111efe1ed42f2a8e17759f746
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/dcutr_behaviour/09f308d6c13711ef22b26d5f25fea2688de4503f in 11 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/dcutr_behaviour/1576270c702ae71e0f65abccad5090a61dbbf428
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/dcutr_behaviour/18604d031a05b9f83ac40a3c6a21c870a8054c7f in 12 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/dcutr_behaviour/5b07c13b570191d40d702e0790db3e46cefcd8a6
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/dcutr_behaviour/cc9a181347d1e0e665cf8e001ebd569b1132740a in 12 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/dcutr_behaviour/ecc2c477667a7b7b5d5baaf5bc4041e82f38271a
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/dcutr_behaviour/670453ebeeb11308015cfa607fb7263e84b9b772 in 12 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/dcutr_behaviour/09ab8ea507c4fc3a7ce001ae933503654732c777
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/dcutr_behaviour/a86b85320baf219111efe1ed42f2a8e17759f746 in 13 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/dcutr_behaviour/5a92675dec7e7a1ec2573a288cb2e52a1bcc3122
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/dcutr_behaviour/1576270c702ae71e0f65abccad5090a61dbbf428 in 11 ms
+***
+*** NOTE: fuzzing was not performed, you have only
+***       executed the target code on a fixed set of inputs.
+***
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/dcutr_behaviour/5b07c13b570191d40d702e0790db3e46cefcd8a6 in 11 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/dcutr_behaviour/0aa4dcd99293726b20fd2823ce183f418fc61088
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/dcutr_behaviour/ecc2c477667a7b7b5d5baaf5bc4041e82f38271a in 11 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/dcutr_behaviour/f93718e45e32f17dd1c5b51ddd2db0db10f044b2
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/dcutr_behaviour/09ab8ea507c4fc3a7ce001ae933503654732c777 in 11 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/dcutr_behaviour/74a998afdc45372cc49d0c20f70a503d0fe7c8f5
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/dcutr_behaviour/5a92675dec7e7a1ec2573a288cb2e52a1bcc3122 in 11 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/dcutr_behaviour/ec3c05ee60b60a1c936bff8932e0bc46e414b5c5
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/dcutr_behaviour/0aa4dcd99293726b20fd2823ce183f418fc61088 in 11 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/dcutr_behaviour/8406fd5b1e1f9b9190ebe61a5471847e26c75be5
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/dcutr_behaviour/74a998afdc45372cc49d0c20f70a503d0fe7c8f5 in 12 ms
+***
+*** NOTE: fuzzing was not performed, you have only
+***       executed the target code on a fixed set of inputs.
+***
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/dcutr_behaviour/ec3c05ee60b60a1c936bff8932e0bc46e414b5c5 in 12 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/dcutr_behaviour/c8792cf3f5b29ef68f277c2063e770ad18395571
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/dcutr_behaviour/8406fd5b1e1f9b9190ebe61a5471847e26c75be5 in 13 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/dcutr_behaviour/b4827c161c799d19bb7381b32f5e3dd8431a76ec
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/dcutr_behaviour/f93718e45e32f17dd1c5b51ddd2db0db10f044b2 in 33 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/dcutr_behaviour/8159d143c112567c0b30983cb31aea5a9fd9f866
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/dcutr_behaviour/c8792cf3f5b29ef68f277c2063e770ad18395571 in 20 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/dcutr_behaviour/5f7aac964bd760400c6262207fea52f637f74409
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/dcutr_behaviour/b4827c161c799d19bb7381b32f5e3dd8431a76ec in 18 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/dcutr_behaviour/d263a32f1aff4cefc84f5e9568c99cbc39e8c6a8
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/dcutr_behaviour/8159d143c112567c0b30983cb31aea5a9fd9f866 in 13 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/dcutr_behaviour/030673474e106cbc42dd67fd00458dfe819e4f38
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/dcutr_behaviour/d263a32f1aff4cefc84f5e9568c99cbc39e8c6a8 in 12 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/dcutr_behaviour/6bca900fd1d6ad50d985460afa8ba01f55280db6
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/dcutr_behaviour/5f7aac964bd760400c6262207fea52f637f74409 in 18 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/dcutr_behaviour/6402fb36a631c6b49828d74570bbae38d12eae8e
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/dcutr_behaviour/030673474e106cbc42dd67fd00458dfe819e4f38 in 13 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/dcutr_behaviour/4017097fa3bac8d9ea11c13ebc3bea0eb32f1e09
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/dcutr_behaviour/6402fb36a631c6b49828d74570bbae38d12eae8e in 13 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/dcutr_behaviour/7a099ddcfde562bd6abef5101a29c97785d3babe
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/dcutr_behaviour/4017097fa3bac8d9ea11c13ebc3bea0eb32f1e09 in 13 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/dcutr_behaviour/c7803d4adb841820f22ae9615a7789a1b5862575
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/dcutr_behaviour/7a099ddcfde562bd6abef5101a29c97785d3babe in 12 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/dcutr_behaviour/a021860f2a63f0f15da74f02e1cf6e570fb412d8
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/dcutr_behaviour/6bca900fd1d6ad50d985460afa8ba01f55280db6 in 36 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/dcutr_behaviour/2e6bf8d49d839e24042ae92c9a75195419721023
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/dcutr_behaviour/c7803d4adb841820f22ae9615a7789a1b5862575 in 16 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/dcutr_behaviour/c3d31d5b78c9c7da1fccdefcb5dd160d9a5a98eb
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/dcutr_behaviour/a021860f2a63f0f15da74f02e1cf6e570fb412d8 in 10 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/dcutr_behaviour/1d4ee282c8e5add22fe2a8405ecbb07c5cc621c3
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/dcutr_behaviour/1d4ee282c8e5add22fe2a8405ecbb07c5cc621c3 in 13 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/dcutr_behaviour/a7ee0eee0888182a48990269b35cac51ad0aa3a3
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/dcutr_behaviour/c3d31d5b78c9c7da1fccdefcb5dd160d9a5a98eb in 19 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/dcutr_behaviour/b766f13310b2881ce0ad3c3aeafe89a659cf4ad8
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/dcutr_behaviour/a7ee0eee0888182a48990269b35cac51ad0aa3a3 in 11 ms
+***
+*** NOTE: fuzzing was not performed, you have only
+***       executed the target code on a fixed set of inputs.
+***
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/dcutr_behaviour/2e6bf8d49d839e24042ae92c9a75195419721023 in 34 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/dcutr_behaviour/62fc5f809537b69b8b65ff1ac52961eb0c9db921
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/dcutr_behaviour/b766f13310b2881ce0ad3c3aeafe89a659cf4ad8 in 14 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/dcutr_behaviour/a09661c41db3dd2162d8d2b9a28b98112239b8a7
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/dcutr_behaviour/62fc5f809537b69b8b65ff1ac52961eb0c9db921 in 11 ms
+***
+*** NOTE: fuzzing was not performed, you have only
+***       executed the target code on a fixed set of inputs.
+***
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/dcutr_behaviour/a09661c41db3dd2162d8d2b9a28b98112239b8a7 in 12 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/dcutr_behaviour/c1ebde300fbc207a1b2ab65a5ba09b004ab23a3c
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/dcutr_behaviour/c1ebde300fbc207a1b2ab65a5ba09b004ab23a3c in 21 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/dcutr_behaviour/d58eecf19fccaa9e6339b5961b64bfeb1008cc6e
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/dcutr_behaviour/d58eecf19fccaa9e6339b5961b64bfeb1008cc6e in 11 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/dcutr_behaviour/5ff2e14b93e435124b38c92dee7a175ea4d679c3
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/dcutr_behaviour/5ff2e14b93e435124b38c92dee7a175ea4d679c3 in 17 ms
+***
+*** NOTE: fuzzing was not performed, you have only
+***       executed the target code on a fixed set of inputs.
+***
+Merging raw coverage data...
+Coverage data merged and saved in "/home/adethya/Documents/rust-libp2p/core/fuzz/coverage/dcutr_behaviour/coverage.profdata".
+==> llvm-cov HTML (full) → coverage/dcutr_behaviour/html
+==> llvm-cov HTML (focused) → coverage/dcutr_behaviour/html-focus
+==> llvm-cov report (focused rows)
+home/adethya/Documents/rust-libp2p/core/fuzz/fuzz_targets/dcutr_behaviour.rs                                                                                         82                15    81.71%           3                 0   100.00%          85                 0   100.00%           0                 0         -
+home/adethya/Documents/rust-libp2p/protocols/dcutr/src/behaviour.rs                                                                                                 142                37    73.94%          19                 0   100.00%         225                47    79.11%           0                 0         -
+home/adethya/Documents/rust-libp2p/protocols/dcutr/src/fuzz.rs                                                                                                      408                36    91.18%          30                 2    93.33%         425                32    92.47%           0                 0         -
+home/adethya/Documents/rust-libp2p/protocols/dcutr/src/handler/relayed.rs                                                                                            89                46    48.31%          12                 6    50.00%         145                82    43.45%           0                 0         -
+home/adethya/Documents/rust-libp2p/protocols/dcutr/src/protocol/inbound.rs                                                                                           52                18    65.38%           7                 1    85.71%          49                11    77.55%           0                 0         -
+home/adethya/Documents/rust-libp2p/protocols/dcutr/src/protocol/outbound.rs                                                                                          53                53     0.00%           7                 7     0.00%          50                50     0.00%           0                 0         -
+==> text dump + zero-hit Err scan → coverage/dcutr_behaviour/text
+==> zero-hit lines mentioning Err (behaviour.rs):
+  160|      0|                result: Err(Error {
+  161|      0|                    inner: InnerError::AttemptsExceeded(MAX_NUMBER_OF_UPGRADE_ATTEMPTS),
+
+Open: coverage/dcutr_behaviour/html/index.html
+Focus: coverage/dcutr_behaviour/html-focus/index.html
+Tips: ASAN_OPTIONS=symbolize=0 cargo +nightly fuzz run dcutr_behaviour -- -print_coverage=1 -print_funcs=0
+      ASAN_OPTIONS=symbolize=0 cargo +nightly fuzz cmin dcutr_behaviour

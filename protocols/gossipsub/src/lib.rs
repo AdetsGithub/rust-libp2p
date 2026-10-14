@@ -99,6 +99,14 @@ mod behaviour;
 mod config;
 mod error;
 pub mod extensions;
+#[cfg(feature = "fuzzing")]
+mod fuzz;
+#[cfg(feature = "fuzzing")]
+mod fuzz_handler;
+#[cfg(feature = "fuzzing")]
+mod fuzz_structured;
+#[cfg(feature = "fuzzing")]
+mod fuzz_invariants;
 mod gossip_promises;
 mod handler;
 mod mcache;
@@ -136,6 +144,24 @@ pub use self::{
     transform::{DataTransform, IdentityTransform},
     types::{FailedMessages, Message, MessageAcceptance, MessageId, RawMessage},
 };
+
+#[cfg(feature = "fuzzing")]
+pub use fuzz::{
+    FuzzAction, FuzzMode, MAX_ACTIONS, MAX_DATA_BYTES, MAX_RPC_BYTES, MAX_TRANSMIT_SIZE, PEER_POOL,
+    RejectMsgIdReason, ScheduleOp, StructuredRpcKind, TOPIC_MAX_TRANSMIT_SIZE, TOPIC_POOL,
+    encode_batch_rpc, encode_structured_rpc, encode_structured_wire, encode_structured_wire_from,
+    fuzz_behaviour, fuzz_behaviour_strict_signed, fuzz_local_keypair, fuzz_local_peer_id,
+};
+#[cfg(feature = "fuzzing")]
+pub use fuzz_handler::{
+    ChunkFeed, HandlerFault, MAX_HANDLER_POLLS, WriteFault, fuzz_handler_io, pump_handler,
+};
+#[cfg(feature = "fuzzing")]
+pub use fuzz_structured::{
+    GossipsubRpc, fuzz_handler_structured
+};
+#[cfg(feature = "fuzzing")]
+pub use fuzz_invariants::assert_gossipsub_invariants;
 
 pub type IdentTopic = Topic<self::topic::IdentityHash>;
 pub type Sha256Topic = Topic<self::topic::Sha256Hash>;

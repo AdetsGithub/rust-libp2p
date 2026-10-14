@@ -227,3 +227,41 @@ pub(crate) async fn handle_inbound_request(
 
     Ok(req)
 }
+
+#[cfg(feature = "fuzzing")]
+const FUZZ_RESERVATION_DURATION: Duration = Duration::from_secs(60);
+#[cfg(feature = "fuzzing")]
+const FUZZ_MAX_CIRCUIT_DURATION: Duration = Duration::from_secs(120);
+#[cfg(feature = "fuzzing")]
+const FUZZ_MAX_CIRCUIT_BYTES: u64 = 1 << 17;
+
+/// Decode a reservation request from a stream whose first length-delimited frame is `Reserve`.
+#[cfg(feature = "fuzzing")]
+pub(crate) fn fuzz_reservation_req(stream: Stream) -> Result<ReservationReq, Error> {
+    futures::executor::block_on(handle_inbound_request(
+        stream,
+        FUZZ_RESERVATION_DURATION,
+        FUZZ_MAX_CIRCUIT_DURATION,
+        FUZZ_MAX_CIRCUIT_BYTES,
+    ))
+    .and_then(|either| match either {
+        Either::Left(req) => Ok(req),
+        Either::Right(_) => Err(Error::UnexpectedType("connect".into())),
+    })
+}
+
+/// Decode a circuit request from a stream whose first length-delimited frame is `Connect`.
+#[cfg(feature = "fuzzing")]
+pub(crate) fn fuzz_circuit_req(dst: PeerId, stream: Stream) -> Result<CircuitReq, Error> {
+    let _ = dst;
+    futures::executor::block_on(handle_inbound_request(
+        stream,
+        FUZZ_RESERVATION_DURATION,
+        FUZZ_MAX_CIRCUIT_DURATION,
+        FUZZ_MAX_CIRCUIT_BYTES,
+    ))
+    .and_then(|either| match either {
+        Either::Right(req) => Ok(req),
+        Either::Left(_) => Err(Error::UnexpectedType("reserve".into())),
+    })
+}

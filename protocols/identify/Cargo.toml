@@ -10,8 +10,14 @@ repository = "https://github.com/libp2p/rust-libp2p"
 keywords = ["peer-to-peer", "libp2p", "networking"]
 categories = ["network-programming", "asynchronous"]
 
+[features]
+# Exposes `fuzz_behaviour` / `FuzzAction` / handler mock-I/O drivers for cargo-fuzz.
+# Not intended for production use.
+fuzzing = ["libp2p-swarm/fuzzing"]
+
 [dependencies]
 asynchronous-codec = { workspace = true }
+bytes.workspace = true
 futures = { workspace = true }
 futures-timer = { workspace = true }
 futures-bounded = { workspace = true }

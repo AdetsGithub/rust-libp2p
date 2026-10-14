@@ -190,6 +190,24 @@ impl PublicKey {
         Self::try_from_bytes(buf)
     }
 
+    /// Fixed valid verifying key for fuzz builds when the ASN.1 wrapper parsed
+    /// but the embedded point was rejected.
+    #[cfg(fuzzing)]
+    pub(crate) fn fuzz_dummy() -> PublicKey {
+        let mut sk = [0x11u8; 32];
+        sk[0] = 0x01;
+        Keypair::from(SecretKey::try_from_bytes(&sk).expect("valid secret"))
+            .public()
+            .clone()
+    }
+
+    /// True when the buffer has a plausible ECDSA SPKI ASN.1 header (OIDs),
+    /// even if the point itself is invalid. Used only under `cfg(fuzzing)`.
+    #[cfg(fuzzing)]
+    pub(crate) fn fuzz_asn1_looks_plausible(k: &[u8]) -> bool {
+        Self::del_asn1_header(k).is_some()
+    }
+
     // ecPublicKey (ANSI X9.62 public key type) OID: 1.2.840.10045.2.1
     const EC_PUBLIC_KEY_OID: [u8; 9] = [0x06, 0x07, 0x2a, 0x86, 0x48, 0xce, 0x3d, 0x02, 0x01];
     // secp256r1 OID: 1.2.840.10045.3.1.7

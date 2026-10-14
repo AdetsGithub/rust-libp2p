@@ -31,7 +31,7 @@ use crate::{
 };
 
 /// The types of message validation that can be employed by gossipsub.
-#[derive(Debug, Clone)]
+#[derive(Debug, Clone, Copy)]
 pub enum ValidationMode {
     /// This is the default setting. This requires the message author to be a valid [`PeerId`] and
     /// to be present as well as the sequence number. All messages must have valid signatures.
@@ -139,6 +139,12 @@ pub struct Config {
 impl Config {
     pub(crate) fn protocol_config(&self) -> ProtocolConfig {
         self.protocol.clone()
+    }
+
+    /// Fuzzing: set per-topic max transmit size (copied into new Handlers on connect).
+    #[cfg(feature = "fuzzing")]
+    pub fn fuzz_set_topic_max_transmit_size(&mut self, topic: TopicHash, max: usize) {
+        self.protocol.max_transmit_sizes.insert(topic, max);
     }
 
     // Overlay network parameters.

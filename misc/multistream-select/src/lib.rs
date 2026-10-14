@@ -103,6 +103,11 @@ pub use self::{
     protocol::ProtocolError,
 };
 
+#[cfg(feature = "fuzzing")]
+pub use self::length_delimited::fuzz_length_delimited;
+#[cfg(feature = "fuzzing")]
+pub use self::protocol::fuzz_message_decode;
+
 /// Supported multistream-select versions.
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Default)]
 pub enum Version {

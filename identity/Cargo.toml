@@ -8,6 +8,7 @@ license = "MIT"
 repository = "https://github.com/libp2p/rust-libp2p"
 keywords = ["peer-to-peer", "libp2p", "networking", "cryptography"]
 categories = ["cryptography"]
+build = "build.rs"
 
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
 
@@ -37,6 +38,9 @@ rsa = ["dep:ring", "dep:asn1_der", "dep:rand", "dep:zeroize", "dep:prost"]
 ed25519 = ["dep:ed25519-dalek", "dep:zeroize", "dep:sha2", "dep:hkdf", "dep:prost"]
 peerid = ["dep:multihash", "dep:bs58", "dep:thiserror", "dep:sha2", "dep:hkdf"]
 rand = ["dep:rand"]
+# When combined with cargo-fuzz `--cfg fuzzing`, keep real `PublicKey::verify`
+# (default fuzz builds stub verify so Noise/handshake exploration stays open).
+fuzzing-real-verify = []
 
 [dev-dependencies]
 quickcheck = { workspace = true }

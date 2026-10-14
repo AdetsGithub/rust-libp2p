@@ -232,6 +232,16 @@ impl PublicKey {
             .map_err(|e| DecodingError::failed_to_parse("secp256k1 public key", e))
             .map(PublicKey)
     }
+
+    /// Fixed valid verifying key for fuzz builds when SEC1 point checks reject
+    /// mutated key material after a successful protobuf decode.
+    #[cfg(fuzzing)]
+    pub(crate) fn fuzz_dummy() -> PublicKey {
+        let mut sk = [0x42u8; 32];
+        // Ensure the scalar is in range / non-zero for k256.
+        sk[0] = 0x01;
+        Keypair::from(SecretKey::try_from_bytes(&mut sk).expect("valid secret")).public().clone()
+    }
 }
 
 #[cfg(test)]

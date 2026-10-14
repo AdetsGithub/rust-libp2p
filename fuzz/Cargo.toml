@@ -1,0 +1,20 @@
+[package]
+name = "rust-libp2p-fuzz"
+version = "0.1.0"
+authors = ["Your Name <your.email@example.com>"]
+edition = "2021"
+publish = false
+
+[[bin]]
+name = "gossipsub_structured"
+path = "../fuzz_targets/gossipsub_structured.rs"
+
+[dependencies]
+libfuzzer-sys = "0.4"
+arbitrary = "1.0"
+rust-libp2p = { path = "..", features = ["fuzzing"] }
+
+# Enable fuzzing features
+[features]
+default = ["fuzzing"]
+fuzzing = []

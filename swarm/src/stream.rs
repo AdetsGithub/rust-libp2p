@@ -40,6 +40,20 @@ impl Stream {
         }
     }
 
+    /// Build a [`Stream`] over arbitrary async I/O for ConnectionHandler fuzz drivers.
+    ///
+    /// Skips multistream negotiation; the inner resource is treated as already completed.
+    #[cfg(feature = "fuzzing")]
+    pub fn from_async_rw<S>(io: S) -> Self
+    where
+        S: AsyncRead + AsyncWrite + Send + 'static,
+    {
+        Self {
+            stream: Negotiated::for_fuzzing(SubstreamBox::new(io)),
+            counter: Some(ActiveStreamCounter::default()),
+        }
+    }
+
     /// Ignore this stream in the [Swarm](crate::Swarm)'s connection-keep-alive algorithm.
     ///
     /// By default, any active stream keeps a connection alive. For most protocols,

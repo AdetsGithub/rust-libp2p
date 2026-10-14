@@ -185,6 +185,23 @@ impl Handler {
             in_mesh: false,
         })
     }
+
+    /// Mark queued [`RpcOut::Publish`] timeouts as already elapsed (fuzz: no wall sleep).
+    #[cfg(feature = "fuzzing")]
+    pub fn fuzz_expire_publish_timeouts(&mut self) {
+        use std::time::Duration;
+
+        use futures_timer::Delay;
+
+        let Handler::Enabled(h) = self else {
+            return;
+        };
+        h.message_queue.non_priority.for_each_mut(|rpc| {
+            if let RpcOut::Publish { timeout, .. } = rpc {
+                *timeout = Delay::new(Duration::ZERO);
+            }
+        });
+    }
 }
 
 impl EnabledHandler {

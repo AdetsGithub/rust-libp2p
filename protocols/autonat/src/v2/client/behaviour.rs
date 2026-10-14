@@ -6,7 +6,7 @@ use std::{
 };
 
 use either::Either;
-use futures::FutureExt;
+use futures::{FutureExt, channel::oneshot};
 use futures_timer::Delay;
 use libp2p_core::{Endpoint, Multiaddr, transport::PortUse};
 use libp2p_identity::PeerId;
@@ -364,6 +364,92 @@ where
         if let Some(info) = self.address_candidates.get_mut(addr) {
             info.status = TestStatus::Received(self.rng.next_u64());
         }
+    }
+
+    /// Expire the probe interval so the next poll issues dial requests.
+    #[cfg(feature = "fuzzing")]
+    pub fn fuzz_expire_probe_timer(&mut self) {
+        self.next_tick = Delay::new(Duration::ZERO);
+    }
+
+    /// Number of address candidates tracked.
+    #[cfg(feature = "fuzzing")]
+    pub fn fuzz_candidate_count(&self) -> usize {
+        self.address_candidates.len()
+    }
+
+    /// Number of tracked peer connections.
+    #[cfg(feature = "fuzzing")]
+    pub fn fuzz_peer_info_count(&self) -> usize {
+        self.peer_info.len()
+    }
+
+    /// Pending probe nonces (for dial-back attribution).
+    #[cfg(feature = "fuzzing")]
+    pub fn fuzz_pending_nonces(&self) -> Vec<Nonce> {
+        self.address_candidates
+            .values()
+            .filter_map(|info| match info.status {
+                TestStatus::Pending(n) => Some(n),
+                _ => None,
+            })
+            .collect()
+    }
+
+    /// Inject dial-back nonce as if the inbound dial-back handler completed.
+    #[cfg(feature = "fuzzing")]
+    pub fn fuzz_inject_dial_back_nonce(
+        &mut self,
+        peer_id: PeerId,
+        connection_id: ConnectionId,
+        nonce: Nonce,
+    ) {
+        let (sender, _rx) = oneshot::channel();
+        self.on_connection_handler_event(
+            peer_id,
+            connection_id,
+            Either::Right(IncomingNonce { nonce, sender }),
+        );
+    }
+
+    /// Mark a connection as supporting the AutoNAT dial-request protocol.
+    #[cfg(feature = "fuzzing")]
+    pub fn fuzz_inject_peer_has_server_support(
+        &mut self,
+        peer_id: PeerId,
+        connection_id: ConnectionId,
+    ) {
+        self.on_connection_handler_event(
+            peer_id,
+            connection_id,
+            Either::Left(dial_request::ToBehaviour::PeerHasServerSupport),
+        );
+    }
+
+    /// Inject dial-request TestOutcome (success → reachable addr; failure → NoConnection).
+    #[cfg(feature = "fuzzing")]
+    pub fn fuzz_inject_test_outcome(
+        &mut self,
+        peer_id: PeerId,
+        connection_id: ConnectionId,
+        nonce: Nonce,
+        success: bool,
+        addr: Multiaddr,
+    ) {
+        let outcome = if success {
+            Ok((addr, 0usize))
+        } else {
+            Err(dial_request::Error::AddressNotReachable {
+                address: addr,
+                bytes_sent: 0,
+                error: dial_request::DialBackError::NoConnection,
+            })
+        };
+        self.on_connection_handler_event(
+            peer_id,
+            connection_id,
+            Either::Left(dial_request::ToBehaviour::TestOutcome { nonce, outcome }),
+        );
     }
 }
 

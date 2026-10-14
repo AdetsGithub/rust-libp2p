@@ -1,0 +1,40 @@
+# Identify protobuf field tags + protocol / multiaddr fragments.
+# Wire is unsigned-varint length-prefixed via prost_codec (MAX 4096).
+
+# Identify field tags (protobuf key = (field_number<<3)|wire_type)
+# publicKey = 1 (len) → 0x0A
+id_public_key="\x0A"
+# listenAddrs = 2 (len) → 0x12
+id_listen_addrs="\x12"
+# protocols = 3 (len) → 0x1A
+id_protocols="\x1A"
+# observedAddr = 4 (len) → 0x22
+id_observed_addr="\x22"
+# protocolVersion = 5 (len) → 0x2A
+id_protocol_version="\x2A"
+# agentVersion = 6 (len) → 0x32
+id_agent_version="\x32"
+# signedPeerRecord = 8 (len) → 0x42
+id_signed_peer_record="\x42"
+
+# Protocol name fragments
+proto_id="/ipfs/id/1.0.0"
+proto_push="/ipfs/id/push/1.0.0"
+proto_ping="/ipfs/ping/1.0.0"
+proto_kad="/ipfs/kad/1.0.0"
+proto_fuzz="/fuzz/proto/0/1.0.0"
+
+# Multiaddr text / binary edges
+ma_ip4_tcp="/ip4/127.0.0.1/tcp/4001"
+ma_ip4_garbage="\xFF\xFF\xFF\xFF"
+
+# unsigned-varint length prefixes
+uvi_1="\x01"
+uvi_16="\x10"
+uvi_32="\x20"
+uvi_64="\x40"
+uvi_128="\x80\x01"
+
+# Action-weight helpers (setup + LargeLists bias)
+connect_slots="\x00\x01\x02"
+large_lists_band="\x03\x04"

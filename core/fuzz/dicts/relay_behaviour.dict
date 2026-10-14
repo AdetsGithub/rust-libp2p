@@ -1,0 +1,8 @@
+# relay deny / teardown / hop-stop
+"p2p-circuit"
+hop_reserve="\x08\x01"
+hop_connect="\x08\x02"
+hop_status="\x08\x03"
+floodish="\x07"
+teardown_band="\x0A\x0B\x0C\x0D"
+disable_band="\x11\x12"

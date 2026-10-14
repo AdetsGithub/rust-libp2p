@@ -1,0 +1,47 @@
+# Yamux 12-byte header fragments:
+#   [version:u8][type:u8][flags:u16 BE][stream_id:u32 BE][length:u32 BE]
+
+# Version
+version="\x00"
+
+# Types
+type_data="\x00"
+type_window_update="\x01"
+type_ping="\x02"
+type_go_away="\x03"
+
+# Flags (big-endian u16)
+flag_syn="\x00\x01"
+flag_ack="\x00\x02"
+flag_fin="\x00\x04"
+flag_rst="\x00\x08"
+
+# Common stream IDs (client opens odd; server opens even; 0 = session)
+stream_id_0="\x00\x00\x00\x00"
+stream_id_1="\x00\x00\x00\x01"
+stream_id_2="\x00\x00\x00\x02"
+
+# Standard GoAway codes (length field)
+goaway_normal="\x00\x00\x00\x00"
+goaway_proto_error="\x00\x00\x00\x01"
+goaway_internal_error="\x00\x00\x00\x02"
+
+# Full header prefixes (version + type + SYN) for stream open / ping
+syn_data_prefix="\x00\x00\x00\x01"
+ping_syn_prefix="\x00\x02\x00\x01"
+
+# FIN / RST Data prefixes (version + Data + flags)
+fin_data_prefix="\x00\x00\x00\x04"
+rst_data_prefix="\x00\x00\x00\x08"
+syn_fin_prefix="\x00\x00\x00\x05"
+
+# Tiny WindowUpdate credit (length=1) after stream id placeholder use as fragment
+wu_credit_1="\x00\x00\x00\x01"
+wu_credit_0="\x00\x00\x00\x00"
+wu_credit_hi="\x7F\xFF\xFF\xFF"
+
+# RST|ACK Data flags
+rst_ack_prefix="\x00\x00\x00\x0A"
+
+# Action-weight helpers (credit/RST arm 4..=6)
+credit_arm="\x04\x05\x06"

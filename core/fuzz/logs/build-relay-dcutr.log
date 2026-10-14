@@ -1,0 +1,5 @@
+error: unexpected argument 'dcutr_behaviour' found
+
+Usage: cargo-fuzz build [OPTIONS] [TARGET]
+
+For more information, try '--help'.

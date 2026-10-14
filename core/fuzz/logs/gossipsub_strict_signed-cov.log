@@ -1,0 +1,742 @@
+==> cargo fuzz coverage gossipsub_strict_signed
+warning: unreachable call
+   --> /home/adethya/Documents/rust-libp2p/swarm/src/connection/pool/task.rs:113:37
+    |
+113 |         Either::Left((Ok(v), _)) => libp2p_core::util::unreachable(v),
+    |                                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ - any code following this expression is unreachable
+    |                                     |
+    |                                     unreachable call
+    |
+    = note: `#[warn(unreachable_code)]` (part of `#[warn(unused)]`) on by default
+
+warning: unreachable call
+   --> /home/adethya/Documents/rust-libp2p/swarm/src/connection/pool/task.rs:151:37
+    |
+151 |         Either::Left((Ok(v), _)) => libp2p_core::util::unreachable(v),
+    |                                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ - any code following this expression is unreachable
+    |                                     |
+    |                                     unreachable call
+
+warning: unreachable call
+   --> /home/adethya/Documents/rust-libp2p/swarm/src/behaviour/toggle.rs:211:41
+    |
+211 |             future::Either::Right(v) => libp2p_core::util::unreachable(v),
+    |                                         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ - any code following this expression is unreachable
+    |                                         |
+    |                                         unreachable call
+
+warning: unreachable call
+   --> /home/adethya/Documents/rust-libp2p/swarm/src/behaviour/toggle.rs:251:33
+    |
+251 |             Either::Right(v) => libp2p_core::util::unreachable(v),
+    |                                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ - any code following this expression is unreachable
+    |                                 |
+    |                                 unreachable call
+
+warning: unreachable call
+  --> /home/adethya/Documents/rust-libp2p/swarm/src/dummy.rs:51:9
+   |
+51 |         libp2p_core::util::unreachable(event)
+   |         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ ----- any code following this expression is unreachable
+   |         |
+   |         unreachable call
+
+warning: unreachable call
+  --> /home/adethya/Documents/rust-libp2p/swarm/src/dummy.rs:79:9
+   |
+79 |         libp2p_core::util::unreachable(event)
+   |         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ ----- any code following this expression is unreachable
+   |         |
+   |         unreachable call
+
+warning: unreachable call
+  --> /home/adethya/Documents/rust-libp2p/swarm/src/dummy.rs:96:19
+   |
+96 |             }) => libp2p_core::util::unreachable(protocol),
+   |                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ -------- any code following this expression is unreachable
+   |                   |
+   |                   unreachable call
+
+warning: unreachable call
+  --> /home/adethya/Documents/rust-libp2p/swarm/src/dummy.rs:99:19
+   |
+99 |             }) => libp2p_core::util::unreachable(protocol),
+   |                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ -------- any code following this expression is unreachable
+   |                   |
+   |                   unreachable call
+
+warning: unreachable call
+   --> /home/adethya/Documents/rust-libp2p/swarm/src/dummy.rs:102:49
+    |
+102 |                 StreamUpgradeError::Apply(e) => libp2p_core::util::unreachable(e),
+    |                                                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ - any code following this expression is unreachable
+    |                                                 |
+    |                                                 unreachable call
+
+warning: unreachable call
+  --> /home/adethya/Documents/rust-libp2p/swarm/src/handler/pending.rs:59:9
+   |
+59 |         libp2p_core::util::unreachable(v)
+   |         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ - any code following this expression is unreachable
+   |         |
+   |         unreachable call
+
+warning: unreachable call
+  --> /home/adethya/Documents/rust-libp2p/swarm/src/handler/pending.rs:76:19
+   |
+76 |             }) => libp2p_core::util::unreachable(protocol),
+   |                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ -------- any code following this expression is unreachable
+   |                   |
+   |                   unreachable call
+
+warning: unreachable call
+  --> /home/adethya/Documents/rust-libp2p/swarm/src/handler/pending.rs:81:17
+   |
+81 |                 libp2p_core::util::unreachable(protocol);
+   |                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ -------- any code following this expression is unreachable
+   |                 |
+   |                 unreachable call
+
+warning: `libp2p-swarm` (lib) generated 12 warnings
+warning: unreachable call
+   --> /home/adethya/Documents/rust-libp2p/protocols/gossipsub/src/handler.rs:514:45
+    |
+514 |                         Either::Right(v) => libp2p_core::util::unreachable(v),
+    |                                             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ - any code following this expression is unreachable
+    |                                             |
+    |                                             unreachable call
+    |
+    = note: `#[warn(unreachable_code)]` (part of `#[warn(unused)]`) on by default
+
+warning: unreachable call
+   --> /home/adethya/Documents/rust-libp2p/protocols/gossipsub/src/handler.rs:528:27
+    |
+528 |                     }) => libp2p_core::util::unreachable(e),
+    |                           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ - any code following this expression is unreachable
+    |                           |
+    |                           unreachable call
+
+warning: unreachable call
+   --> /home/adethya/Documents/rust-libp2p/protocols/kad/src/handler.rs:518:41
+    |
+518 |             future::Either::Right(p) => libp2p_core::util::unreachable(p),
+    |                                         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ - any code following this expression is unreachable
+    |                                         |
+    |                                         unreachable call
+    |
+    = note: `#[warn(unreachable_code)]` (part of `#[warn(unused)]`) on by default
+
+warning: unreachable call
+   --> /home/adethya/Documents/rust-libp2p/misc/connection-limits/src/lib.rs:464:9
+    |
+464 |         libp2p_core::util::unreachable(event)
+    |         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ ----- any code following this expression is unreachable
+    |         |
+    |         unreachable call
+    |
+    = note: `#[warn(unreachable_code)]` (part of `#[warn(unused)]`) on by default
+
+warning: `libp2p-gossipsub` (lib) generated 2 warnings
+warning: `libp2p-kad` (lib) generated 1 warning
+warning: `libp2p-connection-limits` (lib) generated 1 warning
+   Compiling libp2p-core-fuzz v0.0.0 (/home/adethya/Documents/rust-libp2p/core/fuzz)
+    Finished `release` profile [optimized + debuginfo] target(s) in 30.40s
+Processing 252 input files using 2 workers (batch size: ~126)
+Worker 0: Generating coverage for 126 files
+Worker 1: Generating coverage for 126 files
+Dictionary: 21 entries
+Dictionary: 21 entries
+INFO: Running with entropic power schedule (0xFF, 100).
+INFO: Seed: 663251791
+INFO: Running with entropic power schedule (0xFF, 100).
+INFO: Seed: 663511383
+INFO: Loaded 1 modules   (76555 inline 8-bit counters): 76555 [0x5d48c3bdd130, 0x5d48c3befc3b), 
+INFO: Loaded 1 PC tables (76555 PCs): 76555 [0x5d48c3befc40,0x5d48c3d1acf0), 
+/home/adethya/Documents/rust-libp2p/core/fuzz/target/x86_64-unknown-linux-gnu/coverage/x86_64-unknown-linux-gnu/release/gossipsub_strict_signed: Running 126 inputs 1 time(s) each.
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/gossipsub_strict_signed/99c0de4a2708736b18a1db85d890ea1e522556d8
+INFO: Loaded 1 modules   (76555 inline 8-bit counters): 76555 [0x5d4275227130, 0x5d4275239c3b), 
+INFO: Loaded 1 PC tables (76555 PCs): 76555 [0x5d4275239c40,0x5d4275364cf0), 
+/home/adethya/Documents/rust-libp2p/core/fuzz/target/x86_64-unknown-linux-gnu/coverage/x86_64-unknown-linux-gnu/release/gossipsub_strict_signed: Running 126 inputs 1 time(s) each.
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/gossipsub_strict_signed/34d70a56c4f9678670ed8429b9ce820fd9d814ce
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/gossipsub_strict_signed/34d70a56c4f9678670ed8429b9ce820fd9d814ce in 72 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/gossipsub_strict_signed/300ed3d0978638a8ace1f9b2694c13c2e1b46055
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/gossipsub_strict_signed/99c0de4a2708736b18a1db85d890ea1e522556d8 in 101 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/gossipsub_strict_signed/e6cd730c6f3393d78060cfe5ef974282632f12e6
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/gossipsub_strict_signed/300ed3d0978638a8ace1f9b2694c13c2e1b46055 in 60 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/gossipsub_strict_signed/b236eeb5d97d02efbe5fc4a3ece0bf2d35c02cdc
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/gossipsub_strict_signed/e6cd730c6f3393d78060cfe5ef974282632f12e6 in 59 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/gossipsub_strict_signed/3cd0ba15133ced05dc5665171558498545e6e4cb
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/gossipsub_strict_signed/b236eeb5d97d02efbe5fc4a3ece0bf2d35c02cdc in 66 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/gossipsub_strict_signed/b4e430f3941614db06a1ffbb29ed665e68ca0e1d
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/gossipsub_strict_signed/3cd0ba15133ced05dc5665171558498545e6e4cb in 56 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/gossipsub_strict_signed/8ce684857c1c84700270531c1d904e665b01c1eb
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/gossipsub_strict_signed/b4e430f3941614db06a1ffbb29ed665e68ca0e1d in 70 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/gossipsub_strict_signed/ebfe79d99cba0d58f400cfd8c73c8aa90894dfa8
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/gossipsub_strict_signed/8ce684857c1c84700270531c1d904e665b01c1eb in 58 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/gossipsub_strict_signed/3d7ea8b56acaf38a20c812f614fe099e60440fc4
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/gossipsub_strict_signed/3d7ea8b56acaf38a20c812f614fe099e60440fc4 in 55 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/gossipsub_strict_signed/85a6a4d162f99908e1ef03865a533eaeabea475d
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/gossipsub_strict_signed/ebfe79d99cba0d58f400cfd8c73c8aa90894dfa8 in 74 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/gossipsub_strict_signed/f04f06cbbe911ccde0ab4844bafe0ff797d075ea
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/gossipsub_strict_signed/85a6a4d162f99908e1ef03865a533eaeabea475d in 70 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/gossipsub_strict_signed/9103bda73f913dab7f88397e61342146d32c55d7
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/gossipsub_strict_signed/f04f06cbbe911ccde0ab4844bafe0ff797d075ea in 76 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/gossipsub_strict_signed/9f7dd984e8605ab4ac70c4ce10e7af81ca6ab67c
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/gossipsub_strict_signed/9103bda73f913dab7f88397e61342146d32c55d7 in 70 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/gossipsub_strict_signed/93ccae18f34aa5bec2c42319b75b417b485c44e9
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/gossipsub_strict_signed/9f7dd984e8605ab4ac70c4ce10e7af81ca6ab67c in 59 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/gossipsub_strict_signed/34e2c575c92a141b59d049856f5f7ddbcd83b910
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/gossipsub_strict_signed/34e2c575c92a141b59d049856f5f7ddbcd83b910 in 54 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/gossipsub_strict_signed/5679d444fc0833810f287d4ad005cf0e2fafed5b
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/gossipsub_strict_signed/93ccae18f34aa5bec2c42319b75b417b485c44e9 in 74 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/gossipsub_strict_signed/7625f3e1619119e3226916d0adc3cb8e325af08f
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/gossipsub_strict_signed/5679d444fc0833810f287d4ad005cf0e2fafed5b in 55 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/gossipsub_strict_signed/48822f3b59285c280892efaeb5759c1375c46e14
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/gossipsub_strict_signed/7625f3e1619119e3226916d0adc3cb8e325af08f in 79 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/gossipsub_strict_signed/98f5cb87ec2c1bab6d3064f86b60876dd1649980
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/gossipsub_strict_signed/48822f3b59285c280892efaeb5759c1375c46e14 in 50 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/gossipsub_strict_signed/24b66ee7127326afd92ceb66f3229929a7ba96c3
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/gossipsub_strict_signed/98f5cb87ec2c1bab6d3064f86b60876dd1649980 in 61 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/gossipsub_strict_signed/77aec4496b1f074fe80b9bed09de68e16aabd656
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/gossipsub_strict_signed/24b66ee7127326afd92ceb66f3229929a7ba96c3 in 54 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/gossipsub_strict_signed/cc711f547163a830b41bf27fd2ba0313c8329cf7
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/gossipsub_strict_signed/77aec4496b1f074fe80b9bed09de68e16aabd656 in 59 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/gossipsub_strict_signed/95f80bcd3c3a51ac4d257737c2cbbc7b4fd854d3
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/gossipsub_strict_signed/cc711f547163a830b41bf27fd2ba0313c8329cf7 in 51 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/gossipsub_strict_signed/f2b20b2b73054d9cdb3fd5f8ee29b7493e9362f9
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/gossipsub_strict_signed/95f80bcd3c3a51ac4d257737c2cbbc7b4fd854d3 in 51 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/gossipsub_strict_signed/77fea0924f68e66d71b4701dab4dfdce9751ddf3
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/gossipsub_strict_signed/f2b20b2b73054d9cdb3fd5f8ee29b7493e9362f9 in 51 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/gossipsub_strict_signed/28522d682574f8cbb8578f3625428d7818e5275f
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/gossipsub_strict_signed/28522d682574f8cbb8578f3625428d7818e5275f in 54 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/gossipsub_strict_signed/b5e6564011d3623162635efcfa26380281d0b064
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/gossipsub_strict_signed/77fea0924f68e66d71b4701dab4dfdce9751ddf3 in 88 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/gossipsub_strict_signed/fb1a94d5edcc32fa438749aac73b9327ef012e00
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/gossipsub_strict_signed/b5e6564011d3623162635efcfa26380281d0b064 in 73 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/gossipsub_strict_signed/270539a824e243756bf9b9d48a094539b6c18b2b
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/gossipsub_strict_signed/fb1a94d5edcc32fa438749aac73b9327ef012e00 in 57 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/gossipsub_strict_signed/abd71a49886509cf79b93265fab803ca946caa86
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/gossipsub_strict_signed/270539a824e243756bf9b9d48a094539b6c18b2b in 73 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/gossipsub_strict_signed/09d02903d1b47c003dd2bbec8a0b05b81329089e
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/gossipsub_strict_signed/abd71a49886509cf79b93265fab803ca946caa86 in 75 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/gossipsub_strict_signed/1437e999b6a69f878190577760b3e57b2ce54a25
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/gossipsub_strict_signed/1437e999b6a69f878190577760b3e57b2ce54a25 in 63 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/gossipsub_strict_signed/0e01b9f784753823bf45575311caf77a99715a99
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/gossipsub_strict_signed/09d02903d1b47c003dd2bbec8a0b05b81329089e in 93 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/gossipsub_strict_signed/ad7e641c310121bc0d168896ad586cbaedb8afa3
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/gossipsub_strict_signed/ad7e641c310121bc0d168896ad586cbaedb8afa3 in 62 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/gossipsub_strict_signed/7c216906439eb59a7dd9f30e003d90aa74a907f7
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/gossipsub_strict_signed/0e01b9f784753823bf45575311caf77a99715a99 in 86 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/gossipsub_strict_signed/0d6590ddffead1c7682c1be2a98d66175ddef76a
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/gossipsub_strict_signed/0d6590ddffead1c7682c1be2a98d66175ddef76a in 55 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/gossipsub_strict_signed/45463e21dd28b36ee54907c5d1860598ef925f65
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/gossipsub_strict_signed/7c216906439eb59a7dd9f30e003d90aa74a907f7 in 86 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/gossipsub_strict_signed/37d266275f72c372b715a178bfbefd74eac1f840
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/gossipsub_strict_signed/45463e21dd28b36ee54907c5d1860598ef925f65 in 60 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/gossipsub_strict_signed/00f24710293b8390e7561abe7bec2002a8f28df8
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/gossipsub_strict_signed/37d266275f72c372b715a178bfbefd74eac1f840 in 55 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/gossipsub_strict_signed/1aa40d54e58af697ee096f85a1f77a2d405a2595
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/gossipsub_strict_signed/00f24710293b8390e7561abe7bec2002a8f28df8 in 51 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/gossipsub_strict_signed/ec930c796b7b3a5ecf4664f5b138a2c249a2c864
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/gossipsub_strict_signed/1aa40d54e58af697ee096f85a1f77a2d405a2595 in 53 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/gossipsub_strict_signed/dc29b45be620154cd091ef854f9df44ad60f6705
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/gossipsub_strict_signed/ec930c796b7b3a5ecf4664f5b138a2c249a2c864 in 74 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/gossipsub_strict_signed/17af675ef70286a9083202a70fd786c7dc0843ba
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/gossipsub_strict_signed/dc29b45be620154cd091ef854f9df44ad60f6705 in 78 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/gossipsub_strict_signed/7a20e4462a080bfaa09d1963a66dfb134849c82d
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/gossipsub_strict_signed/17af675ef70286a9083202a70fd786c7dc0843ba in 76 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/gossipsub_strict_signed/563bf9205d15ce45cd3ac6cdfdbacd3d7004cde0
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/gossipsub_strict_signed/7a20e4462a080bfaa09d1963a66dfb134849c82d in 78 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/gossipsub_strict_signed/1dc8e353c1d9d7ec8fb8818d350dfe2641414a23
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/gossipsub_strict_signed/563bf9205d15ce45cd3ac6cdfdbacd3d7004cde0 in 62 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/gossipsub_strict_signed/bdf284b08bd69027122376f32b841ed4e88ec053
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/gossipsub_strict_signed/1dc8e353c1d9d7ec8fb8818d350dfe2641414a23 in 86 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/gossipsub_strict_signed/87fe6e16ed78c06335308fcf7c9d77fe06e4a29c
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/gossipsub_strict_signed/bdf284b08bd69027122376f32b841ed4e88ec053 in 55 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/gossipsub_strict_signed/e33713bf965189728e245db590600e162e44c8c9
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/gossipsub_strict_signed/87fe6e16ed78c06335308fcf7c9d77fe06e4a29c in 70 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/gossipsub_strict_signed/d6b3f687367d6f52968ea0ca96ba8ffd0286ab9f
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/gossipsub_strict_signed/e33713bf965189728e245db590600e162e44c8c9 in 82 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/gossipsub_strict_signed/bcd3299b4b46ef894ff7612ba6c2bb4dec7b11ff
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/gossipsub_strict_signed/d6b3f687367d6f52968ea0ca96ba8ffd0286ab9f in 73 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/gossipsub_strict_signed/69110f99427a5e4627147dbeb124ffbb9c1e2904
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/gossipsub_strict_signed/bcd3299b4b46ef894ff7612ba6c2bb4dec7b11ff in 74 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/gossipsub_strict_signed/cc55959a2a868ba2682d919718c56f46dc217673
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/gossipsub_strict_signed/69110f99427a5e4627147dbeb124ffbb9c1e2904 in 56 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/gossipsub_strict_signed/48585c6896fabca7f5bf889ed39b840a624a6aa6
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/gossipsub_strict_signed/cc55959a2a868ba2682d919718c56f46dc217673 in 56 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/gossipsub_strict_signed/890b63cf8b8a788df052f8b094bd9a0d219994af
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/gossipsub_strict_signed/890b63cf8b8a788df052f8b094bd9a0d219994af in 53 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/gossipsub_strict_signed/f56e52ffb95fc468f9d5cbbb779100115c7fb15c
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/gossipsub_strict_signed/48585c6896fabca7f5bf889ed39b840a624a6aa6 in 119 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/gossipsub_strict_signed/06d1fb2ed484a6f2341d48518de57ba22bc7c31e
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/gossipsub_strict_signed/f56e52ffb95fc468f9d5cbbb779100115c7fb15c in 60 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/gossipsub_strict_signed/012e65df552601dbeda017e2b9a94f286bf8e55a
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/gossipsub_strict_signed/06d1fb2ed484a6f2341d48518de57ba22bc7c31e in 54 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/gossipsub_strict_signed/72493119ec2575ee35e53398ab98684eff935c18
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/gossipsub_strict_signed/012e65df552601dbeda017e2b9a94f286bf8e55a in 64 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/gossipsub_strict_signed/f0d99d22ea15919efa0ad68b4a973ce83729c46a
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/gossipsub_strict_signed/72493119ec2575ee35e53398ab98684eff935c18 in 50 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/gossipsub_strict_signed/048fa8d3a6805b70d1a480a4fa91d073a1c168b7
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/gossipsub_strict_signed/f0d99d22ea15919efa0ad68b4a973ce83729c46a in 72 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/gossipsub_strict_signed/f4054ad9765e9243e8379d901ccf03a3812ec6b7
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/gossipsub_strict_signed/048fa8d3a6805b70d1a480a4fa91d073a1c168b7 in 67 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/gossipsub_strict_signed/ae3e12527483b5ac6799f36baf576d4aa0d1836c
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/gossipsub_strict_signed/f4054ad9765e9243e8379d901ccf03a3812ec6b7 in 77 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/gossipsub_strict_signed/be03f318d3e682bd0799e6dc7a9ef60568d674be
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/gossipsub_strict_signed/ae3e12527483b5ac6799f36baf576d4aa0d1836c in 78 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/gossipsub_strict_signed/caefb08e2278d737a082729d75163f4643208f04
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/gossipsub_strict_signed/be03f318d3e682bd0799e6dc7a9ef60568d674be in 50 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/gossipsub_strict_signed/1120b106103b832dbc40290813bbd45274b5d8fd
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/gossipsub_strict_signed/caefb08e2278d737a082729d75163f4643208f04 in 73 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/gossipsub_strict_signed/8f6c610883492938be43f5dba164408b0a900025
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/gossipsub_strict_signed/1120b106103b832dbc40290813bbd45274b5d8fd in 51 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/gossipsub_strict_signed/cda78277fc92b0d68972f071f5b80bfc0d6987e2
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/gossipsub_strict_signed/8f6c610883492938be43f5dba164408b0a900025 in 52 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/gossipsub_strict_signed/da574ea227db4d8b3f88cc4ad5e8f4d394556262
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/gossipsub_strict_signed/cda78277fc92b0d68972f071f5b80bfc0d6987e2 in 60 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/gossipsub_strict_signed/d246a121330a14809645b93602b700af1c78434b
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/gossipsub_strict_signed/da574ea227db4d8b3f88cc4ad5e8f4d394556262 in 47 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/gossipsub_strict_signed/b4740cffa96f4efecbde29e80cf04f60665c4b4e
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/gossipsub_strict_signed/d246a121330a14809645b93602b700af1c78434b in 70 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/gossipsub_strict_signed/df94085e7ceafe1bc4615873edafe3a7d011911d
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/gossipsub_strict_signed/b4740cffa96f4efecbde29e80cf04f60665c4b4e in 64 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/gossipsub_strict_signed/5d270ec212556845f1437fc306fe31fb82d3a2c2
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/gossipsub_strict_signed/df94085e7ceafe1bc4615873edafe3a7d011911d in 85 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/gossipsub_strict_signed/a716db817e0acf7937dd142da0263a18c04792f1
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/gossipsub_strict_signed/5d270ec212556845f1437fc306fe31fb82d3a2c2 in 64 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/gossipsub_strict_signed/b8c3b8a447501dc9b600032c2279200afcf45337
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/gossipsub_strict_signed/b8c3b8a447501dc9b600032c2279200afcf45337 in 53 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/gossipsub_strict_signed/536669c23e02f32e51c43c2d08de661222882099
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/gossipsub_strict_signed/a716db817e0acf7937dd142da0263a18c04792f1 in 71 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/gossipsub_strict_signed/f9ae248e18fcfcdbbf3c350a518987c8890ebff5
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/gossipsub_strict_signed/536669c23e02f32e51c43c2d08de661222882099 in 74 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/gossipsub_strict_signed/293f56c12409398b7e869590f83745aea2f65bbb
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/gossipsub_strict_signed/f9ae248e18fcfcdbbf3c350a518987c8890ebff5 in 66 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/gossipsub_strict_signed/c6001d68f4005553c2ae9c431381d428910cba5e
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/gossipsub_strict_signed/c6001d68f4005553c2ae9c431381d428910cba5e in 52 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/gossipsub_strict_signed/e72533d721feeb376fe37774fc5bf4eb7018655e
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/gossipsub_strict_signed/293f56c12409398b7e869590f83745aea2f65bbb in 73 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/gossipsub_strict_signed/b31d66e068d3778782491f0c3fd4da03533095bd
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/gossipsub_strict_signed/e72533d721feeb376fe37774fc5bf4eb7018655e in 55 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/gossipsub_strict_signed/7c175c692956dfcc0ce96b23d6ee04edfdff778d
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/gossipsub_strict_signed/b31d66e068d3778782491f0c3fd4da03533095bd in 58 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/gossipsub_strict_signed/d45a67af2e714f622ab0bb5d1ce14d3ae27b7473
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/gossipsub_strict_signed/d45a67af2e714f622ab0bb5d1ce14d3ae27b7473 in 61 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/gossipsub_strict_signed/e507137375c0df2d605b4af79e9140a2c581e743
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/gossipsub_strict_signed/7c175c692956dfcc0ce96b23d6ee04edfdff778d in 85 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/gossipsub_strict_signed/17aa9a58b1e2bf656267ad46ed70850d7e37c089
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/gossipsub_strict_signed/e507137375c0df2d605b4af79e9140a2c581e743 in 39 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/gossipsub_strict_signed/aeca9efd920479e94003a6a937c8fd905ac84078
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/gossipsub_strict_signed/17aa9a58b1e2bf656267ad46ed70850d7e37c089 in 52 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/gossipsub_strict_signed/4bfd0c5f0c07624419fd82235c94304d27bc8b06
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/gossipsub_strict_signed/aeca9efd920479e94003a6a937c8fd905ac84078 in 52 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/gossipsub_strict_signed/0a22f74ab8acfde4a54eaa64067031ca7645437b
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/gossipsub_strict_signed/4bfd0c5f0c07624419fd82235c94304d27bc8b06 in 53 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/gossipsub_strict_signed/3c9837fae1a4d14afac4d65b6216e5b59280c144
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/gossipsub_strict_signed/0a22f74ab8acfde4a54eaa64067031ca7645437b in 53 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/gossipsub_strict_signed/98bfff29f281b9345fc98043d3c4fee089942bed
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/gossipsub_strict_signed/3c9837fae1a4d14afac4d65b6216e5b59280c144 in 61 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/gossipsub_strict_signed/54fd188eeb123136a9013ae599a07a2bcf6f8a4d
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/gossipsub_strict_signed/98bfff29f281b9345fc98043d3c4fee089942bed in 64 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/gossipsub_strict_signed/06c4c260c60d0d68f710a4ce2cbbf85829f0a92b
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/gossipsub_strict_signed/54fd188eeb123136a9013ae599a07a2bcf6f8a4d in 49 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/gossipsub_strict_signed/52ea330779ef79feb97c7e49d3595646202d7f5b
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/gossipsub_strict_signed/06c4c260c60d0d68f710a4ce2cbbf85829f0a92b in 50 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/gossipsub_strict_signed/61207914f2fec70fc882c2f937c4b0abf50780c9
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/gossipsub_strict_signed/52ea330779ef79feb97c7e49d3595646202d7f5b in 59 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/gossipsub_strict_signed/b97bb909ef3a7b7cb022f1b9ab8b3947b22cf3e6
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/gossipsub_strict_signed/61207914f2fec70fc882c2f937c4b0abf50780c9 in 64 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/gossipsub_strict_signed/1e0fc8dfbb0c91327faa7550df4f32e5cd25fc85
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/gossipsub_strict_signed/b97bb909ef3a7b7cb022f1b9ab8b3947b22cf3e6 in 72 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/gossipsub_strict_signed/02de0822bec2755dd5f267b074026a57dcf5c903
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/gossipsub_strict_signed/1e0fc8dfbb0c91327faa7550df4f32e5cd25fc85 in 51 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/gossipsub_strict_signed/6ba0dc0f4524a5d4a98cd55089ef76db3b4b66b9
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/gossipsub_strict_signed/02de0822bec2755dd5f267b074026a57dcf5c903 in 49 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/gossipsub_strict_signed/9c8a86091e08dc104720c2eb727f7e35c46de696
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/gossipsub_strict_signed/6ba0dc0f4524a5d4a98cd55089ef76db3b4b66b9 in 70 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/gossipsub_strict_signed/89e5b02e7120c2fb1f7fb2a22974a18956f0d0ee
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/gossipsub_strict_signed/9c8a86091e08dc104720c2eb727f7e35c46de696 in 72 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/gossipsub_strict_signed/731135a0076367e752fd774bc034c2c590fc7227
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/gossipsub_strict_signed/89e5b02e7120c2fb1f7fb2a22974a18956f0d0ee in 69 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/gossipsub_strict_signed/07c13ec5052845d859e7fa1668f7b4578276e1c1
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/gossipsub_strict_signed/731135a0076367e752fd774bc034c2c590fc7227 in 58 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/gossipsub_strict_signed/530f09ba049801a373afdc36389048d4a76bd800
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/gossipsub_strict_signed/07c13ec5052845d859e7fa1668f7b4578276e1c1 in 69 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/gossipsub_strict_signed/d7a9b6979642bb46abdbb829b4b685a941b3aa0b
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/gossipsub_strict_signed/530f09ba049801a373afdc36389048d4a76bd800 in 74 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/gossipsub_strict_signed/d2ae49b5c4ac7d42994c15a8dc85c46c1b7d0e90
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/gossipsub_strict_signed/d7a9b6979642bb46abdbb829b4b685a941b3aa0b in 47 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/gossipsub_strict_signed/9dc64c160b93969dcd4eee5a47cb0719288d7461
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/gossipsub_strict_signed/9dc64c160b93969dcd4eee5a47cb0719288d7461 in 53 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/gossipsub_strict_signed/54d54c5986c1e00f6f9879d162271c9c4e49b44c
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/gossipsub_strict_signed/d2ae49b5c4ac7d42994c15a8dc85c46c1b7d0e90 in 83 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/gossipsub_strict_signed/3b38ae645c5e99eaeee7e65cc604e75ca514a9d5
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/gossipsub_strict_signed/54d54c5986c1e00f6f9879d162271c9c4e49b44c in 71 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/gossipsub_strict_signed/80ad7b723a249439ddc34a5f20ea4aa2824f3e8b
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/gossipsub_strict_signed/3b38ae645c5e99eaeee7e65cc604e75ca514a9d5 in 68 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/gossipsub_strict_signed/88b1cd80a003234e59e62c8591a99c6085ab96f6
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/gossipsub_strict_signed/80ad7b723a249439ddc34a5f20ea4aa2824f3e8b in 58 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/gossipsub_strict_signed/796a10bef3de0cf96ac7efaaa444c6b9392911d3
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/gossipsub_strict_signed/88b1cd80a003234e59e62c8591a99c6085ab96f6 in 63 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/gossipsub_strict_signed/deea4ff7b9b94e3dcf8783fd07914fafdbe95c6d
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/gossipsub_strict_signed/796a10bef3de0cf96ac7efaaa444c6b9392911d3 in 68 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/gossipsub_strict_signed/2f45f25c762f40eecf54428ea9f04d9894a58159
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/gossipsub_strict_signed/deea4ff7b9b94e3dcf8783fd07914fafdbe95c6d in 71 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/gossipsub_strict_signed/77c078a17a9f33da989bd26f2322909a757bc747
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/gossipsub_strict_signed/2f45f25c762f40eecf54428ea9f04d9894a58159 in 48 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/gossipsub_strict_signed/3c849503a8d962339c356383d8ebc35603e6b729
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/gossipsub_strict_signed/77c078a17a9f33da989bd26f2322909a757bc747 in 64 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/gossipsub_strict_signed/f9be9d81449202cfd6606d503b2fb4e69b60916c
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/gossipsub_strict_signed/3c849503a8d962339c356383d8ebc35603e6b729 in 54 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/gossipsub_strict_signed/bfc0a4e6cb376776d99546d27024d55550718e90
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/gossipsub_strict_signed/f9be9d81449202cfd6606d503b2fb4e69b60916c in 68 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/gossipsub_strict_signed/7fad8cd2a7024807276ff90972f3663a99f74dcb
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/gossipsub_strict_signed/bfc0a4e6cb376776d99546d27024d55550718e90 in 48 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/gossipsub_strict_signed/7979e89b18d78f96a9ead947470d58d6814fed99
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/gossipsub_strict_signed/7fad8cd2a7024807276ff90972f3663a99f74dcb in 54 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/gossipsub_strict_signed/4938a48cbad2b5ce036d583555b1ed4150ed2398
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/gossipsub_strict_signed/7979e89b18d78f96a9ead947470d58d6814fed99 in 55 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/gossipsub_strict_signed/d95462bc1655101cb91cb3c3dd1c9ae5fdb7dbf2
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/gossipsub_strict_signed/4938a48cbad2b5ce036d583555b1ed4150ed2398 in 50 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/gossipsub_strict_signed/2ecb79f2c4f08243ac44558affdd3919f4748c61
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/gossipsub_strict_signed/d95462bc1655101cb91cb3c3dd1c9ae5fdb7dbf2 in 53 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/gossipsub_strict_signed/00d44f80a0491e1e07d898356b96daa9d64076df
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/gossipsub_strict_signed/2ecb79f2c4f08243ac44558affdd3919f4748c61 in 72 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/gossipsub_strict_signed/11b38c9b8d1a6c2e22f2234b377e05e1f2ed7a74
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/gossipsub_strict_signed/00d44f80a0491e1e07d898356b96daa9d64076df in 78 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/gossipsub_strict_signed/7db7251c5aa925de584f901a7f3b79b0d9d7cc35
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/gossipsub_strict_signed/11b38c9b8d1a6c2e22f2234b377e05e1f2ed7a74 in 49 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/gossipsub_strict_signed/a25e45b0fb84d24278cb92bd946e33b8cb7afe09
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/gossipsub_strict_signed/7db7251c5aa925de584f901a7f3b79b0d9d7cc35 in 57 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/gossipsub_strict_signed/8db9b791ad5044244245ac15649ebbdb794afe1e
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/gossipsub_strict_signed/a25e45b0fb84d24278cb92bd946e33b8cb7afe09 in 55 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/gossipsub_strict_signed/8e125c31711879eed74e809d44dd00ff6f28ead7
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/gossipsub_strict_signed/8db9b791ad5044244245ac15649ebbdb794afe1e in 49 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/gossipsub_strict_signed/d76e80018cf9cbcbd31a65db6f2e5e5a7e5e4c3f
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/gossipsub_strict_signed/8e125c31711879eed74e809d44dd00ff6f28ead7 in 60 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/gossipsub_strict_signed/d7678148ee40a726d3ef6890c9a47d8b7f0c9632
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/gossipsub_strict_signed/d76e80018cf9cbcbd31a65db6f2e5e5a7e5e4c3f in 53 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/gossipsub_strict_signed/4166d24ccdc2693be9b7f706992bccea56bfc7d6
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/gossipsub_strict_signed/d7678148ee40a726d3ef6890c9a47d8b7f0c9632 in 48 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/gossipsub_strict_signed/296e75d023c18d31b1ad9b89845d63667564c248
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/gossipsub_strict_signed/4166d24ccdc2693be9b7f706992bccea56bfc7d6 in 48 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/gossipsub_strict_signed/bae0659e51a4134ae93abc94c4fce07561fa5539
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/gossipsub_strict_signed/296e75d023c18d31b1ad9b89845d63667564c248 in 58 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/gossipsub_strict_signed/883c59fdd8f8ac1da59687bf17e6d808d0d65734
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/gossipsub_strict_signed/bae0659e51a4134ae93abc94c4fce07561fa5539 in 51 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/gossipsub_strict_signed/cfdd2b6f736e332f049f5ba7389851f66cfcfebb
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/gossipsub_strict_signed/883c59fdd8f8ac1da59687bf17e6d808d0d65734 in 71 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/gossipsub_strict_signed/462d6dd5f132ff85d55457f92589bb40d9e162a5
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/gossipsub_strict_signed/cfdd2b6f736e332f049f5ba7389851f66cfcfebb in 96 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/gossipsub_strict_signed/cc2bef006128141bdb9bac3f0bdcc149ae79aff9
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/gossipsub_strict_signed/462d6dd5f132ff85d55457f92589bb40d9e162a5 in 69 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/gossipsub_strict_signed/37194007b0dc3a7eb391e432894c3ce0169f4ed0
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/gossipsub_strict_signed/cc2bef006128141bdb9bac3f0bdcc149ae79aff9 in 53 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/gossipsub_strict_signed/8c41b62275d07fa543165da08ad1bd3f2e787b1e
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/gossipsub_strict_signed/8c41b62275d07fa543165da08ad1bd3f2e787b1e in 70 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/gossipsub_strict_signed/b55b0e3328f90d1f8e59dae03b5b7b4b00de4970
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/gossipsub_strict_signed/37194007b0dc3a7eb391e432894c3ce0169f4ed0 in 122 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/gossipsub_strict_signed/3df453d8e1e2d85fb18c16637f9fc8b66646c98e
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/gossipsub_strict_signed/b55b0e3328f90d1f8e59dae03b5b7b4b00de4970 in 57 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/gossipsub_strict_signed/53dce3bb0ddb987f4a819005a0a5c9d86cf1cdc6
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/gossipsub_strict_signed/3df453d8e1e2d85fb18c16637f9fc8b66646c98e in 73 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/gossipsub_strict_signed/1314e2af383c422c224dc19165a34d44437c3daf
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/gossipsub_strict_signed/53dce3bb0ddb987f4a819005a0a5c9d86cf1cdc6 in 61 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/gossipsub_strict_signed/ab4cf937245c675fc38ece76ef411cb45e37c69e
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/gossipsub_strict_signed/ab4cf937245c675fc38ece76ef411cb45e37c69e in 52 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/gossipsub_strict_signed/14dd82ca65c35cd1903c79b1039e0655e80bbe4e
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/gossipsub_strict_signed/1314e2af383c422c224dc19165a34d44437c3daf in 72 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/gossipsub_strict_signed/c751d6b6e1ff26927c3d12c9e898375be8ffeebf
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/gossipsub_strict_signed/14dd82ca65c35cd1903c79b1039e0655e80bbe4e in 50 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/gossipsub_strict_signed/f18d61fb956ae761e04c482eae3236ced0c3f5df
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/gossipsub_strict_signed/c751d6b6e1ff26927c3d12c9e898375be8ffeebf in 65 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/gossipsub_strict_signed/46b285746ebd5f5b957a8797a2bd1b9d0971afe7
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/gossipsub_strict_signed/f18d61fb956ae761e04c482eae3236ced0c3f5df in 51 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/gossipsub_strict_signed/710da935a2aea90f688fd34e6445997fb6c60005
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/gossipsub_strict_signed/46b285746ebd5f5b957a8797a2bd1b9d0971afe7 in 66 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/gossipsub_strict_signed/fea4e09668452edc8e67f2942b7bc3bf171aa0c2
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/gossipsub_strict_signed/710da935a2aea90f688fd34e6445997fb6c60005 in 69 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/gossipsub_strict_signed/b68f76b33b6b42c8f397295532fb5268a6eeec12
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/gossipsub_strict_signed/fea4e09668452edc8e67f2942b7bc3bf171aa0c2 in 53 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/gossipsub_strict_signed/1ff3f530379787b99e8f104da970b078af98b502
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/gossipsub_strict_signed/1ff3f530379787b99e8f104da970b078af98b502 in 52 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/gossipsub_strict_signed/3217a1c6dc32c103bb095e7a4704a341dc4d8d4d
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/gossipsub_strict_signed/b68f76b33b6b42c8f397295532fb5268a6eeec12 in 88 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/gossipsub_strict_signed/8736ef875745bf162829af724624bf33c710d0ee
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/gossipsub_strict_signed/3217a1c6dc32c103bb095e7a4704a341dc4d8d4d in 67 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/gossipsub_strict_signed/21b12cab931acd44ca006cf230dbef060827b7b7
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/gossipsub_strict_signed/8736ef875745bf162829af724624bf33c710d0ee in 62 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/gossipsub_strict_signed/73dba194e0a72585eaef7f03e25f9933fc1f56e1
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/gossipsub_strict_signed/21b12cab931acd44ca006cf230dbef060827b7b7 in 55 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/gossipsub_strict_signed/59a2b52f2cf0d00b8e76ba18c0d51466069c34e8
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/gossipsub_strict_signed/73dba194e0a72585eaef7f03e25f9933fc1f56e1 in 70 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/gossipsub_strict_signed/428ae6b2177d7b16a9e978fd37a2c9cdd6ca6e82
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/gossipsub_strict_signed/59a2b52f2cf0d00b8e76ba18c0d51466069c34e8 in 66 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/gossipsub_strict_signed/b370b0855772895a9f0f17001ab67c29effb900e
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/gossipsub_strict_signed/428ae6b2177d7b16a9e978fd37a2c9cdd6ca6e82 in 74 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/gossipsub_strict_signed/cbabad376bbf98d7acc1a140538fc596d819bdc6
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/gossipsub_strict_signed/b370b0855772895a9f0f17001ab67c29effb900e in 59 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/gossipsub_strict_signed/a928fc9581b099a7aa211d79277f6a6a351c79d9
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/gossipsub_strict_signed/cbabad376bbf98d7acc1a140538fc596d819bdc6 in 47 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/gossipsub_strict_signed/65555f374b7df9805b5e4b0dc36ce39c9ac8bb29
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/gossipsub_strict_signed/65555f374b7df9805b5e4b0dc36ce39c9ac8bb29 in 52 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/gossipsub_strict_signed/0d91451ee109812a4975204dbd2ad440402ee156
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/gossipsub_strict_signed/a928fc9581b099a7aa211d79277f6a6a351c79d9 in 75 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/gossipsub_strict_signed/69c7de0b603864b9274ccc919ecbbd3ed7866522
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/gossipsub_strict_signed/69c7de0b603864b9274ccc919ecbbd3ed7866522 in 68 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/gossipsub_strict_signed/4832dd965d57857fb0a296bce967d10fd6d65075
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/gossipsub_strict_signed/0d91451ee109812a4975204dbd2ad440402ee156 in 85 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/gossipsub_strict_signed/e3d96c404942cf392303d42e68ac410a501f4057
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/gossipsub_strict_signed/4832dd965d57857fb0a296bce967d10fd6d65075 in 60 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/gossipsub_strict_signed/1105ffd55ec04ca7899790e8d63e0f7980c77764
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/gossipsub_strict_signed/e3d96c404942cf392303d42e68ac410a501f4057 in 50 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/gossipsub_strict_signed/28f664c1beda4bbb16803ff749755fc55b327b32
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/gossipsub_strict_signed/28f664c1beda4bbb16803ff749755fc55b327b32 in 50 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/gossipsub_strict_signed/e0cd8308c6198410d589b61ecda1510d47e65dd6
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/gossipsub_strict_signed/1105ffd55ec04ca7899790e8d63e0f7980c77764 in 82 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/gossipsub_strict_signed/3ace48ce1d5fff56e326c443a87cf2a1c6315763
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/gossipsub_strict_signed/e0cd8308c6198410d589b61ecda1510d47e65dd6 in 52 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/gossipsub_strict_signed/e3efb108442563c428cf5d4b4a55a185dba0952a
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/gossipsub_strict_signed/3ace48ce1d5fff56e326c443a87cf2a1c6315763 in 74 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/gossipsub_strict_signed/6c5bed0c967378933effd0e7cd46d440ebd169f4
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/gossipsub_strict_signed/e3efb108442563c428cf5d4b4a55a185dba0952a in 75 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/gossipsub_strict_signed/e0f0849c92e728ea69cd10270d306cae091761c1
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/gossipsub_strict_signed/e0f0849c92e728ea69cd10270d306cae091761c1 in 82 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/gossipsub_strict_signed/28097cf7bbc596cdf8b0c7ac0e6553c3307ab5bf
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/gossipsub_strict_signed/6c5bed0c967378933effd0e7cd46d440ebd169f4 in 152 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/gossipsub_strict_signed/8baebfee4ad2ff70e958f08a2a38543db061a1ab
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/gossipsub_strict_signed/28097cf7bbc596cdf8b0c7ac0e6553c3307ab5bf in 57 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/gossipsub_strict_signed/e6d8660cf0801e3e1ae4b187f7ad57ea9bd8e505
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/gossipsub_strict_signed/8baebfee4ad2ff70e958f08a2a38543db061a1ab in 61 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/gossipsub_strict_signed/17ce232c0c187ead8ded860902bf32b9489ce7c3
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/gossipsub_strict_signed/e6d8660cf0801e3e1ae4b187f7ad57ea9bd8e505 in 55 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/gossipsub_strict_signed/4c65ed7b343b5209ebb7b78a1647366d00482e7a
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/gossipsub_strict_signed/17ce232c0c187ead8ded860902bf32b9489ce7c3 in 71 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/gossipsub_strict_signed/f34189e32a42d5f3fead4f1939310f3b3b003cdc
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/gossipsub_strict_signed/4c65ed7b343b5209ebb7b78a1647366d00482e7a in 70 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/gossipsub_strict_signed/a15a7e930ee13c4c589680161969f4763c51abec
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/gossipsub_strict_signed/a15a7e930ee13c4c589680161969f4763c51abec in 57 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/gossipsub_strict_signed/f827b55262e24160eaa4d86498974377617a8877
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/gossipsub_strict_signed/f34189e32a42d5f3fead4f1939310f3b3b003cdc in 80 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/gossipsub_strict_signed/d24fd6188d29d5fd8355e960fe94d32a4fa09947
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/gossipsub_strict_signed/f827b55262e24160eaa4d86498974377617a8877 in 49 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/gossipsub_strict_signed/79562c2a389e375340db43aa26007372a3eb8a68
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/gossipsub_strict_signed/d24fd6188d29d5fd8355e960fe94d32a4fa09947 in 54 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/gossipsub_strict_signed/3afe0ede1043ca2a8e5c0cfab48dead5b3b54af3
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/gossipsub_strict_signed/79562c2a389e375340db43aa26007372a3eb8a68 in 71 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/gossipsub_strict_signed/8a0ec1c32a186fc09d05482de86e8ec67772d60a
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/gossipsub_strict_signed/3afe0ede1043ca2a8e5c0cfab48dead5b3b54af3 in 76 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/gossipsub_strict_signed/1ba7df0a2ff75f0b0c340a996eae2b5dbc122db2
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/gossipsub_strict_signed/8a0ec1c32a186fc09d05482de86e8ec67772d60a in 32 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/gossipsub_strict_signed/ec733fa24fb1a354b98960fd6ff0ecfc8fd7fb2a
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/gossipsub_strict_signed/ec733fa24fb1a354b98960fd6ff0ecfc8fd7fb2a in 64 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/gossipsub_strict_signed/fb6c1deff9f413763b1dd3f9ed8bb02891c244d5
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/gossipsub_strict_signed/1ba7df0a2ff75f0b0c340a996eae2b5dbc122db2 in 79 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/gossipsub_strict_signed/bc062b079bf1c42628f3c3fc2e883e5bdc258843
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/gossipsub_strict_signed/fb6c1deff9f413763b1dd3f9ed8bb02891c244d5 in 59 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/gossipsub_strict_signed/ab37e7da199a4266977dd3e595fe6ba32e9c0cda
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/gossipsub_strict_signed/bc062b079bf1c42628f3c3fc2e883e5bdc258843 in 66 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/gossipsub_strict_signed/e0dde331007cf8573a89cff859c3ed50540bd530
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/gossipsub_strict_signed/ab37e7da199a4266977dd3e595fe6ba32e9c0cda in 66 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/gossipsub_strict_signed/cf29e848b9745990c06f972e8fc4e241f4b92a6c
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/gossipsub_strict_signed/e0dde331007cf8573a89cff859c3ed50540bd530 in 74 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/gossipsub_strict_signed/d42e93f4b1bc9ff2eda767bdba7617666b798aac
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/gossipsub_strict_signed/cf29e848b9745990c06f972e8fc4e241f4b92a6c in 80 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/gossipsub_strict_signed/865bef20b6ca3a16bac9a6ec3e08cb0b607630bf
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/gossipsub_strict_signed/d42e93f4b1bc9ff2eda767bdba7617666b798aac in 56 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/gossipsub_strict_signed/5756204448b75664fa79c0edb5644d25a79cfd86
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/gossipsub_strict_signed/5756204448b75664fa79c0edb5644d25a79cfd86 in 53 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/gossipsub_strict_signed/0fadb2e8601d0a58425208123544c48afb42291b
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/gossipsub_strict_signed/865bef20b6ca3a16bac9a6ec3e08cb0b607630bf in 70 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/gossipsub_strict_signed/0306efd7b408afb9056cf9ebe003611327d3fc3f
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/gossipsub_strict_signed/0fadb2e8601d0a58425208123544c48afb42291b in 57 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/gossipsub_strict_signed/45b6def7e53655520a3c8170c6d0eb97769f4667
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/gossipsub_strict_signed/0306efd7b408afb9056cf9ebe003611327d3fc3f in 72 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/gossipsub_strict_signed/357e93b927ddfb658b800396ae043a867689961d
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/gossipsub_strict_signed/45b6def7e53655520a3c8170c6d0eb97769f4667 in 63 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/gossipsub_strict_signed/9f0b22bbad86f6b0c778044fc6ef8e80f16de36a
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/gossipsub_strict_signed/357e93b927ddfb658b800396ae043a867689961d in 76 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/gossipsub_strict_signed/56bcf3e8cc981842d67a6e201da3c8709991d5c9
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/gossipsub_strict_signed/9f0b22bbad86f6b0c778044fc6ef8e80f16de36a in 75 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/gossipsub_strict_signed/f3402b323e9c75d8b1c30b9570fa98a18734bc7a
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/gossipsub_strict_signed/56bcf3e8cc981842d67a6e201da3c8709991d5c9 in 60 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/gossipsub_strict_signed/e6849fa1d19e31a7cd2e2cd6025df10c0734d8b6
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/gossipsub_strict_signed/f3402b323e9c75d8b1c30b9570fa98a18734bc7a in 54 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/gossipsub_strict_signed/548c7851b22f790d768f81d6548402ace4629760
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/gossipsub_strict_signed/e6849fa1d19e31a7cd2e2cd6025df10c0734d8b6 in 58 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/gossipsub_strict_signed/b7263d63b501e2bbc90db81b12f3a14b668d8a27
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/gossipsub_strict_signed/548c7851b22f790d768f81d6548402ace4629760 in 86 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/gossipsub_strict_signed/76086f3e20bcc8fdc62f88c21a67552927993960
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/gossipsub_strict_signed/b7263d63b501e2bbc90db81b12f3a14b668d8a27 in 66 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/gossipsub_strict_signed/4c9196329327a643d2d6d860657ddccc942edab0
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/gossipsub_strict_signed/76086f3e20bcc8fdc62f88c21a67552927993960 in 58 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/gossipsub_strict_signed/7764367b3ed47b512fc92dec103e8ce0e82de715
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/gossipsub_strict_signed/4c9196329327a643d2d6d860657ddccc942edab0 in 81 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/gossipsub_strict_signed/fb2633995ee0f2373ea370feba6e7d327aa2d050
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/gossipsub_strict_signed/7764367b3ed47b512fc92dec103e8ce0e82de715 in 60 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/gossipsub_strict_signed/f2b7f8c401da6209d5fc66ecf9eb7b10aeae4076
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/gossipsub_strict_signed/fb2633995ee0f2373ea370feba6e7d327aa2d050 in 52 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/gossipsub_strict_signed/ff7a68c0b2cc445b9ac51fbf2f3b2d01dbb56a48
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/gossipsub_strict_signed/f2b7f8c401da6209d5fc66ecf9eb7b10aeae4076 in 77 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/gossipsub_strict_signed/7fc071eea9c04a913689de1e0726e7c86f154be7
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/gossipsub_strict_signed/ff7a68c0b2cc445b9ac51fbf2f3b2d01dbb56a48 in 65 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/gossipsub_strict_signed/e4c9e436951639b284818f5c21165daddd99a9d0
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/gossipsub_strict_signed/7fc071eea9c04a913689de1e0726e7c86f154be7 in 57 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/gossipsub_strict_signed/7ffbcc2c323a839c65e06ae398585e2666ff45c9
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/gossipsub_strict_signed/e4c9e436951639b284818f5c21165daddd99a9d0 in 85 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/gossipsub_strict_signed/a23a9fd82c524224b8ec8dbc6523aab7f4dfa1e3
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/gossipsub_strict_signed/7ffbcc2c323a839c65e06ae398585e2666ff45c9 in 89 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/gossipsub_strict_signed/5e86c2350a3622e9bcbc582716057e91a17eeed7
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/gossipsub_strict_signed/a23a9fd82c524224b8ec8dbc6523aab7f4dfa1e3 in 56 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/gossipsub_strict_signed/1c666a2b17aa174edbbd7b8c29fb0bcf1a353591
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/gossipsub_strict_signed/1c666a2b17aa174edbbd7b8c29fb0bcf1a353591 in 66 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/gossipsub_strict_signed/a2c31bf2b09460f5bba25a68d02688f1adb8a2d5
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/gossipsub_strict_signed/5e86c2350a3622e9bcbc582716057e91a17eeed7 in 77 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/gossipsub_strict_signed/4b43fa630091d82cde913cf11cbef47bf9919d51
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/gossipsub_strict_signed/4b43fa630091d82cde913cf11cbef47bf9919d51 in 54 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/gossipsub_strict_signed/8c6b796c0508384f0194db6ef2edaf90e27b2e9f
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/gossipsub_strict_signed/a2c31bf2b09460f5bba25a68d02688f1adb8a2d5 in 76 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/gossipsub_strict_signed/b2777959257388e4797d89e46243c6009f41a118
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/gossipsub_strict_signed/8c6b796c0508384f0194db6ef2edaf90e27b2e9f in 58 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/gossipsub_strict_signed/0e51b4da27f30a0c616268660132dab2d583eb41
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/gossipsub_strict_signed/b2777959257388e4797d89e46243c6009f41a118 in 65 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/gossipsub_strict_signed/c3c8b562620a192edf2a66fcf1a9c46d639e752e
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/gossipsub_strict_signed/0e51b4da27f30a0c616268660132dab2d583eb41 in 55 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/gossipsub_strict_signed/19ef492ad320d866e2f4989ad33a535dc30f3d4f
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/gossipsub_strict_signed/c3c8b562620a192edf2a66fcf1a9c46d639e752e in 72 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/gossipsub_strict_signed/cc310452269819edd7f1ab559adb8c46fb4f927a
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/gossipsub_strict_signed/19ef492ad320d866e2f4989ad33a535dc30f3d4f in 83 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/gossipsub_strict_signed/a8457e491e671dc3220c67be8a846acff519e31b
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/gossipsub_strict_signed/cc310452269819edd7f1ab559adb8c46fb4f927a in 58 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/gossipsub_strict_signed/cac652098bb3d2a344bed9b18bfff0c0b33982f3
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/gossipsub_strict_signed/a8457e491e671dc3220c67be8a846acff519e31b in 52 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/gossipsub_strict_signed/ce48b86ac76ef527259211e3cbb967cc6a7e95a0
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/gossipsub_strict_signed/cac652098bb3d2a344bed9b18bfff0c0b33982f3 in 65 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/gossipsub_strict_signed/b7b5e97d347c961c9fdf391bef42e242d8195db7
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/gossipsub_strict_signed/ce48b86ac76ef527259211e3cbb967cc6a7e95a0 in 58 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/gossipsub_strict_signed/8b7d543c6130ed5a6a09cac25662d6dcfaa09019
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/gossipsub_strict_signed/b7b5e97d347c961c9fdf391bef42e242d8195db7 in 105 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/gossipsub_strict_signed/c30c3da21e611523d864e4aa9cf0d90cc843d7bf
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/gossipsub_strict_signed/8b7d543c6130ed5a6a09cac25662d6dcfaa09019 in 101 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/gossipsub_strict_signed/5f5dfa6e6ef1d1d4d449236059640844c541a506
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/gossipsub_strict_signed/c30c3da21e611523d864e4aa9cf0d90cc843d7bf in 54 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/gossipsub_strict_signed/afd71f97ed0de3cc471aa2d775771f13e672e14c
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/gossipsub_strict_signed/5f5dfa6e6ef1d1d4d449236059640844c541a506 in 72 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/gossipsub_strict_signed/749b03e12f9dd18b0933f04ee5ff4cf8ac1fac89
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/gossipsub_strict_signed/afd71f97ed0de3cc471aa2d775771f13e672e14c in 72 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/gossipsub_strict_signed/5e32282c4a564f846d8e9d9c3eed3d7803b98636
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/gossipsub_strict_signed/5e32282c4a564f846d8e9d9c3eed3d7803b98636 in 64 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/gossipsub_strict_signed/e664143679d3c55b7f954fd0aeb002a1afb5c591
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/gossipsub_strict_signed/749b03e12f9dd18b0933f04ee5ff4cf8ac1fac89 in 107 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/gossipsub_strict_signed/daf605e7b52773d6ee5ff7c5344475a6715578e7
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/gossipsub_strict_signed/e664143679d3c55b7f954fd0aeb002a1afb5c591 in 58 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/gossipsub_strict_signed/ea17691cc2f727dc0031fecf263b4cdd41af6397
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/gossipsub_strict_signed/daf605e7b52773d6ee5ff7c5344475a6715578e7 in 65 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/gossipsub_strict_signed/29bf38e9b4551a7f616bdbeff9defd6cf02935d6
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/gossipsub_strict_signed/ea17691cc2f727dc0031fecf263b4cdd41af6397 in 92 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/gossipsub_strict_signed/746b9a2dd0489147569e54f9f7c3c69028df27f1
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/gossipsub_strict_signed/29bf38e9b4551a7f616bdbeff9defd6cf02935d6 in 92 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/gossipsub_strict_signed/6a99e92c1c43b86d47657026155ca5ee618715e2
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/gossipsub_strict_signed/746b9a2dd0489147569e54f9f7c3c69028df27f1 in 60 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/gossipsub_strict_signed/c8d77c3151a50e4db9bf160cb1efa89908ddbd07
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/gossipsub_strict_signed/6a99e92c1c43b86d47657026155ca5ee618715e2 in 54 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/gossipsub_strict_signed/28bd1f35e6ed388fe16fbf9108bcb92441b188fd
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/gossipsub_strict_signed/28bd1f35e6ed388fe16fbf9108bcb92441b188fd in 59 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/gossipsub_strict_signed/f0de873c6b1b986511fd84b439ff94522b50b859
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/gossipsub_strict_signed/c8d77c3151a50e4db9bf160cb1efa89908ddbd07 in 78 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/gossipsub_strict_signed/99aded0a1bc052f083790223bf5d37fa47c08162
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/gossipsub_strict_signed/f0de873c6b1b986511fd84b439ff94522b50b859 in 61 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/gossipsub_strict_signed/3917b2c65834996f187241cd7051e1afad696084
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/gossipsub_strict_signed/99aded0a1bc052f083790223bf5d37fa47c08162 in 74 ms
+***
+*** NOTE: fuzzing was not performed, you have only
+***       executed the target code on a fixed set of inputs.
+***
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/gossipsub_strict_signed/3917b2c65834996f187241cd7051e1afad696084 in 67 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/gossipsub_strict_signed/1ae61d7bf82feb96b612a164616c711c5d1fefcc
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/gossipsub_strict_signed/1ae61d7bf82feb96b612a164616c711c5d1fefcc in 73 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/gossipsub_strict_signed/ef4cd636c725e87ffeead7e379f29cc32886391c
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/gossipsub_strict_signed/ef4cd636c725e87ffeead7e379f29cc32886391c in 52 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/gossipsub_strict_signed/a46d4518468f7d3025e1e18d02f8cee1f00af576
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/gossipsub_strict_signed/a46d4518468f7d3025e1e18d02f8cee1f00af576 in 56 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/gossipsub_strict_signed/51c68923e1997d012cf5539500b8d6457a212ac0
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/gossipsub_strict_signed/51c68923e1997d012cf5539500b8d6457a212ac0 in 70 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/gossipsub_strict_signed/4112018c0a66bfff1183816bb8ea555d19b7cd0a
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/gossipsub_strict_signed/4112018c0a66bfff1183816bb8ea555d19b7cd0a in 54 ms
+***
+*** NOTE: fuzzing was not performed, you have only
+***       executed the target code on a fixed set of inputs.
+***
+Merging raw coverage data...
+Coverage data merged and saved in "/home/adethya/Documents/rust-libp2p/core/fuzz/coverage/gossipsub_strict_signed/coverage.profdata".
+==> llvm-cov HTML (full) → coverage/gossipsub_strict_signed/html
+==> llvm-cov HTML (focused) → coverage/gossipsub_strict_signed/html-focus
+==> llvm-cov report (focused rows)
+home/adethya/Documents/rust-libp2p/core/fuzz/fuzz_targets/gossipsub_strict_signed.rs                                                                                115                16    86.09%           3                 0   100.00%          89                 0   100.00%           0                 0         -
+home/adethya/Documents/rust-libp2p/protocols/gossipsub/src/backoff.rs                                                                                                90                68    24.44%          13                10    23.08%          97                71    26.80%           0                 0         -
+home/adethya/Documents/rust-libp2p/protocols/gossipsub/src/behaviour.rs                                                                                            1967              1415    28.06%         149               101    32.21%        2104              1411    32.94%           0                 0         -
+home/adethya/Documents/rust-libp2p/protocols/gossipsub/src/config.rs                                                                                                541               324    40.11%         112                65    41.96%         611               362    40.75%           0                 0         -
+home/adethya/Documents/rust-libp2p/protocols/gossipsub/src/error.rs                                                                                                  53                53     0.00%           8                 8     0.00%          39                39     0.00%           0                 0         -
+home/adethya/Documents/rust-libp2p/protocols/gossipsub/src/fuzz.rs                                                                                                  525               220    58.10%          41                20    51.22%         620               288    53.55%           0                 0         -
+home/adethya/Documents/rust-libp2p/protocols/gossipsub/src/fuzz_handler.rs                                                                                          256               153    40.23%          28                12    57.14%         289               161    44.29%           0                 0         -
+home/adethya/Documents/rust-libp2p/protocols/gossipsub/src/generated/gossipsub.pb.rs                                                                                 26                26     0.00%           4                 4     0.00%          26                26     0.00%           0                 0         -
+home/adethya/Documents/rust-libp2p/protocols/gossipsub/src/gossip_promises.rs                                                                                        41                32    21.95%           9                 7    22.22%          46                37    19.57%           0                 0         -
+home/adethya/Documents/rust-libp2p/protocols/gossipsub/src/handler.rs                                                                                               184                80    56.52%           9                 3    66.67%         221                75    66.06%           0                 0         -
+home/adethya/Documents/rust-libp2p/protocols/gossipsub/src/mcache.rs                                                                                                 98                43    56.12%          15                 6    60.00%         115                56    51.30%           0                 0         -
+home/adethya/Documents/rust-libp2p/protocols/gossipsub/src/peer_score.rs                                                                                            478               293    38.70%          42                20    52.38%         528               301    42.99%           0                 0         -
+home/adethya/Documents/rust-libp2p/protocols/gossipsub/src/peer_score/params.rs                                                                                     172                41    76.16%           8                 2    75.00%         184                51    72.28%           0                 0         -
+home/adethya/Documents/rust-libp2p/protocols/gossipsub/src/protocol.rs                                                                                              326               160    50.92%          21                12    42.86%         392               195    50.26%           0                 0         -
+home/adethya/Documents/rust-libp2p/protocols/gossipsub/src/queue.rs                                                                                                 108                28    74.07%          15                 4    73.33%         133                27    79.70%           0                 0         -
+home/adethya/Documents/rust-libp2p/protocols/gossipsub/src/subscription_filter.rs                                                                                    80                34    57.50%          13                 5    61.54%          98                34    65.31%           0                 0         -
+home/adethya/Documents/rust-libp2p/protocols/gossipsub/src/time_cache.rs                                                                                             58                10    82.76%          11                 1    90.91%          72                 9    87.50%           0                 0         -
+home/adethya/Documents/rust-libp2p/protocols/gossipsub/src/topic.rs                                                                                                  39                21    46.15%          10                 4    60.00%          40                19    52.50%           0                 0         -
+home/adethya/Documents/rust-libp2p/protocols/gossipsub/src/transform.rs                                                                                               8                 0   100.00%           2                 0   100.00%          15                 0   100.00%           0                 0         -
+home/adethya/Documents/rust-libp2p/protocols/gossipsub/src/types.rs                                                                                                 193               147    23.83%          26                18    30.77%         217               159    26.73%           0                 0         -
+==> text dump + zero-hit Err scan → coverage/gossipsub_strict_signed/text
+==> zero-hit lines mentioning Err (protocol.rs):
+  145|      0|        match iter.next().ok_or(Error::InvalidProtocolString)? {
+  147|      0|                let s = iter.next().ok_or(Error::InvalidProtocolString)?;
+  151|      0|                let s = iter.next().ok_or(Error::InvalidProtocolString)?;
+  157|      0|                let s = iter.next().ok_or(Error::InvalidProtocolString)?;
+  161|      0|                let s = iter.next().ok_or(Error::InvalidProtocolString)?;
+  165|      0|                let s = iter.next().ok_or(Error::InvalidProtocolString)?;
+  169|      0|                let s = iter.next().ok_or(Error::InvalidProtocolString)?;
+  173|      0|                let s = iter.next().ok_or(Error::InvalidProtocolString)?;
+  177|      0|                let s = iter.next().ok_or(Error::InvalidProtocolString)?;
+  181|      0|                let s = iter.next().ok_or(Error::InvalidProtocolString)?;
+  185|      0|                let s = iter.next().ok_or(Error::InvalidProtocolString)?;
+  191|      0|                let s = iter.next().ok_or(Error::InvalidProtocolString)?;
+  195|      0|                let s = iter.next().ok_or(Error::InvalidProtocolString)?;
+  198|      0|                    PeerId::from_bytes(&decoded).map_err(|e| Error::ParsingError(Box::new(e)))?;
+  205|      0|                .ok_or(Error::InvalidProtocolString)
+  210|      0|                .ok_or(Error::InvalidProtocolString)
+  219|      0|                let s = iter.next().ok_or(Error::InvalidProtocolString)?;
+  224|      0|                let s = iter.next().ok_or(Error::InvalidProtocolString)?;
+  232|      0|                let s = iter.next().ok_or(Error::InvalidProtocolString)?;
+  239|      0|                let s = iter.next().ok_or(Error::InvalidProtocolString)?;
+  243|      0|                let s = iter.next().ok_or(Error::InvalidProtocolString)?;
+  247|      0|                let s = iter.next().ok_or(Error::InvalidProtocolString)?;
+  253|      0|                    .ok_or(Error::InvalidProtocolString)?
+  258|      0|                    return Err(Error::InvalidProtocolString);
+  265|      0|                let s = iter.next().ok_or(Error::InvalidProtocolString)?;
+  268|      0|                    return Err(Error::InvalidProtocolString);
+  275|      0|                let s = iter.next().ok_or(Error::InvalidProtocolString)?;
+  281|      0|                let s = iter.next().ok_or(Error::InvalidProtocolString)?;
+  285|      0|            unknown => Err(Error::UnknownProtocolString(unknown.to_string())),
+  294|      0|                return Err(Error::DataLessThanLen);
+  371|      0|                let data = data.first_chunk::<10>().ok_or(Error::DataLessThanLen)?;
+  377|      0|                let data = data.first_chunk::<35>().ok_or(Error::DataLessThanLen)?;
+  385|      0|                        PeerId::from_bytes(data).map_err(|e| Error::ParsingError(Box::new(e)))?,
+  470|      0|            _ => Err(Error::UnknownProtocolId(id)),
+  816|      0|            let b32 = parts.next().ok_or(Error::InvalidMultiaddr)?;
+  818|      0|                return Err(Error::InvalidMultiaddr);
+  824|      0|                .ok_or(Error::InvalidMultiaddr)
+  829|      0|                return Err(Error::InvalidMultiaddr);
+  834|      0|                return Err(Error::InvalidMultiaddr);
+  840|      0|                    .map_err(|_| Error::InvalidMultiaddr)?
+
+Open: coverage/gossipsub_strict_signed/html/index.html
+Focus: coverage/gossipsub_strict_signed/html-focus/index.html
+Tips: ASAN_OPTIONS=symbolize=0 cargo +nightly fuzz run gossipsub_strict_signed -- -print_coverage=1 -print_funcs=0
+      ASAN_OPTIONS=symbolize=0 cargo +nightly fuzz cmin gossipsub_strict_signed

@@ -13,6 +13,16 @@ categories = ["network-programming", "asynchronous"]
 [features]
 metrics = ["prometheus-client"]
 partial-messages = []
+# Exposes `fuzz_behaviour` / `FuzzAction` / handler mock-I/O drivers for cargo-fuzz.
+# Not intended for production use.
+fuzzing = ["libp2p-swarm/fuzzing", "arbitrary", "libp2p-swarm/fuzzing"]
+# Loom concurrency models for Shared/Queue (not cargo-fuzz; do not enable in prod).
+# Run: cargo test -p libp2p-gossipsub --features loom --lib queue::loom_tests
+loom = ["dep:loom"]
+
+# Dependencies for fuzzing
+arbitrary = { version = "1.0", optional = true }
+libfuzzer-sys = { version = "0.4", optional = true }
 
 [dependencies]
 async-channel = "2.5"
@@ -30,6 +40,7 @@ web-time = { workspace = true }
 libp2p-core = { workspace = true }
 libp2p-identity = { workspace = true, features = ["rand"] }
 libp2p-swarm = { workspace = true }
+loom = { version = "0.7", optional = true }
 prost = { workspace = true }
 prost-codec = { workspace = true }
 rand = { workspace = true }

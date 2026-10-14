@@ -23,6 +23,11 @@ smallvec = "1.15"
 tracing = { workspace = true }
 unsigned-varint = { workspace = true, features = ["asynchronous_codec"] }
 
+[features]
+# Exposes `fuzz_frame_codec` / `fuzz_multiplexed_io` for cargo-fuzz harnesses.
+# Not intended for production use.
+fuzzing = []
+
 [dev-dependencies]
 tokio = { workspace = true, features = ["rt", "rt-multi-thread", "macros"] }
 criterion = { workspace = true }

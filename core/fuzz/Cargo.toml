@@ -1,0 +1,330 @@
+[package]
+name = "libp2p-core-fuzz"
+version = "0.0.0"
+publish = false
+edition = "2024"
+
+[package.metadata]
+cargo-fuzz = true
+
+# Keep the fuzz crate out of the parent rust-libp2p workspace so it can be
+# built independently with cargo-fuzz's nightly flags.
+[workspace]
+
+# Path deps (swarm/plaintext/…) resolve `libp2p-identity` via crates.io by default.
+# Patch so PeerId/Keypair match the local identity crate used by peer_id_from_bytes.
+[patch.crates-io]
+libp2p-identity = { path = "../../identity" }
+
+[features]
+default = []
+# After Finding #1 is fixed upstream, enable to make Display→FromStr a hard assert.
+hard_text_roundtrip = []
+# Keep real `PublicKey::verify` under cargo-fuzz `--cfg fuzzing` (Strict Gossipsub
+# signature lane). Default fuzz builds leave verify stubbed for Noise/swarm depth.
+fuzzing-real-verify = ["libp2p-identity/fuzzing-real-verify"]
+
+[dependencies]
+libfuzzer-sys = { version = "0.4", features = ["arbitrary-derive"] }
+# Pinned to the version resolved in the rust-libp2p workspace (Cargo.lock).
+# `asynchronous_codec` exposes `codec::Uvi` (same Decoder path mplex uses).
+unsigned-varint = { version = "0.8", features = ["asynchronous_codec"] }
+asynchronous-codec = "0.7"
+bytes = "1"
+futures = "0.3"
+
+[dependencies.libp2p-core]
+path = ".."
+
+# Direct identity dep with all key types so peer_id_from_bytes can hit RSA /
+# Secp256k1 / ECDSA protobuf+ASN.1 paths (core only enables ed25519+peerid).
+[dependencies.libp2p-identity]
+path = "../../identity"
+features = ["peerid", "ed25519", "rsa", "secp256k1", "ecdsa", "rand"]
+
+[dependencies.libp2p-mplex]
+path = "../../muxers/mplex"
+features = ["fuzzing"]
+
+[dependencies.multistream-select]
+path = "../../misc/multistream-select"
+features = ["fuzzing"]
+
+# Local checkout of yamux 0.14.0 (matches rust-libp2p Cargo.lock) with a
+# `fuzzing` feature that exposes header + connection entry points. The crates.io
+# package keeps `frame::header::{encode,decode}` crate-private.
+[dependencies.yamux]
+path = "../../../yamux/yamux"
+features = ["fuzzing"]
+
+# Gossipsub Behaviour action-sequence fuzzer (no transport).
+[dependencies.libp2p-gossipsub]
+path = "../../protocols/gossipsub"
+features = ["fuzzing"]
+
+# Kademlia Behaviour action-sequence fuzzer (no transport).
+[dependencies.libp2p-kad]
+path = "../../protocols/kad"
+features = ["fuzzing"]
+
+# Identify Behaviour / Handler mock-stream fuzzers (no transport).
+[dependencies.libp2p-identify]
+path = "../../protocols/identify"
+features = ["fuzzing"]
+
+[dependencies.libp2p-relay]
+path = "../../protocols/relay"
+features = ["fuzzing"]
+
+[dependencies.libp2p-dcutr]
+path = "../../protocols/dcutr"
+features = ["fuzzing"]
+
+[dependencies.libp2p-request-response]
+path = "../../protocols/request-response"
+features = ["fuzzing"]
+
+[dependencies.libp2p-autonat]
+path = "../../protocols/autonat"
+features = ["fuzzing"]
+
+# Swarm orchestrator: MemoryTransport + Noise XX / plaintext + yamux +
+# connection-limits composed with gossipsub/kad/identify (`macros` for derive).
+[dependencies.libp2p-swarm]
+path = "../../swarm"
+features = ["tokio", "macros"]
+
+[dependencies.libp2p-connection-limits]
+path = "../../misc/connection-limits"
+
+# Plaintext kept for fuzz-selectable transport (regression / faster mesh).
+[dependencies.libp2p-plaintext]
+path = "../../transports/plaintext"
+
+# Noise: swarm XX transport + payload/LP / structured XX harness target.
+[dependencies.libp2p-noise]
+path = "../../transports/noise"
+features = ["fuzzing"]
+
+# TLS: certificate parse/generate + structured mutual handshake upgrade.
+[dependencies.libp2p-tls]
+path = "../../transports/tls"
+features = ["fuzzing"]
+
+# QUIC: multiaddr parse + Config + quinn-proto Pair + swarm Security::Quic (tokio UDP).
+[dependencies.libp2p-quic]
+path = "../../transports/quic"
+features = ["fuzzing", "tokio"]
+
+[dependencies.libp2p-yamux]
+path = "../../muxers/yamux"
+
+[dependencies.tokio]
+version = "1.53"
+default-features = false
+# `test-util` enables `time::pause` / `advance` for deterministic idle-timeout fuzzing.
+# `net` is required for Security::Quic UDP loopback meshes in swarm_orchestrator.
+features = ["rt", "time", "test-util", "net"]
+
+[[bin]]
+name = "multiaddr_roundtrip"
+path = "fuzz_targets/multiaddr_roundtrip.rs"
+test = false
+doc = false
+bench = false
+
+[[bin]]
+name = "multiaddr_binary"
+path = "fuzz_targets/multiaddr_binary.rs"
+test = false
+doc = false
+bench = false
+
+[[bin]]
+name = "multiaddr_text"
+path = "fuzz_targets/multiaddr_text.rs"
+test = false
+doc = false
+bench = false
+
+[[bin]]
+name = "multiaddr_protocol_from_bytes"
+path = "fuzz_targets/multiaddr_protocol_from_bytes.rs"
+test = false
+doc = false
+bench = false
+
+[[bin]]
+name = "multiaddr_structured"
+path = "fuzz_targets/multiaddr_structured.rs"
+test = false
+doc = false
+bench = false
+
+[[bin]]
+name = "peer_id_from_bytes"
+path = "fuzz_targets/peer_id_from_bytes.rs"
+test = false
+doc = false
+bench = false
+
+[[bin]]
+name = "unsigned_varint_roundtrip"
+path = "fuzz_targets/unsigned_varint_roundtrip.rs"
+test = false
+doc = false
+bench = false
+
+[[bin]]
+name = "mplex_frame_codec"
+path = "fuzz_targets/mplex_frame_codec.rs"
+test = false
+doc = false
+bench = false
+
+[[bin]]
+name = "mplex_multiplexed_io"
+path = "fuzz_targets/mplex_multiplexed_io.rs"
+test = false
+doc = false
+bench = false
+
+[[bin]]
+name = "multistream_select_negotiation"
+path = "fuzz_targets/multistream_select_negotiation.rs"
+test = false
+doc = false
+bench = false
+
+[[bin]]
+name = "yamux_frame_header"
+path = "fuzz_targets/yamux_frame_header.rs"
+test = false
+doc = false
+bench = false
+
+[[bin]]
+name = "gossipsub_behaviour"
+path = "fuzz_targets/gossipsub_behaviour.rs"
+test = false
+doc = false
+bench = false
+
+[[bin]]
+name = "gossipsub_handler"
+path = "fuzz_targets/gossipsub_handler.rs"
+test = false
+doc = false
+bench = false
+
+[[bin]]
+name = "gossipsub_strict_signed"
+path = "fuzz_targets/gossipsub_strict_signed.rs"
+test = false
+doc = false
+bench = false
+
+[[bin]]
+name = "kademlia_behaviour"
+path = "fuzz_targets/kademlia_behaviour.rs"
+test = false
+doc = false
+bench = false
+
+[[bin]]
+name = "kademlia_handler"
+path = "fuzz_targets/kademlia_handler.rs"
+test = false
+doc = false
+bench = false
+
+[[bin]]
+name = "identify_behaviour"
+path = "fuzz_targets/identify_behaviour.rs"
+test = false
+doc = false
+bench = false
+
+[[bin]]
+name = "identify_handler"
+path = "fuzz_targets/identify_handler.rs"
+test = false
+doc = false
+bench = false
+
+[[bin]]
+name = "relay_behaviour"
+path = "fuzz_targets/relay_behaviour.rs"
+test = false
+doc = false
+bench = false
+
+[[bin]]
+name = "dcutr_behaviour"
+path = "fuzz_targets/dcutr_behaviour.rs"
+test = false
+doc = false
+bench = false
+
+[[bin]]
+name = "request_response_behaviour"
+path = "fuzz_targets/request_response_behaviour.rs"
+test = false
+doc = false
+bench = false
+
+[[bin]]
+name = "swarm_orchestrator"
+path = "fuzz_targets/swarm_orchestrator.rs"
+test = false
+doc = false
+bench = false
+
+[[bin]]
+name = "swarm_circuit"
+path = "fuzz_targets/swarm_circuit.rs"
+test = false
+doc = false
+bench = false
+
+[[bin]]
+name = "noise_handshake"
+path = "fuzz_targets/noise_handshake.rs"
+test = false
+doc = false
+bench = false
+
+[[bin]]
+name = "tls_handshake"
+path = "fuzz_targets/tls_handshake.rs"
+test = false
+doc = false
+bench = false
+
+[[bin]]
+name = "autonat_behaviour"
+path = "fuzz_targets/autonat_behaviour.rs"
+test = false
+doc = false
+bench = false
+
+[[bin]]
+name = "autonatv2_client"
+path = "fuzz_targets/autonatv2_client.rs"
+test = false
+doc = false
+bench = false
+
+[[bin]]
+name = "autonatv2_server"
+path = "fuzz_targets/autonatv2_server.rs"
+test = false
+doc = false
+bench = false
+
+[[bin]]
+name = "quic_handshake"
+path = "fuzz_targets/quic_handshake.rs"
+test = false
+doc = false
+bench = false

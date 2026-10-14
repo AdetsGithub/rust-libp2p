@@ -1,0 +1,105 @@
+# Text-form protocol tokens (multiaddr FromStr tokenizer)
+"/ip4/"
+"/ip6/"
+"/tcp/"
+"/udp/"
+"/dns/"
+"/dns4/"
+"/dns6/"
+"/dnsaddr/"
+"/unix/"
+"/p2p/"
+"/onion/"
+"/onion3/"
+"/certhash/"
+"/quic/"
+"/quic-v1/"
+"/tls/"
+"/noise/"
+"/ws/"
+"/wss/"
+"/http/"
+"/https/"
+"/p2p-circuit/"
+"/webrtc-direct/"
+"/webtransport/"
+"/memory/"
+"/sni/"
+"/http-path/"
+
+# Common text values
+"127.0.0.1"
+"0.0.0.0"
+"::1"
+"localhost"
+"4001"
+"QmcgpsyWgH8Y8ajJz1Cu72KnS5uo2Aa2LpzU7kinSupNKC"
+
+# Edge labels (Dns*/Unix) — empty label is exercised by structured text target
+"/"
+"//"
+"%"
+"%2f"
+
+# Raw protocol code bytes (unsigned-varint, values < 128 are single-byte)
+# 4=ip4, 6=tcp, 41=ip6, 42=ip6zone, 43=ipcidr, 53=dns, 54=dns4, 55=dns6, 56=dnsaddr
+"\x04"
+"\x06"
+"\x21"
+"\x29"
+"\x2A"
+"\x2B"
+"\x35"
+"\x36"
+"\x37"
+"\x38"
+# 132=sctp → 0x84 0x01
+"\x84\x01"
+# 273=udp → 0x91 0x02
+"\x91\x02"
+# 290=p2p-circuit → 0xA2 0x02
+"\xA2\x02"
+# 400=unix → 0x90 0x03
+"\x90\x03"
+# 421=p2p → 0xA5 0x03
+"\xA5\x03"
+# 444=onion → 0xBC 0x03
+"\xBC\x03"
+# 445=onion3 → 0xBD 0x03
+"\xBD\x03"
+# 448=tls → 0xC0 0x03
+"\xC0\x03"
+# 454=noise → 0xC6 0x03
+"\xC6\x03"
+# 460=quic → 0xCC 0x03
+"\xCC\x03"
+# 461=quic-v1 → 0xCD 0x03
+"\xCD\x03"
+# 465=webtransport → 0xD1 0x03
+"\xD1\x03"
+# 466=certhash → 0xD2 0x03
+"\xD2\x03"
+# 477=ws → 0xDD 0x03
+"\xDD\x03"
+# 480=http → 0xE0 0x03
+"\xE0\x03"
+# 777=memory → 0x89 0x06
+"\x89\x06"
+
+# Multi-byte varint continuations (stress unsigned-varint in code position)
+"\x80\x01"
+"\xFF\x01"
+"\x80\x80\x01"
+
+# Invalid UTF-8 payloads for length-prefixed string protocols (dns*/unix/sni/…)
+"\xFF"
+"\xC0\x80"
+"\xED\xA0\x80"
+
+# Truncated fixed-size prefixes: code only (ip4/tcp/ip6/onion3/memory) — aids
+# DataLessThanLen once a raw-wire or non-padded arm exists
+"\x04"
+"\x06"
+"\x29"
+"\xBD\x03"
+"\x89\x06"

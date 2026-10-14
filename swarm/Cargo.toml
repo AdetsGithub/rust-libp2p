@@ -35,6 +35,9 @@ wasm-bindgen-futures = { workspace = true }
 [features]
 macros = ["dep:libp2p-swarm-derive"]
 tokio = ["dep:tokio"]
+# Exposes `Stream::from_async_rw` for ConnectionHandler mock-I/O fuzz drivers.
+# Not intended for production use.
+fuzzing = ["multistream-select/fuzzing"]
 
 [dev-dependencies]
 either = "1.16"

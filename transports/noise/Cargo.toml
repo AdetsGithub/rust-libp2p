@@ -12,6 +12,7 @@ repository = "https://github.com/libp2p/rust-libp2p"
 asynchronous-codec = { workspace = true }
 bytes.workspace = true
 futures = { workspace = true }
+futures_ringbuf = { version = "0.4", optional = true }
 libp2p-core = { workspace = true }
 libp2p-identity = { workspace = true, features = ["ed25519"] }
 multiaddr = { workspace = true }
@@ -31,6 +32,10 @@ snow = { version = "0.10", features = ["ring-resolver"], default-features = fals
 snow = { version = "0.10", features = ["default-resolver", "default-resolver-crypto"], default-features = false }
 # TODO: remove when snow updates to getrandom >= 0.4
 getrandom = { version = "0.3", features = ["wasm_js"] }
+
+[features]
+# Exposes `fuzz_noise` for cargo-fuzz harnesses. Not intended for production.
+fuzzing = ["libp2p-identity/rand", "dep:futures_ringbuf"]
 
 [dev-dependencies]
 futures_ringbuf = "0.4"

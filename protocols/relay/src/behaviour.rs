@@ -342,6 +342,36 @@ impl Behaviour {
         }
     }
 
+    /// Active reservation count across all peers (fuzz harness invariant checks).
+    #[cfg(feature = "fuzzing")]
+    pub fn fuzz_active_reservation_count(&self) -> usize {
+        self.connections
+            .values()
+            .map(|cs| cs.values().filter(|status| status.is_active()).count())
+            .sum()
+    }
+
+    /// Tracked circuit count (fuzz harness invariant checks).
+    #[cfg(feature = "fuzzing")]
+    pub fn fuzz_circuit_count(&self) -> usize {
+        self.circuits.len()
+    }
+
+    /// Active circuit ids (newest last) for attribution / ghost-close injection.
+    #[cfg(feature = "fuzzing")]
+    pub fn fuzz_circuit_ids(&self) -> Vec<CircuitId> {
+        self.circuits.ids()
+    }
+
+    /// Whether `peer` still has an active reservation on any connection.
+    #[cfg(feature = "fuzzing")]
+    pub fn fuzz_peer_has_active_reservation(&self, peer: PeerId) -> bool {
+        self.connections
+            .get(&peer)
+            .map(|cs| cs.values().any(|status| status.is_active()))
+            .unwrap_or(false)
+    }
+
     fn reconfigure_relay_status(&mut self) {
         if self.connections.is_empty() {
             return;
@@ -898,6 +928,13 @@ impl CircuitsTracker {
         self.circuits.len()
     }
 
+    #[cfg(feature = "fuzzing")]
+    fn ids(&self) -> Vec<CircuitId> {
+        let mut ids: Vec<_> = self.circuits.keys().copied().collect();
+        ids.sort_by_key(|CircuitId(id)| *id);
+        ids
+    }
+
     fn insert(&mut self, circuit: Circuit) -> CircuitId {
         let id = self.next_id;
         self.next_id = self.next_id + 1;
@@ -968,6 +1005,14 @@ enum CircuitStatus {
 
 #[derive(Default, Clone, Copy, Debug, Hash, Eq, PartialEq)]
 pub struct CircuitId(u64);
+
+#[cfg(feature = "fuzzing")]
+impl CircuitId {
+    /// Construct a circuit id for handler-event injection in fuzz harnesses.
+    pub fn fuzz_from_raw(id: u64) -> Self {
+        CircuitId(id)
+    }
+}
 
 impl Add<u64> for CircuitId {
     type Output = CircuitId;

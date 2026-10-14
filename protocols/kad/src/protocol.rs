@@ -201,7 +201,7 @@ pub struct Codec<A, B> {
     __phantom: PhantomData<(A, B)>,
 }
 impl<A, B> Codec<A, B> {
-    fn new(max_packet_size: usize) -> Self {
+    pub(crate) fn new(max_packet_size: usize) -> Self {
         Codec {
             codec: prost_codec::Codec::new(max_packet_size),
             __phantom: PhantomData,

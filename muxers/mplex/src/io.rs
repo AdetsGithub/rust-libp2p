@@ -1146,6 +1146,256 @@ impl NotifierOpen {
 /// considered unhealthy and terminates with an error.
 const EXTRA_PENDING_FRAMES: usize = 1000;
 
+/// Drive [`Multiplexed`] against attacker-controlled wire bytes on a mock
+/// socket (EOF when entropy ends; optional fragmented reads).
+///
+/// Exercises `io.rs` open / data / close / reset handling, buffer overflow
+/// [`MaxBufferBehaviour`], unknown-stream data drops, and outbound open /
+/// write / half-close / drop (pending Reset) paths. Config is clamped for
+/// DoS hunting.
+///
+/// Input layout:
+/// - `data[0]`: config bits —
+///   bit0 = `MaxBufferBehaviour` (`0` Block, `1` ResetStream),
+///   bit1 = attempt outbound opens (budget = `1..=5`),
+///   bits2–4 = `max_buffer_len` in `1..=8`,
+///   bits5–7 = `max_substreams` in `2..=9`
+/// - `data[1]`: low 6 bits = max bytes per mock `poll_read` (`1..=64`);
+///   bit6 = loopback local writes as further remote traffic (half-close races)
+/// - `data[2..]`: wire bytes (raw or structured-encoded by the harness)
+///
+/// The cargo-fuzz `Arbitrary` harness biases bit0=`ResetStream`, tiny
+/// `max_buffer_len` (1..=2), and dual-Open + Data floods so the overflow
+/// `MaxBufferBehaviour::ResetStream` arm is exercised (cross-stream buffer
+/// while `poll_read_stream` waits on another id).
+///
+/// Invariant: never panics; always terminates within a bounded poll budget.
+#[cfg(feature = "fuzzing")]
+pub fn fuzz_multiplexed_io(data: &[u8]) {
+    use std::{
+        cell::RefCell,
+        collections::VecDeque,
+        pin::Pin,
+        rc::Rc,
+        task::{Context, Poll},
+    };
+
+    use futures::{
+        io::{AsyncRead, AsyncWrite},
+        task::noop_waker_ref,
+    };
+
+    if data.is_empty() {
+        return;
+    }
+
+    let ctrl = data[0];
+    let behaviour = if ctrl & 1 == 0 {
+        MaxBufferBehaviour::Block
+    } else {
+        MaxBufferBehaviour::ResetStream
+    };
+    let open_outbound = ctrl & 2 != 0;
+    let max_buffer_len = 1 + ((ctrl >> 2) & 7) as usize; // 1..=8
+    let max_substreams = 2 + ((ctrl >> 5) & 7) as usize; // 2..=9
+
+    let (chunk_cap, loopback, wire) = if data.len() >= 2 {
+        let b1 = data[1];
+        (
+            1 + (b1 as usize % 64), // 1..=64
+            b1 & 0x40 != 0,
+            &data[2..],
+        )
+    } else {
+        (64usize, false, &[][..])
+    };
+
+    /// Shared read queue: starts as fuzzer wire; loopback appends local writes.
+    struct SharedBuf {
+        q: VecDeque<u8>,
+    }
+
+    struct MockIo {
+        buf: Rc<RefCell<SharedBuf>>,
+        chunk_cap: usize,
+        loopback: bool,
+    }
+
+    impl AsyncRead for MockIo {
+        fn poll_read(
+            self: Pin<&mut Self>,
+            _cx: &mut Context<'_>,
+            buf: &mut [u8],
+        ) -> Poll<io::Result<usize>> {
+            let this = self.get_mut();
+            let mut shared = this.buf.borrow_mut();
+            let n = shared.q.len().min(buf.len()).min(this.chunk_cap);
+            for b in buf.iter_mut().take(n) {
+                *b = shared.q.pop_front().expect("len checked");
+            }
+            // n == 0 → EOF (not Pending), so the muxer tears down.
+            Poll::Ready(Ok(n))
+        }
+    }
+
+    impl AsyncWrite for MockIo {
+        fn poll_write(
+            self: Pin<&mut Self>,
+            _cx: &mut Context<'_>,
+            buf: &[u8],
+        ) -> Poll<io::Result<usize>> {
+            let this = self.get_mut();
+            if this.loopback {
+                // Cap loopback growth so write amplification cannot OOM the fuzzer.
+                let mut shared = this.buf.borrow_mut();
+                const MAX_LOOPBACK: usize = 64 * 1024;
+                let room = MAX_LOOPBACK.saturating_sub(shared.q.len());
+                shared.q.extend(buf.iter().copied().take(room));
+            }
+            Poll::Ready(Ok(buf.len()))
+        }
+
+        fn poll_flush(self: Pin<&mut Self>, _cx: &mut Context<'_>) -> Poll<io::Result<()>> {
+            Poll::Ready(Ok(()))
+        }
+
+        fn poll_close(self: Pin<&mut Self>, _cx: &mut Context<'_>) -> Poll<io::Result<()>> {
+            Poll::Ready(Ok(()))
+        }
+    }
+
+    const MAX_HELD: usize = 16;
+    const MAX_POLLS: usize = 50_000;
+    const MAX_IDLE_PENDING: usize = 64;
+
+    let mut config = Config::new();
+    config
+        .set_max_num_streams(max_substreams)
+        .set_max_buffer_size(max_buffer_len)
+        .set_max_buffer_behaviour(behaviour)
+        .set_split_send_size(128);
+
+    let shared = Rc::new(RefCell::new(SharedBuf {
+        q: wire.iter().copied().collect(),
+    }));
+    let mut mux = Multiplexed::new(
+        MockIo {
+            buf: Rc::clone(&shared),
+            chunk_cap,
+            loopback,
+        },
+        config,
+    );
+
+    let cx = Context::from_waker(noop_waker_ref());
+    let mut streams: Vec<LocalStreamId> = Vec::new();
+    let write_buf = [0x6du8; 64]; // 'm'
+    let mut idle_pending = 0usize;
+    // Multiple outbound opens → concurrent buffer pressure across streams.
+    let mut outbound_left = if open_outbound {
+        1 + max_buffer_len.min(4)
+    } else {
+        0
+    };
+    let mut close_round = 0usize;
+
+    for _ in 0..MAX_POLLS {
+        let mut progress = false;
+
+        if outbound_left > 0 && streams.len() < MAX_HELD {
+            match mux.poll_open_stream(&cx) {
+                Poll::Ready(Ok(id)) => {
+                    streams.push(id);
+                    progress = true;
+                    outbound_left -= 1;
+                }
+                Poll::Ready(Err(_)) => outbound_left = 0,
+                Poll::Pending => {}
+            }
+        }
+
+        match mux.poll_next_stream(&cx) {
+            Poll::Ready(Ok(id)) => {
+                if streams.len() < MAX_HELD {
+                    streams.push(id);
+                } else {
+                    // Still exercise accept → immediate drop / Reset.
+                    mux.drop_stream(id);
+                }
+                progress = true;
+                idle_pending = 0;
+                // After accept, try another outbound for multi-stream pressure.
+                if open_outbound {
+                    outbound_left = outbound_left.saturating_add(1).min(5);
+                }
+            }
+            Poll::Ready(Err(_)) => return,
+            Poll::Pending => {}
+        }
+
+        let mut i = 0;
+        while i < streams.len() {
+            let id = streams[i];
+            let mut drop_it = false;
+            match mux.poll_read_stream(&cx, id) {
+                Poll::Ready(Ok(Some(_))) => progress = true,
+                Poll::Ready(Ok(None)) => drop_it = true, // EOF / reset
+                Poll::Ready(Err(_)) => return,
+                Poll::Pending => {}
+            }
+            if !drop_it {
+                match mux.poll_write_stream(&cx, id, &write_buf) {
+                    Poll::Ready(Ok(_)) => {
+                        progress = true;
+                        let _ = mux.poll_flush_stream(&cx, id);
+                    }
+                    Poll::Ready(Err(_)) => drop_it = true,
+                    Poll::Pending => {}
+                }
+            }
+            // Periodically half-close to hit Close frame send paths.
+            if !drop_it && close_round % 7 == 3 {
+                match mux.poll_close_stream(&cx, id) {
+                    Poll::Ready(Ok(())) => progress = true,
+                    Poll::Ready(Err(_)) => drop_it = true,
+                    Poll::Pending => {}
+                }
+            }
+            if drop_it {
+                mux.drop_stream(id);
+                streams.swap_remove(i);
+                progress = true;
+            } else {
+                i += 1;
+            }
+        }
+        close_round = close_round.wrapping_add(1);
+
+        match mux.poll_flush(&cx) {
+            Poll::Ready(Ok(())) => {}
+            Poll::Ready(Err(_)) => return,
+            Poll::Pending => {}
+        }
+
+        if progress {
+            idle_pending = 0;
+            continue;
+        }
+
+        idle_pending = idle_pending.saturating_add(1);
+        let unread = shared.borrow().q.len();
+        if unread == 0 && (streams.is_empty() || idle_pending >= MAX_IDLE_PENDING) {
+            // Drain remaining held streams (pending Reset on drop).
+            for id in streams.drain(..) {
+                mux.drop_stream(id);
+            }
+            let _ = mux.poll_flush(&cx);
+            let _ = mux.poll_close(&cx);
+            return;
+        }
+    }
+}
+
 #[cfg(test)]
 mod tests {
     use std::{collections::HashSet, num::NonZeroU8, ops::DerefMut, pin::Pin};

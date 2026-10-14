@@ -1,0 +1,28 @@
+# Kademlia DHT protobuf Message fragments (dht.proto / MessageType enum).
+# Behaviour harness feeds the inner Message protobuf via HandlerEvent.
+
+# Message.type varint field 1 values: PUT_VALUE=0, GET_VALUE=1, ADD_PROVIDER=2,
+# GET_PROVIDERS=3, FIND_NODE=4, PING=5
+msg_type_put_value="\x08\x00"
+msg_type_get_value="\x08\x01"
+msg_type_add_provider="\x08\x02"
+msg_type_get_providers="\x08\x03"
+msg_type_find_node="\x08\x04"
+msg_type_ping="\x08\x05"
+
+# Message.key = field 2 (bytes)
+msg_key="\x12"
+
+# Message.clusterLevelRaw = field 10? (skip) — closerPeers field 8, providerPeers 9
+msg_closer_peers="\x42"
+msg_provider_peers="\x4A"
+msg_record="\x52"
+
+# Protocol name fragment
+proto_kad="/ipfs/kad/1.0.0"
+
+# Action-weight helpers (GetRecordEmpty / FindNodeRes / GetClosestPeers bands)
+resp_empty_band="\x00\x01"
+resp_findnode_band="\x02\x03"
+closest_band="\x13\x14\x15\x16\x17"
+get_record_band="\x0E\x0F\x10\x11\x12"

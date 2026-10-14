@@ -1,0 +1,36 @@
+# mplex varint header = (stream_id << 3) | flag
+# flag: Open=0 DataL=1 DataD=2 CloseL=3 CloseD=4 ResetL=5 ResetD=6
+
+# Open stream 0 / 1
+open_s0="\x00\x00"
+open_s1="\x08\x00"
+
+# Data dialer stream 0 with small payloads
+data_d0_empty="\x02\x00"
+data_d0_1="\x02\x01"
+data_d0_ping="\x02\x04ping"
+
+# Close / Reset dialer stream 0
+close_d0="\x04\x00"
+reset_d0="\x06\x00"
+
+# Flag-only single-byte headers (stream 0)
+flag_open="\x00"
+flag_data_l="\x01"
+flag_data_d="\x02"
+flag_close_l="\x03"
+flag_close_d="\x04"
+flag_reset_l="\x05"
+flag_reset_d="\x06"
+
+# Multi-byte varint length / header edges
+len_0="\x00"
+len_1="\x01"
+uvi_0x80="\x80\x01"
+
+# Ctrl-byte helpers: ResetStream (bit0) + tiny max_buffer_len (bits2–4 = 0/1)
+ctrl_reset_tiny="\x01"
+ctrl_reset_out_tiny="\x03"
+ctrl_reset_buf2="\x05"
+# Dual-open headers (sid0 Open, sid1 Open)
+open_s0_s1="\x00\x00\x08\x00"

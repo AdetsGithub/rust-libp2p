@@ -1,0 +1,484 @@
+warning: unreachable call
+   --> /home/adethya/Documents/rust-libp2p/swarm/src/connection/pool/task.rs:113:37
+    |
+113 |         Either::Left((Ok(v), _)) => libp2p_core::util::unreachable(v),
+    |                                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ - any code following this expression is unreachable
+    |                                     |
+    |                                     unreachable call
+    |
+    = note: `#[warn(unreachable_code)]` (part of `#[warn(unused)]`) on by default
+
+warning: unreachable call
+   --> /home/adethya/Documents/rust-libp2p/swarm/src/connection/pool/task.rs:151:37
+    |
+151 |         Either::Left((Ok(v), _)) => libp2p_core::util::unreachable(v),
+    |                                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ - any code following this expression is unreachable
+    |                                     |
+    |                                     unreachable call
+
+warning: unreachable call
+   --> /home/adethya/Documents/rust-libp2p/swarm/src/behaviour/toggle.rs:211:41
+    |
+211 |             future::Either::Right(v) => libp2p_core::util::unreachable(v),
+    |                                         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ - any code following this expression is unreachable
+    |                                         |
+    |                                         unreachable call
+
+warning: unreachable call
+   --> /home/adethya/Documents/rust-libp2p/swarm/src/behaviour/toggle.rs:251:33
+    |
+251 |             Either::Right(v) => libp2p_core::util::unreachable(v),
+    |                                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ - any code following this expression is unreachable
+    |                                 |
+    |                                 unreachable call
+
+warning: unreachable call
+  --> /home/adethya/Documents/rust-libp2p/swarm/src/dummy.rs:51:9
+   |
+51 |         libp2p_core::util::unreachable(event)
+   |         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ ----- any code following this expression is unreachable
+   |         |
+   |         unreachable call
+
+warning: unreachable call
+  --> /home/adethya/Documents/rust-libp2p/swarm/src/dummy.rs:79:9
+   |
+79 |         libp2p_core::util::unreachable(event)
+   |         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ ----- any code following this expression is unreachable
+   |         |
+   |         unreachable call
+
+warning: unreachable call
+  --> /home/adethya/Documents/rust-libp2p/swarm/src/dummy.rs:96:19
+   |
+96 |             }) => libp2p_core::util::unreachable(protocol),
+   |                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ -------- any code following this expression is unreachable
+   |                   |
+   |                   unreachable call
+
+warning: unreachable call
+  --> /home/adethya/Documents/rust-libp2p/swarm/src/dummy.rs:99:19
+   |
+99 |             }) => libp2p_core::util::unreachable(protocol),
+   |                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ -------- any code following this expression is unreachable
+   |                   |
+   |                   unreachable call
+
+warning: unreachable call
+   --> /home/adethya/Documents/rust-libp2p/swarm/src/dummy.rs:102:49
+    |
+102 |                 StreamUpgradeError::Apply(e) => libp2p_core::util::unreachable(e),
+    |                                                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ - any code following this expression is unreachable
+    |                                                 |
+    |                                                 unreachable call
+
+warning: unreachable call
+  --> /home/adethya/Documents/rust-libp2p/swarm/src/handler/pending.rs:59:9
+   |
+59 |         libp2p_core::util::unreachable(v)
+   |         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ - any code following this expression is unreachable
+   |         |
+   |         unreachable call
+
+warning: unreachable call
+  --> /home/adethya/Documents/rust-libp2p/swarm/src/handler/pending.rs:76:19
+   |
+76 |             }) => libp2p_core::util::unreachable(protocol),
+   |                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ -------- any code following this expression is unreachable
+   |                   |
+   |                   unreachable call
+
+warning: unreachable call
+  --> /home/adethya/Documents/rust-libp2p/swarm/src/handler/pending.rs:81:17
+   |
+81 |                 libp2p_core::util::unreachable(protocol);
+   |                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ -------- any code following this expression is unreachable
+   |                 |
+   |                 unreachable call
+
+warning: `libp2p-swarm` (lib) generated 12 warnings
+   Compiling libp2p-gossipsub v0.51.0 (/home/adethya/Documents/rust-libp2p/protocols/gossipsub)
+warning: unreachable call
+   --> /home/adethya/Documents/rust-libp2p/protocols/kad/src/handler.rs:518:41
+    |
+518 |             future::Either::Right(p) => libp2p_core::util::unreachable(p),
+    |                                         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ - any code following this expression is unreachable
+    |                                         |
+    |                                         unreachable call
+    |
+    = note: `#[warn(unreachable_code)]` (part of `#[warn(unused)]`) on by default
+
+warning: unreachable call
+   --> /home/adethya/Documents/rust-libp2p/misc/connection-limits/src/lib.rs:464:9
+    |
+464 |         libp2p_core::util::unreachable(event)
+    |         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ ----- any code following this expression is unreachable
+    |         |
+    |         unreachable call
+    |
+    = note: `#[warn(unreachable_code)]` (part of `#[warn(unused)]`) on by default
+
+warning: `libp2p-kad` (lib) generated 1 warning
+warning: `libp2p-connection-limits` (lib) generated 1 warning
+warning: unreachable call
+   --> /home/adethya/Documents/rust-libp2p/protocols/gossipsub/src/handler.rs:514:45
+    |
+514 |                         Either::Right(v) => libp2p_core::util::unreachable(v),
+    |                                             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ - any code following this expression is unreachable
+    |                                             |
+    |                                             unreachable call
+    |
+    = note: `#[warn(unreachable_code)]` (part of `#[warn(unused)]`) on by default
+
+warning: unreachable call
+   --> /home/adethya/Documents/rust-libp2p/protocols/gossipsub/src/handler.rs:528:27
+    |
+528 |                     }) => libp2p_core::util::unreachable(e),
+    |                           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ - any code following this expression is unreachable
+    |                           |
+    |                           unreachable call
+
+warning: `libp2p-gossipsub` (lib) generated 2 warnings
+   Compiling libp2p-core-fuzz v0.0.0 (/home/adethya/Documents/rust-libp2p/core/fuzz)
+    Finished `release` profile [optimized + debuginfo] target(s) in 1m 17s
+warning: unreachable call
+   --> /home/adethya/Documents/rust-libp2p/swarm/src/connection/pool/task.rs:113:37
+    |
+113 |         Either::Left((Ok(v), _)) => libp2p_core::util::unreachable(v),
+    |                                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ - any code following this expression is unreachable
+    |                                     |
+    |                                     unreachable call
+    |
+    = note: `#[warn(unreachable_code)]` (part of `#[warn(unused)]`) on by default
+
+warning: unreachable call
+   --> /home/adethya/Documents/rust-libp2p/swarm/src/connection/pool/task.rs:151:37
+    |
+151 |         Either::Left((Ok(v), _)) => libp2p_core::util::unreachable(v),
+    |                                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ - any code following this expression is unreachable
+    |                                     |
+    |                                     unreachable call
+
+warning: unreachable call
+   --> /home/adethya/Documents/rust-libp2p/swarm/src/behaviour/toggle.rs:211:41
+    |
+211 |             future::Either::Right(v) => libp2p_core::util::unreachable(v),
+    |                                         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ - any code following this expression is unreachable
+    |                                         |
+    |                                         unreachable call
+
+warning: unreachable call
+   --> /home/adethya/Documents/rust-libp2p/swarm/src/behaviour/toggle.rs:251:33
+    |
+251 |             Either::Right(v) => libp2p_core::util::unreachable(v),
+    |                                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ - any code following this expression is unreachable
+    |                                 |
+    |                                 unreachable call
+
+warning: unreachable call
+  --> /home/adethya/Documents/rust-libp2p/swarm/src/dummy.rs:51:9
+   |
+51 |         libp2p_core::util::unreachable(event)
+   |         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ ----- any code following this expression is unreachable
+   |         |
+   |         unreachable call
+
+warning: unreachable call
+  --> /home/adethya/Documents/rust-libp2p/swarm/src/dummy.rs:79:9
+   |
+79 |         libp2p_core::util::unreachable(event)
+   |         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ ----- any code following this expression is unreachable
+   |         |
+   |         unreachable call
+
+warning: unreachable call
+  --> /home/adethya/Documents/rust-libp2p/swarm/src/dummy.rs:96:19
+   |
+96 |             }) => libp2p_core::util::unreachable(protocol),
+   |                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ -------- any code following this expression is unreachable
+   |                   |
+   |                   unreachable call
+
+warning: unreachable call
+  --> /home/adethya/Documents/rust-libp2p/swarm/src/dummy.rs:99:19
+   |
+99 |             }) => libp2p_core::util::unreachable(protocol),
+   |                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ -------- any code following this expression is unreachable
+   |                   |
+   |                   unreachable call
+
+warning: unreachable call
+   --> /home/adethya/Documents/rust-libp2p/swarm/src/dummy.rs:102:49
+    |
+102 |                 StreamUpgradeError::Apply(e) => libp2p_core::util::unreachable(e),
+    |                                                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ - any code following this expression is unreachable
+    |                                                 |
+    |                                                 unreachable call
+
+warning: unreachable call
+  --> /home/adethya/Documents/rust-libp2p/swarm/src/handler/pending.rs:59:9
+   |
+59 |         libp2p_core::util::unreachable(v)
+   |         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ - any code following this expression is unreachable
+   |         |
+   |         unreachable call
+
+warning: unreachable call
+  --> /home/adethya/Documents/rust-libp2p/swarm/src/handler/pending.rs:76:19
+   |
+76 |             }) => libp2p_core::util::unreachable(protocol),
+   |                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ -------- any code following this expression is unreachable
+   |                   |
+   |                   unreachable call
+
+warning: unreachable call
+  --> /home/adethya/Documents/rust-libp2p/swarm/src/handler/pending.rs:81:17
+   |
+81 |                 libp2p_core::util::unreachable(protocol);
+   |                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ -------- any code following this expression is unreachable
+   |                 |
+   |                 unreachable call
+
+warning: `libp2p-swarm` (lib) generated 12 warnings
+warning: unreachable call
+   --> /home/adethya/Documents/rust-libp2p/protocols/gossipsub/src/handler.rs:514:45
+    |
+514 |                         Either::Right(v) => libp2p_core::util::unreachable(v),
+    |                                             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ - any code following this expression is unreachable
+    |                                             |
+    |                                             unreachable call
+    |
+    = note: `#[warn(unreachable_code)]` (part of `#[warn(unused)]`) on by default
+
+warning: unreachable call
+   --> /home/adethya/Documents/rust-libp2p/protocols/gossipsub/src/handler.rs:528:27
+    |
+528 |                     }) => libp2p_core::util::unreachable(e),
+    |                           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ - any code following this expression is unreachable
+    |                           |
+    |                           unreachable call
+
+warning: unreachable call
+   --> /home/adethya/Documents/rust-libp2p/protocols/kad/src/handler.rs:518:41
+    |
+518 |             future::Either::Right(p) => libp2p_core::util::unreachable(p),
+    |                                         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ - any code following this expression is unreachable
+    |                                         |
+    |                                         unreachable call
+    |
+    = note: `#[warn(unreachable_code)]` (part of `#[warn(unused)]`) on by default
+
+warning: unreachable call
+   --> /home/adethya/Documents/rust-libp2p/misc/connection-limits/src/lib.rs:464:9
+    |
+464 |         libp2p_core::util::unreachable(event)
+    |         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ ----- any code following this expression is unreachable
+    |         |
+    |         unreachable call
+    |
+    = note: `#[warn(unreachable_code)]` (part of `#[warn(unused)]`) on by default
+
+warning: `libp2p-gossipsub` (lib) generated 2 warnings
+warning: `libp2p-kad` (lib) generated 1 warning
+warning: `libp2p-connection-limits` (lib) generated 1 warning
+    Finished `release` profile [optimized + debuginfo] target(s) in 0.25s
+     Running `target/x86_64-unknown-linux-gnu/release/gossipsub_strict_signed -artifact_prefix=/home/adethya/Documents/rust-libp2p/core/fuzz/artifacts/gossipsub_strict_signed/ -dict=dicts/gossipsub.dict -print_funcs=0 -max_len=4096 -len_control=0 -rss_limit_mb=4096 -max_total_time=60 corpus/gossipsub_strict_signed seeds/gossipsub_strict_signed`
+Dictionary: 21 entries
+INFO: Running with entropic power schedule (0xFF, 100).
+INFO: Seed: 3944414425
+INFO: Loaded 1 modules   (76027 inline 8-bit counters): 76027 [0x5a7a4ebfd860, 0x5a7a4ec1015b), 
+INFO: Loaded 1 PC tables (76027 PCs): 76027 [0x5a7a4ec10160,0x5a7a4ed39110), 
+INFO:        0 files found in corpus/gossipsub_strict_signed
+INFO:        4 files found in seeds/gossipsub_strict_signed
+INFO: seed corpus: files: 4 min: 49b max: 101b total: 318b rss: 59Mb
+#9	INITED cov: 3646 ft: 5350 corp: 4/318b exec/s: 0 rss: 59Mb
+#11	NEW    cov: 3687 ft: 5828 corp: 5/452b lim: 4096 exec/s: 0 rss: 59Mb L: 134/134 MS: 1 CrossOver-
+#13	REDUCE cov: 3687 ft: 5828 corp: 5/445b lim: 4096 exec/s: 0 rss: 59Mb L: 42/134 MS: 1 EraseBytes-
+#17	REDUCE cov: 3690 ft: 6700 corp: 6/530b lim: 4096 exec/s: 0 rss: 60Mb L: 85/134 MS: 2 InsertByte-CopyPart-
+#19	NEW    cov: 3690 ft: 6727 corp: 7/617b lim: 4096 exec/s: 0 rss: 60Mb L: 87/134 MS: 1 ChangeByte-
+#23	NEW    cov: 3690 ft: 6741 corp: 8/751b lim: 4096 exec/s: 0 rss: 62Mb L: 134/134 MS: 2 ChangeByte-CopyPart-
+#27	NEW    cov: 3690 ft: 6746 corp: 9/885b lim: 4096 exec/s: 0 rss: 63Mb L: 134/134 MS: 2 ManualDict-CopyPart- DE: "AAAA"-
+#35	NEW    cov: 3705 ft: 6987 corp: 10/1304b lim: 4096 exec/s: 0 rss: 65Mb L: 419/419 MS: 4 InsertRepeatedBytes-CopyPart-ChangeBit-ManualDict- DE: "\010\011\012\013\014\015"-
+#41	NEW    cov: 3751 ft: 7134 corp: 11/1398b lim: 4096 exec/s: 0 rss: 66Mb L: 94/419 MS: 3 ManualDict-CrossOver-ManualDict- DE: "\336\336\336\336"-"\032\033\034"-
+#43	NEW    cov: 3757 ft: 7149 corp: 12/1473b lim: 4096 exec/s: 0 rss: 66Mb L: 75/419 MS: 1 EraseBytes-
+#55	NEW    cov: 3757 ft: 7154 corp: 13/1567b lim: 4096 exec/s: 55 rss: 69Mb L: 94/419 MS: 1 CopyPart-
+#67	NEW    cov: 3757 ft: 7163 corp: 14/1654b lim: 4096 exec/s: 67 rss: 72Mb L: 87/419 MS: 1 CrossOver-
+#69	REDUCE cov: 3761 ft: 7168 corp: 15/1724b lim: 4096 exec/s: 69 rss: 72Mb L: 70/419 MS: 1 CopyPart-
+#73	NEW    cov: 3761 ft: 7171 corp: 16/1978b lim: 4096 exec/s: 73 rss: 73Mb L: 254/419 MS: 2 CopyPart-CopyPart-
+#75	NEW    cov: 3765 ft: 7175 corp: 17/2063b lim: 4096 exec/s: 75 rss: 74Mb L: 85/419 MS: 1 ManualDict- DE: "@"-
+#88	NEW    cov: 3779 ft: 7208 corp: 18/2157b lim: 4096 exec/s: 88 rss: 76Mb L: 94/419 MS: 2 ChangeBinInt-ShuffleBytes-
+#100	NEW    cov: 3780 ft: 7209 corp: 19/2288b lim: 4096 exec/s: 50 rss: 79Mb L: 131/419 MS: 1 CrossOver-
+#114	NEW    cov: 3787 ft: 7216 corp: 20/2375b lim: 4096 exec/s: 57 rss: 83Mb L: 87/419 MS: 2 ShuffleBytes-ManualDict- DE: "\022"-
+#116	NEW    cov: 3788 ft: 7227 corp: 21/2462b lim: 4096 exec/s: 58 rss: 83Mb L: 87/419 MS: 1 ManualDict- DE: "AAAA"-
+#124	NEW    cov: 3788 ft: 7332 corp: 22/2605b lim: 4096 exec/s: 62 rss: 85Mb L: 143/419 MS: 4 ChangeBit-CrossOver-ChangeBit-CopyPart-
+#136	NEW    cov: 3789 ft: 7393 corp: 23/2690b lim: 4096 exec/s: 68 rss: 88Mb L: 85/419 MS: 1 ShuffleBytes-
+#152	NEW    cov: 3792 ft: 7398 corp: 24/2912b lim: 4096 exec/s: 50 rss: 92Mb L: 222/419 MS: 3 InsertRepeatedBytes-CrossOver-EraseBytes-
+#158	NEW    cov: 3794 ft: 7506 corp: 25/3046b lim: 4096 exec/s: 52 rss: 93Mb L: 134/419 MS: 3 ShuffleBytes-CopyPart-ChangeBit-
+#161	NEW    cov: 3794 ft: 7509 corp: 26/3133b lim: 4096 exec/s: 53 rss: 94Mb L: 87/419 MS: 2 CopyPart-ShuffleBytes-
+#165	NEW    cov: 3794 ft: 7510 corp: 27/3290b lim: 4096 exec/s: 55 rss: 95Mb L: 157/419 MS: 2 PersAutoDict-InsertRepeatedBytes- DE: "\022"-
+#173	REDUCE cov: 3794 ft: 7510 corp: 27/3242b lim: 4096 exec/s: 57 rss: 96Mb L: 86/419 MS: 1 EraseBytes-
+#179	REDUCE cov: 3797 ft: 7567 corp: 28/3295b lim: 4096 exec/s: 59 rss: 98Mb L: 53/419 MS: 3 PersAutoDict-ChangeBinInt-EraseBytes- DE: "@"-
+#181	NEW    cov: 3797 ft: 7574 corp: 29/3455b lim: 4096 exec/s: 60 rss: 98Mb L: 160/419 MS: 1 CrossOver-
+#185	NEW    cov: 3800 ft: 7600 corp: 30/3586b lim: 4096 exec/s: 61 rss: 100Mb L: 131/419 MS: 2 ManualDict-CMP- DE: "\012"-"?\000\000\000\000\000\000\000"-
+#189	NEW    cov: 3800 ft: 7628 corp: 31/3645b lim: 4096 exec/s: 63 rss: 101Mb L: 59/419 MS: 2 ChangeByte-PersAutoDict- DE: "\010\011\012\013\014\015"-
+#191	REDUCE cov: 3800 ft: 7628 corp: 31/3585b lim: 4096 exec/s: 63 rss: 101Mb L: 83/419 MS: 1 EraseBytes-
+#203	NEW    cov: 3800 ft: 7633 corp: 32/3671b lim: 4096 exec/s: 50 rss: 104Mb L: 86/419 MS: 1 ManualDict- DE: "\012"-
+#207	NEW    cov: 3809 ft: 7674 corp: 33/3806b lim: 4096 exec/s: 51 rss: 105Mb L: 135/419 MS: 3 InsertRepeatedBytes-ChangeASCIIInt-InsertRepeatedBytes-
+#222	REDUCE cov: 3809 ft: 8095 corp: 34/3890b lim: 4096 exec/s: 55 rss: 108Mb L: 84/419 MS: 3 ManualDict-ShuffleBytes-InsertByte- DE: "\021\"3D"-
+#226	NEW    cov: 3809 ft: 8097 corp: 35/4050b lim: 4096 exec/s: 56 rss: 110Mb L: 160/419 MS: 2 ChangeByte-ManualDict- DE: "\021\"3D"-
+#230	REDUCE cov: 3809 ft: 8097 corp: 35/4031b lim: 4096 exec/s: 57 rss: 110Mb L: 115/419 MS: 2 InsertRepeatedBytes-EraseBytes-
+#234	NEW    cov: 3809 ft: 8099 corp: 36/4117b lim: 4096 exec/s: 58 rss: 111Mb L: 86/419 MS: 2 ChangeByte-InsertByte-
+#240	NEW    cov: 3810 ft: 8100 corp: 37/4173b lim: 4096 exec/s: 60 rss: 113Mb L: 56/419 MS: 3 ChangeBit-CMP-EraseBytes- DE: "\330\005\000\000\000\000\000\000"-
+#242	NEW    cov: 3811 ft: 8101 corp: 38/4260b lim: 4096 exec/s: 60 rss: 113Mb L: 87/419 MS: 1 ManualDict- DE: "\010\011\012\013\014\015"-
+#259	NEW    cov: 3812 ft: 8107 corp: 39/4482b lim: 4096 exec/s: 51 rss: 117Mb L: 222/419 MS: 1 ChangeByte-
+#267	NEW    cov: 4060 ft: 8379 corp: 40/4642b lim: 4096 exec/s: 53 rss: 119Mb L: 160/419 MS: 4 CrossOver-CrossOver-ChangeByte-ManualDict- DE: "\010\011\012\013\014\015"-
+#275	NEW    cov: 4060 ft: 8455 corp: 41/4896b lim: 4096 exec/s: 55 rss: 120Mb L: 254/419 MS: 4 ChangeBinInt-CrossOver-ChangeBit-PersAutoDict- DE: "\022"-
+#282	NEW    cov: 4060 ft: 8458 corp: 42/5065b lim: 4096 exec/s: 56 rss: 121Mb L: 169/419 MS: 5 ManualDict-ManualDict-CMP-CMP-CopyPart- DE: "\001"-"fuzz-topic-1"-"x\000\000\000\000\000\000\000"-"1\000"-
+#286	NEW    cov: 4062 ft: 8499 corp: 43/5188b lim: 4096 exec/s: 57 rss: 123Mb L: 123/419 MS: 2 InsertByte-CopyPart-
+#288	NEW    cov: 4062 ft: 8569 corp: 44/5247b lim: 4096 exec/s: 57 rss: 123Mb L: 59/419 MS: 1 ShuffleBytes-
+#292	NEW    cov: 4064 ft: 8572 corp: 45/5423b lim: 4096 exec/s: 48 rss: 124Mb L: 176/419 MS: 2 CrossOver-CMP- DE: "\010\001\022 \000\202\201a\251Z\000\002\002\362\222l\006\240\330\306|@\245\261w\017,P\325M.\2753\275\311\327"-
+#306	NEW    cov: 4065 ft: 8578 corp: 46/5505b lim: 4096 exec/s: 51 rss: 128Mb L: 82/419 MS: 2 ChangeBinInt-PersAutoDict- DE: "\012"-
+#312	NEW    cov: 4101 ft: 9287 corp: 47/5600b lim: 4096 exec/s: 52 rss: 130Mb L: 95/419 MS: 4 ManualDict-PersAutoDict-ChangeBit-CopyPart- DE: "\012"-"\010\011\012\013\014\015"-
+#316	NEW    cov: 4101 ft: 9291 corp: 48/5702b lim: 4096 exec/s: 52 rss: 131Mb L: 102/419 MS: 2 InsertRepeatedBytes-EraseBytes-
+#320	REDUCE cov: 4101 ft: 9291 corp: 48/5691b lim: 4096 exec/s: 53 rss: 132Mb L: 123/419 MS: 2 CrossOver-EraseBytes-
+#324	NEW    cov: 4101 ft: 9295 corp: 49/5863b lim: 4096 exec/s: 54 rss: 133Mb L: 172/419 MS: 2 CrossOver-ChangeBinInt-
+#339	NEW    cov: 4103 ft: 9336 corp: 50/6035b lim: 4096 exec/s: 48 rss: 136Mb L: 172/419 MS: 4 ChangeBit-ShuffleBytes-CopyPart-ShuffleBytes-
+#341	NEW    cov: 4103 ft: 9341 corp: 51/6122b lim: 4096 exec/s: 48 rss: 136Mb L: 87/419 MS: 1 ChangeByte-
+#353	NEW    cov: 4103 ft: 9358 corp: 52/6313b lim: 4096 exec/s: 50 rss: 139Mb L: 191/419 MS: 1 CrossOver-
+#359	NEW    cov: 4103 ft: 9678 corp: 53/6575b lim: 4096 exec/s: 51 rss: 141Mb L: 262/419 MS: 3 CMP-ChangeASCIIInt-InsertRepeatedBytes- DE: ")\242\006["-
+#363	NEW    cov: 4103 ft: 9684 corp: 54/6782b lim: 4096 exec/s: 51 rss: 143Mb L: 207/419 MS: 2 InsertRepeatedBytes-CopyPart-
+#367	NEW    cov: 4103 ft: 9693 corp: 55/6974b lim: 4096 exec/s: 52 rss: 144Mb L: 192/419 MS: 2 InsertByte-ChangeASCIIInt-
+#371	NEW    cov: 4103 ft: 9695 corp: 56/7058b lim: 4096 exec/s: 53 rss: 145Mb L: 84/419 MS: 2 ChangeBit-CrossOver-
+#379	REDUCE cov: 4103 ft: 9695 corp: 56/7035b lim: 4096 exec/s: 47 rss: 147Mb L: 134/419 MS: 4 ShuffleBytes-ChangeBinInt-CrossOver-EraseBytes-
+#381	NEW    cov: 4107 ft: 9707 corp: 57/7207b lim: 4096 exec/s: 47 rss: 148Mb L: 172/419 MS: 1 ManualDict- DE: "\012"-
+#383	REDUCE cov: 4107 ft: 9708 corp: 58/7235b lim: 4096 exec/s: 47 rss: 148Mb L: 28/419 MS: 1 EraseBytes-
+#385	NEW    cov: 4109 ft: 9714 corp: 59/7322b lim: 4096 exec/s: 48 rss: 149Mb L: 87/419 MS: 1 InsertByte-
+#389	NEW    cov: 4110 ft: 9715 corp: 60/7741b lim: 4096 exec/s: 48 rss: 150Mb L: 419/419 MS: 2 CopyPart-ChangeByte-
+#399	NEW    cov: 4110 ft: 9726 corp: 61/7878b lim: 4096 exec/s: 49 rss: 153Mb L: 137/419 MS: 5 ChangeBit-ChangeByte-ShuffleBytes-ChangeBit-InsertRepeatedBytes-
+#401	NEW    cov: 4112 ft: 9808 corp: 62/8050b lim: 4096 exec/s: 50 rss: 154Mb L: 172/419 MS: 1 CMP- DE: "\010\001\022 \000\202\201a\251Z\000\002\002\362\222l\006\240\330\306|@\245\261w\017,P\325M.\2753\275\311\327"-
+#405	NEW    cov: 4124 ft: 10095 corp: 63/8206b lim: 4096 exec/s: 50 rss: 155Mb L: 156/419 MS: 3 CMP-ChangeBinInt-CopyPart- DE: "\000\000\000\000"-
+#409	NEW    cov: 4124 ft: 10097 corp: 64/8428b lim: 4096 exec/s: 51 rss: 156Mb L: 222/419 MS: 2 CrossOver-ShuffleBytes-
+#427	NEW    cov: 4124 ft: 10121 corp: 65/8600b lim: 4096 exec/s: 47 rss: 160Mb L: 172/419 MS: 4 ShuffleBytes-PersAutoDict-ChangeBinInt-ManualDict- DE: "\010\011\012\013\014\015"-"\022"-
+#434	NEW    cov: 4125 ft: 10147 corp: 66/8844b lim: 4096 exec/s: 48 rss: 162Mb L: 244/419 MS: 4 ChangeByte-CrossOver-InsertByte-CMP- DE: "*\210\2335"-
+#448	NEW    cov: 4126 ft: 10156 corp: 67/9017b lim: 4096 exec/s: 44 rss: 166Mb L: 173/419 MS: 2 ChangeByte-InsertByte-
+#450	NEW    cov: 4128 ft: 10159 corp: 68/9218b lim: 4096 exec/s: 45 rss: 167Mb L: 201/419 MS: 1 EraseBytes-
+#476	NEW    cov: 4128 ft: 10174 corp: 69/9536b lim: 4096 exec/s: 47 rss: 172Mb L: 318/419 MS: 5 ManualDict-ChangeBit-CopyPart-ManualDict-CopyPart- DE: "fuzz-topic-1"-"fuzz-topic-1"-
+#522	NEW    cov: 4128 ft: 10179 corp: 70/9827b lim: 4096 exec/s: 43 rss: 184Mb L: 291/419 MS: 3 ChangeByte-ShuffleBytes-InsertRepeatedBytes-
+#529	REDUCE cov: 4128 ft: 10179 corp: 70/9724b lim: 4096 exec/s: 44 rss: 185Mb L: 151/419 MS: 1 EraseBytes-
+#535	NEW    cov: 4128 ft: 10180 corp: 71/9851b lim: 4096 exec/s: 44 rss: 186Mb L: 127/419 MS: 3 ShuffleBytes-CrossOver-ManualDict- DE: "\021\"3D"-
+#539	NEW    cov: 4128 ft: 10505 corp: 72/9895b lim: 4096 exec/s: 44 rss: 188Mb L: 44/419 MS: 2 CopyPart-EraseBytes-
+#551	NEW    cov: 4131 ft: 10514 corp: 73/10026b lim: 4096 exec/s: 42 rss: 191Mb L: 131/419 MS: 1 ShuffleBytes-
+#557	NEW    cov: 4131 ft: 10515 corp: 74/10337b lim: 4096 exec/s: 42 rss: 192Mb L: 311/419 MS: 3 ChangeByte-CopyPart-CopyPart-
+#568	NEW    cov: 4131 ft: 10524 corp: 75/10449b lim: 4096 exec/s: 43 rss: 194Mb L: 112/419 MS: 3 ChangeByte-CopyPart-CopyPart-
+#578	REDUCE cov: 4132 ft: 10540 corp: 76/10573b lim: 4096 exec/s: 44 rss: 196Mb L: 124/419 MS: 5 CopyPart-ChangeByte-InsertByte-ChangeBinInt-ManualDict- DE: "\010\001"-
+#596	NEW    cov: 4132 ft: 10542 corp: 77/10704b lim: 4096 exec/s: 42 rss: 200Mb L: 131/419 MS: 1 PersAutoDict- DE: "@"-
+#602	NEW    cov: 4133 ft: 10543 corp: 78/10760b lim: 4096 exec/s: 43 rss: 201Mb L: 56/419 MS: 3 PersAutoDict-ChangeByte-CrossOver- DE: "*\210\2335"-
+#616	NEW    cov: 4133 ft: 10544 corp: 79/11078b lim: 4096 exec/s: 41 rss: 205Mb L: 318/419 MS: 2 ManualDict-ChangeBinInt- DE: "\012"-
+#628	NEW    cov: 4135 ft: 10562 corp: 80/11166b lim: 4096 exec/s: 41 rss: 208Mb L: 88/419 MS: 1 InsertByte-
+#646	NEW    cov: 4135 ft: 10563 corp: 81/11252b lim: 4096 exec/s: 40 rss: 213Mb L: 86/419 MS: 4 PersAutoDict-CopyPart-CrossOver-ChangeBit- DE: "\336\336\336\336"-
+#652	NEW    cov: 4136 ft: 10570 corp: 82/11341b lim: 4096 exec/s: 40 rss: 215Mb L: 89/419 MS: 3 InsertByte-ShuffleBytes-InsertByte-
+#654	NEW    cov: 4136 ft: 10576 corp: 83/11483b lim: 4096 exec/s: 40 rss: 215Mb L: 142/419 MS: 1 InsertRepeatedBytes-
+#664	NEW    cov: 4136 ft: 10586 corp: 84/11636b lim: 4096 exec/s: 41 rss: 220Mb L: 153/419 MS: 5 CopyPart-InsertByte-ChangeBit-InsertByte-CopyPart-
+#670	NEW    cov: 4137 ft: 10590 corp: 85/12018b lim: 4096 exec/s: 41 rss: 223Mb L: 382/419 MS: 3 InsertRepeatedBytes-CMP-InsertRepeatedBytes- DE: "\010\001\022 \211\247&\211\326\312\330\205\303\265)o\272\325\002~\205w\326y\016\262\017\213\312\243\207VI \267\343"-
+#673	NEW    cov: 4139 ft: 10593 corp: 86/12302b lim: 4096 exec/s: 42 rss: 223Mb L: 284/419 MS: 2 ShuffleBytes-CrossOver-
+#679	NEW    cov: 4139 ft: 10594 corp: 87/12368b lim: 4096 exec/s: 39 rss: 225Mb L: 66/419 MS: 3 PersAutoDict-InsertByte-CMP- DE: "@"-"\001\000\000\000\000\000\000\000"-
+#697	NEW    cov: 4139 ft: 10597 corp: 88/12653b lim: 4096 exec/s: 41 rss: 230Mb L: 285/419 MS: 5 ChangeByte-ManualDict-CrossOver-CrossOver-InsertRepeatedBytes- DE: "\336\336\336\336"-
+#701	NEW    cov: 4140 ft: 10601 corp: 89/12750b lim: 4096 exec/s: 41 rss: 231Mb L: 97/419 MS: 2 CMP-InsertByte- DE: "fuzz-topic-3"-
+#717	NEW    cov: 4140 ft: 10612 corp: 90/13108b lim: 4096 exec/s: 39 rss: 237Mb L: 358/419 MS: 3 InsertRepeatedBytes-ChangeBinInt-CrossOver-
+#740	NEW    cov: 4144 ft: 10617 corp: 91/13183b lim: 4096 exec/s: 38 rss: 243Mb L: 75/419 MS: 2 ChangeBit-ManualDict- DE: "\012"-
+#776	NEW    cov: 4144 ft: 10618 corp: 92/13532b lim: 4096 exec/s: 38 rss: 253Mb L: 349/419 MS: 4 ShuffleBytes-ChangeByte-ManualDict-CrossOver- DE: " "-
+#788	NEW    cov: 4144 ft: 10629 corp: 93/13602b lim: 4096 exec/s: 39 rss: 256Mb L: 70/419 MS: 1 EraseBytes-
+#810	REDUCE cov: 4144 ft: 10629 corp: 93/13594b lim: 4096 exec/s: 38 rss: 263Mb L: 20/419 MS: 1 EraseBytes-
+#812	NEW    cov: 4144 ft: 10639 corp: 94/13638b lim: 4096 exec/s: 38 rss: 264Mb L: 44/419 MS: 1 ManualDict- DE: "\032"-
+#814	NEW    cov: 4144 ft: 10643 corp: 95/13849b lim: 4096 exec/s: 38 rss: 265Mb L: 211/419 MS: 1 InsertRepeatedBytes-
+#832	NEW    cov: 4144 ft: 10645 corp: 96/14268b lim: 4096 exec/s: 37 rss: 269Mb L: 419/419 MS: 4 ChangeByte-PersAutoDict-ManualDict-ShuffleBytes- DE: "\010\001\022 \000\202\201a\251Z\000\002\002\362\222l\006\240\330\306|@\245\261w\017,P\325M.\2753\275\311\327"-"\""-
+#844	NEW    cov: 4144 ft: 10646 corp: 97/14651b lim: 4096 exec/s: 36 rss: 273Mb L: 383/419 MS: 1 InsertByte-
+#852	NEW    cov: 4144 ft: 10657 corp: 98/14810b lim: 4096 exec/s: 37 rss: 275Mb L: 159/419 MS: 4 CrossOver-EraseBytes-ChangeByte-CrossOver-
+#858	NEW    cov: 4145 ft: 10659 corp: 99/15039b lim: 4096 exec/s: 37 rss: 278Mb L: 229/419 MS: 3 InsertRepeatedBytes-ChangeBit-ManualDict- DE: "\022"-
+#872	NEW    cov: 4145 ft: 10663 corp: 100/15098b lim: 4096 exec/s: 36 rss: 281Mb L: 59/419 MS: 2 CrossOver-CrossOver-
+#890	NEW    cov: 4145 ft: 10664 corp: 101/15603b lim: 4096 exec/s: 35 rss: 288Mb L: 505/505 MS: 4 ChangeBit-ChangeBit-ShuffleBytes-CopyPart-
+#902	REDUCE cov: 4145 ft: 10665 corp: 102/15726b lim: 4096 exec/s: 36 rss: 291Mb L: 123/505 MS: 1 CrossOver-
+#909	NEW    cov: 4145 ft: 10668 corp: 103/16226b lim: 4096 exec/s: 34 rss: 292Mb L: 500/505 MS: 4 CrossOver-CMP-InsertByte-InsertByte- DE: "\002\000\000\000\000\000\000\000"-
+#941	REDUCE cov: 4146 ft: 10670 corp: 104/16247b lim: 4096 exec/s: 34 rss: 302Mb L: 21/505 MS: 1 InsertByte-
+#948	NEW    cov: 4146 ft: 10672 corp: 105/16302b lim: 4096 exec/s: 35 rss: 304Mb L: 55/505 MS: 4 ChangeBit-ChangeByte-ManualDict-ChangeBit- DE: "\010\001"-
+#992	NEW    cov: 4153 ft: 10679 corp: 106/16Kb lim: 4096 exec/s: 34 rss: 318Mb L: 318/505 MS: 2 ChangeBinInt-PersAutoDict- DE: "*\210\2335"-
+#1004	REDUCE cov: 4153 ft: 10682 corp: 107/16Kb lim: 4096 exec/s: 34 rss: 320Mb L: 95/505 MS: 3 CrossOver-InsertByte-CMP- DE: "\031\000\000\000\000\000\000\000"-
+#1016	REDUCE cov: 4153 ft: 10686 corp: 108/16Kb lim: 4096 exec/s: 33 rss: 323Mb L: 84/505 MS: 1 InsertByte-
+#1018	NEW    cov: 4154 ft: 10687 corp: 109/16Kb lim: 4096 exec/s: 33 rss: 323Mb L: 101/505 MS: 1 ChangeBit-
+#1022	NEW    cov: 4154 ft: 10688 corp: 110/16Kb lim: 4096 exec/s: 34 rss: 325Mb L: 172/505 MS: 2 CrossOver-ManualDict- DE: "\010\011\012\013\014\015"-
+#1024	NEW    cov: 4154 ft: 10695 corp: 111/16Kb lim: 4096 exec/s: 34 rss: 325Mb L: 132/505 MS: 1 EraseBytes-
+#1054	NEW    cov: 4154 ft: 10736 corp: 112/17Kb lim: 4096 exec/s: 34 rss: 332Mb L: 204/505 MS: 4 ChangeBinInt-ManualDict-ChangeASCIIInt-InsertRepeatedBytes- DE: "fuzz-topic-0"-
+#1074	NEW    cov: 4154 ft: 10739 corp: 113/17Kb lim: 4096 exec/s: 33 rss: 335Mb L: 180/505 MS: 2 ManualDict-InsertByte- DE: "\032\033\034"-
+#1076	NEW    cov: 4154 ft: 10768 corp: 114/17Kb lim: 4096 exec/s: 33 rss: 337Mb L: 71/505 MS: 1 InsertByte-
+#1107	NEW    cov: 4154 ft: 10770 corp: 115/17Kb lim: 4096 exec/s: 33 rss: 342Mb L: 258/505 MS: 4 ManualDict-InsertByte-InsertRepeatedBytes-ChangeBit- DE: "\010\001"-
+#1134	NEW    cov: 4154 ft: 10771 corp: 116/17Kb lim: 4096 exec/s: 33 rss: 350Mb L: 131/505 MS: 1 CrossOver-
+#1140	REDUCE cov: 4154 ft: 10773 corp: 117/17Kb lim: 4096 exec/s: 33 rss: 351Mb L: 26/505 MS: 4 ChangeBit-CMP-CrossOver-EraseBytes- DE: "fuzz-topic-1"-
+#1146	REDUCE cov: 4154 ft: 10775 corp: 118/17Kb lim: 4096 exec/s: 33 rss: 352Mb L: 50/505 MS: 3 CMP-ManualDict-PersAutoDict- DE: "\377\377\377\377"-"\001"-"\021\"3D"-
+#1150	NEW    cov: 4156 ft: 10789 corp: 119/17Kb lim: 4096 exec/s: 32 rss: 353Mb L: 255/505 MS: 2 ShuffleBytes-CrossOver-
+#1156	REDUCE cov: 4156 ft: 10789 corp: 119/17Kb lim: 4096 exec/s: 33 rss: 355Mb L: 71/505 MS: 3 InsertRepeatedBytes-InsertByte-EraseBytes-
+#1168	NEW    cov: 4157 ft: 10790 corp: 120/18Kb lim: 4096 exec/s: 33 rss: 360Mb L: 81/505 MS: 1 ShuffleBytes-
+#1172	NEW    cov: 4157 ft: 10792 corp: 121/18Kb lim: 4096 exec/s: 32 rss: 360Mb L: 87/505 MS: 2 CopyPart-ChangeByte-
+#1178	NEW    cov: 4157 ft: 10793 corp: 122/18Kb lim: 4096 exec/s: 32 rss: 362Mb L: 94/505 MS: 3 EraseBytes-CMP-ChangeBinInt- DE: ":\232\312\000"-
+#1186	NEW    cov: 4158 ft: 10795 corp: 123/18Kb lim: 4096 exec/s: 32 rss: 364Mb L: 386/505 MS: 4 InsertRepeatedBytes-InsertRepeatedBytes-CopyPart-PersAutoDict- DE: ")\242\006["-
+#1188	NEW    cov: 4163 ft: 10800 corp: 124/18Kb lim: 4096 exec/s: 33 rss: 365Mb L: 172/505 MS: 1 ChangeBinInt-
+#1192	NEW    cov: 4165 ft: 10802 corp: 125/18Kb lim: 4096 exec/s: 32 rss: 367Mb L: 77/505 MS: 2 InsertByte-EraseBytes-
+#1227	NEW    cov: 4166 ft: 10803 corp: 126/19Kb lim: 4096 exec/s: 32 rss: 377Mb L: 295/505 MS: 3 InsertRepeatedBytes-ManualDict-InsertRepeatedBytes- DE: "\""-
+#1235	NEW    cov: 4168 ft: 10805 corp: 127/19Kb lim: 4096 exec/s: 31 rss: 379Mb L: 417/505 MS: 4 EraseBytes-PersAutoDict-ManualDict-ChangeByte- DE: "\010\001\022 \000\202\201a\251Z\000\002\002\362\222l\006\240\330\306|@\245\261w\017,P\325M.\2753\275\311\327"-"\001"-
+#1284	NEW    cov: 4168 ft: 10950 corp: 128/19Kb lim: 4096 exec/s: 31 rss: 385Mb L: 81/505 MS: 1 CMP- DE: "\377\377\377\377\377\377\377\000"-
+#1286	NEW    cov: 4168 ft: 11146 corp: 129/19Kb lim: 4096 exec/s: 31 rss: 385Mb L: 87/505 MS: 1 ChangeByte-
+#1298	NEW    cov: 4168 ft: 11148 corp: 130/19Kb lim: 4096 exec/s: 30 rss: 385Mb L: 153/505 MS: 1 ChangeBit-
+#1308	NEW    cov: 4168 ft: 11150 corp: 131/19Kb lim: 4096 exec/s: 31 rss: 385Mb L: 67/505 MS: 5 ChangeBit-PersAutoDict-ChangeByte-CopyPart-ShuffleBytes- DE: "\377\377\377\377\377\377\377\000"-
+#1318	NEW    cov: 4168 ft: 11209 corp: 132/19Kb lim: 4096 exec/s: 31 rss: 385Mb L: 46/505 MS: 5 ChangeBit-EraseBytes-ChangeBit-ManualDict-ChangeBit- DE: "\010\011\012\013\014\015"-
+#1328	NEW    cov: 4172 ft: 11213 corp: 133/20Kb lim: 4096 exec/s: 30 rss: 385Mb L: 179/505 MS: 5 ChangeBinInt-ChangeByte-InsertRepeatedBytes-CrossOver-PersAutoDict- DE: "\010\001"-
+#1334	NEW    cov: 4174 ft: 11217 corp: 134/20Kb lim: 4096 exec/s: 31 rss: 385Mb L: 205/505 MS: 3 CopyPart-InsertRepeatedBytes-CMP- DE: "\377\377\377\377\377\377\377\000"-
+#1354	NEW    cov: 4174 ft: 11218 corp: 135/20Kb lim: 4096 exec/s: 30 rss: 385Mb L: 316/505 MS: 1 InsertRepeatedBytes-
+#1376	REDUCE cov: 4174 ft: 11218 corp: 135/20Kb lim: 4096 exec/s: 30 rss: 386Mb L: 74/505 MS: 1 EraseBytes-
+#1400	NEW    cov: 4174 ft: 11219 corp: 136/20Kb lim: 4096 exec/s: 29 rss: 386Mb L: 197/505 MS: 2 ChangeBit-CrossOver-
+#1404	NEW    cov: 4174 ft: 11368 corp: 137/20Kb lim: 4096 exec/s: 29 rss: 386Mb L: 103/505 MS: 2 PersAutoDict-InsertRepeatedBytes- DE: "\000\000\000\000"-
+#1416	REDUCE cov: 4183 ft: 11383 corp: 138/20Kb lim: 4096 exec/s: 30 rss: 386Mb L: 71/505 MS: 1 ChangeBit-
+#1426	NEW    cov: 4183 ft: 11384 corp: 139/20Kb lim: 4096 exec/s: 29 rss: 386Mb L: 45/505 MS: 1 ManualDict- DE: " "-
+#1443	NEW    cov: 4183 ft: 11425 corp: 140/21Kb lim: 4096 exec/s: 29 rss: 386Mb L: 203/505 MS: 5 PersAutoDict-ShuffleBytes-ChangeByte-InsertRepeatedBytes-InsertRepeatedBytes- DE: "\330\005\000\000\000\000\000\000"-
+#1453	NEW    cov: 4183 ft: 11427 corp: 141/21Kb lim: 4096 exec/s: 29 rss: 386Mb L: 59/505 MS: 1 ChangeBinInt-
+#1461	NEW    cov: 4183 ft: 11429 corp: 142/21Kb lim: 4096 exec/s: 29 rss: 386Mb L: 94/505 MS: 4 ChangeBit-InsertByte-ChangeByte-CopyPart-
+#1476	NEW    cov: 4184 ft: 11431 corp: 143/21Kb lim: 4096 exec/s: 29 rss: 386Mb L: 230/505 MS: 3 InsertByte-InsertRepeatedBytes-ChangeBit-
+#1485	NEW    cov: 4186 ft: 11434 corp: 144/21Kb lim: 4096 exec/s: 29 rss: 386Mb L: 284/505 MS: 2 ShuffleBytes-CMP- DE: "\007\242p6"-
+#1487	NEW    cov: 4187 ft: 11449 corp: 145/21Kb lim: 4096 exec/s: 29 rss: 386Mb L: 47/505 MS: 1 InsertByte-
+#1492	NEW    cov: 4187 ft: 11452 corp: 146/22Kb lim: 4096 exec/s: 29 rss: 386Mb L: 170/505 MS: 3 InsertByte-CrossOver-InsertRepeatedBytes-
+#1512	NEW    cov: 4198 ft: 11481 corp: 147/22Kb lim: 4096 exec/s: 29 rss: 386Mb L: 195/505 MS: 5 ManualDict-ChangeBinInt-PersAutoDict-ChangeBinInt-CrossOver- DE: "\032"-"\032"-
+#1529	NEW    cov: 4198 ft: 11482 corp: 148/22Kb lim: 4096 exec/s: 29 rss: 386Mb L: 169/505 MS: 5 ChangeBit-ChangeByte-ChangeASCIIInt-ShuffleBytes-ChangeBinInt-
+#1565	NEW    cov: 4198 ft: 11485 corp: 149/22Kb lim: 4096 exec/s: 28 rss: 386Mb L: 79/505 MS: 3 EraseBytes-ChangeASCIIInt-ChangeBinInt-
+#1576	NEW    cov: 4202 ft: 11515 corp: 150/22Kb lim: 4096 exec/s: 28 rss: 386Mb L: 103/505 MS: 2 ChangeByte-InsertRepeatedBytes-
+#1580	NEW    cov: 4202 ft: 11516 corp: 151/22Kb lim: 4096 exec/s: 28 rss: 386Mb L: 316/505 MS: 2 ChangeByte-CrossOver-
+#1594	NEW    cov: 4203 ft: 11517 corp: 152/22Kb lim: 4096 exec/s: 28 rss: 386Mb L: 81/505 MS: 2 ChangeBinInt-ChangeBit-
+#1602	NEW    cov: 4203 ft: 11518 corp: 153/23Kb lim: 4096 exec/s: 28 rss: 386Mb L: 384/505 MS: 4 PersAutoDict-CrossOver-CMP-CrossOver- DE: "\002\000\000\000\000\000\000\000"-"VUUUUUU\005"-
+#1642	NEW    cov: 4204 ft: 11520 corp: 154/23Kb lim: 4096 exec/s: 28 rss: 386Mb L: 378/505 MS: 2 InsertRepeatedBytes-InsertRepeatedBytes-
+#1650	NEW    cov: 4204 ft: 11522 corp: 155/23Kb lim: 4096 exec/s: 28 rss: 386Mb L: 50/505 MS: 5 ChangeBinInt-CopyPart-ChangeBit-EraseBytes-PersAutoDict- DE: "\010\011\012\013\014\015"-
+#1652	NEW    cov: 4204 ft: 11523 corp: 156/23Kb lim: 4096 exec/s: 28 rss: 386Mb L: 160/505 MS: 1 InsertByte-
+#1658	NEW    cov: 4204 ft: 11619 corp: 157/24Kb lim: 4096 exec/s: 28 rss: 386Mb L: 230/505 MS: 3 CopyPart-CrossOver-InsertRepeatedBytes-
+#1677	NEW    cov: 4205 ft: 11620 corp: 158/24Kb lim: 4096 exec/s: 28 rss: 386Mb L: 394/505 MS: 5 ChangeBit-CrossOver-ManualDict-EraseBytes-CopyPart- DE: "\001"-
+#1693	NEW    cov: 4211 ft: 11627 corp: 159/24Kb lim: 4096 exec/s: 28 rss: 386Mb L: 88/505 MS: 3 PersAutoDict-ShuffleBytes-InsertByte- DE: "\010\001"-
+#1705	NEW    cov: 4211 ft: 11629 corp: 160/24Kb lim: 4096 exec/s: 28 rss: 386Mb L: 358/505 MS: 2 ChangeByte-ChangeBinInt-
+#1720	NEW    cov: 4211 ft: 11631 corp: 161/25Kb lim: 4096 exec/s: 28 rss: 387Mb L: 75/505 MS: 4 ManualDict-ChangeBinInt-CMP-ShuffleBytes- DE: "@"-"\000\000\000\001"-
+#1720	DONE   cov: 4211 ft: 11631 corp: 161/25Kb lim: 4096 exec/s: 28 rss: 387Mb
+###### Recommended dictionary. ######
+"?\000\000\000\000\000\000\000" # Uses: 2
+"\330\005\000\000\000\000\000\000" # Uses: 3
+"x\000\000\000\000\000\000\000" # Uses: 0
+"1\000" # Uses: 3
+"\010\001\022 \000\202\201a\251Z\000\002\002\362\222l\006\240\330\306|@\245\261w\017,P\325M.\2753\275\311\327" # Uses: 3
+")\242\006[" # Uses: 2
+"\000\000\000\000" # Uses: 2
+"*\210\2335" # Uses: 3
+"\010\001\022 \211\247&\211\326\312\330\205\303\265)o\272\325\002~\205w\326y\016\262\017\213\312\243\207VI \267\343" # Uses: 2
+"\001\000\000\000\000\000\000\000" # Uses: 1
+"fuzz-topic-3" # Uses: 1
+"\002\000\000\000\000\000\000\000" # Uses: 2
+"\031\000\000\000\000\000\000\000" # Uses: 0
+"\377\377\377\377" # Uses: 1
+":\232\312\000" # Uses: 0
+"\377\377\377\377\377\377\377\000" # Uses: 1
+"\007\242p6" # Uses: 0
+"VUUUUUU\005" # Uses: 0
+"\000\000\000\001" # Uses: 0
+###### End of recommended dictionary. ######
+Done 1720 runs in 61 second(s)

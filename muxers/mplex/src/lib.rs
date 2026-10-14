@@ -26,6 +26,13 @@ mod codec;
 mod config;
 mod io;
 
+#[cfg(feature = "fuzzing")]
+pub use codec::{
+    encode_structured_frame, encode_structured_frames, fuzz_frame_codec, fuzz_frame_codec_chunked,
+};
+#[cfg(feature = "fuzzing")]
+pub use io::fuzz_multiplexed_io;
+
 use std::{
     cmp, iter,
     pin::Pin,

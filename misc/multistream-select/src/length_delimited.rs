@@ -331,6 +331,27 @@ where
     }
 }
 
+/// Fuzz entry: drive [`LengthDelimited`] frame reads over a cursor of arbitrary
+/// bytes. Exercises varint length parsing, max-frame rejection, and EOF paths.
+///
+/// Never panics; always terminates within a bounded poll budget.
+#[cfg(feature = "fuzzing")]
+pub fn fuzz_length_delimited(data: &[u8]) {
+    use std::task::Context;
+
+    use futures::{Stream, io::Cursor, task::noop_waker_ref};
+
+    let mut framed = LengthDelimited::new(Cursor::new(data.to_vec()));
+    let mut cx = Context::from_waker(noop_waker_ref());
+    // Cap frames so a stream of empty/`Ok` frames cannot spin forever.
+    for _ in 0..256 {
+        match Pin::new(&mut framed).poll_next(&mut cx) {
+            Poll::Ready(Some(Ok(_))) => continue,
+            Poll::Ready(Some(Err(_))) | Poll::Ready(None) | Poll::Pending => return,
+        }
+    }
+}
+
 impl<R> AsyncWrite for LengthDelimitedReader<R>
 where
     R: AsyncWrite,

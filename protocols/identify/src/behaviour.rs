@@ -312,6 +312,32 @@ impl Behaviour {
         }
     }
 
+    /// Fuzzing: peers currently held in the discovered-address LRU.
+    #[cfg(feature = "fuzzing")]
+    pub fn fuzz_discovered_peer_count(&self) -> usize {
+        self.discovered_peers
+            .0
+            .as_ref()
+            .map(|c| c.peer_count())
+            .unwrap_or(0)
+    }
+
+    /// Fuzzing: total addresses across all discovered peers (≤ 10 per peer).
+    #[cfg(feature = "fuzzing")]
+    pub fn fuzz_discovered_addr_count(&self) -> usize {
+        self.discovered_peers
+            .0
+            .as_ref()
+            .map(|c| c.address_count())
+            .unwrap_or(0)
+    }
+
+    /// Fuzzing: configured discovered-peer cache capacity.
+    #[cfg(feature = "fuzzing")]
+    pub fn fuzz_cache_capacity(&self) -> usize {
+        self.config.cache_size
+    }
+
     fn on_connection_established(
         &mut self,
         ConnectionEstablished {

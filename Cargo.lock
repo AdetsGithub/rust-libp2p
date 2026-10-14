@@ -1849,6 +1849,21 @@ dependencies = [
 ]
 
 [[package]]
+name = "generator"
+version = "0.8.10"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "54ade96dc9003043bce7c035c85a9df5a858bfb2039c5a2e6fdf00f324f6c551"
+dependencies = [
+ "cc",
+ "cfg-if",
+ "libc",
+ "log",
+ "rustversion",
+ "windows-link",
+ "windows-result",
+]
+
+[[package]]
 name = "generic-array"
 version = "0.14.7"
 source = "registry+https://github.com/rust-lang/crates.io-index"
@@ -2876,6 +2891,7 @@ name = "libp2p-autonat"
 version = "0.16.0"
 dependencies = [
  "asynchronous-codec",
+ "bytes",
  "either",
  "futures",
  "futures-bounded",
@@ -2945,6 +2961,7 @@ name = "libp2p-dcutr"
 version = "0.15.0"
 dependencies = [
  "asynchronous-codec",
+ "bytes",
  "either",
  "futures",
  "futures-bounded",
@@ -3023,6 +3040,7 @@ dependencies = [
  "libp2p-identity",
  "libp2p-swarm",
  "libp2p-swarm-test",
+ "loom",
  "prometheus-client",
  "prost",
  "prost-codec",
@@ -3042,6 +3060,7 @@ name = "libp2p-identify"
 version = "0.48.0"
 dependencies = [
  "asynchronous-codec",
+ "bytes",
  "either",
  "futures",
  "futures-bounded",
@@ -3103,6 +3122,7 @@ dependencies = [
  "libp2p-swarm",
  "libp2p-swarm-test",
  "libp2p-yamux",
+ "loom",
  "prost",
  "prost-codec",
  "quickcheck-ext",
@@ -3331,6 +3351,7 @@ dependencies = [
 name = "libp2p-quic"
 version = "0.14.0"
 dependencies = [
+ "bytes",
  "futures",
  "futures-timer",
  "if-watch",
@@ -3411,6 +3432,7 @@ name = "libp2p-request-response"
 version = "0.30.0"
 dependencies = [
  "anyhow",
+ "bytes",
  "cbor4ii",
  "futures",
  "futures-bounded",
@@ -3539,6 +3561,7 @@ version = "0.7.0"
 dependencies = [
  "futures",
  "futures-rustls",
+ "futures_ringbuf",
  "hex-literal",
  "libp2p-core",
  "libp2p-identity",
@@ -3819,6 +3842,19 @@ source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "52d3a9855747c17eaf4383823f135220716ab49bea5fbea7dd42cc9a92f8aa31"
 dependencies = [
  "logos-codegen 0.16.1",
+]
+
+[[package]]
+name = "loom"
+version = "0.7.2"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "419e0dc8046cb947daa77eb95ae174acfbddb7673b4151f56d1eed8e93fbfaca"
+dependencies = [
+ "cfg-if",
+ "generator",
+ "scoped-tls",
+ "tracing",
+ "tracing-subscriber",
 ]
 
 [[package]]
@@ -5621,6 +5657,12 @@ checksum = "91c1b7e4904c873ef0710c1f407dde2e6287de2bebc1bbbf7d430bb7cbffd939"
 dependencies = [
  "windows-sys 0.61.2",
 ]
+
+[[package]]
+name = "scoped-tls"
+version = "1.0.1"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "e1cf6437eb19a8f4a6cc0f7dca544973b0b78843adbfeb3683d1a94a0024a294"
 
 [[package]]
 name = "scopeguard"

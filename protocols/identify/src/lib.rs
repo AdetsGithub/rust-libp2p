@@ -47,6 +47,10 @@ pub use self::{
 };
 
 mod behaviour;
+#[cfg(feature = "fuzzing")]
+mod fuzz;
+#[cfg(feature = "fuzzing")]
+mod fuzz_handler;
 mod handler;
 mod protocol;
 
@@ -55,3 +59,13 @@ mod proto {
     include!("generated/mod.rs");
     pub(crate) use self::structs::Identify;
 }
+
+#[cfg(feature = "fuzzing")]
+pub use fuzz::{
+    FuzzAction, MAX_ACTIONS, MAX_ADDRS, MAX_MSG_BYTES, MAX_PROTOCOLS, PEER_POOL,
+    StructuredIdentifyKind, encode_structured_wire, fuzz_behaviour, fuzz_local_peer_id,
+};
+#[cfg(feature = "fuzzing")]
+pub use fuzz_handler::{
+    MAX_HANDLER_POLLS, OutboundDrive, StreamRole, WriteFault, fuzz_handler_io, pump_handler,
+};

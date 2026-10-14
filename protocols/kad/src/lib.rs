@@ -38,6 +38,10 @@
 mod addresses;
 mod behaviour;
 mod bootstrap;
+#[cfg(feature = "fuzzing")]
+mod fuzz;
+#[cfg(feature = "fuzzing")]
+mod fuzz_handler;
 mod handler;
 mod jobs;
 mod kbucket;
@@ -65,6 +69,17 @@ pub use behaviour::{
     InboundRequest, Mode, NoKnownPeers, PeerInfo, PeerRecord, ProgressStep, PutRecordContext,
     PutRecordError, PutRecordOk, PutRecordPhase, PutRecordResult, QueryInfo, QueryMut, QueryRef,
     QueryResult, QueryStats, Quorum, RoutingUpdate, StoreInserts,
+};
+
+#[cfg(feature = "fuzzing")]
+pub use fuzz::{
+    FuzzAction, MAX_ACTIONS, MAX_DATA_BYTES, MAX_MSG_BYTES, PEER_POOL, StructuredInboundKind,
+    StructuredResponseKind, encode_structured_inbound, encode_structured_wire, fuzz_behaviour,
+};
+#[cfg(feature = "fuzzing")]
+pub use fuzz_handler::{
+    MAX_HANDLER_POLLS, OutboundDrive, WriteFault, events_contain_io_kind,
+    events_contain_io_timed_out, fuzz_handler_io, pump_handler,
 };
 pub use kbucket::{
     Distance as KBucketDistance, EntryView, KBucketRef, Key as KBucketKey, NodeStatus, U256,

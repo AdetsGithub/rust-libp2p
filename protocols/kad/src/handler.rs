@@ -425,6 +425,16 @@ pub struct RequestId {
     connec_unique_id: UniqueConnecId,
 }
 
+#[cfg(feature = "fuzzing")]
+impl RequestId {
+    /// Construct a [`RequestId`] for action-sequence fuzzing.
+    pub fn fuzz(id: u64) -> Self {
+        Self {
+            connec_unique_id: UniqueConnecId(id),
+        }
+    }
+}
+
 /// Unique identifier for a connection.
 #[derive(Debug, Copy, Clone, PartialEq, Eq)]
 struct UniqueConnecId(u64);

@@ -238,3 +238,15 @@ fn decode_length_prefixed(src: &mut BytesMut) -> Option<Bytes> {
         None
     }
 }
+
+/// Fuzz entry: decode as many u16-BE length-prefixed frames as possible.
+#[cfg(feature = "fuzzing")]
+pub(crate) fn fuzz_length_prefixed(data: &[u8]) {
+    let mut src = BytesMut::from(data);
+    for _ in 0..256 {
+        match decode_length_prefixed(&mut src) {
+            Some(_) => continue,
+            None => break,
+        }
+    }
+}

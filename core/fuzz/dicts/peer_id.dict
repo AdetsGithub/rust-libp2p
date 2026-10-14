@@ -1,0 +1,41 @@
+# Protobuf wire tags for identity PublicKey / PrivateKey
+# field 1 (type) = tag 0x08; field 2 (data) = tag 0x12
+"\x08"
+"\x12"
+
+# Protobuf KeyType enum values / headers
+"\x01"
+"\x02"
+"\x03"
+keytype_secp256k1="\x08\x02"
+keytype_ed25519="\x08\x01"
+keytype_ecdsa="\x08\x03"
+keytype_rsa="\x08\x00"
+
+# ASN.1 Tags (near-miss / expected)
+asn1_oid_tag="\x06"
+asn1_octet_tag="\x04"
+asn1_bit_string_tag="\x03"
+asn1_sequence_tag="\x30"
+asn1_integer_tag="\x02"
+
+# Long-form DER lengths
+"\x81"
+"\x82"
+
+# rsaEncryption OID body (1.2.840.113549.1.1.1) and full TLV
+rsa_oid="\x2A\x86\x48\x86\xF7\x0D\x01\x01\x01"
+"\x06\x09\x2A\x86\x48\x86\xF7\x0D\x01\x01\x01"
+
+# Near-miss: OCTET STRING wrapping where BIT STRING expected
+"\x04\x00"
+"\x03\x00"
+
+# ecPublicKey OID (1.2.840.10045.2.1)
+"\x06\x07\x2A\x86\x48\xCE\x3D\x02\x01"
+
+# secp256r1 OID (1.2.840.10045.3.1.7)
+"\x06\x08\x2A\x86\x48\xCE\x3D\x03\x01\x07"
+
+# Multihash identity code + typical PeerId digest length prefix
+"\x00\x24"

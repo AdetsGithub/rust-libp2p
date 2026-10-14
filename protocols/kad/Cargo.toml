@@ -31,6 +31,7 @@ web-time = { workspace = true }
 serde = { version = "1.0", optional = true, features = ["derive"] }
 thiserror = { workspace = true }
 tracing = { workspace = true }
+loom = { version = "0.7", optional = true }
 
 [dev-dependencies]
 tokio = { workspace = true, features = ["macros", "rt-multi-thread", "time"] }
@@ -45,6 +46,12 @@ tracing-subscriber = { workspace = true, features = ["env-filter"] }
 
 [features]
 serde = ["dep:serde", "bytes/serde"]
+# Exposes `fuzz_behaviour` / `FuzzAction` / handler mock-I/O drivers for cargo-fuzz.
+# Not intended for production use.
+fuzzing = ["libp2p-swarm/fuzzing"]
+# Loom concurrency models for QueryPool (not cargo-fuzz; do not enable in prod).
+# Run: cargo test -p libp2p-kad --features loom --lib query::loom_tests
+loom = ["dep:loom"]
 
 # Passing arguments to the docsrs builder in order to properly document cfg's.
 # More information: https://docs.rs/about/builds#cross-compiling

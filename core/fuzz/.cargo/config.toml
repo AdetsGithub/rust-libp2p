@@ -1,0 +1,4 @@
+# Fuzz builds: keep debug assertions on so logic bugs panic under libFuzzer.
+# cargo-fuzz still supplies its own sanitizer / coverage flags.
+[build]
+rustflags = ["-C", "debug-assertions=on"]

@@ -10,6 +10,7 @@ exclude = ["src/test_assets"]
 
 [dependencies]
 futures = { workspace = true }
+futures_ringbuf = { version = "0.4", optional = true }
 futures-rustls = { workspace = true }
 libp2p-core = { workspace = true }
 libp2p-identity = { workspace = true }
@@ -26,7 +27,12 @@ version = "0.23"
 default-features = false
 features = ["aws-lc-rs", "prefer-post-quantum", "std"] # Must enable this to allow for custom verification code.
 
+[features]
+# Exposes `fuzz_tls` for cargo-fuzz harnesses. Not intended for production.
+fuzzing = ["libp2p-identity/rand", "dep:futures_ringbuf"]
+
 [dev-dependencies]
+futures_ringbuf = "0.4"
 hex-literal = { workspace = true }
 libp2p-core = { workspace = true }
 libp2p-identity = { workspace = true, features = ["ed25519", "rsa", "secp256k1", "ecdsa", "rand"] }

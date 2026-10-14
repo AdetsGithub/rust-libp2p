@@ -1,0 +1,31 @@
+# Swarm orchestrator / connection-limits fragments (hex for libFuzzer)
+
+# Small integers common in MutateLimits / slots
+u8_0="\x00"
+u8_1="\x01"
+u8_2="\x02"
+u8_3="\x03"
+u8_4="\x04"
+u8_8="\x08"
+u8_ff="\xFF"
+
+# Action-weight / Always dial bias helpers
+pair_01="\x00\x01"
+pair_10="\x01\x00"
+alwaysish="\x02\x01"
+
+# Memory transport port edges (DialUnreachable uses high ports)
+mem_hi="\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFE"
+
+# Protocol-action weight band (gossip/kad/identify arms in fuzz_action)
+proto_band="\x24\x25\x26\x27"
+kad_band="\x2A\x2B\x2C\x2D\x2E\x2F"
+# IdentifyPush band (selector 48..=49 → 0x30..=0x31)
+identify_band="\x30\x31"
+
+# Transport select: after n_swarms, int_in_range(0..=7):
+# 0|1 plaintext, 2 TLS, 3 QUIC, 4..=7 Noise
+plaintext_on="\x00\x01"
+tls_on="\x02"
+quic_on="\x03"
+noise_on="\x04\x05\x06\x07"

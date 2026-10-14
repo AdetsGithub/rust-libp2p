@@ -1,0 +1,1342 @@
+==> cargo fuzz coverage kademlia_handler
+warning: unreachable call
+   --> /home/adethya/Documents/rust-libp2p/swarm/src/connection/pool/task.rs:113:37
+    |
+113 |         Either::Left((Ok(v), _)) => libp2p_core::util::unreachable(v),
+    |                                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ - any code following this expression is unreachable
+    |                                     |
+    |                                     unreachable call
+    |
+    = note: `#[warn(unreachable_code)]` (part of `#[warn(unused)]`) on by default
+
+warning: unreachable call
+   --> /home/adethya/Documents/rust-libp2p/swarm/src/connection/pool/task.rs:151:37
+    |
+151 |         Either::Left((Ok(v), _)) => libp2p_core::util::unreachable(v),
+    |                                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ - any code following this expression is unreachable
+    |                                     |
+    |                                     unreachable call
+
+warning: unreachable call
+   --> /home/adethya/Documents/rust-libp2p/swarm/src/behaviour/toggle.rs:211:41
+    |
+211 |             future::Either::Right(v) => libp2p_core::util::unreachable(v),
+    |                                         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ - any code following this expression is unreachable
+    |                                         |
+    |                                         unreachable call
+
+warning: unreachable call
+   --> /home/adethya/Documents/rust-libp2p/swarm/src/behaviour/toggle.rs:251:33
+    |
+251 |             Either::Right(v) => libp2p_core::util::unreachable(v),
+    |                                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ - any code following this expression is unreachable
+    |                                 |
+    |                                 unreachable call
+
+warning: unreachable call
+  --> /home/adethya/Documents/rust-libp2p/swarm/src/dummy.rs:51:9
+   |
+51 |         libp2p_core::util::unreachable(event)
+   |         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ ----- any code following this expression is unreachable
+   |         |
+   |         unreachable call
+
+warning: unreachable call
+  --> /home/adethya/Documents/rust-libp2p/swarm/src/dummy.rs:79:9
+   |
+79 |         libp2p_core::util::unreachable(event)
+   |         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ ----- any code following this expression is unreachable
+   |         |
+   |         unreachable call
+
+warning: unreachable call
+  --> /home/adethya/Documents/rust-libp2p/swarm/src/dummy.rs:96:19
+   |
+96 |             }) => libp2p_core::util::unreachable(protocol),
+   |                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ -------- any code following this expression is unreachable
+   |                   |
+   |                   unreachable call
+
+warning: unreachable call
+  --> /home/adethya/Documents/rust-libp2p/swarm/src/dummy.rs:99:19
+   |
+99 |             }) => libp2p_core::util::unreachable(protocol),
+   |                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ -------- any code following this expression is unreachable
+   |                   |
+   |                   unreachable call
+
+warning: unreachable call
+   --> /home/adethya/Documents/rust-libp2p/swarm/src/dummy.rs:102:49
+    |
+102 |                 StreamUpgradeError::Apply(e) => libp2p_core::util::unreachable(e),
+    |                                                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ - any code following this expression is unreachable
+    |                                                 |
+    |                                                 unreachable call
+
+warning: unreachable call
+  --> /home/adethya/Documents/rust-libp2p/swarm/src/handler/pending.rs:59:9
+   |
+59 |         libp2p_core::util::unreachable(v)
+   |         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ - any code following this expression is unreachable
+   |         |
+   |         unreachable call
+
+warning: unreachable call
+  --> /home/adethya/Documents/rust-libp2p/swarm/src/handler/pending.rs:76:19
+   |
+76 |             }) => libp2p_core::util::unreachable(protocol),
+   |                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ -------- any code following this expression is unreachable
+   |                   |
+   |                   unreachable call
+
+warning: unreachable call
+  --> /home/adethya/Documents/rust-libp2p/swarm/src/handler/pending.rs:81:17
+   |
+81 |                 libp2p_core::util::unreachable(protocol);
+   |                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ -------- any code following this expression is unreachable
+   |                 |
+   |                 unreachable call
+
+warning: `libp2p-swarm` (lib) generated 12 warnings
+warning: unreachable call
+   --> /home/adethya/Documents/rust-libp2p/protocols/gossipsub/src/handler.rs:514:45
+    |
+514 |                         Either::Right(v) => libp2p_core::util::unreachable(v),
+    |                                             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ - any code following this expression is unreachable
+    |                                             |
+    |                                             unreachable call
+    |
+    = note: `#[warn(unreachable_code)]` (part of `#[warn(unused)]`) on by default
+
+warning: unreachable call
+   --> /home/adethya/Documents/rust-libp2p/protocols/gossipsub/src/handler.rs:528:27
+    |
+528 |                     }) => libp2p_core::util::unreachable(e),
+    |                           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ - any code following this expression is unreachable
+    |                           |
+    |                           unreachable call
+
+warning: unreachable call
+   --> /home/adethya/Documents/rust-libp2p/protocols/kad/src/handler.rs:518:41
+    |
+518 |             future::Either::Right(p) => libp2p_core::util::unreachable(p),
+    |                                         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ - any code following this expression is unreachable
+    |                                         |
+    |                                         unreachable call
+    |
+    = note: `#[warn(unreachable_code)]` (part of `#[warn(unused)]`) on by default
+
+warning: unreachable call
+   --> /home/adethya/Documents/rust-libp2p/misc/connection-limits/src/lib.rs:464:9
+    |
+464 |         libp2p_core::util::unreachable(event)
+    |         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ ----- any code following this expression is unreachable
+    |         |
+    |         unreachable call
+    |
+    = note: `#[warn(unreachable_code)]` (part of `#[warn(unused)]`) on by default
+
+warning: `libp2p-gossipsub` (lib) generated 2 warnings
+warning: `libp2p-kad` (lib) generated 1 warning
+warning: `libp2p-connection-limits` (lib) generated 1 warning
+   Compiling libp2p-core-fuzz v0.0.0 (/home/adethya/Documents/rust-libp2p/core/fuzz)
+    Finished `release` profile [optimized + debuginfo] target(s) in 2.32s
+Processing 552 input files using 5 workers (batch size: ~111)
+Worker 0: Generating coverage for 111 files
+Worker 2: Generating coverage for 111 files
+Worker 1: Generating coverage for 111 files
+Worker 3: Generating coverage for 111 files
+Worker 4: Generating coverage for 108 files
+Dictionary: 15 entries
+Dictionary: 15 entries
+INFO: Running with entropic power schedule (0xFF, 100).
+INFO: Seed: 2984865365
+INFO: Running with entropic power schedule (0xFF, 100).
+INFO: Seed: 2985181000
+Dictionary: 15 entries
+INFO: Running with entropic power schedule (0xFF, 100).
+INFO: Seed: 2985652289
+Dictionary: 15 entries
+Dictionary: 15 entries
+INFO: Running with entropic power schedule (0xFF, 100).
+INFO: Running with entropic power schedule (0xFF, 100).
+INFO: Seed: 2987196096
+INFO: Seed: 2987201493
+INFO: Loaded 1 modules   (25439 inline 8-bit counters): 25439 [0x57792a31b910, 0x57792a321c6f), 
+INFO: Loaded 1 PC tables (25439 PCs): 25439 [0x57792a321c70,0x57792a385260), 
+INFO: Loaded 1 modules   (25439 inline 8-bit counters): 25439 [0x650124a7c910, 0x650124a82c6f), 
+INFO: Loaded 1 PC tables (25439 PCs): 25439 [0x650124a82c70,0x650124ae6260), 
+/home/adethya/Documents/rust-libp2p/core/fuzz/target/x86_64-unknown-linux-gnu/coverage/x86_64-unknown-linux-gnu/release/kademlia_handler: Running 111 inputs 1 time(s) each.
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/kademlia_handler/a24fef90186873b14bd0b77b0e8820be209d604e
+/home/adethya/Documents/rust-libp2p/core/fuzz/target/x86_64-unknown-linux-gnu/coverage/x86_64-unknown-linux-gnu/release/kademlia_handler: Running 111 inputs 1 time(s) each.
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/kademlia_handler/c32ad236894df491c1f45c8be87b583e0a5f8915
+INFO: Loaded 1 modules   (25439 inline 8-bit counters): 25439 [0x5acb760f5910, 0x5acb760fbc6f), 
+INFO: Loaded 1 PC tables (25439 PCs): 25439 [0x5acb760fbc70,0x5acb7615f260), 
+/home/adethya/Documents/rust-libp2p/core/fuzz/target/x86_64-unknown-linux-gnu/coverage/x86_64-unknown-linux-gnu/release/kademlia_handler: Running 111 inputs 1 time(s) each.
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/kademlia_handler/1eafbc30c54ef02bbc6a3e7b32c703391aeb3121
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/kademlia_handler/1eafbc30c54ef02bbc6a3e7b32c703391aeb3121 in 0 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/kademlia_handler/7e2b0af3f4bcac755aaa2ef2a54fd4abd5d1a9d1
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/kademlia_handler/c32ad236894df491c1f45c8be87b583e0a5f8915 in 6 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/kademlia_handler/7b3a516f7826ca7bc32729a07cdd74d3ff60a101
+INFO: Loaded 1 modules   (25439 inline 8-bit counters): 25439 [0x55ce36d36910, 0x55ce36d3cc6f), 
+INFO: Loaded 1 PC tables (25439 PCs): 25439 [0x55ce36d3cc70,0x55ce36da0260), 
+/home/adethya/Documents/rust-libp2p/core/fuzz/target/x86_64-unknown-linux-gnu/coverage/x86_64-unknown-linux-gnu/release/kademlia_handler: Running 108 inputs 1 time(s) each.
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/kademlia_handler/c5a0a2529d2deb60fec041b4fbd722a2ebe31702
+INFO: Loaded 1 modules   (25439 inline 8-bit counters): 25439 [0x5e77b8068910, 0x5e77b806ec6f), 
+INFO: Loaded 1 PC tables (25439 PCs): 25439 [0x5e77b806ec70,0x5e77b80d2260), 
+/home/adethya/Documents/rust-libp2p/core/fuzz/target/x86_64-unknown-linux-gnu/coverage/x86_64-unknown-linux-gnu/release/kademlia_handler: Running 111 inputs 1 time(s) each.
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/kademlia_handler/175ac56769ef16efe6cb6169394e06f48cde9d73
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/kademlia_handler/7b3a516f7826ca7bc32729a07cdd74d3ff60a101 in 3 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/kademlia_handler/ebd420b9db9e754fd958071a2a50d4c70a599a0d
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/kademlia_handler/a24fef90186873b14bd0b77b0e8820be209d604e in 10 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/kademlia_handler/44bb07fcf6e9e73726882fbac8c8fa80da9d65ed
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/kademlia_handler/ebd420b9db9e754fd958071a2a50d4c70a599a0d in 0 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/kademlia_handler/5b55ec37559bb110228a6591713076b7fa2ce5e8
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/kademlia_handler/7e2b0af3f4bcac755aaa2ef2a54fd4abd5d1a9d1 in 6 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/kademlia_handler/1a0c23768d43b0b85d48f91efc7310296308f127
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/kademlia_handler/44bb07fcf6e9e73726882fbac8c8fa80da9d65ed in 2 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/kademlia_handler/1caaa6536356691d76bc9fa3ef0652700143f7c1
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/kademlia_handler/1a0c23768d43b0b85d48f91efc7310296308f127 in 2 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/kademlia_handler/bdff3671662b965f2352958250e5cb1e88e77ba3
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/kademlia_handler/1caaa6536356691d76bc9fa3ef0652700143f7c1 in 2 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/kademlia_handler/bf706701d4288d076ed7c5e6957571372c85454f
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/kademlia_handler/c5a0a2529d2deb60fec041b4fbd722a2ebe31702 in 8 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/kademlia_handler/a8b268a1ad467dd890a56be0076c77db26588cb0
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/kademlia_handler/a8b268a1ad467dd890a56be0076c77db26588cb0 in 0 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/kademlia_handler/8b84cb4ecd4e984ac45eedc6d6135a159c05126c
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/kademlia_handler/bdff3671662b965f2352958250e5cb1e88e77ba3 in 2 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/kademlia_handler/2d957f827fa695460545ff397a308b4914ca98ef
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/kademlia_handler/5b55ec37559bb110228a6591713076b7fa2ce5e8 in 6 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/kademlia_handler/d1ed5efd99f2592b68c9f94cb6befeae1e061a5b
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/kademlia_handler/bf706701d4288d076ed7c5e6957571372c85454f in 3 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/kademlia_handler/923b46450b08a3121bdf4a1e97553ab88db2db1c
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/kademlia_handler/2d957f827fa695460545ff397a308b4914ca98ef in 2 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/kademlia_handler/15d4e22dedc5674885b2321c60d247f16da06dbb
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/kademlia_handler/d1ed5efd99f2592b68c9f94cb6befeae1e061a5b in 2 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/kademlia_handler/eee863d3b827f23d8d1832dee3059f94aec961f5
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/kademlia_handler/8b84cb4ecd4e984ac45eedc6d6135a159c05126c in 4 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/kademlia_handler/fd9109fc4a8f4dc5ea387217c08f0b981768f73a
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/kademlia_handler/15d4e22dedc5674885b2321c60d247f16da06dbb in 2 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/kademlia_handler/50b3503572ea2cb5f80d7332e8f6bcf4cd1bff23
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/kademlia_handler/923b46450b08a3121bdf4a1e97553ab88db2db1c in 2 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/kademlia_handler/b8eca6e5ad43c506dfda132debf51c0f4e85bbbd
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/kademlia_handler/eee863d3b827f23d8d1832dee3059f94aec961f5 in 2 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/kademlia_handler/599e53fbbe5767a2dcd8e472799489633db0ff7e
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/kademlia_handler/50b3503572ea2cb5f80d7332e8f6bcf4cd1bff23 in 2 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/kademlia_handler/e21a5542ec9743333b8891e5e8765fdf3cbd3bcd
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/kademlia_handler/e21a5542ec9743333b8891e5e8765fdf3cbd3bcd in 0 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/kademlia_handler/97e031e93d6c223ea4b12024dc99f0fd5d915c29
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/kademlia_handler/599e53fbbe5767a2dcd8e472799489633db0ff7e in 2 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/kademlia_handler/c50981f602fbf5cf4e60ef87faee53d4b1b6b743
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/kademlia_handler/fd9109fc4a8f4dc5ea387217c08f0b981768f73a in 4 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/kademlia_handler/a92949c69e5506b340bdb5b02178752ad55d5784
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/kademlia_handler/b8eca6e5ad43c506dfda132debf51c0f4e85bbbd in 4 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/kademlia_handler/32501416d9c177ce9c935a994dc28515d54b9819
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/kademlia_handler/c50981f602fbf5cf4e60ef87faee53d4b1b6b743 in 2 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/kademlia_handler/1512accba32d83c7017db06d17b96aa151f464d5
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/kademlia_handler/97e031e93d6c223ea4b12024dc99f0fd5d915c29 in 3 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/kademlia_handler/2e0d696b0446e4fafa4e0a7cac58e627603ff851
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/kademlia_handler/a92949c69e5506b340bdb5b02178752ad55d5784 in 3 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/kademlia_handler/277b0f6a153ddabf88d205aff143f035625bde75
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/kademlia_handler/32501416d9c177ce9c935a994dc28515d54b9819 in 3 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/kademlia_handler/dfaf80b2e951162c02a1ec7f4229c48acbaad6f5
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/kademlia_handler/1512accba32d83c7017db06d17b96aa151f464d5 in 2 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/kademlia_handler/225de4513ba641e66e5a0aa15e47160f8796c4a2
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/kademlia_handler/2e0d696b0446e4fafa4e0a7cac58e627603ff851 in 2 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/kademlia_handler/947f5d90550a37561b3c281e8f7df044a4746903
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/kademlia_handler/947f5d90550a37561b3c281e8f7df044a4746903 in 0 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/kademlia_handler/bcabcac79abaa96ee1ed974678bba4ee2737f814
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/kademlia_handler/277b0f6a153ddabf88d205aff143f035625bde75 in 2 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/kademlia_handler/b93ea72b0d78f692997d5bcb8bf087242501dc7e
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/kademlia_handler/dfaf80b2e951162c02a1ec7f4229c48acbaad6f5 in 2 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/kademlia_handler/27daf43dba099c6c4916a9142454148fb884352b
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/kademlia_handler/27daf43dba099c6c4916a9142454148fb884352b in 0 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/kademlia_handler/c7f70c1c2770e7770b8025dca26c026a69321106
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/kademlia_handler/bcabcac79abaa96ee1ed974678bba4ee2737f814 in 2 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/kademlia_handler/3e0037937b5eb4cd50abd1ec910badf9eed61dac
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/kademlia_handler/225de4513ba641e66e5a0aa15e47160f8796c4a2 in 3 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/kademlia_handler/5c333081da877d99ea06baa921fe617f9058f187
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/kademlia_handler/5c333081da877d99ea06baa921fe617f9058f187 in 0 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/kademlia_handler/90f059633508c71826fa1b5a7e529cafa1faa4d8
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/kademlia_handler/b93ea72b0d78f692997d5bcb8bf087242501dc7e in 3 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/kademlia_handler/8d883f1577ca8c334b7c6d75ccb71209d71ced13
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/kademlia_handler/3e0037937b5eb4cd50abd1ec910badf9eed61dac in 2 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/kademlia_handler/5ca23363f0ae94a7e2084dc6b94b8751f5683cbc
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/kademlia_handler/c7f70c1c2770e7770b8025dca26c026a69321106 in 4 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/kademlia_handler/0ee80de8a187cb174cf5bcde9e94108456f10fd2
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/kademlia_handler/5ca23363f0ae94a7e2084dc6b94b8751f5683cbc in 1 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/kademlia_handler/74c28156e34cf8769d8f99099c4fe614d7413c30
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/kademlia_handler/8d883f1577ca8c334b7c6d75ccb71209d71ced13 in 2 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/kademlia_handler/e0083894983466c407763a493a54f8d856bbfd7f
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/kademlia_handler/90f059633508c71826fa1b5a7e529cafa1faa4d8 in 5 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/kademlia_handler/0e3905626225b0dbcff69ff375fe989832cd026f
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/kademlia_handler/74c28156e34cf8769d8f99099c4fe614d7413c30 in 2 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/kademlia_handler/525d74349e53ae1b76c4353bb42c67a5d5be1fb7
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/kademlia_handler/e0083894983466c407763a493a54f8d856bbfd7f in 2 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/kademlia_handler/e779a1e83f7af09d18644834ac692dfe1631f7c0
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/kademlia_handler/0ee80de8a187cb174cf5bcde9e94108456f10fd2 in 3 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/kademlia_handler/0d410a8f0857c1515cfabb3c0b423f4b7d5ec515
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/kademlia_handler/525d74349e53ae1b76c4353bb42c67a5d5be1fb7 in 2 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/kademlia_handler/87eae7ccf20bbdae652a62fb8e2a89f2667cd221
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/kademlia_handler/87eae7ccf20bbdae652a62fb8e2a89f2667cd221 in 0 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/kademlia_handler/2a6c45c869bf072eef4613407b15dbf3e04403ce
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/kademlia_handler/0d410a8f0857c1515cfabb3c0b423f4b7d5ec515 in 1 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/kademlia_handler/16379e7885f373faff95e5b748ac64c054b0f886
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/kademlia_handler/16379e7885f373faff95e5b748ac64c054b0f886 in 0 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/kademlia_handler/30aaa604f1db0cf94a2b657fbc2b64e569fb4ccd
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/kademlia_handler/e779a1e83f7af09d18644834ac692dfe1631f7c0 in 2 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/kademlia_handler/22cf20563833b86b222ef5c85bfd0449e7451f86
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/kademlia_handler/2a6c45c869bf072eef4613407b15dbf3e04403ce in 1 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/kademlia_handler/80cb61de66536407fd1864fc3209d447edbfeda0
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/kademlia_handler/80cb61de66536407fd1864fc3209d447edbfeda0 in 0 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/kademlia_handler/6313c72e1357f11a16f64a64c3823d08add43647
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/kademlia_handler/22cf20563833b86b222ef5c85bfd0449e7451f86 in 2 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/kademlia_handler/5ba93c9db0cff93f52b521d7420e43f6eda2784f
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/kademlia_handler/0e3905626225b0dbcff69ff375fe989832cd026f in 5 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/kademlia_handler/1a6265cf3a2f3d3198e7865b1805c89b52fe43bc
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/kademlia_handler/6313c72e1357f11a16f64a64c3823d08add43647 in 1 ms
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/kademlia_handler/30aaa604f1db0cf94a2b657fbc2b64e569fb4ccd in 3 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/kademlia_handler/62b90f2e57f3fb388b95a57625e680559d9a3852
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/kademlia_handler/a44ea5d1d63093eb61e92736008aa19606695bad
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/kademlia_handler/62b90f2e57f3fb388b95a57625e680559d9a3852 in 0 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/kademlia_handler/3e4c7b9b16525656dc8d299d945bece8c921e403
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/kademlia_handler/a44ea5d1d63093eb61e92736008aa19606695bad in 0 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/kademlia_handler/836a80ed9ee5e54723940f93b99073a8ed41245a
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/kademlia_handler/5ba93c9db0cff93f52b521d7420e43f6eda2784f in 2 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/kademlia_handler/cb1a396af11f1b4bdb5f1e834c94d6273260d53f
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/kademlia_handler/1a6265cf3a2f3d3198e7865b1805c89b52fe43bc in 2 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/kademlia_handler/80263e043def5600b0d7d04111a6936cd5a03ec4
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/kademlia_handler/836a80ed9ee5e54723940f93b99073a8ed41245a in 1 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/kademlia_handler/350c8f7e5b65aded1938319b1d88b11493545f5f
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/kademlia_handler/3e4c7b9b16525656dc8d299d945bece8c921e403 in 1 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/kademlia_handler/0c968a071d2b64e9bcbddaf5c43da6f1ab6114b2
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/kademlia_handler/80263e043def5600b0d7d04111a6936cd5a03ec4 in 0 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/kademlia_handler/c68bafc4d5f26e8e26a4a8073b0cf90ee9a24df9
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/kademlia_handler/cb1a396af11f1b4bdb5f1e834c94d6273260d53f in 1 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/kademlia_handler/7bc04a2edb2a83b6ee10c56a70504102785c8b1f
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/kademlia_handler/0c968a071d2b64e9bcbddaf5c43da6f1ab6114b2 in 1 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/kademlia_handler/fc40004ba008fc22810ef8cc2f20781a7b9854e8
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/kademlia_handler/175ac56769ef16efe6cb6169394e06f48cde9d73 in 41 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/kademlia_handler/1ce813005617aac66f96e3d6679cbd65f4b3a1a4
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/kademlia_handler/7bc04a2edb2a83b6ee10c56a70504102785c8b1f in 1 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/kademlia_handler/e0bccdf53f207689761523a3596485193bbbdb5e
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/kademlia_handler/fc40004ba008fc22810ef8cc2f20781a7b9854e8 in 2 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/kademlia_handler/19fce2273f668c352f5a888583b1cca0410bf468
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/kademlia_handler/c68bafc4d5f26e8e26a4a8073b0cf90ee9a24df9 in 3 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/kademlia_handler/b12ec7b586d6aa18a818b9f406e1af670074cf67
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/kademlia_handler/350c8f7e5b65aded1938319b1d88b11493545f5f in 3 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/kademlia_handler/8a09a6d15ea080edb22b371c722dad6a95c64bb1
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/kademlia_handler/b12ec7b586d6aa18a818b9f406e1af670074cf67 in 0 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/kademlia_handler/6f8d64ec0bd18052a46163c464dbb5d19be343b5
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/kademlia_handler/8a09a6d15ea080edb22b371c722dad6a95c64bb1 in 0 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/kademlia_handler/30fc65cb0f07bd3f1a3cb9c0dcadbfa5b078898b
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/kademlia_handler/19fce2273f668c352f5a888583b1cca0410bf468 in 1 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/kademlia_handler/fe8ae7cf9b49972fe67f313a363160f0c9817a94
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/kademlia_handler/1ce813005617aac66f96e3d6679cbd65f4b3a1a4 in 4 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/kademlia_handler/6a6389c399e8dfaf1c19037398ecfd79bab5610a
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/kademlia_handler/30fc65cb0f07bd3f1a3cb9c0dcadbfa5b078898b in 2 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/kademlia_handler/5f654ab6a1a4af515485d6696ee9030613e73bbd
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/kademlia_handler/6f8d64ec0bd18052a46163c464dbb5d19be343b5 in 2 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/kademlia_handler/193d34a4ed3fe61733de90aebd6f9784dbb68d0e
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/kademlia_handler/e0bccdf53f207689761523a3596485193bbbdb5e in 3 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/kademlia_handler/0cd2b0e567b778722173770f675b1cabd283e64b
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/kademlia_handler/5f654ab6a1a4af515485d6696ee9030613e73bbd in 2 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/kademlia_handler/1ae4a2ba2965531fb9495c8ab85510248cc28bad
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/kademlia_handler/6a6389c399e8dfaf1c19037398ecfd79bab5610a in 4 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/kademlia_handler/10d1352d9f0bc36d54eeceb3dcceeb801611085b
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/kademlia_handler/193d34a4ed3fe61733de90aebd6f9784dbb68d0e in 4 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/kademlia_handler/dc4c1264bcdbb3c2fcf0e0a970d1587b8aa5d7eb
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/kademlia_handler/0cd2b0e567b778722173770f675b1cabd283e64b in 4 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/kademlia_handler/747f56556278a397a59fc3e7116fde26f67573c3
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/kademlia_handler/1ae4a2ba2965531fb9495c8ab85510248cc28bad in 3 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/kademlia_handler/06b3dfde3dd2bd21b1de3f9b7758d26d7fa6d094
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/kademlia_handler/dc4c1264bcdbb3c2fcf0e0a970d1587b8aa5d7eb in 1 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/kademlia_handler/ceb358a07512489e43abfc5267d95592c7f62e4d
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/kademlia_handler/10d1352d9f0bc36d54eeceb3dcceeb801611085b in 2 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/kademlia_handler/88dd0402aa043c96b24792fb178c60df52935007
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/kademlia_handler/88dd0402aa043c96b24792fb178c60df52935007 in 0 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/kademlia_handler/2f7a16219486348d3120d81c05a777193dd8db18
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/kademlia_handler/747f56556278a397a59fc3e7116fde26f67573c3 in 1 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/kademlia_handler/99127fc1aab713a39fd17fb7a582e426a2375869
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/kademlia_handler/06b3dfde3dd2bd21b1de3f9b7758d26d7fa6d094 in 1 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/kademlia_handler/c39ac3e790ba2b2e13c687440aa3890a424e4bd1
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/kademlia_handler/ceb358a07512489e43abfc5267d95592c7f62e4d in 1 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/kademlia_handler/d09d7fccb7b9d722bc6cddb48daec54deae89c6e
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/kademlia_handler/2f7a16219486348d3120d81c05a777193dd8db18 in 2 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/kademlia_handler/a3f59cebf42464f1d1f0178294d0be4a9128cb3a
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/kademlia_handler/a3f59cebf42464f1d1f0178294d0be4a9128cb3a in 0 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/kademlia_handler/e9eb463d79935b08aba39672642d3aef32036799
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/kademlia_handler/d09d7fccb7b9d722bc6cddb48daec54deae89c6e in 1 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/kademlia_handler/43f110a6dabc196105bdfc42a389f14e9cbd99b2
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/kademlia_handler/99127fc1aab713a39fd17fb7a582e426a2375869 in 4 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/kademlia_handler/9506ef81f6073d5f1ff616172b73e35dc504f3f7
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/kademlia_handler/e9eb463d79935b08aba39672642d3aef32036799 in 2 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/kademlia_handler/3806ab27edcdaec6052a4f47c1682b702616036f
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/kademlia_handler/9506ef81f6073d5f1ff616172b73e35dc504f3f7 in 2 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/kademlia_handler/180216576f421e58af4435350b6064817e34bf34
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/kademlia_handler/180216576f421e58af4435350b6064817e34bf34 in 0 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/kademlia_handler/7290898e57fab0448f1e57edaaa0c274a1cbd009
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/kademlia_handler/3806ab27edcdaec6052a4f47c1682b702616036f in 2 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/kademlia_handler/eee1eba79d7be20590e47397dc663957544d81fd
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/kademlia_handler/43f110a6dabc196105bdfc42a389f14e9cbd99b2 in 4 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/kademlia_handler/274f2bacadd7eb1152e3e1cfbd5d8ad046f89ce5
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/kademlia_handler/7290898e57fab0448f1e57edaaa0c274a1cbd009 in 3 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/kademlia_handler/21f48734789c5329a10004a1f93ad8f7974db102
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/kademlia_handler/274f2bacadd7eb1152e3e1cfbd5d8ad046f89ce5 in 3 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/kademlia_handler/cf3bdd1f51487c9248d56cbd2f0d34dcac35065d
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/kademlia_handler/fe8ae7cf9b49972fe67f313a363160f0c9817a94 in 18 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/kademlia_handler/f002dac99f62e2df5a13f491ac98c79cc50783e4
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/kademlia_handler/eee1eba79d7be20590e47397dc663957544d81fd in 3 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/kademlia_handler/fe10241fec9a84c727ddbfacb13eaaa93e4a3ae0
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/kademlia_handler/f002dac99f62e2df5a13f491ac98c79cc50783e4 in 1 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/kademlia_handler/af81a4fc4edceed7043afbcbc3fc61205195fe01
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/kademlia_handler/fe10241fec9a84c727ddbfacb13eaaa93e4a3ae0 in 2 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/kademlia_handler/428cf79b974b45d1f4c65725ffd59c065f00df6d
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/kademlia_handler/21f48734789c5329a10004a1f93ad8f7974db102 in 3 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/kademlia_handler/013cba284c0061592ad02c206d64bc8910a24689
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/kademlia_handler/cf3bdd1f51487c9248d56cbd2f0d34dcac35065d in 3 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/kademlia_handler/ba802913be3b7112751af133cb18f650860ad7f4
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/kademlia_handler/ba802913be3b7112751af133cb18f650860ad7f4 in 0 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/kademlia_handler/01a6f86633b12550d6a0bcbba10254cbdc883081
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/kademlia_handler/af81a4fc4edceed7043afbcbc3fc61205195fe01 in 2 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/kademlia_handler/a50bc5ffa43564142011ac9642b6d98affdbafe2
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/kademlia_handler/013cba284c0061592ad02c206d64bc8910a24689 in 1 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/kademlia_handler/97a8c2c8b87c6e7afae0dc940e411eeddeec5a5d
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/kademlia_handler/428cf79b974b45d1f4c65725ffd59c065f00df6d in 2 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/kademlia_handler/091fb1a2588ea478716559425de57d483d29def1
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/kademlia_handler/a50bc5ffa43564142011ac9642b6d98affdbafe2 in 1 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/kademlia_handler/0d5f0b895f17798e25b06b4ddeed81b92f34370f
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/kademlia_handler/091fb1a2588ea478716559425de57d483d29def1 in 2 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/kademlia_handler/6cdaa82e08e158ecc6c0985dd30db44a6826434c
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/kademlia_handler/01a6f86633b12550d6a0bcbba10254cbdc883081 in 3 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/kademlia_handler/76f279f8cc5ffb281bf7a6fa386ee910f9d03eff
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/kademlia_handler/0d5f0b895f17798e25b06b4ddeed81b92f34370f in 1 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/kademlia_handler/a581e347e109da03239f5a7280e3261f11bb75a4
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/kademlia_handler/97a8c2c8b87c6e7afae0dc940e411eeddeec5a5d in 3 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/kademlia_handler/0d5e357f5c772ddd3a53b92fb7686afdb48714a3
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/kademlia_handler/a581e347e109da03239f5a7280e3261f11bb75a4 in 0 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/kademlia_handler/d85a2354734b751e0dc3ce5cf36ebe851b2db843
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/kademlia_handler/6cdaa82e08e158ecc6c0985dd30db44a6826434c in 1 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/kademlia_handler/babee2981a568a511e63ef778597de52435bc324
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/kademlia_handler/76f279f8cc5ffb281bf7a6fa386ee910f9d03eff in 3 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/kademlia_handler/4e9c93826c11f01d896899629e59b27df60475d1
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/kademlia_handler/4e9c93826c11f01d896899629e59b27df60475d1 in 0 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/kademlia_handler/86525ff6e505a57fd555c847a6f5c1bcf6a6fcaa
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/kademlia_handler/babee2981a568a511e63ef778597de52435bc324 in 2 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/kademlia_handler/e221d342cd5df23b0efcc67583ba44a61aedec07
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/kademlia_handler/0d5e357f5c772ddd3a53b92fb7686afdb48714a3 in 3 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/kademlia_handler/4df1d962fd53f3370b968edd05970008daf8dbb7
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/kademlia_handler/d85a2354734b751e0dc3ce5cf36ebe851b2db843 in 4 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/kademlia_handler/3b81fbe2252e68a95822e0f46b892074df76d170
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/kademlia_handler/3b81fbe2252e68a95822e0f46b892074df76d170 in 0 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/kademlia_handler/97fed3b320ddcc5cf402f0969a17afb241a74a5c
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/kademlia_handler/97fed3b320ddcc5cf402f0969a17afb241a74a5c in 0 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/kademlia_handler/b77e408786a18680dbf279faf2c4a32b110ebeed
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/kademlia_handler/e221d342cd5df23b0efcc67583ba44a61aedec07 in 3 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/kademlia_handler/5dfa9998008f1679f4300bffebc87e840e1cf58a
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/kademlia_handler/5dfa9998008f1679f4300bffebc87e840e1cf58a in 2 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/kademlia_handler/4f3116a555eb367be4d423e3706c45cf11b1db8f
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/kademlia_handler/b77e408786a18680dbf279faf2c4a32b110ebeed in 4 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/kademlia_handler/ff47a3a78b0debcb897da9b4ded0efe9f0f17547
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/kademlia_handler/4f3116a555eb367be4d423e3706c45cf11b1db8f in 0 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/kademlia_handler/addae4b786bbb441bef0589eb196972b6e6bfe9a
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/kademlia_handler/ff47a3a78b0debcb897da9b4ded0efe9f0f17547 in 1 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/kademlia_handler/68a662e00a260f59fc21ac6911adf4c468576009
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/kademlia_handler/addae4b786bbb441bef0589eb196972b6e6bfe9a in 4 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/kademlia_handler/9ce5e871aa6e1833283d96a9d89825b3c7542c38
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/kademlia_handler/c39ac3e790ba2b2e13c687440aa3890a424e4bd1 in 31 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/kademlia_handler/f0b57f638304ad5edd7d4e657724ca8fd55fef8b
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/kademlia_handler/68a662e00a260f59fc21ac6911adf4c468576009 in 3 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/kademlia_handler/51f90d5a76d11f27fd3558a77a3c911da3438489
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/kademlia_handler/9ce5e871aa6e1833283d96a9d89825b3c7542c38 in 2 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/kademlia_handler/27308c81b7668e37700751236d16ca012fbd671e
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/kademlia_handler/f0b57f638304ad5edd7d4e657724ca8fd55fef8b in 2 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/kademlia_handler/17f3c38ea6716dad9f2bc03009d0d6599d80f2c8
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/kademlia_handler/27308c81b7668e37700751236d16ca012fbd671e in 2 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/kademlia_handler/e6f563413a52e057312a9d7ef1060bc1f33eeae0
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/kademlia_handler/e6f563413a52e057312a9d7ef1060bc1f33eeae0 in 2 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/kademlia_handler/c5efa6900fa2c36d81ef7ee6b5196859c5bed9f1
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/kademlia_handler/17f3c38ea6716dad9f2bc03009d0d6599d80f2c8 in 4 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/kademlia_handler/f22bbd7bf956c5fa254f9f2356328e168fe882aa
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/kademlia_handler/f22bbd7bf956c5fa254f9f2356328e168fe882aa in 4 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/kademlia_handler/b17aad6e07013e8723af2f24f0d1e43c086cf774
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/kademlia_handler/c5efa6900fa2c36d81ef7ee6b5196859c5bed9f1 in 5 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/kademlia_handler/dd19d6b7b2dd92cfad9e7e77ede47f164a025620
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/kademlia_handler/dd19d6b7b2dd92cfad9e7e77ede47f164a025620 in 2 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/kademlia_handler/a43247ee619c50e234b5ca380ace334faab0a51f
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/kademlia_handler/86525ff6e505a57fd555c847a6f5c1bcf6a6fcaa in 39 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/kademlia_handler/0ccd8ae6f4b288253e48d899d78cb37163101c08
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/kademlia_handler/4df1d962fd53f3370b968edd05970008daf8dbb7 in 42 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/kademlia_handler/8b7024acef9dbc8bcaa2c9660a684057fd27082b
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/kademlia_handler/8b7024acef9dbc8bcaa2c9660a684057fd27082b in 0 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/kademlia_handler/21bbc8310d58d374a247514c01a8c3867da04ef1
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/kademlia_handler/21bbc8310d58d374a247514c01a8c3867da04ef1 in 0 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/kademlia_handler/bbff3f15a5edf6c674dfa5212f669ef4d39bcc69
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/kademlia_handler/a43247ee619c50e234b5ca380ace334faab0a51f in 20 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/kademlia_handler/7df13ee95017bce6daf1ddcd62636e38f5ce532a
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/kademlia_handler/0ccd8ae6f4b288253e48d899d78cb37163101c08 in 7 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/kademlia_handler/da63968e359156ca9c2eea61218f3d852940c64b
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/kademlia_handler/b17aad6e07013e8723af2f24f0d1e43c086cf774 in 24 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/kademlia_handler/91949e40891b4f9c358272e8f52e60a10205db53
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/kademlia_handler/7df13ee95017bce6daf1ddcd62636e38f5ce532a in 2 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/kademlia_handler/1a4dfa969aef33328af6c0c9b02017a7248a37eb
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/kademlia_handler/91949e40891b4f9c358272e8f52e60a10205db53 in 2 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/kademlia_handler/ac0af5e64e62c31c5ad256592ff8a1356fc8ec46
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/kademlia_handler/da63968e359156ca9c2eea61218f3d852940c64b in 3 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/kademlia_handler/03b466d91e7add4c89783685a6b2b82998277263
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/kademlia_handler/bbff3f15a5edf6c674dfa5212f669ef4d39bcc69 in 5 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/kademlia_handler/eace51832e2df0a7a0840fb54237edad6408c119
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/kademlia_handler/51f90d5a76d11f27fd3558a77a3c911da3438489 in 39 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/kademlia_handler/bbd45ef937649222a26db5c5f21d8d58e7cb60cb
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/kademlia_handler/1a4dfa969aef33328af6c0c9b02017a7248a37eb in 4 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/kademlia_handler/e5994c2da1eff5a35777274e6f07701530aea9f4
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/kademlia_handler/eace51832e2df0a7a0840fb54237edad6408c119 in 2 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/kademlia_handler/a48ddb41d11538605ac467b275fb75d9a70daa96
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/kademlia_handler/a48ddb41d11538605ac467b275fb75d9a70daa96 in 0 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/kademlia_handler/9119d57d41a88760b2fe73148b35f7e2d59fea1d
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/kademlia_handler/ac0af5e64e62c31c5ad256592ff8a1356fc8ec46 in 4 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/kademlia_handler/1e34d5e6a8b2420aed342ba9c2479157c23e547f
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/kademlia_handler/03b466d91e7add4c89783685a6b2b82998277263 in 3 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/kademlia_handler/045da1c2b607f0516cb7feeb8b2274cc56fcb82d
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/kademlia_handler/045da1c2b607f0516cb7feeb8b2274cc56fcb82d in 0 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/kademlia_handler/cea658b032f14902d946bd391e39e1e3f491fff7
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/kademlia_handler/bbd45ef937649222a26db5c5f21d8d58e7cb60cb in 3 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/kademlia_handler/35e95f210a5aeede77c472cffaa530c3fc77db2c
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/kademlia_handler/1e34d5e6a8b2420aed342ba9c2479157c23e547f in 2 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/kademlia_handler/3825079ebe5cea39a62d1d51742e8d8414a4ce05
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/kademlia_handler/e5994c2da1eff5a35777274e6f07701530aea9f4 in 4 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/kademlia_handler/2361da559657927d4447ebb7fca09e5efa684102
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/kademlia_handler/9119d57d41a88760b2fe73148b35f7e2d59fea1d in 4 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/kademlia_handler/03be2d93cdec748ab262b8d2d75fe1652e91877d
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/kademlia_handler/cea658b032f14902d946bd391e39e1e3f491fff7 in 3 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/kademlia_handler/44b7c86e14cbeea62e4fc0f8fc5c3016ccc164e9
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/kademlia_handler/35e95f210a5aeede77c472cffaa530c3fc77db2c in 3 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/kademlia_handler/e346543e0857be3e48892ded6368e35feb3610c8
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/kademlia_handler/44b7c86e14cbeea62e4fc0f8fc5c3016ccc164e9 in 1 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/kademlia_handler/6ca66487652800cd795644cb9b2a2fe2edbad3ee
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/kademlia_handler/6ca66487652800cd795644cb9b2a2fe2edbad3ee in 0 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/kademlia_handler/2c28da13172bc5d8305cb8b828cb8321aeced065
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/kademlia_handler/03be2d93cdec748ab262b8d2d75fe1652e91877d in 1 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/kademlia_handler/7e78dfc3e2bcaee6d38c256d6ab7326bdafa8410
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/kademlia_handler/2361da559657927d4447ebb7fca09e5efa684102 in 3 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/kademlia_handler/0b6c57a46df54d6af6aba0401ff5523e651b644f
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/kademlia_handler/2c28da13172bc5d8305cb8b828cb8321aeced065 in 2 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/kademlia_handler/e582df05c3b0ee6c3e22a9a99774fd6015ee39ed
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/kademlia_handler/7e78dfc3e2bcaee6d38c256d6ab7326bdafa8410 in 2 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/kademlia_handler/9bcc969a5f3abb1f756de7cd29bb008892af8e58
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/kademlia_handler/e346543e0857be3e48892ded6368e35feb3610c8 in 3 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/kademlia_handler/6059f22dc6a3ca2be51bf1b60c5bc41fa7101e3e
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/kademlia_handler/0b6c57a46df54d6af6aba0401ff5523e651b644f in 3 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/kademlia_handler/seed_outbound_findnode
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/kademlia_handler/6059f22dc6a3ca2be51bf1b60c5bc41fa7101e3e in 1 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/kademlia_handler/433e067440a41cf1edfa71cc9856fcc2bb46e160
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/kademlia_handler/433e067440a41cf1edfa71cc9856fcc2bb46e160 in 0 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/kademlia_handler/a99162bc07504e7e6349b05bca352f2a1ab4360f
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/kademlia_handler/a99162bc07504e7e6349b05bca352f2a1ab4360f in 0 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/kademlia_handler/99c7775874953dbcf00920582dcdd9084aa3d385
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/kademlia_handler/e582df05c3b0ee6c3e22a9a99774fd6015ee39ed in 3 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/kademlia_handler/6764aeeff2bbe67eb83c658bc52b0b44abed064f
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/kademlia_handler/9bcc969a5f3abb1f756de7cd29bb008892af8e58 in 3 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/kademlia_handler/3332727a2fd47fa82534f925bdad1f3fb74778a4
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/kademlia_handler/seed_outbound_findnode in 1 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/kademlia_handler/d472472baddd2f1890aadd49fe400426cf36ce12
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/kademlia_handler/3332727a2fd47fa82534f925bdad1f3fb74778a4 in 2 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/kademlia_handler/e25096b4e3003d7525dcaa2b9f973552e037f7aa
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/kademlia_handler/99c7775874953dbcf00920582dcdd9084aa3d385 in 2 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/kademlia_handler/e4121eecd3748996ec57512b43917bdaaebea787
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/kademlia_handler/6764aeeff2bbe67eb83c658bc52b0b44abed064f in 3 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/kademlia_handler/b70d777614e4c227d1d667fc1d0db6d17e911a29
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/kademlia_handler/d472472baddd2f1890aadd49fe400426cf36ce12 in 3 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/kademlia_handler/265b253b2789bea0528f2e72bb85151a255afb5e
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/kademlia_handler/e4121eecd3748996ec57512b43917bdaaebea787 in 1 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/kademlia_handler/0779955b728d1584dd66093f907fc6ccfd6f8545
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/kademlia_handler/265b253b2789bea0528f2e72bb85151a255afb5e in 0 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/kademlia_handler/67a4452832d13eb41378b611ca3d83a8f858f859
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/kademlia_handler/67a4452832d13eb41378b611ca3d83a8f858f859 in 0 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/kademlia_handler/da29bb4296d9cddb5f9369d8e63bfac78db4a2d1
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/kademlia_handler/0779955b728d1584dd66093f907fc6ccfd6f8545 in 0 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/kademlia_handler/a5ec74ce0ac68c9e87e3c90e98d52bde0828b3c6
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/kademlia_handler/a5ec74ce0ac68c9e87e3c90e98d52bde0828b3c6 in 0 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/kademlia_handler/b55c1b500b119f3aeebcce4c175cd894d472183f
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/kademlia_handler/b55c1b500b119f3aeebcce4c175cd894d472183f in 1 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/kademlia_handler/5d01c5df2b1a93c643f4cc5a0a5c0ba66fa7dc8c
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/kademlia_handler/b70d777614e4c227d1d667fc1d0db6d17e911a29 in 3 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/kademlia_handler/9ac725d402ee40b767168e5f2990e3b81831947a
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/kademlia_handler/e25096b4e3003d7525dcaa2b9f973552e037f7aa in 4 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/kademlia_handler/8d40a175f19482a5dbaefecb493f7177c383981a
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/kademlia_handler/da29bb4296d9cddb5f9369d8e63bfac78db4a2d1 in 3 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/kademlia_handler/7fd52d29896527f8cae1dc7f91baf54d8e290397
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/kademlia_handler/9ac725d402ee40b767168e5f2990e3b81831947a in 3 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/kademlia_handler/d50b7a0de8b186326d8eb0e106df34ef81d88d51
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/kademlia_handler/d50b7a0de8b186326d8eb0e106df34ef81d88d51 in 0 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/kademlia_handler/2c3d4826d5236b3c9a914c5ce2e3d8cea48ac7ce
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/kademlia_handler/7fd52d29896527f8cae1dc7f91baf54d8e290397 in 3 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/kademlia_handler/ff35ae1265232dc3613b85f3d9a5ec6f9be70231
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/kademlia_handler/8d40a175f19482a5dbaefecb493f7177c383981a in 5 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/kademlia_handler/a87414122ad5e5c32b1236769672f95e60f2000e
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/kademlia_handler/2c3d4826d5236b3c9a914c5ce2e3d8cea48ac7ce in 3 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/kademlia_handler/d4d1d087153ad19b1f639bf2a3c806ff508e9563
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/kademlia_handler/a87414122ad5e5c32b1236769672f95e60f2000e in 2 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/kademlia_handler/52893350157f0827e2d6fe8f8a654c39d7165b86
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/kademlia_handler/52893350157f0827e2d6fe8f8a654c39d7165b86 in 0 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/kademlia_handler/ca28bded81cd606ae93c489dad4785623769d5ae
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/kademlia_handler/ff35ae1265232dc3613b85f3d9a5ec6f9be70231 in 3 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/kademlia_handler/91676eb9bca05d74dc6bdd6e291c63c1d71b0407
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/kademlia_handler/3825079ebe5cea39a62d1d51742e8d8414a4ce05 in 25 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/kademlia_handler/985b0a0e879169a33bf8089499e9827ea45aab3c
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/kademlia_handler/d4d1d087153ad19b1f639bf2a3c806ff508e9563 in 3 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/kademlia_handler/4b449fa0f58b7e01b12bd9bc5477f2fe61e8bba1
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/kademlia_handler/ca28bded81cd606ae93c489dad4785623769d5ae in 2 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/kademlia_handler/7b8eb6770d6dd00b978795fd060ce7159b97bede
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/kademlia_handler/4b449fa0f58b7e01b12bd9bc5477f2fe61e8bba1 in 0 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/kademlia_handler/b07252f4e31bff8ba24477ee2b4ceea52116a7e8
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/kademlia_handler/91676eb9bca05d74dc6bdd6e291c63c1d71b0407 in 3 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/kademlia_handler/a339bd053145ec771dc498a70f3b37e123e8e162
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/kademlia_handler/985b0a0e879169a33bf8089499e9827ea45aab3c in 1 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/kademlia_handler/0d97956a80edcc655b9b530e6abc96de0bb2f15d
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/kademlia_handler/7b8eb6770d6dd00b978795fd060ce7159b97bede in 1 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/kademlia_handler/616ced589e7882eb1785fc187de4c2a469402cff
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/kademlia_handler/a339bd053145ec771dc498a70f3b37e123e8e162 in 1 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/kademlia_handler/9641667140c5fec65f9ec363d0869006d752e366
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/kademlia_handler/b07252f4e31bff8ba24477ee2b4ceea52116a7e8 in 3 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/kademlia_handler/07879dbe4c8b100ebc235e0890d859a0d7d6b822
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/kademlia_handler/0d97956a80edcc655b9b530e6abc96de0bb2f15d in 3 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/kademlia_handler/d9730bbf1cf3a2968e611f4b65ad06ce5e470e37
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/kademlia_handler/616ced589e7882eb1785fc187de4c2a469402cff in 3 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/kademlia_handler/82908ed5fa46f4bc43475dc13a0ddd54d6cb895f
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/kademlia_handler/07879dbe4c8b100ebc235e0890d859a0d7d6b822 in 3 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/kademlia_handler/3cae8269c82b5171620361e2511443ae7b5531e6
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/kademlia_handler/d9730bbf1cf3a2968e611f4b65ad06ce5e470e37 in 2 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/kademlia_handler/ccea9307d43f0a91efc1baf5ee847c15d3fc6980
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/kademlia_handler/ccea9307d43f0a91efc1baf5ee847c15d3fc6980 in 1 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/kademlia_handler/718f74113653bcd63d8526597189bd232ff8abe8
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/kademlia_handler/718f74113653bcd63d8526597189bd232ff8abe8 in 0 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/kademlia_handler/a53d8821d95731173be5ce8840230c45486087a3
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/kademlia_handler/3cae8269c82b5171620361e2511443ae7b5531e6 in 3 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/kademlia_handler/410f29b1485c41e1283c8566ebe289e9ef5564ea
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/kademlia_handler/410f29b1485c41e1283c8566ebe289e9ef5564ea in 0 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/kademlia_handler/b07b7cfade06e99a95b7d7f8d7ec5723993db958
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/kademlia_handler/5d01c5df2b1a93c643f4cc5a0a5c0ba66fa7dc8c in 21 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/kademlia_handler/94decf744a4bb4437a72b79602bc79e54849e854
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/kademlia_handler/b07b7cfade06e99a95b7d7f8d7ec5723993db958 in 0 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/kademlia_handler/3c3f75bf3d6483c47be546f9bf7121fcebbcd1a4
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/kademlia_handler/a53d8821d95731173be5ce8840230c45486087a3 in 4 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/kademlia_handler/80fef7811e8e62ee0c98f82421c47b14f9dc5d8b
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/kademlia_handler/3c3f75bf3d6483c47be546f9bf7121fcebbcd1a4 in 3 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/kademlia_handler/0aa782761baaa369850caebfc40b7b821b414e81
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/kademlia_handler/94decf744a4bb4437a72b79602bc79e54849e854 in 4 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/kademlia_handler/af7b8d66322c348a2435f06ee6301277335e1da3
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/kademlia_handler/80fef7811e8e62ee0c98f82421c47b14f9dc5d8b in 2 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/kademlia_handler/5ed9e5b7fbd22e9b9325a46f2c4a52ffb1521fbd
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/kademlia_handler/0aa782761baaa369850caebfc40b7b821b414e81 in 3 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/kademlia_handler/60513206ce0f86e0373971b65ad43b5a12bc7a36
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/kademlia_handler/5ed9e5b7fbd22e9b9325a46f2c4a52ffb1521fbd in 2 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/kademlia_handler/5d64f19209be8be3ce3e914b475db34591d7a985
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/kademlia_handler/af7b8d66322c348a2435f06ee6301277335e1da3 in 4 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/kademlia_handler/e25b86117da348e4a2ccb4944c4083c386aa5aaa
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/kademlia_handler/5d64f19209be8be3ce3e914b475db34591d7a985 in 2 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/kademlia_handler/351dea41a4403377cd140d5492c9197777bfba1c
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/kademlia_handler/60513206ce0f86e0373971b65ad43b5a12bc7a36 in 3 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/kademlia_handler/db4ea345870ca6ea1e6f7f4f7055d83a9220b90c
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/kademlia_handler/e25b86117da348e4a2ccb4944c4083c386aa5aaa in 2 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/kademlia_handler/b278720790eab5e068f5e6d8a65d7654a63159ac
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/kademlia_handler/9641667140c5fec65f9ec363d0869006d752e366 in 21 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/kademlia_handler/563b8aa7378b17c4b27c079f8991da1fda78b650
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/kademlia_handler/db4ea345870ca6ea1e6f7f4f7055d83a9220b90c in 3 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/kademlia_handler/7de8540c8c4016db33dcc95c3b88b6e0abb4cd5e
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/kademlia_handler/351dea41a4403377cd140d5492c9197777bfba1c in 5 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/kademlia_handler/b0ef83c802039298d0cfd3bf84d007dfba6aea9e
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/kademlia_handler/563b8aa7378b17c4b27c079f8991da1fda78b650 in 4 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/kademlia_handler/49b6dee37c02045e7c9cc11b52c04c9bc4e7308e
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/kademlia_handler/7de8540c8c4016db33dcc95c3b88b6e0abb4cd5e in 3 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/kademlia_handler/fa6c7173877fff4b7f2ce8d4d6c55edf628fc8ed
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/kademlia_handler/82908ed5fa46f4bc43475dc13a0ddd54d6cb895f in 26 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/kademlia_handler/2cd9bb0719b549c48e04664d12627f0dfd11b5d9
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/kademlia_handler/49b6dee37c02045e7c9cc11b52c04c9bc4e7308e in 4 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/kademlia_handler/79029a0c310e79bacc1892d26111ee6444d57843
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/kademlia_handler/fa6c7173877fff4b7f2ce8d4d6c55edf628fc8ed in 3 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/kademlia_handler/351a84a00445bab8d189f892683badeddadaf470
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/kademlia_handler/351a84a00445bab8d189f892683badeddadaf470 in 1 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/kademlia_handler/d12074fa0cc93b7a85f549dbfbcc8b86cf7b3880
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/kademlia_handler/2cd9bb0719b549c48e04664d12627f0dfd11b5d9 in 2 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/kademlia_handler/db6739d63fc18ec2d645a9df0b92e4dc0acf1dfa
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/kademlia_handler/79029a0c310e79bacc1892d26111ee6444d57843 in 3 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/kademlia_handler/8a6fcd3a48bdd6bfbb5d726b57d77205b3fd09d3
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/kademlia_handler/db6739d63fc18ec2d645a9df0b92e4dc0acf1dfa in 2 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/kademlia_handler/b1a2508b776f19a64e364b4c62251dfbd793240e
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/kademlia_handler/d12074fa0cc93b7a85f549dbfbcc8b86cf7b3880 in 3 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/kademlia_handler/2ecdd0766bc511e1546cdbe67b2aedfc0b08a320
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/kademlia_handler/2ecdd0766bc511e1546cdbe67b2aedfc0b08a320 in 1 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/kademlia_handler/d422b8c0f071418a305010f299eb11d15adce574
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/kademlia_handler/8a6fcd3a48bdd6bfbb5d726b57d77205b3fd09d3 in 3 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/kademlia_handler/f6fd96f8c5f7477717fe8cbdacea11ce6ed5545a
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/kademlia_handler/b1a2508b776f19a64e364b4c62251dfbd793240e in 2 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/kademlia_handler/ef429bfb2d7ff38bf21b9f1d741d90606ca68ef5
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/kademlia_handler/b278720790eab5e068f5e6d8a65d7654a63159ac in 18 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/kademlia_handler/f7007d1a9c3e03351fd4810acaf402b72fba2925
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/kademlia_handler/d422b8c0f071418a305010f299eb11d15adce574 in 3 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/kademlia_handler/561763ca8ec5d79cca31ba16badb1ecbf2b0f3e7
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/kademlia_handler/f6fd96f8c5f7477717fe8cbdacea11ce6ed5545a in 3 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/kademlia_handler/228e634594da35119928f77b3366569fe53fca45
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/kademlia_handler/228e634594da35119928f77b3366569fe53fca45 in 0 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/kademlia_handler/e6649164fba298dabba793f517f7584d375fe876
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/kademlia_handler/ef429bfb2d7ff38bf21b9f1d741d90606ca68ef5 in 4 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/kademlia_handler/ce42d498a1a7dc30d888eaae073690c0d4d9b3e3
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/kademlia_handler/561763ca8ec5d79cca31ba16badb1ecbf2b0f3e7 in 1 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/kademlia_handler/9af3a36d94184a27970b4b0db927d4ad43946521
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/kademlia_handler/9af3a36d94184a27970b4b0db927d4ad43946521 in 0 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/kademlia_handler/e2991d41c635c1fc356634f828e0f1954b60a531
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/kademlia_handler/e2991d41c635c1fc356634f828e0f1954b60a531 in 0 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/kademlia_handler/2d3b5bea48e86d82d2a1bc7b438f7d8849fd7eaf
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/kademlia_handler/f7007d1a9c3e03351fd4810acaf402b72fba2925 in 4 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/kademlia_handler/6e04e5227740cd10e16f08da10e1969cb1c9ce21
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/kademlia_handler/ce42d498a1a7dc30d888eaae073690c0d4d9b3e3 in 2 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/kademlia_handler/bd7a0d04a9ddc39b45340596a8e8e3be2b1df38c
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/kademlia_handler/e6649164fba298dabba793f517f7584d375fe876 in 3 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/kademlia_handler/da6daf92f108e225dd247d11790f14706867926a
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/kademlia_handler/2d3b5bea48e86d82d2a1bc7b438f7d8849fd7eaf in 2 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/kademlia_handler/27306a17b096d4e611e9478f6ef4173e17bc3bcc
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/kademlia_handler/bd7a0d04a9ddc39b45340596a8e8e3be2b1df38c in 2 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/kademlia_handler/0c9cd33eb7b9ddcdb0ede0c5e9a809eda81a815b
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/kademlia_handler/6e04e5227740cd10e16f08da10e1969cb1c9ce21 in 3 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/kademlia_handler/963723c994c823de7148c8e964d6b590e497e102
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/kademlia_handler/da6daf92f108e225dd247d11790f14706867926a in 3 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/kademlia_handler/294e3ea5df2616c63b886057ef3f541cabf5418b
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/kademlia_handler/963723c994c823de7148c8e964d6b590e497e102 in 1 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/kademlia_handler/be1b7e79a1545ead35c1e10f377190db9abfe79a
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/kademlia_handler/294e3ea5df2616c63b886057ef3f541cabf5418b in 1 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/kademlia_handler/d7662247a271f633b0d36069545cf4468648ca32
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/kademlia_handler/27306a17b096d4e611e9478f6ef4173e17bc3bcc in 4 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/kademlia_handler/e3628e8bf7448e58206fe343f7a4c5132a33d7d3
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/kademlia_handler/e3628e8bf7448e58206fe343f7a4c5132a33d7d3 in 0 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/kademlia_handler/dc5993b2fc339d08ca5f2e02bfe39c67f78040c1
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/kademlia_handler/be1b7e79a1545ead35c1e10f377190db9abfe79a in 3 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/kademlia_handler/1bbc59e616b45fca25db8595d059f804be9a21bf
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/kademlia_handler/dc5993b2fc339d08ca5f2e02bfe39c67f78040c1 in 1 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/kademlia_handler/8460ab93eff0e61001afe2afe8352a864d5f92d3
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/kademlia_handler/b0ef83c802039298d0cfd3bf84d007dfba6aea9e in 28 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/kademlia_handler/ea2ad1efcd03a8dfaaefdb95d980dc8cf9f4c777
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/kademlia_handler/d7662247a271f633b0d36069545cf4468648ca32 in 3 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/kademlia_handler/e01b20cb1b40c28d84dfbc224b20cc288c1aa4dc
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/kademlia_handler/1bbc59e616b45fca25db8595d059f804be9a21bf in 3 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/kademlia_handler/b1ce41fd1a6676fa1268baf66e2cbf3257a2a20a
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/kademlia_handler/8460ab93eff0e61001afe2afe8352a864d5f92d3 in 3 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/kademlia_handler/990b52e578277dd3d2e6552840a8d929f0ecad74
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/kademlia_handler/e01b20cb1b40c28d84dfbc224b20cc288c1aa4dc in 3 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/kademlia_handler/a24135ea42c0e075304f1eeaad07dfda016d0e34
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/kademlia_handler/ea2ad1efcd03a8dfaaefdb95d980dc8cf9f4c777 in 4 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/kademlia_handler/c842319ea0e58832e8b9ee50d2ed7483934f9ed7
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/kademlia_handler/b1ce41fd1a6676fa1268baf66e2cbf3257a2a20a in 1 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/kademlia_handler/c24fdd5fab68c696c62ae63a334679d818ddef71
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/kademlia_handler/a24135ea42c0e075304f1eeaad07dfda016d0e34 in 2 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/kademlia_handler/f6dc3c41b6e7413eae61601893a8eaf77055b59f
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/kademlia_handler/990b52e578277dd3d2e6552840a8d929f0ecad74 in 3 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/kademlia_handler/f8b36523c5cd491954e22aadcdcbd3fa6dcea36d
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/kademlia_handler/c24fdd5fab68c696c62ae63a334679d818ddef71 in 2 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/kademlia_handler/8e9a24f135b246ebe72aaefc585ddbc505df30ab
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/kademlia_handler/c842319ea0e58832e8b9ee50d2ed7483934f9ed7 in 3 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/kademlia_handler/9c2bbd18aa66e21e1bdc2a99cc997d4a570c7b4f
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/kademlia_handler/f6dc3c41b6e7413eae61601893a8eaf77055b59f in 1 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/kademlia_handler/b40fdb41385d1e145ef2985138c730fa0713f44c
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/kademlia_handler/f8b36523c5cd491954e22aadcdcbd3fa6dcea36d in 1 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/kademlia_handler/4c186cd7291ed6fb1481c0f09378c37e4423801d
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/kademlia_handler/8e9a24f135b246ebe72aaefc585ddbc505df30ab in 2 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/kademlia_handler/5b4b3b51ba4b1489d4bbd312ad750060786e01f7
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/kademlia_handler/9c2bbd18aa66e21e1bdc2a99cc997d4a570c7b4f in 1 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/kademlia_handler/e26b3bacbfd6603d021d4ddadbac94b7b7aa0034
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/kademlia_handler/e26b3bacbfd6603d021d4ddadbac94b7b7aa0034 in 1 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/kademlia_handler/0305c3f4945cd6c05abc2b1da45c5751e92fbca3
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/kademlia_handler/b40fdb41385d1e145ef2985138c730fa0713f44c in 3 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/kademlia_handler/cc274edce3b2ad2037b6042ba8ec9729b11fe4d3
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/kademlia_handler/cc274edce3b2ad2037b6042ba8ec9729b11fe4d3 in 1 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/kademlia_handler/e2a004c07cf565aee839b6509e6201d604d0cd77
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/kademlia_handler/e2a004c07cf565aee839b6509e6201d604d0cd77 in 0 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/kademlia_handler/f4b5b593dc427b19fbaf861a3fae956f412e1b35
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/kademlia_handler/0305c3f4945cd6c05abc2b1da45c5751e92fbca3 in 1 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/kademlia_handler/09142f0fe49fae789d787fad222237d6469fa559
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/kademlia_handler/09142f0fe49fae789d787fad222237d6469fa559 in 1 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/kademlia_handler/3a6939b6f032fd9e27d8e05730d86c87912bc676
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/kademlia_handler/f4b5b593dc427b19fbaf861a3fae956f412e1b35 in 3 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/kademlia_handler/78d9b41e2144afbfa5dc7e2a70ce398cd2d4bb1d
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/kademlia_handler/0c9cd33eb7b9ddcdb0ede0c5e9a809eda81a815b in 25 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/kademlia_handler/62571891215b4efc1ceab744ce59dd0b66ea6f73
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/kademlia_handler/3a6939b6f032fd9e27d8e05730d86c87912bc676 in 4 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/kademlia_handler/48c929e6072589e0dbd92aeb2b66344cb9d73bd9
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/kademlia_handler/78d9b41e2144afbfa5dc7e2a70ce398cd2d4bb1d in 3 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/kademlia_handler/566040951d32270d4666c07ae40540e22a61d0a1
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/kademlia_handler/566040951d32270d4666c07ae40540e22a61d0a1 in 0 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/kademlia_handler/08d17a9ea660b43b2f57a9964e88a36283fe20aa
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/kademlia_handler/48c929e6072589e0dbd92aeb2b66344cb9d73bd9 in 1 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/kademlia_handler/c12104fb226311de8ea44da02d2fec9cad846e75
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/kademlia_handler/c12104fb226311de8ea44da02d2fec9cad846e75 in 1 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/kademlia_handler/c83d7e5602432f8242d7ab1283b0db96ec18ef02
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/kademlia_handler/08d17a9ea660b43b2f57a9964e88a36283fe20aa in 3 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/kademlia_handler/66d3d4ed9c9a4791f2f8e7fddf2f7367cfc0d0d2
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/kademlia_handler/66d3d4ed9c9a4791f2f8e7fddf2f7367cfc0d0d2 in 1 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/kademlia_handler/a282b3e8c10d8cb29fabcee54603d075383cf9f7
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/kademlia_handler/c83d7e5602432f8242d7ab1283b0db96ec18ef02 in 3 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/kademlia_handler/244053e8d98a95cc56c0e5254d4cd5cce6246498
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/kademlia_handler/4c186cd7291ed6fb1481c0f09378c37e4423801d in 18 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/kademlia_handler/40944bc4d2eac8c0a67197057f71fa4622fd05af
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/kademlia_handler/244053e8d98a95cc56c0e5254d4cd5cce6246498 in 0 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/kademlia_handler/5d68ab61cd6826b152b9b35d39b4487ed74f61e7
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/kademlia_handler/5b4b3b51ba4b1489d4bbd312ad750060786e01f7 in 18 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/kademlia_handler/76be8616a9f30864887a662323af3795a628b256
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/kademlia_handler/a282b3e8c10d8cb29fabcee54603d075383cf9f7 in 3 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/kademlia_handler/8f6b627eb9134cb4cc4d320c7a3e73044077de4f
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/kademlia_handler/5d68ab61cd6826b152b9b35d39b4487ed74f61e7 in 3 ms
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/kademlia_handler/40944bc4d2eac8c0a67197057f71fa4622fd05af in 3 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/kademlia_handler/f0c2ea33b346541d45750b19c2087771f6626fd1
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/kademlia_handler/2b5e9e9d5b4f9b1a24eaf52364ffba3fcc461ed4
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/kademlia_handler/8f6b627eb9134cb4cc4d320c7a3e73044077de4f in 2 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/kademlia_handler/67d21b8bcb88801d641cb578bc73b149851cb27c
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/kademlia_handler/76be8616a9f30864887a662323af3795a628b256 in 3 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/kademlia_handler/52b258b8b9dc8aa6382e22363d17aa0ef1f811e1
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/kademlia_handler/f0c2ea33b346541d45750b19c2087771f6626fd1 in 3 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/kademlia_handler/99de98ad33430d93275a5f2402b5b05983ba96f0
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/kademlia_handler/99de98ad33430d93275a5f2402b5b05983ba96f0 in 0 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/kademlia_handler/0dfce3dfde0c0af7294134d135e024d354f22504
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/kademlia_handler/2b5e9e9d5b4f9b1a24eaf52364ffba3fcc461ed4 in 3 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/kademlia_handler/e31c0564a8f04ee2795f577adc8b420488b35103
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/kademlia_handler/67d21b8bcb88801d641cb578bc73b149851cb27c in 3 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/kademlia_handler/4b87d6267e4ca16839a4ff03481f9d3bc5bba09c
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/kademlia_handler/52b258b8b9dc8aa6382e22363d17aa0ef1f811e1 in 3 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/kademlia_handler/57de2f53e98a3d2c44490bb321f43fd14907779d
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/kademlia_handler/57de2f53e98a3d2c44490bb321f43fd14907779d in 0 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/kademlia_handler/cff4fba71c5748fc77437ff8d3eaef6e58685a64
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/kademlia_handler/cff4fba71c5748fc77437ff8d3eaef6e58685a64 in 0 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/kademlia_handler/843c451f1077047ef56a222aba6bbe936447efb6
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/kademlia_handler/4b87d6267e4ca16839a4ff03481f9d3bc5bba09c in 1 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/kademlia_handler/53dd301abc6ffea052f54187b477fd01ccc35e1c
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/kademlia_handler/e31c0564a8f04ee2795f577adc8b420488b35103 in 2 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/kademlia_handler/6415530e0b449788d772ff2c4f08b43c89de82a9
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/kademlia_handler/843c451f1077047ef56a222aba6bbe936447efb6 in 1 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/kademlia_handler/5eb9b2ae5e3009b6b0779710b10b2a09aee67d50
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/kademlia_handler/0dfce3dfde0c0af7294134d135e024d354f22504 in 3 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/kademlia_handler/d0289b1042c01f29c31530e9d9474c8302d1ae92
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/kademlia_handler/5eb9b2ae5e3009b6b0779710b10b2a09aee67d50 in 0 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/kademlia_handler/761ba52b3d958d013b18736cd46328f68f5ab44d
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/kademlia_handler/53dd301abc6ffea052f54187b477fd01ccc35e1c in 3 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/kademlia_handler/bd562f1af1c208bddcc6b5dc96a9265e644774a9
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/kademlia_handler/761ba52b3d958d013b18736cd46328f68f5ab44d in 2 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/kademlia_handler/8dc00598417d4eb788a77ac6ccef3cb484905d8b
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/kademlia_handler/6415530e0b449788d772ff2c4f08b43c89de82a9 in 3 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/kademlia_handler/eaa87bc053203522e75db536e02351ca12007151
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/kademlia_handler/d0289b1042c01f29c31530e9d9474c8302d1ae92 in 3 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/kademlia_handler/f3218ec1750bb2d46b49fb2f4eef3cfd62533136
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/kademlia_handler/bd562f1af1c208bddcc6b5dc96a9265e644774a9 in 3 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/kademlia_handler/c42ac1c46f1d4e211c735cc7dfad4ff8391110e9
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/kademlia_handler/f3218ec1750bb2d46b49fb2f4eef3cfd62533136 in 1 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/kademlia_handler/8fe9782f342385f3c83cc3ec4e6d8f2a62e15dc5
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/kademlia_handler/8dc00598417d4eb788a77ac6ccef3cb484905d8b in 3 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/kademlia_handler/c8ee98e56ad78e7127836624fb7dbde53db22c09
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/kademlia_handler/c42ac1c46f1d4e211c735cc7dfad4ff8391110e9 in 1 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/kademlia_handler/45d214a814c803c706ed08911a26610943b2798a
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/kademlia_handler/45d214a814c803c706ed08911a26610943b2798a in 0 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/kademlia_handler/979ee8e81dc93858d61a5c3c83e67ef64ca29f32
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/kademlia_handler/eaa87bc053203522e75db536e02351ca12007151 in 4 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/kademlia_handler/4b5945d866e4b79d2f28e2d6c54c7d40041102bf
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/kademlia_handler/4b5945d866e4b79d2f28e2d6c54c7d40041102bf in 0 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/kademlia_handler/2d88ab3cb175cbc90e932c5149449eaf5ea9d703
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/kademlia_handler/8fe9782f342385f3c83cc3ec4e6d8f2a62e15dc5 in 2 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/kademlia_handler/88fce1dea61c41b8d82847cc567cd31eec2ac75a
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/kademlia_handler/62571891215b4efc1ceab744ce59dd0b66ea6f73 in 26 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/kademlia_handler/d3817bd02f81a4b67d193c46917263cb690e508b
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/kademlia_handler/979ee8e81dc93858d61a5c3c83e67ef64ca29f32 in 1 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/kademlia_handler/059409dc6f7fc5bcb68f1a36cc9b4ec52d263be6
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/kademlia_handler/88fce1dea61c41b8d82847cc567cd31eec2ac75a in 1 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/kademlia_handler/cab130b53dced4f500271ada3ba93a52a8456a1a
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/kademlia_handler/c8ee98e56ad78e7127836624fb7dbde53db22c09 in 3 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/kademlia_handler/c5608c19b28272aae0394765fbb9a210248c4d01
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/kademlia_handler/c5608c19b28272aae0394765fbb9a210248c4d01 in 0 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/kademlia_handler/06e66a8d7358f0a4d5dc2e37321f18cacf27e2f6
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/kademlia_handler/d3817bd02f81a4b67d193c46917263cb690e508b in 2 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/kademlia_handler/1333eb10c0b2e1b1bff9e109d3065f18163dc80e
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/kademlia_handler/06e66a8d7358f0a4d5dc2e37321f18cacf27e2f6 in 0 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/kademlia_handler/0c1af06d359a4d15444f808a512a4e2dc6bd8c76
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/kademlia_handler/cab130b53dced4f500271ada3ba93a52a8456a1a in 1 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/kademlia_handler/6ddefc06755a56a5f1eb40ca049188a390f4cbfd
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/kademlia_handler/2d88ab3cb175cbc90e932c5149449eaf5ea9d703 in 4 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/kademlia_handler/da51ee061d2daa31c173162db1e589a15760f1e5
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/kademlia_handler/059409dc6f7fc5bcb68f1a36cc9b4ec52d263be6 in 3 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/kademlia_handler/904d1867c2bd58fdd2959ca5286bed4849d6a258
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/kademlia_handler/6ddefc06755a56a5f1eb40ca049188a390f4cbfd in 2 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/kademlia_handler/dac68e4d58fe57012bd8d642cb941552fcb0939e
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/kademlia_handler/904d1867c2bd58fdd2959ca5286bed4849d6a258 in 1 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/kademlia_handler/e746b6bbb8533f725ca788086cd368f8069f5aea
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/kademlia_handler/e746b6bbb8533f725ca788086cd368f8069f5aea in 0 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/kademlia_handler/245a083799498c0a5579dedf6f316f801d480527
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/kademlia_handler/0c1af06d359a4d15444f808a512a4e2dc6bd8c76 in 4 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/kademlia_handler/1bdd75fac2b35ce3eab69efad3c75345570928fd
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/kademlia_handler/dac68e4d58fe57012bd8d642cb941552fcb0939e in 2 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/kademlia_handler/44fb793676a32f5442712d33c2a8841afbece2e5
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/kademlia_handler/da51ee061d2daa31c173162db1e589a15760f1e5 in 4 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/kademlia_handler/d8846834c6b9c877bd40dedf2696371a876c9137
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/kademlia_handler/1bdd75fac2b35ce3eab69efad3c75345570928fd in 2 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/kademlia_handler/1b3747edade183026433e589d23dae0de9ff1147
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/kademlia_handler/44fb793676a32f5442712d33c2a8841afbece2e5 in 1 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/kademlia_handler/7d0539d8e7112ff85eb6eb66853248899ac3e5d4
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/kademlia_handler/245a083799498c0a5579dedf6f316f801d480527 in 3 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/kademlia_handler/8ed6c84bccb4946165f8fc21278c69d86032bdc0
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/kademlia_handler/d8846834c6b9c877bd40dedf2696371a876c9137 in 1 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/kademlia_handler/de32fefd21ca53fb55ff72e4bf76c8b95a41ebec
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/kademlia_handler/1b3747edade183026433e589d23dae0de9ff1147 in 1 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/kademlia_handler/4f73318cff25b92e3c11f998ad50864dd773d09b
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/kademlia_handler/7d0539d8e7112ff85eb6eb66853248899ac3e5d4 in 1 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/kademlia_handler/5d2ef7174977266073a680d5a1166607785fab25
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/kademlia_handler/8ed6c84bccb4946165f8fc21278c69d86032bdc0 in 1 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/kademlia_handler/205c20a14bd29f0ab45d42ce7afd2fe7c0ed1488
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/kademlia_handler/205c20a14bd29f0ab45d42ce7afd2fe7c0ed1488 in 0 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/kademlia_handler/0cafcea5d104db579bfaa63f30010202bf784889
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/kademlia_handler/5d2ef7174977266073a680d5a1166607785fab25 in 1 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/kademlia_handler/61161e6dd09a78f6c445a411facecc71230be0aa
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/kademlia_handler/de32fefd21ca53fb55ff72e4bf76c8b95a41ebec in 3 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/kademlia_handler/39527d418f1c505579b8f24c1eefced225018d8f
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/kademlia_handler/4f73318cff25b92e3c11f998ad50864dd773d09b in 3 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/kademlia_handler/8c6ff686abee030d15bccacd7f68b8bc7159e04d
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/kademlia_handler/0cafcea5d104db579bfaa63f30010202bf784889 in 3 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/kademlia_handler/6f488de6b008f0264d2a240b2a48264798070b81
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/kademlia_handler/39527d418f1c505579b8f24c1eefced225018d8f in 1 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/kademlia_handler/a221b53609ab9220edf2ece966392d46819c6b59
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/kademlia_handler/61161e6dd09a78f6c445a411facecc71230be0aa in 3 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/kademlia_handler/73756e412878a95759987f99f9b0aad74d557102
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/kademlia_handler/6f488de6b008f0264d2a240b2a48264798070b81 in 3 ms
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/kademlia_handler/73756e412878a95759987f99f9b0aad74d557102 in 1 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/kademlia_handler/5411543332e4be41fd263d63b3c7450c976380d3
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/kademlia_handler/fa6cab190b3ae0ed3e2cf44348a1a56e36c4bc01
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/kademlia_handler/8c6ff686abee030d15bccacd7f68b8bc7159e04d in 4 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/kademlia_handler/2a66f3f814a95358d909290cb082c91e81a2a8e4
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/kademlia_handler/a221b53609ab9220edf2ece966392d46819c6b59 in 3 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/kademlia_handler/fd60add56b8daf3232594d9e3c55494dfdd87fa1
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/kademlia_handler/5411543332e4be41fd263d63b3c7450c976380d3 in 1 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/kademlia_handler/ed715221fa122a5204f6ba1b2cd8a355a732ddca
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/kademlia_handler/fa6cab190b3ae0ed3e2cf44348a1a56e36c4bc01 in 3 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/kademlia_handler/29e24643a6328cb4ea893738b89c63b842ce24e7
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/kademlia_handler/2a66f3f814a95358d909290cb082c91e81a2a8e4 in 3 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/kademlia_handler/013d9921d3318c05cc45933488fc23a042f0c1c6
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/kademlia_handler/ed715221fa122a5204f6ba1b2cd8a355a732ddca in 3 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/kademlia_handler/6f4da8d3b5bf462ab0a4a519082241454c424768
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/kademlia_handler/fd60add56b8daf3232594d9e3c55494dfdd87fa1 in 3 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/kademlia_handler/d2140a8d345260d27a45f86396716d95f50afba3
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/kademlia_handler/29e24643a6328cb4ea893738b89c63b842ce24e7 in 3 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/kademlia_handler/5bada7aaf3d05261b30b88c78abcb27bc121839f
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/kademlia_handler/013d9921d3318c05cc45933488fc23a042f0c1c6 in 3 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/kademlia_handler/ffb2559e1c0dee15526cbaad64a379b4e9651cb1
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/kademlia_handler/5bada7aaf3d05261b30b88c78abcb27bc121839f in 1 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/kademlia_handler/30d5a558cef471ac799e61dc44489d709c5b3c25
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/kademlia_handler/30d5a558cef471ac799e61dc44489d709c5b3c25 in 1 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/kademlia_handler/9d7243b13256b3193fa90e0d32b06271b3336eb9
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/kademlia_handler/1333eb10c0b2e1b1bff9e109d3065f18163dc80e in 27 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/kademlia_handler/5909c060a49c538113185beb24abd9a003fc4b87
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/kademlia_handler/9d7243b13256b3193fa90e0d32b06271b3336eb9 in 1 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/kademlia_handler/0e94319aed05a4d31d3d2162ca8638c94191f60c
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/kademlia_handler/5909c060a49c538113185beb24abd9a003fc4b87 in 0 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/kademlia_handler/ff40f6ff6dda4aaa93b920b1a518e8d5733c0ee3
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/kademlia_handler/0e94319aed05a4d31d3d2162ca8638c94191f60c in 1 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/kademlia_handler/ec3f132bda7aea0ac6621e74cb2b645e497085a6
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/kademlia_handler/ec3f132bda7aea0ac6621e74cb2b645e497085a6 in 1 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/kademlia_handler/d4bcda0e323cacbfec26fee1c075307cb86b637c
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/kademlia_handler/d4bcda0e323cacbfec26fee1c075307cb86b637c in 1 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/kademlia_handler/cd3e5c470cbac3d1474b95b3b48f8b55a5ce7dbb
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/kademlia_handler/cd3e5c470cbac3d1474b95b3b48f8b55a5ce7dbb in 1 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/kademlia_handler/2e7ff8ef3279df7a60ce005f5c19b0e762fad8fa
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/kademlia_handler/2e7ff8ef3279df7a60ce005f5c19b0e762fad8fa in 2 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/kademlia_handler/0f38bbf5ec277d50d14fa589811ced4b126c3cac
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/kademlia_handler/0f38bbf5ec277d50d14fa589811ced4b126c3cac in 1 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/kademlia_handler/074b781fc95cd518a3e1a551a50747a9143f6fc2
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/kademlia_handler/074b781fc95cd518a3e1a551a50747a9143f6fc2 in 2 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/kademlia_handler/2a201104d8a8aab19622f62a0dc262b5aaf30c42
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/kademlia_handler/ffb2559e1c0dee15526cbaad64a379b4e9651cb1 in 18 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/kademlia_handler/b2a72227b2877103c0d6a57296313c6cb3f816a2
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/kademlia_handler/2a201104d8a8aab19622f62a0dc262b5aaf30c42 in 2 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/kademlia_handler/602080ffb551af2768cf37f23fcc8a3c0c160a3d
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/kademlia_handler/b2a72227b2877103c0d6a57296313c6cb3f816a2 in 2 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/kademlia_handler/e6b5ad8c023dfc02ca27f2411439a4fc3217b985
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/kademlia_handler/602080ffb551af2768cf37f23fcc8a3c0c160a3d in 3 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/kademlia_handler/4fa0d233c5a6942f5dab766b3f126c2bfdbd2e24
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/kademlia_handler/d2140a8d345260d27a45f86396716d95f50afba3 in 25 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/kademlia_handler/bb6b68b672dabb82fbbf1ecd4f20b2c77dcc19a4
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/kademlia_handler/6f4da8d3b5bf462ab0a4a519082241454c424768 in 26 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/kademlia_handler/152937c37cc39f3af0059a8a19c74f9db4406388
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/kademlia_handler/e6b5ad8c023dfc02ca27f2411439a4fc3217b985 in 3 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/kademlia_handler/185479923f4781262a7a7bc611cad75dde1bf588
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/kademlia_handler/4fa0d233c5a6942f5dab766b3f126c2bfdbd2e24 in 1 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/kademlia_handler/1df9677eb784aa4ae546d3643a197df55d64381f
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/kademlia_handler/bb6b68b672dabb82fbbf1ecd4f20b2c77dcc19a4 in 1 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/kademlia_handler/b625c56fffb2a209dd97dc5cbd911ae570da0a4f
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/kademlia_handler/b625c56fffb2a209dd97dc5cbd911ae570da0a4f in 1 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/kademlia_handler/ac80ebc5b0dca23afde2b8cddeb866a24a2aaa19
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/kademlia_handler/152937c37cc39f3af0059a8a19c74f9db4406388 in 3 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/kademlia_handler/5b158ba187ac959b7e17c707cc6e3a170017183d
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/kademlia_handler/185479923f4781262a7a7bc611cad75dde1bf588 in 3 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/kademlia_handler/cfcd406161e7abe17fd837364c6d0f33791c233f
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/kademlia_handler/ac80ebc5b0dca23afde2b8cddeb866a24a2aaa19 in 3 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/kademlia_handler/c6be662da6ad37436b5efeeeda98351f9cbdd084
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/kademlia_handler/cfcd406161e7abe17fd837364c6d0f33791c233f in 3 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/kademlia_handler/2f7587c493ce1417908a82d93743a4b1f6aeccae
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/kademlia_handler/ff40f6ff6dda4aaa93b920b1a518e8d5733c0ee3 in 27 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/kademlia_handler/5b534fcbecd2e075ed374c6b0be73d80a9417a73
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/kademlia_handler/2f7587c493ce1417908a82d93743a4b1f6aeccae in 0 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/kademlia_handler/23cbb06a395d306365eb6b70cf222eee516735e5
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/kademlia_handler/5b158ba187ac959b7e17c707cc6e3a170017183d in 5 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/kademlia_handler/9159cb8bcee7fcb95582f140960cdae72788d326
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/kademlia_handler/c6be662da6ad37436b5efeeeda98351f9cbdd084 in 3 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/kademlia_handler/75968225dd8e21822625cc3ebfbdde1eb06a3ce6
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/kademlia_handler/23cbb06a395d306365eb6b70cf222eee516735e5 in 3 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/kademlia_handler/a161d43d9d82bcb31708e0e11a9b237747215bf9
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/kademlia_handler/a161d43d9d82bcb31708e0e11a9b237747215bf9 in 0 ms
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/kademlia_handler/5b534fcbecd2e075ed374c6b0be73d80a9417a73 in 3 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/kademlia_handler/de4990492da0dcd08bdeb72703280756d2eef4f9
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/kademlia_handler/ea03a3b70a20152fc6bb31d28fc3bd191033e250
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/kademlia_handler/ea03a3b70a20152fc6bb31d28fc3bd191033e250 in 0 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/kademlia_handler/732fd448edebe4599be909297d26fa3ed79de8c6
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/kademlia_handler/9159cb8bcee7fcb95582f140960cdae72788d326 in 3 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/kademlia_handler/20bcd61f89fbd73a541d3a533617dd678d95644b
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/kademlia_handler/75968225dd8e21822625cc3ebfbdde1eb06a3ce6 in 3 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/kademlia_handler/c4ea21bb365bbeeaf5f2c654883e56d11e43c44e
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/kademlia_handler/20bcd61f89fbd73a541d3a533617dd678d95644b in 0 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/kademlia_handler/65eb94e16609ec2966af457247bdadaab2f38fc2
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/kademlia_handler/65eb94e16609ec2966af457247bdadaab2f38fc2 in 0 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/kademlia_handler/2e9710b019670d3c733089a830a82715b26c0367
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/kademlia_handler/de4990492da0dcd08bdeb72703280756d2eef4f9 in 3 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/kademlia_handler/098038e4b34990195a99afda7d88b927f32c59a5
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/kademlia_handler/732fd448edebe4599be909297d26fa3ed79de8c6 in 3 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/kademlia_handler/11f1059c119eb4b637fcecc438c0c95265559894
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/kademlia_handler/098038e4b34990195a99afda7d88b927f32c59a5 in 0 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/kademlia_handler/381c2bc3a1651ec29e42b3e7c2f0e4b7a75b03bb
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/kademlia_handler/2e9710b019670d3c733089a830a82715b26c0367 in 3 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/kademlia_handler/da1d7ad895589ecf15603a21c2a63f00d04ff465
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/kademlia_handler/1df9677eb784aa4ae546d3643a197df55d64381f in 18 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/kademlia_handler/34bb739c7b1f6921283231ef1ff04bf399316d13
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/kademlia_handler/34bb739c7b1f6921283231ef1ff04bf399316d13 in 0 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/kademlia_handler/0e356ba505631fbf715758bed27d503f8b260e3a
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/kademlia_handler/11f1059c119eb4b637fcecc438c0c95265559894 in 4 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/kademlia_handler/3c9dd9bb216eab5b3d77352de47fe702c38ed0f0
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/kademlia_handler/da1d7ad895589ecf15603a21c2a63f00d04ff465 in 3 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/kademlia_handler/e00abc49dc96b42ef1451fa8d6f0af8de301e6c8
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/kademlia_handler/0e356ba505631fbf715758bed27d503f8b260e3a in 2 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/kademlia_handler/826ca4c77a5ac8f90f0362085c9b02384285c806
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/kademlia_handler/826ca4c77a5ac8f90f0362085c9b02384285c806 in 1 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/kademlia_handler/2c4341e277064c5497a01c622b40c3aed994562d
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/kademlia_handler/e00abc49dc96b42ef1451fa8d6f0af8de301e6c8 in 3 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/kademlia_handler/0aed61e7215a0fdd02ee61a0cd24a993a2c0b1f1
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/kademlia_handler/0aed61e7215a0fdd02ee61a0cd24a993a2c0b1f1 in 1 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/kademlia_handler/b98ee82efbcac84306b975c946183cc5f91cce86
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/kademlia_handler/2c4341e277064c5497a01c622b40c3aed994562d in 2 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/kademlia_handler/fa5718af31267bbe28be6a43abbe4d1f00205e31
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/kademlia_handler/fa5718af31267bbe28be6a43abbe4d1f00205e31 in 1 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/kademlia_handler/24ff8606ca456ba14031b2c8e7311c167ac0bf3a
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/kademlia_handler/b98ee82efbcac84306b975c946183cc5f91cce86 in 5 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/kademlia_handler/bb589d0621e5472f470fa3425a234c74b1e202e8
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/kademlia_handler/c4ea21bb365bbeeaf5f2c654883e56d11e43c44e in 18 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/kademlia_handler/1ac09d73c4bacfb383d5226b633e2930ffdb99fa
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/kademlia_handler/24ff8606ca456ba14031b2c8e7311c167ac0bf3a in 3 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/kademlia_handler/8b6f39316278997e2ae16ec124ca61229fe9c4e5
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/kademlia_handler/1ac09d73c4bacfb383d5226b633e2930ffdb99fa in 0 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/kademlia_handler/135f87939af088e8bece6dd078ca8388f9e0f2b5
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/kademlia_handler/bb589d0621e5472f470fa3425a234c74b1e202e8 in 3 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/kademlia_handler/be62e659533de60580d9a55f65d16afda6f69403
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/kademlia_handler/8b6f39316278997e2ae16ec124ca61229fe9c4e5 in 3 ms
+***
+*** NOTE: fuzzing was not performed, you have only
+***       executed the target code on a fixed set of inputs.
+***
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/kademlia_handler/135f87939af088e8bece6dd078ca8388f9e0f2b5 in 4 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/kademlia_handler/7a6490a7469e7f07c8960c836633c7b5f333dbb1
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/kademlia_handler/381c2bc3a1651ec29e42b3e7c2f0e4b7a75b03bb in 25 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/kademlia_handler/8ff48c1f16760a5f7241340b446d9ddc3b14cb44
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/kademlia_handler/7a6490a7469e7f07c8960c836633c7b5f333dbb1 in 4 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/kademlia_handler/7a77e7243f8b6267027f28dc476939696174b00a
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/kademlia_handler/7a77e7243f8b6267027f28dc476939696174b00a in 0 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/kademlia_handler/ee144768dbacd6304a14960953ac85b0ed2b899f
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/kademlia_handler/ee144768dbacd6304a14960953ac85b0ed2b899f in 1 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/kademlia_handler/9ade6778af8612b7408d3ad1a0c6da8f05b826f0
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/kademlia_handler/9ade6778af8612b7408d3ad1a0c6da8f05b826f0 in 3 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/kademlia_handler/9d1eac3a218f20aea1f4513cf536b9df0342a1e4
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/kademlia_handler/3c9dd9bb216eab5b3d77352de47fe702c38ed0f0 in 28 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/kademlia_handler/ea72768163255918458e8c0b41eba29097e097c2
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/kademlia_handler/9d1eac3a218f20aea1f4513cf536b9df0342a1e4 in 1 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/kademlia_handler/aaed54dc49b61f51ae641d0949509f4d803a94eb
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/kademlia_handler/ea72768163255918458e8c0b41eba29097e097c2 in 2 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/kademlia_handler/7ba9191b5b3e0421a2e6f8a54e791db6eef15c3e
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/kademlia_handler/aaed54dc49b61f51ae641d0949509f4d803a94eb in 2 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/kademlia_handler/9e6ce32f9b13f653151c4978fc1e85850c20acd4
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/kademlia_handler/7ba9191b5b3e0421a2e6f8a54e791db6eef15c3e in 1 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/kademlia_handler/762c59dfa4903f2664d0989e456ae70f92319434
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/kademlia_handler/762c59dfa4903f2664d0989e456ae70f92319434 in 0 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/kademlia_handler/fdafd61708c4e3556dc6be013e2b6cc98b570189
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/kademlia_handler/be62e659533de60580d9a55f65d16afda6f69403 in 19 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/kademlia_handler/fcfb0b2e7e9b6b970618e93cf9ae8f4edee08f4b
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/kademlia_handler/9e6ce32f9b13f653151c4978fc1e85850c20acd4 in 3 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/kademlia_handler/b39bf7e267d79a92965bcf0b49b8d54f764e55e7
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/kademlia_handler/fcfb0b2e7e9b6b970618e93cf9ae8f4edee08f4b in 1 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/kademlia_handler/1fc7298f43183a2af4c592a6f0dbd595800dab21
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/kademlia_handler/b39bf7e267d79a92965bcf0b49b8d54f764e55e7 in 1 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/kademlia_handler/a5bb26343097bd2bc7431c11f1a12b7e32e8af6d
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/kademlia_handler/1fc7298f43183a2af4c592a6f0dbd595800dab21 in 1 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/kademlia_handler/29e2dcfbb16f63bb0254df7585a15bb6fb5e927d
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/kademlia_handler/a5bb26343097bd2bc7431c11f1a12b7e32e8af6d in 2 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/kademlia_handler/1423310b4382b932fe4a4ccd277ab18b12f42979
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/kademlia_handler/1423310b4382b932fe4a4ccd277ab18b12f42979 in 0 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/kademlia_handler/4d4d0832207ad199c46609ed56e01088c732ffd3
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/kademlia_handler/4d4d0832207ad199c46609ed56e01088c732ffd3 in 1 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/kademlia_handler/b2c01bd208148ecb7d750bf90c75d7e0c2215bfa
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/kademlia_handler/29e2dcfbb16f63bb0254df7585a15bb6fb5e927d in 3 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/kademlia_handler/3afac2a9f8453e8a05aa57c5c99cdd0af09cd72c
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/kademlia_handler/b2c01bd208148ecb7d750bf90c75d7e0c2215bfa in 1 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/kademlia_handler/ddc18e157c1b20b9ae40b9977b4c248c86d78a7f
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/kademlia_handler/3afac2a9f8453e8a05aa57c5c99cdd0af09cd72c in 3 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/kademlia_handler/e63d101fef9841ad4a1cf8da0646379cba8e897c
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/kademlia_handler/e63d101fef9841ad4a1cf8da0646379cba8e897c in 0 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/kademlia_handler/31961650991e70f17e305181ea177757fcb5921b
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/kademlia_handler/ddc18e157c1b20b9ae40b9977b4c248c86d78a7f in 3 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/kademlia_handler/4ab5d16d6e4344d819535c80afb159654b0531fb
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/kademlia_handler/8ff48c1f16760a5f7241340b446d9ddc3b14cb44 in 25 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/kademlia_handler/75d73550c882f8666cf12b7793d79f91f9f63113
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/kademlia_handler/4ab5d16d6e4344d819535c80afb159654b0531fb in 1 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/kademlia_handler/b6c041b69322577acef0ce4eafd6eee462cf02c3
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/kademlia_handler/31961650991e70f17e305181ea177757fcb5921b in 3 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/kademlia_handler/0e6c058a7c25f83d36749e923635b2d68778870b
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/kademlia_handler/0e6c058a7c25f83d36749e923635b2d68778870b in 1 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/kademlia_handler/6db423a07d88dedfa4304de6a54e428f9d605bff
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/kademlia_handler/6db423a07d88dedfa4304de6a54e428f9d605bff in 0 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/kademlia_handler/50c30a7d1fb7578e2430a8916e9bdd0771a74a0d
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/kademlia_handler/75d73550c882f8666cf12b7793d79f91f9f63113 in 3 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/kademlia_handler/1a8667f11f31b772ec469cdb548eb6cdd7b85ab9
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/kademlia_handler/b6c041b69322577acef0ce4eafd6eee462cf02c3 in 3 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/kademlia_handler/b8b1a2cc6e4fadcf9b8b38024198206d12021364
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/kademlia_handler/50c30a7d1fb7578e2430a8916e9bdd0771a74a0d in 3 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/kademlia_handler/ee38dc83c7a0341c54a7773235f4e19698be8585
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/kademlia_handler/1a8667f11f31b772ec469cdb548eb6cdd7b85ab9 in 3 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/kademlia_handler/2c210dec558955e0969ca22a0ce5aae1e26ca7b9
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/kademlia_handler/ee38dc83c7a0341c54a7773235f4e19698be8585 in 3 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/kademlia_handler/d9f646ff71a19854a911dcdaa67717e2e101ccef
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/kademlia_handler/2c210dec558955e0969ca22a0ce5aae1e26ca7b9 in 2 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/kademlia_handler/e9ad5c185e773985ba584eb86a7ea9d29bc3f93a
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/kademlia_handler/fdafd61708c4e3556dc6be013e2b6cc98b570189 in 25 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/kademlia_handler/74236943911d93f4d27641d7861baba7128b74a6
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/kademlia_handler/d9f646ff71a19854a911dcdaa67717e2e101ccef in 3 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/kademlia_handler/7a1b566397eb4d8cbd0fe7d14cd5c9a2b1a21de2
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/kademlia_handler/7a1b566397eb4d8cbd0fe7d14cd5c9a2b1a21de2 in 0 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/kademlia_handler/aed2ce96e8fe575a9befda78ed5b998109cbed5f
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/kademlia_handler/74236943911d93f4d27641d7861baba7128b74a6 in 2 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/kademlia_handler/e9aeae59221a20c37f306cd1793258ea827f0477
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/kademlia_handler/e9ad5c185e773985ba584eb86a7ea9d29bc3f93a in 3 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/kademlia_handler/81376dabf4d1790ad37579fc84538270f85a317a
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/kademlia_handler/aed2ce96e8fe575a9befda78ed5b998109cbed5f in 1 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/kademlia_handler/ae0c4616e7b750e2ea553a1f954c020259adaef5
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/kademlia_handler/ae0c4616e7b750e2ea553a1f954c020259adaef5 in 1 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/kademlia_handler/3d439bc209ccfd16397e22e5a1ad5f30cbe57133
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/kademlia_handler/e9aeae59221a20c37f306cd1793258ea827f0477 in 3 ms
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/kademlia_handler/81376dabf4d1790ad37579fc84538270f85a317a in 3 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/kademlia_handler/05f1a953e3c41fd3b4d4f67f3e2e890ffa590828
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/kademlia_handler/c21379df7fa7ec5007d680e2cac67fa8408cb1cb
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/kademlia_handler/3d439bc209ccfd16397e22e5a1ad5f30cbe57133 in 3 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/kademlia_handler/5d9ac452a6e6743e835d24ee1edd5306f1dff1ac
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/kademlia_handler/05f1a953e3c41fd3b4d4f67f3e2e890ffa590828 in 3 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/kademlia_handler/9a78211436f6d425ec38f5c4e02270801f3524f8
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/kademlia_handler/5d9ac452a6e6743e835d24ee1edd5306f1dff1ac in 3 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/kademlia_handler/a3b1446e62ee3ab0977cfadd36faa3ada0a3f116
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/kademlia_handler/a3b1446e62ee3ab0977cfadd36faa3ada0a3f116 in 1 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/kademlia_handler/8b4302707c0cc2cbc7f89dda3632d4a486c3017d
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/kademlia_handler/8b4302707c0cc2cbc7f89dda3632d4a486c3017d in 1 ms
+***
+*** NOTE: fuzzing was not performed, you have only
+***       executed the target code on a fixed set of inputs.
+***
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/kademlia_handler/b8b1a2cc6e4fadcf9b8b38024198206d12021364 in 22 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/kademlia_handler/19df0f424c36ae2bd959800b59de4d8fa9bbb6e4
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/kademlia_handler/19df0f424c36ae2bd959800b59de4d8fa9bbb6e4 in 0 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/kademlia_handler/de52864785257127ab292605aa2439b84427b8fa
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/kademlia_handler/de52864785257127ab292605aa2439b84427b8fa in 1 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/kademlia_handler/78e2a240fec769f904a1fea00d51b8fcba9a22d4
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/kademlia_handler/78e2a240fec769f904a1fea00d51b8fcba9a22d4 in 0 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/kademlia_handler/1923276d1917a41349c36cca22758e06c928da4d
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/kademlia_handler/c21379df7fa7ec5007d680e2cac67fa8408cb1cb in 24 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/kademlia_handler/2ebdb3fa357d35d47f2ca65878d282cb1c7287fc
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/kademlia_handler/9a78211436f6d425ec38f5c4e02270801f3524f8 in 22 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/kademlia_handler/6d1d4d2f031c6846ea92ff6551c9e80c99808821
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/kademlia_handler/2ebdb3fa357d35d47f2ca65878d282cb1c7287fc in 5 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/kademlia_handler/b233ae77305d163bfaabb1f23fd0eedeec714a52
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/kademlia_handler/6d1d4d2f031c6846ea92ff6551c9e80c99808821 in 6 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/kademlia_handler/3053ad9478df76147dd1222708189d50b5cfdc5f
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/kademlia_handler/b233ae77305d163bfaabb1f23fd0eedeec714a52 in 4 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/kademlia_handler/d1ebfa80fe835b54c53015a5a62ae13db8b2d50f
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/kademlia_handler/3053ad9478df76147dd1222708189d50b5cfdc5f in 4 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/kademlia_handler/aedc189b093951cb1b8fc56ee5c2ca867918a65e
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/kademlia_handler/aedc189b093951cb1b8fc56ee5c2ca867918a65e in 2 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/kademlia_handler/cc7243abf4fea57e91f7457c5aa348a709277b62
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/kademlia_handler/1923276d1917a41349c36cca22758e06c928da4d in 28 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/kademlia_handler/5b0e77420ec41efd1bb0b2816c514db6a7a09ef2
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/kademlia_handler/cc7243abf4fea57e91f7457c5aa348a709277b62 in 1 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/kademlia_handler/d723d9917d6a0b2305823beb2f7f1e591d3d8927
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/kademlia_handler/5b0e77420ec41efd1bb0b2816c514db6a7a09ef2 in 2 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/kademlia_handler/b28ee07747f814aceaff47e8ed225cd1aadab143
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/kademlia_handler/d723d9917d6a0b2305823beb2f7f1e591d3d8927 in 2 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/kademlia_handler/375f18f049c2d66f64dcdeb4741cc738a870b330
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/kademlia_handler/375f18f049c2d66f64dcdeb4741cc738a870b330 in 2 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/kademlia_handler/4e899926418bb0826b2b47b3b5f158ea2075586c
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/kademlia_handler/b28ee07747f814aceaff47e8ed225cd1aadab143 in 3 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/kademlia_handler/8fbcc94f37e56cb2475f933a86275108e04aee0e
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/kademlia_handler/4e899926418bb0826b2b47b3b5f158ea2075586c in 2 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/kademlia_handler/3f78d4e5fc9f3c07ed6273daa4026db9cfd3effa
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/kademlia_handler/8fbcc94f37e56cb2475f933a86275108e04aee0e in 3 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/kademlia_handler/4e6299f08ef557735d7ed5f8c3748433a8710856
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/kademlia_handler/4e6299f08ef557735d7ed5f8c3748433a8710856 in 1 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/kademlia_handler/d9a08df616d5d28be2e5228c1c3f744c4888c371
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/kademlia_handler/d9a08df616d5d28be2e5228c1c3f744c4888c371 in 1 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/kademlia_handler/8ee8c4787cdd50a91e7c8377d25059cf92d1d755
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/kademlia_handler/d1ebfa80fe835b54c53015a5a62ae13db8b2d50f in 19 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/kademlia_handler/623089ada01e469693fde6a35007d47759275cd9
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/kademlia_handler/8ee8c4787cdd50a91e7c8377d25059cf92d1d755 in 2 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/kademlia_handler/d7160445ffb50a188198b8ee794bd83e53caf408
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/kademlia_handler/623089ada01e469693fde6a35007d47759275cd9 in 3 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/kademlia_handler/4a1a84ad58c2866baf2448da00ba37933a5c9628
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/kademlia_handler/d7160445ffb50a188198b8ee794bd83e53caf408 in 3 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/kademlia_handler/60bfc613657dba8df8ed8fd570c8edc1944fca68
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/kademlia_handler/4a1a84ad58c2866baf2448da00ba37933a5c9628 in 3 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/kademlia_handler/94b2bb0b8e94a9e321b4b5324e756b7d2ff8b74a
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/kademlia_handler/60bfc613657dba8df8ed8fd570c8edc1944fca68 in 2 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/kademlia_handler/827cddad22bef2eaea36fed5d11c192386145728
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/kademlia_handler/94b2bb0b8e94a9e321b4b5324e756b7d2ff8b74a in 3 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/kademlia_handler/ac07f1aa2faab96907da2277f4791b4901574b02
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/kademlia_handler/827cddad22bef2eaea36fed5d11c192386145728 in 3 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/kademlia_handler/475401446f9f6186cad488b8187ce6cea4a78c43
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/kademlia_handler/475401446f9f6186cad488b8187ce6cea4a78c43 in 0 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/kademlia_handler/3c92bdc2af9f2c096864155e66abd0f9a82de38a
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/kademlia_handler/3c92bdc2af9f2c096864155e66abd0f9a82de38a in 1 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/kademlia_handler/00bd2d81190e636ff3c0353e0bd30bc1a0f61e34
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/kademlia_handler/ac07f1aa2faab96907da2277f4791b4901574b02 in 3 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/kademlia_handler/d81132b59759ffbca607faa1cb597ba0ab03d2ad
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/kademlia_handler/d81132b59759ffbca607faa1cb597ba0ab03d2ad in 1 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/kademlia_handler/763e9eb5627a3ea1aca9a589a59bf1f23971f22a
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/kademlia_handler/00bd2d81190e636ff3c0353e0bd30bc1a0f61e34 in 3 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/kademlia_handler/8882be3f5183590e1f50c743d87ec933f592ce6c
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/kademlia_handler/3f78d4e5fc9f3c07ed6273daa4026db9cfd3effa in 21 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/kademlia_handler/seed_findnode_partial
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/kademlia_handler/8882be3f5183590e1f50c743d87ec933f592ce6c in 1 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/kademlia_handler/cd43cd0ba7620fb49f88c6cb08ae2c300c9af460
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/kademlia_handler/cd43cd0ba7620fb49f88c6cb08ae2c300c9af460 in 1 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/kademlia_handler/aec1432901640b021b93a1efabf569869ac20c16
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/kademlia_handler/seed_findnode_partial in 3 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/kademlia_handler/0766e75dd0ad085bcc81aa8468d6928fc13fa9f6
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/kademlia_handler/aec1432901640b021b93a1efabf569869ac20c16 in 1 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/kademlia_handler/f58ad575942e6a0601f7cb4aea954fa72f5d3a8d
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/kademlia_handler/0766e75dd0ad085bcc81aa8468d6928fc13fa9f6 in 1 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/kademlia_handler/d21ba351e260f42428aa494303f842ca8bafa48e
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/kademlia_handler/d21ba351e260f42428aa494303f842ca8bafa48e in 0 ms
+***
+*** NOTE: fuzzing was not performed, you have only
+***       executed the target code on a fixed set of inputs.
+***
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/kademlia_handler/f58ad575942e6a0601f7cb4aea954fa72f5d3a8d in 2 ms
+***
+*** NOTE: fuzzing was not performed, you have only
+***       executed the target code on a fixed set of inputs.
+***
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/kademlia_handler/763e9eb5627a3ea1aca9a589a59bf1f23971f22a in 18 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/kademlia_handler/f0e8629e2cd56f50477d127d77ee78aecc20218e
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/kademlia_handler/f0e8629e2cd56f50477d127d77ee78aecc20218e in 4 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/kademlia_handler/342f4277922867e0b77c2aeeb477b995aca14433
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/kademlia_handler/342f4277922867e0b77c2aeeb477b995aca14433 in 2 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/kademlia_handler/b3acdfa98cf062d69168445fc55645cf5be2e038
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/kademlia_handler/b3acdfa98cf062d69168445fc55645cf5be2e038 in 2 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/kademlia_handler/ee5f81057705b7fd24da6375704e24a8cdb0fbe4
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/kademlia_handler/ee5f81057705b7fd24da6375704e24a8cdb0fbe4 in 0 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/kademlia_handler/8789fe0d89f6d1da16d1a2d938b38ae6ebcef3c6
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/kademlia_handler/8789fe0d89f6d1da16d1a2d938b38ae6ebcef3c6 in 3 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/kademlia_handler/51ce8b0df100857bc5abbe281cbcb20500da5d17
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/kademlia_handler/51ce8b0df100857bc5abbe281cbcb20500da5d17 in 0 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/kademlia_handler/2edd54c56e49257a24e1758440dedc843e9b2ba4
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/kademlia_handler/2edd54c56e49257a24e1758440dedc843e9b2ba4 in 3 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/kademlia_handler/e5798ae3f4debe6b57811224595eb1ac0df1060a
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/kademlia_handler/e5798ae3f4debe6b57811224595eb1ac0df1060a in 3 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/kademlia_handler/1cf53ca111fe6b64d18ed46d5ecf594f58a58d45
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/kademlia_handler/1cf53ca111fe6b64d18ed46d5ecf594f58a58d45 in 2 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/kademlia_handler/6128eb7d081b754c396ae1f0c45e8973744b3498
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/kademlia_handler/6128eb7d081b754c396ae1f0c45e8973744b3498 in 3 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/kademlia_handler/0900036591458f58cfa71b66c65b10c3640aa8ce
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/kademlia_handler/0900036591458f58cfa71b66c65b10c3640aa8ce in 1 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/kademlia_handler/81d1b4b595c8563017f2c0d64e7f93ed7f87e90c
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/kademlia_handler/81d1b4b595c8563017f2c0d64e7f93ed7f87e90c in 3 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/kademlia_handler/1110f2cb937ad38b35715fc57fea7e110373c6f3
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/kademlia_handler/1110f2cb937ad38b35715fc57fea7e110373c6f3 in 2 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/kademlia_handler/cf9a06feaf381a79e86270b20d29292af8f77a53
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/kademlia_handler/cf9a06feaf381a79e86270b20d29292af8f77a53 in 0 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/kademlia_handler/2f3a70d8a77bfec854fdade3f16db383f41023a9
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/kademlia_handler/2f3a70d8a77bfec854fdade3f16db383f41023a9 in 1 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/kademlia_handler/9f3bc215b7b69bf369524afecc0daf1a1bf8cab4
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/kademlia_handler/9f3bc215b7b69bf369524afecc0daf1a1bf8cab4 in 1 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/kademlia_handler/1e6a24d4f21494b784e3a516cd3e191a5a8a90d6
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/kademlia_handler/1e6a24d4f21494b784e3a516cd3e191a5a8a90d6 in 3 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/kademlia_handler/0fb258d550cd5c6defd3b2ebede0acb38f70403d
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/kademlia_handler/0fb258d550cd5c6defd3b2ebede0acb38f70403d in 0 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/kademlia_handler/335d24340a7780dc9ba4f7afedafc1ce8ead7f74
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/kademlia_handler/335d24340a7780dc9ba4f7afedafc1ce8ead7f74 in 2 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/kademlia_handler/82c0bae98d10778cf1943491c5757367c8755c77
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/kademlia_handler/82c0bae98d10778cf1943491c5757367c8755c77 in 2 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/kademlia_handler/1d15f33c18f2a4c1f1e903b0380b1658becd0542
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/kademlia_handler/1d15f33c18f2a4c1f1e903b0380b1658becd0542 in 2 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/kademlia_handler/18780d930256ed5a7176437688d6bd9aa4157793
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/kademlia_handler/18780d930256ed5a7176437688d6bd9aa4157793 in 1 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/kademlia_handler/c8a432b50260f85961f7bdb0ee3d726dcfded093
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/kademlia_handler/c8a432b50260f85961f7bdb0ee3d726dcfded093 in 2 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/kademlia_handler/344d9860370e3cb99a37d54e85fa9e77e3abf4ea
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/kademlia_handler/344d9860370e3cb99a37d54e85fa9e77e3abf4ea in 3 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/kademlia_handler/c3a53f615459500a9bde529c7856c5916e2786f5
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/kademlia_handler/c3a53f615459500a9bde529c7856c5916e2786f5 in 0 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/kademlia_handler/cae578d0dd7e2c191507f7abca1d53e89c366a74
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/kademlia_handler/cae578d0dd7e2c191507f7abca1d53e89c366a74 in 2 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/kademlia_handler/82c3755b9429ef084cab937f95787cdfab444912
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/kademlia_handler/82c3755b9429ef084cab937f95787cdfab444912 in 2 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/kademlia_handler/c8f5370af63016816f0656e07e0ba53af6950e55
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/kademlia_handler/c8f5370af63016816f0656e07e0ba53af6950e55 in 1 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/kademlia_handler/97592c84eed92be83584203f8fbbc6c0a9fd7afb
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/kademlia_handler/97592c84eed92be83584203f8fbbc6c0a9fd7afb in 2 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/kademlia_handler/a37e420f0ccf911ce61c467642d83987d8cf9d22
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/kademlia_handler/a37e420f0ccf911ce61c467642d83987d8cf9d22 in 2 ms
+Running: /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/kademlia_handler/ef420b94ccf7b95218bf0de56ba83f3630a6ab53
+Executed /home/adethya/Documents/rust-libp2p/core/fuzz/corpus/kademlia_handler/ef420b94ccf7b95218bf0de56ba83f3630a6ab53 in 0 ms
+***
+*** NOTE: fuzzing was not performed, you have only
+***       executed the target code on a fixed set of inputs.
+***
+Merging raw coverage data...
+Coverage data merged and saved in "/home/adethya/Documents/rust-libp2p/core/fuzz/coverage/kademlia_handler/coverage.profdata".
+==> llvm-cov HTML (full) → coverage/kademlia_handler/html
+==> llvm-cov HTML (focused) → coverage/kademlia_handler/html-focus
+==> llvm-cov report (focused rows)
+home/adethya/Documents/rust-libp2p/core/fuzz/fuzz_targets/kademlia_handler.rs                                                                                        80                14    82.50%           1                 0   100.00%          45                 0   100.00%           0                 0         -
+home/adethya/Documents/rust-libp2p/protocols/kad/src/fuzz_handler.rs                                                                                                241                47    80.50%          28                 7    75.00%         318                53    83.33%           0                 0         -
+home/adethya/Documents/rust-libp2p/protocols/kad/src/handler.rs                                                                                                     338               160    52.66%          24                10    58.33%         443               187    57.79%           0                 0         -
+home/adethya/Documents/rust-libp2p/protocols/kad/src/protocol.rs                                                                                                    229               105    54.15%          41                21    48.78%         277               114    58.84%           0                 0         -
+==> text dump + zero-hit Err scan → coverage/kademlia_handler/text
+==> zero-hit lines mentioning Err (handler.rs):
+  442|      0|    events_contain_io_kind(events, io::ErrorKind::TimedOut)
+  446|      0|pub fn events_contain_io_kind(events: &[HandlerEvent], kind: io::ErrorKind) -> bool {
+  157|      0|                Err(msg)
+  308|      0|    fn source(&self) -> Option<&(dyn error::Error + 'static)> {
+  310|      0|            HandlerQueryErr::UnexpectedMessage => None,
+  311|      0|            HandlerQueryErr::Io(err) => Some(err),
+  575|      0|                    .map_err(|_| io::Error::from(io::ErrorKind::BrokenPipe))?
+  986|      0|                            Err(_) => return Poll::Ready(None),
+  992|      0|                        Poll::Ready(Err(_)) => return Poll::Ready(None),
+ 1008|      0|                        Poll::Ready(Err(_)) => return Poll::Ready(None),
+ 1031|      0|            HandlerEvent::QueryError {
+ 1032|      0|                error: HandlerQueryErr::UnexpectedMessage,
+  265|      0|                f.debug_tuple("DialUpgradeError").field(v).finish()
+  268|      0|                f.debug_tuple("ListenUpgradeError").field(v).finish()
+  293|      0|            | ConnectionEvent::ListenUpgradeError(_) => false,
+  307|      0|            | ConnectionEvent::DialUpgradeError(_) => false,
+  707|      0|    pub fn map_upgrade_err<F, E>(self, f: F) -> StreamUpgradeError<E>
+  709|      0|        F: FnOnce(TUpgrErr) -> E,
+  712|      0|            StreamUpgradeError::Timeout => StreamUpgradeError::Timeout,
+  713|      0|            StreamUpgradeError::Apply(e) => StreamUpgradeError::Apply(f(e)),
+  714|      0|            StreamUpgradeError::NegotiationFailed => StreamUpgradeError::NegotiationFailed,
+  715|      0|            StreamUpgradeError::Io(e) => StreamUpgradeError::Io(e),
+  748|      0|    fn source(&self) -> Option<&(dyn error::Error + 'static)> {
+
+Open: coverage/kademlia_handler/html/index.html
+Focus: coverage/kademlia_handler/html-focus/index.html
+Tips: ASAN_OPTIONS=symbolize=0 cargo +nightly fuzz run kademlia_handler -- -print_coverage=1 -print_funcs=0
+      ASAN_OPTIONS=symbolize=0 cargo +nightly fuzz cmin kademlia_handler

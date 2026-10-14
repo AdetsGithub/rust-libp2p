@@ -22,6 +22,9 @@
 
 mod framed;
 pub(crate) mod handshake;
+
+#[cfg(feature = "fuzzing")]
+pub(crate) use framed::fuzz_length_prefixed;
 use std::{
     cmp::min,
     fmt, io,

@@ -1,0 +1,40 @@
+# libp2p-noise fragments (hex-escaped)
+
+# Protobuf field tags for NoiseHandshakePayload
+tag_identity_key="\x0A"
+tag_identity_sig="\x12"
+tag_extensions="\x22"
+
+# Extensions nested
+tag_certhash="\x0A"
+tag_muxer="\x12"
+
+# Length-prefix edges (u16 BE)
+len_0="\x00\x00"
+len_1="\x00\x01"
+len_32="\x00\x20"
+len_max="\xFF\xFF"
+
+# Empty / short frames
+empty_frame="\x00\x00"
+short_hdr="\x00"
+
+# Multistream-ish muxer name fragment
+yamux="\x2F\x79\x61\x6D\x75\x78\x2F\x31\x2E\x30\x2E\x30"
+
+# Structured XX arm selectors (byte0 % 8)
+arm_xx_in="\x03"
+arm_xx_out="\x05"
+arm_xx_post="\x07"
+
+# Flag bits after arm (certhash / ext / muxer)
+flag_certhash="\x01"
+flag_ext="\x04"
+flag_muxer="\x0C"
+
+# High-use tokens from 20k smoke (libFuzzer recommended dict)
+lp_1="\x01\x00"
+lp_ff03="\xFF\x03"
+u32_1="\x01\x00\x00\x00"
+all_ff8="\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF"
+lp_b0="\x00\x40"

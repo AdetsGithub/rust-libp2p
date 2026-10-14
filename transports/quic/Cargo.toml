@@ -9,6 +9,7 @@ repository = "https://github.com/libp2p/rust-libp2p"
 license = "MIT"
 
 [dependencies]
+bytes = { workspace = true, optional = true }
 futures = { workspace = true }
 futures-timer = { workspace = true }
 if-watch = { workspace = true }
@@ -26,6 +27,14 @@ ring = { workspace = true }
 
 [features]
 tokio = ["dep:tokio", "if-watch/tokio", "quinn/runtime-tokio"]
+# Exposes `fuzz_quic` for cargo-fuzz. Drives multiaddr parse, Config, and
+# quinn-proto Endpoint handshakes without live UDP sockets.
+fuzzing = [
+    "libp2p-identity/rand",
+    "libp2p-tls/fuzzing",
+    "dep:bytes",
+    "quinn-proto/rustls-aws-lc-rs",
+]
 
 # Passing arguments to the docsrs builder in order to properly document cfg's.
 # More information: https://docs.rs/about/builds#cross-compiling

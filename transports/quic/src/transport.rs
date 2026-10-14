@@ -19,10 +19,7 @@
 // DEALINGS IN THE SOFTWARE.
 
 use std::{
-    collections::{
-        HashMap, HashSet,
-        hash_map::{DefaultHasher, Entry},
-    },
+    collections::{HashMap, HashSet, hash_map::DefaultHasher},
     fmt,
     hash::{Hash, Hasher},
     io,
@@ -33,7 +30,6 @@ use std::{
 };
 
 use futures::{
-    channel::oneshot,
     future::{BoxFuture, Either},
     prelude::*,
     ready,
@@ -81,7 +77,7 @@ pub struct GenTransport<P: Provider> {
     /// Waker to poll the transport again when a new dialer or listener is added.
     waker: Option<Waker>,
     /// Holepunching attempts
-    hole_punch_attempts: HashMap<SocketAddr, oneshot::Sender<Connecting>>,
+    hole_punch_attempts: crate::hole_punching::HolePunchBook,
 }
 
 #[expect(deprecated)]
@@ -98,7 +94,7 @@ impl<P: Provider> GenTransport<P> {
             dialer: HashMap::new(),
             waker: None,
             support_draft_29,
-            hole_punch_attempts: Default::default(),
+            hole_punch_attempts: crate::hole_punching::HolePunchBook::new(),
         }
     }
 
@@ -323,23 +319,10 @@ impl<P: Provider> Transport for GenTransport<P> {
 
                 let hole_puncher = hole_puncher::<P>(socket, socket_addr, self.handshake_timeout);
 
-                let (sender, receiver) = oneshot::channel();
-
-                match self.hole_punch_attempts.entry(socket_addr) {
-                    Entry::Occupied(mut sender_entry) => {
-                        // Stale senders, i.e. from failed hole punches are not removed.
-                        // Thus, we can just overwrite a stale sender.
-                        if !sender_entry.get().is_canceled() {
-                            return Err(TransportError::Other(Error::HolePunchInProgress(
-                                socket_addr,
-                            )));
-                        }
-                        sender_entry.insert(sender);
-                    }
-                    Entry::Vacant(entry) => {
-                        entry.insert(sender);
-                    }
-                };
+                let receiver = self
+                    .hole_punch_attempts
+                    .register(socket_addr)
+                    .map_err(TransportError::Other)?;
 
                 Ok(Box::pin(async move {
                     futures::pin_mut!(hole_puncher);
@@ -384,7 +367,7 @@ impl<P: Provider> Transport for GenTransport<P> {
                             .unwrap()
                             .0;
 
-                    if let Some(sender) = self.hole_punch_attempts.remove(&socket_addr) {
+                    if let Some(sender) = self.hole_punch_attempts.complete(&socket_addr) {
                         match sender.send(upgrade) {
                             Ok(()) => continue,
                             Err(timed_out_holepunch) => {
@@ -692,7 +675,7 @@ fn ip_to_listenaddr(
 
 /// Tries to turn a QUIC multiaddress into a UDP [`SocketAddr`]. Returns None if the format
 /// of the multiaddr is wrong.
-fn multiaddr_to_socketaddr(
+pub(crate) fn multiaddr_to_socketaddr(
     addr: &Multiaddr,
     support_draft_29: bool,
 ) -> Option<(SocketAddr, ProtocolVersion, Option<PeerId>)> {

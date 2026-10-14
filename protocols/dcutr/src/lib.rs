@@ -24,6 +24,8 @@
 #![cfg_attr(docsrs, feature(doc_cfg, doc_auto_cfg))]
 
 mod behaviour;
+#[cfg(feature = "fuzzing")]
+mod fuzz;
 mod handler;
 mod protocol;
 
@@ -34,6 +36,11 @@ mod proto {
 }
 
 pub use behaviour::{Behaviour, Error, Event};
+#[cfg(feature = "fuzzing")]
+pub use fuzz::{
+    FuzzAction, MAX_ACTIONS, MAX_MSG_BYTES, PEER_POOL, StructuredHolePunchKind,
+    encode_structured_holepunch_wire, fuzz_behaviour, fuzz_local_peer_id,
+};
 pub use protocol::PROTOCOL_NAME;
 pub mod inbound {
     pub use crate::protocol::inbound::ProtocolViolation;

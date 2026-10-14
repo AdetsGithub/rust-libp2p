@@ -45,5 +45,10 @@ tokio = { workspace = true, features = ["macros", "rt-multi-thread"] }
 [package.metadata.docs.rs]
 all-features = true
 
+[features]
+# Exposes `fuzz_behaviour` / `FuzzAction` / handler mock-I/O drivers for cargo-fuzz.
+# Not intended for production use.
+fuzzing = ["libp2p-swarm/fuzzing"]
+
 [lints]
 workspace = true

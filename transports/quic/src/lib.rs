@@ -66,6 +66,11 @@ mod hole_punching;
 mod provider;
 mod transport;
 
+#[cfg(feature = "fuzzing")]
+mod fuzz;
+#[cfg(feature = "fuzzing")]
+pub use fuzz::fuzz_quic;
+
 use std::net::SocketAddr;
 
 pub use config::Config;

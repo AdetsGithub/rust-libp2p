@@ -90,6 +90,47 @@ impl QueryPool {
         self.queries.len()
     }
 
+    /// Fuzzing: rewind query start times by `by`.
+    #[cfg(feature = "fuzzing")]
+    pub(crate) fn fuzz_rewind_starts(&mut self, by: Duration) {
+        let now = Instant::now();
+        let past = now.checked_sub(by).unwrap_or(now);
+        for q in self.queries.values_mut() {
+            match &mut q.stats.start {
+                Some(start) => {
+                    *start = start.checked_sub(by).unwrap_or(past);
+                }
+                None => {
+                    q.stats.start = Some(past);
+                }
+            }
+        }
+    }
+
+    /// Fuzzing: remove and return queries whose start is at least `timeout` ago.
+    ///
+    /// Unlike [`QueryPool::poll`], this does not require `Waiting(None)` — so
+    /// timeouts fire even when the query still has peers to contact.
+    #[cfg(feature = "fuzzing")]
+    pub(crate) fn fuzz_take_timed_out(&mut self, now: Instant) -> Vec<Query> {
+        let limit = self.config.timeout;
+        let ids: Vec<QueryId> = self
+            .queries
+            .iter()
+            .filter_map(|(&id, q)| {
+                let start = q.stats.start?;
+                (now.saturating_duration_since(start) >= limit).then_some(id)
+            })
+            .collect();
+        ids.into_iter()
+            .filter_map(|id| {
+                let mut q = self.queries.remove(&id)?;
+                q.stats.end = Some(now);
+                Some(q)
+            })
+            .collect()
+    }
+
     /// Returns an iterator that allows modifying each query in the pool.
     pub(crate) fn iter_mut(&mut self) -> impl Iterator<Item = &mut Query> {
         self.queries.values_mut()
@@ -243,6 +284,14 @@ pub struct QueryId(usize);
 impl std::fmt::Display for QueryId {
     fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
         write!(f, "{}", self.0)
+    }
+}
+
+#[cfg(feature = "fuzzing")]
+impl QueryId {
+    /// Construct a [`QueryId`] for action-sequence fuzzing.
+    pub fn fuzz(id: usize) -> Self {
+        Self(id)
     }
 }
 
@@ -543,5 +592,357 @@ impl QueryStats {
             },
             end: std::cmp::max(self.end, other.end),
         }
+    }
+}
+
+/// Loom concurrency models for QueryPool + Handler pending-lane races.
+///
+/// Production [`QueryPool`] / [`crate::handler::Handler`] are single-threaded and
+/// pull in `Instant` / peer iterators / substreams that are hostile under Loom.
+/// These models mirror the shared race classes behind `Arc<Mutex<_>>`:
+/// `next_id` + active map, Handler `pending_messages` dequeue ↔ pool finish,
+/// dual-handler lanes sharing one pool — **not** cargo-fuzz.
+///
+/// ```text
+/// cargo test -p libp2p-kad --features loom --lib query::loom_tests
+/// ```
+#[cfg(all(test, feature = "loom"))]
+mod loom_tests {
+    use std::collections::VecDeque;
+
+    use fnv::FnvHashMap;
+    use loom::{
+        sync::{Arc, Mutex},
+        thread,
+    };
+
+    use super::QueryId;
+
+    /// Minimal mirror of [`QueryPool`]'s id allocator + active map.
+    #[derive(Default)]
+    struct QueryBook {
+        next_id: usize,
+        active: FnvHashMap<QueryId, u8>,
+    }
+
+    impl QueryBook {
+        fn add(&mut self, tag: u8) -> QueryId {
+            let id = QueryId(self.next_id);
+            self.next_id = self.next_id.wrapping_add(1);
+            assert!(
+                self.active.insert(id, tag).is_none(),
+                "QueryId reuse while still active: {id}"
+            );
+            id
+        }
+
+        fn take(&mut self, id: QueryId) -> Option<u8> {
+            self.active.remove(&id)
+        }
+
+        fn take_any(&mut self) -> Option<(QueryId, u8)> {
+            let id = *self.active.keys().next()?;
+            let tag = self.active.remove(&id)?;
+            Some((id, tag))
+        }
+
+        fn size(&self) -> usize {
+            self.active.len()
+        }
+    }
+
+    /// Handler-shaped lane: Behaviour enqueues `(tag, QueryId)`; Handler poll
+    /// starts a stream (`pending` → `in_flight`); finish attributes by QueryId.
+    #[derive(Default)]
+    struct HandlerLane {
+        pool: QueryBook,
+        pending: VecDeque<(u8, QueryId)>,
+        in_flight: FnvHashMap<QueryId, u8>,
+        finished: usize,
+    }
+
+    impl HandlerLane {
+        fn enqueue(&mut self, tag: u8) -> QueryId {
+            let id = self.pool.add(tag);
+            self.pending.push_back((tag, id));
+            id
+        }
+
+        fn poll_start(&mut self) -> Option<(u8, QueryId)> {
+            let (tag, id) = self.pending.pop_front()?;
+            assert!(
+                self.in_flight.insert(id, tag).is_none(),
+                "QueryId already in-flight: {id}"
+            );
+            Some((tag, id))
+        }
+
+        fn finish(&mut self, id: QueryId) -> Option<u8> {
+            let tag = self.in_flight.remove(&id)?;
+            let pool_tag = self.pool.take(id);
+            assert_eq!(pool_tag, Some(tag), "pool/in_flight tag mismatch for {id}");
+            self.finished += 1;
+            Some(tag)
+        }
+
+        fn conserved(&self) -> usize {
+            self.pending.len() + self.in_flight.len() + self.finished
+        }
+    }
+
+    /// Dual-handler fan-out sharing one pool (Behaviour → two connections).
+    #[derive(Default)]
+    struct DualHandlerPool {
+        pool: QueryBook,
+        h0: VecDeque<QueryId>,
+        h1: VecDeque<QueryId>,
+        finished: usize,
+    }
+
+    impl DualHandlerPool {
+        fn enqueue_h0(&mut self, tag: u8) -> QueryId {
+            let id = self.pool.add(tag);
+            self.h0.push_back(id);
+            id
+        }
+
+        fn enqueue_h1(&mut self, tag: u8) -> QueryId {
+            let id = self.pool.add(tag);
+            self.h1.push_back(id);
+            id
+        }
+
+        fn start_h0(&mut self) -> Option<QueryId> {
+            self.h0.pop_front()
+        }
+
+        fn start_h1(&mut self) -> Option<QueryId> {
+            self.h1.pop_front()
+        }
+
+        fn finish(&mut self, id: QueryId) -> bool {
+            if self.pool.take(id).is_some() {
+                self.finished += 1;
+                true
+            } else {
+                false
+            }
+        }
+
+        fn pending_total(&self) -> usize {
+            self.h0.len() + self.h1.len()
+        }
+    }
+
+    /// Two adders — unique QueryIds; size == 2.
+    #[test]
+    fn query_book_dual_add_unique_ids() {
+        loom::model(|| {
+            let book = Arc::new(Mutex::new(QueryBook::default()));
+            let a = Arc::clone(&book);
+            let b = Arc::clone(&book);
+
+            let t_a = thread::spawn(move || a.lock().unwrap().add(1));
+            let t_b = thread::spawn(move || b.lock().unwrap().add(2));
+
+            let id_a = t_a.join().unwrap();
+            let id_b = t_b.join().unwrap();
+            assert_ne!(id_a, id_b, "duplicate QueryId from concurrent adders");
+
+            let g = book.lock().unwrap();
+            assert_eq!(g.size(), 2);
+            assert!(g.active.contains_key(&id_a));
+            assert!(g.active.contains_key(&id_b));
+        });
+    }
+
+    /// Interleave add with take_any (poll-finish) — no leak / double-finish.
+    #[test]
+    fn query_book_add_vs_take_race() {
+        loom::model(|| {
+            let book = Arc::new(Mutex::new(QueryBook::default()));
+            let adder = Arc::clone(&book);
+            let taker = Arc::clone(&book);
+
+            let t_add = thread::spawn(move || {
+                let mut n = 0usize;
+                for tag in [10u8, 11] {
+                    adder.lock().unwrap().add(tag);
+                    n += 1;
+                }
+                n
+            });
+
+            let t_take = thread::spawn(move || {
+                let mut removed = 0usize;
+                for _ in 0..4 {
+                    if taker.lock().unwrap().take_any().is_some() {
+                        removed += 1;
+                    }
+                }
+                removed
+            });
+
+            let added = t_add.join().unwrap();
+            let removed = t_take.join().unwrap();
+            let g = book.lock().unwrap();
+            assert_eq!(
+                removed + g.size(),
+                added,
+                "leak or double-take: added={added} removed={removed} size={}",
+                g.size()
+            );
+        });
+    }
+
+    /// Ghost take misses; concurrent take of one id delivers exactly once.
+    #[test]
+    fn query_book_ghost_and_single_take() {
+        loom::model(|| {
+            let book = Arc::new(Mutex::new(QueryBook::default()));
+            let id = book.lock().unwrap().add(7);
+            let b2 = Arc::clone(&book);
+            let b3 = Arc::clone(&book);
+
+            let t1 = thread::spawn(move || b2.lock().unwrap().take(id));
+            let t2 = thread::spawn(move || b3.lock().unwrap().take(id));
+
+            let a = t1.join().unwrap();
+            let b = t2.join().unwrap();
+            assert!(
+                book.lock().unwrap().take(QueryId(0xF000_0000)).is_none(),
+                "ghost QueryId should miss"
+            );
+            assert_eq!(
+                usize::from(a.is_some()) + usize::from(b.is_some()),
+                1,
+                "QueryId taken zero or twice"
+            );
+            assert_eq!(book.lock().unwrap().size(), 0);
+        });
+    }
+
+    /// Behaviour enqueue vs Handler poll_start + finish — conservation + no double finish.
+    #[test]
+    fn handler_lane_enqueue_vs_start_finish() {
+        loom::model(|| {
+            let lane = Arc::new(Mutex::new(HandlerLane::default()));
+            let behaviour = Arc::clone(&lane);
+            let handler = Arc::clone(&lane);
+
+            let t_beh = thread::spawn(move || {
+                let mut n = 0usize;
+                for tag in [1u8, 2] {
+                    behaviour.lock().unwrap().enqueue(tag);
+                    n += 1;
+                }
+                n
+            });
+
+            let t_h = thread::spawn(move || {
+                let mut started = 0usize;
+                let mut done = 0usize;
+                for _ in 0..4 {
+                    let started_id = handler.lock().unwrap().poll_start().map(|(_, id)| id);
+                    if let Some(id) = started_id {
+                        started += 1;
+                        if handler.lock().unwrap().finish(id).is_some() {
+                            done += 1;
+                        }
+                    }
+                }
+                (started, done)
+            });
+
+            let enqueued = t_beh.join().unwrap();
+            let (started, done) = t_h.join().unwrap();
+            let mut g = lane.lock().unwrap();
+            assert_eq!(
+                g.conserved(),
+                enqueued,
+                "lane leak/dup: pending={} in_flight={} finished={}",
+                g.pending.len(),
+                g.in_flight.len(),
+                g.finished
+            );
+            assert_eq!(started, done, "started without finish: {started} vs {done}");
+            assert!(done <= enqueued);
+            assert!(
+                g.pool.take(QueryId(0xDEAD_BEEF)).is_none(),
+                "ghost finish must miss"
+            );
+        });
+    }
+
+    /// Dual-handler pending lanes share one pool — ids unique; finish once.
+    #[test]
+    fn dual_handler_shared_pool_enqueue_start_finish() {
+        loom::model(|| {
+            let state = Arc::new(Mutex::new(DualHandlerPool::default()));
+            let a = Arc::clone(&state);
+            let b = Arc::clone(&state);
+
+            let t0 = thread::spawn(move || {
+                let id = a.lock().unwrap().enqueue_h0(10);
+                let started = a.lock().unwrap().start_h0();
+                let finished = started
+                    .map(|sid| {
+                        assert_eq!(sid, id);
+                        a.lock().unwrap().finish(sid)
+                    })
+                    .unwrap_or(false);
+                (id, finished)
+            });
+
+            let t1 = thread::spawn(move || {
+                let id = b.lock().unwrap().enqueue_h1(11);
+                let started = b.lock().unwrap().start_h1();
+                let finished = started
+                    .map(|sid| {
+                        assert_eq!(sid, id);
+                        b.lock().unwrap().finish(sid)
+                    })
+                    .unwrap_or(false);
+                (id, finished)
+            });
+
+            let (id0, fin0) = t0.join().unwrap();
+            let (id1, fin1) = t1.join().unwrap();
+            assert_ne!(id0, id1, "handlers shared a QueryId");
+            assert!(fin0, "h0 did not finish its query");
+            assert!(fin1, "h1 did not finish its query");
+
+            let g = state.lock().unwrap();
+            assert_eq!(g.finished, 2);
+            assert_eq!(g.pending_total(), 0);
+            assert_eq!(g.pool.size(), 0);
+            assert!(!g.pool.active.contains_key(&id0));
+            assert!(!g.pool.active.contains_key(&id1));
+        });
+    }
+
+    /// Stale / mismatched QueryId finish after lane start — exactly one success.
+    #[test]
+    fn handler_lane_stale_query_id_finish() {
+        loom::model(|| {
+            let lane = Arc::new(Mutex::new(HandlerLane::default()));
+            let id = lane.lock().unwrap().enqueue(3);
+            assert_eq!(lane.lock().unwrap().poll_start().map(|(_, i)| i), Some(id));
+
+            let a = Arc::clone(&lane);
+            let b = Arc::clone(&lane);
+            let t_ok = thread::spawn(move || a.lock().unwrap().finish(id));
+            let t_stale = thread::spawn(move || b.lock().unwrap().finish(id));
+
+            let x = t_ok.join().unwrap();
+            let y = t_stale.join().unwrap();
+            assert_eq!(
+                usize::from(x.is_some()) + usize::from(y.is_some()),
+                1,
+                "stale QueryId finished zero/twice"
+            );
+            assert_eq!(lane.lock().unwrap().finished, 1);
+            assert_eq!(lane.lock().unwrap().conserved(), 1);
+        });
     }
 }

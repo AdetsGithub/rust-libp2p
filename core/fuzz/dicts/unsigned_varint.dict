@@ -1,0 +1,31 @@
+# unsigned-varint fragments for libFuzzer
+# Encoding: 7-bit groups; MSB=1 means "more bytes follow".
+
+# Single-byte values (terminator bit clear)
+term_0="\x00"
+term_1="\x01"
+term_7f="\x7F"
+
+# Continuation byte (MSB set) — forces multi-byte / Insufficient paths
+cont_80="\x80"
+cont_ff="\xFF"
+
+# Canonical 128 = 0x80 0x01
+uvi_128="\x80\x01"
+
+# Non-minimal (trailing zero) — should be NotMinimal
+not_minimal="\x80\x00"
+
+# Two-byte edges
+uvi_80_02="\x80\x02"
+uvi_ff_01="\xFF\x01"
+uvi_ff_7f="\xFF\x7F"
+
+# Maximal-ish continuation runs (u64 needs ≤10 bytes; Finding #2 style)
+nine_80="\x80\x80\x80\x80\x80\x80\x80\x80\x80"
+ten_80="\x80\x80\x80\x80\x80\x80\x80\x80\x80\x80"
+finding2_u64="\x80\x80\x80\x80\x80\x80\x80\x80\x80\x02"
+
+# Terminators after continuations
+term_after_cont="\x80\x01"
+double_varint="\x01\x02"

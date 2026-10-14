@@ -81,6 +81,16 @@ impl PeerAddresses {
             None => false,
         }
     }
+
+    /// Number of distinct peers currently stored in the LRU cache.
+    pub fn peer_count(&self) -> usize {
+        self.0.len()
+    }
+
+    /// Total number of addresses across all peers in the cache.
+    pub fn address_count(&self) -> usize {
+        self.0.iter().map(|(_, addrs)| addrs.len()).sum()
+    }
 }
 
 fn prepare_addr(peer: &PeerId, addr: &Multiaddr) -> Result<Multiaddr, Multiaddr> {

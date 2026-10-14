@@ -534,6 +534,17 @@ impl PublicKey {
     #[must_use]
     #[allow(unused_variables)]
     pub fn verify(&self, msg: &[u8], sig: &[u8]) -> bool {
+        // cargo-fuzz passes `--cfg fuzzing`. By default always succeed so
+        // handshake / identity consumers can explore past the crypto wall.
+        // Opt into real verification with feature `fuzzing-real-verify`
+        // (e.g. Strict Gossipsub signature lane).
+        #[cfg(all(fuzzing, not(feature = "fuzzing-real-verify")))]
+        {
+            let _ = (msg, sig);
+            return true;
+        }
+
+        #[cfg(any(not(fuzzing), feature = "fuzzing-real-verify"))]
         match self.publickey {
             #[cfg(feature = "ed25519")]
             PublicKeyInner::Ed25519(ref pk) => pk.verify(msg, sig),
@@ -652,16 +663,26 @@ impl TryFrom<proto::PublicKey> for PublicKey {
 
         match key_type {
             #[cfg(feature = "ed25519")]
-            proto::KeyType::Ed25519 => Ok(ed25519::PublicKey::try_from_bytes(&pubkey.data).map(
-                |kp| PublicKey {
+            proto::KeyType::Ed25519 => match ed25519::PublicKey::try_from_bytes(&pubkey.data) {
+                Ok(kp) => Ok(PublicKey {
                     publickey: PublicKeyInner::Ed25519(kp),
-                },
-            )?),
+                }),
+                // Protobuf decoded with a structurally sized key payload, but the
+                // curve point was rejected. Under fuzzing, substitute a fixed key
+                // so `to_peer_id` / encode paths stay reachable.
+                #[cfg(fuzzing)]
+                Err(_) if pubkey.data.len() == 32 => Ok(PublicKey {
+                    publickey: PublicKeyInner::Ed25519(ed25519::PublicKey::fuzz_dummy()),
+                }),
+                Err(e) => Err(e),
+            },
             #[cfg(not(feature = "ed25519"))]
             proto::KeyType::Ed25519 => {
                 tracing::debug!("support for ed25519 was disabled at compile-time");
                 Err(DecodingError::missing_feature("ed25519"))
             }
+            // RSA: keep ASN.1 / X.509 parsing strict — that is the surface we want
+            // the fuzzer to mutate (length prefixes, DER structure).
             #[cfg(all(feature = "rsa", not(target_arch = "wasm32")))]
             proto::KeyType::Rsa => {
                 Ok(
@@ -676,21 +697,38 @@ impl TryFrom<proto::PublicKey> for PublicKey {
                 Err(DecodingError::missing_feature("rsa"))
             }
             #[cfg(feature = "secp256k1")]
-            proto::KeyType::Secp256k1 => Ok(secp256k1::PublicKey::try_from_bytes(&pubkey.data)
-                .map(|kp| PublicKey {
-                    publickey: PublicKeyInner::Secp256k1(kp),
-                })?),
+            proto::KeyType::Secp256k1 => {
+                match secp256k1::PublicKey::try_from_bytes(&pubkey.data) {
+                    Ok(kp) => Ok(PublicKey {
+                        publickey: PublicKeyInner::Secp256k1(kp),
+                    }),
+                    // Compressed (33) or uncompressed (65) SEC1 lengths.
+                    #[cfg(fuzzing)]
+                    Err(_) if matches!(pubkey.data.len(), 33 | 65) => Ok(PublicKey {
+                        publickey: PublicKeyInner::Secp256k1(secp256k1::PublicKey::fuzz_dummy()),
+                    }),
+                    Err(e) => Err(e),
+                }
+            }
             #[cfg(not(feature = "secp256k1"))]
             proto::KeyType::Secp256k1 => {
                 tracing::debug!("support for secp256k1 was disabled at compile-time");
                 Err(DecodingError::missing_feature("secp256k1"))
             }
             #[cfg(feature = "ecdsa")]
-            proto::KeyType::Ecdsa => Ok(ecdsa::PublicKey::try_decode_der(&pubkey.data).map(
-                |kp| PublicKey {
+            proto::KeyType::Ecdsa => match ecdsa::PublicKey::try_decode_der(&pubkey.data) {
+                Ok(kp) => Ok(PublicKey {
                     publickey: PublicKeyInner::Ecdsa(kp),
-                },
-            )?),
+                }),
+                // ASN.1 header parsed far enough that only the point failed.
+                #[cfg(fuzzing)]
+                Err(_) if ecdsa::PublicKey::fuzz_asn1_looks_plausible(&pubkey.data) => {
+                    Ok(PublicKey {
+                        publickey: PublicKeyInner::Ecdsa(ecdsa::PublicKey::fuzz_dummy()),
+                    })
+                }
+                Err(e) => Err(e),
+            },
             #[cfg(not(feature = "ecdsa"))]
             proto::KeyType::Ecdsa => {
                 tracing::debug!("support for ECDSA was disabled at compile-time");

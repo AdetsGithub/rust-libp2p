@@ -291,6 +291,110 @@ impl Behaviour {
         self.as_client().on_new_address();
     }
 
+    /// Expire the auto-probe timer so the next poll issues a dial-back request.
+    #[cfg(feature = "fuzzing")]
+    pub fn fuzz_expire_probe_timer(&mut self) {
+        self.schedule_probe = Delay::new(Duration::ZERO);
+    }
+
+    /// Active outbound dial-back [`OutboundRequestId`]s (sorted ascending).
+    #[cfg(feature = "fuzzing")]
+    pub fn fuzz_ongoing_outbound_ids(&self) -> Vec<OutboundRequestId> {
+        let mut ids: Vec<_> = self.ongoing_outbound.keys().copied().collect();
+        ids.sort();
+        ids
+    }
+
+    /// Soft DoS: number of in-flight outbound probes.
+    #[cfg(feature = "fuzzing")]
+    pub fn fuzz_ongoing_outbound_count(&self) -> usize {
+        self.ongoing_outbound.len()
+    }
+
+    /// Soft DoS: number of in-flight inbound probes awaiting dial-back.
+    #[cfg(feature = "fuzzing")]
+    pub fn fuzz_ongoing_inbound_count(&self) -> usize {
+        self.ongoing_inbound.len()
+    }
+
+    /// Connected peer count (fuzz invariant checks).
+    #[cfg(feature = "fuzzing")]
+    pub fn fuzz_connected_peer_count(&self) -> usize {
+        self.connected.len()
+    }
+
+    /// Candidate address count (listen + explicit).
+    #[cfg(feature = "fuzzing")]
+    pub fn fuzz_candidate_count(&self) -> usize {
+        self.other_candidates.len()
+    }
+
+    /// Inject a dial-back response as if request-response delivered it.
+    ///
+    /// `request_id` should be from [`Self::fuzz_ongoing_outbound_ids`] unless
+    /// intentionally testing ghost attribution (release / non-debug only).
+    #[cfg(feature = "fuzzing")]
+    pub fn fuzz_inject_dial_response(
+        &mut self,
+        peer: PeerId,
+        connection_id: ConnectionId,
+        request_id: OutboundRequestId,
+        response: DialResponse,
+    ) {
+        let actions = self.as_client().handle_event(request_response::Event::Message {
+            peer,
+            connection_id,
+            message: request_response::Message::Response {
+                request_id,
+                response,
+            },
+        });
+        self.pending_actions.extend(actions);
+    }
+
+    /// Inject an inbound DialRequest (server path).
+    #[cfg(feature = "fuzzing")]
+    pub fn fuzz_inject_inbound_dial_request(
+        &mut self,
+        peer: PeerId,
+        connection_id: ConnectionId,
+        request_id: InboundRequestId,
+        request: DialRequest,
+    ) {
+        use futures::channel::oneshot;
+
+        let (tx, _rx) = oneshot::channel();
+        let channel = ResponseChannel::fuzz_from_sender(tx);
+        let actions = self.as_server().handle_event(request_response::Event::Message {
+            peer,
+            connection_id,
+            message: request_response::Message::Request {
+                request_id,
+                request,
+                channel,
+            },
+        });
+        self.pending_actions.extend(actions);
+    }
+
+    /// Inject outbound failure for an ongoing probe.
+    #[cfg(feature = "fuzzing")]
+    pub fn fuzz_inject_outbound_failure(
+        &mut self,
+        peer: PeerId,
+        connection_id: ConnectionId,
+        request_id: OutboundRequestId,
+        error: request_response::OutboundFailure,
+    ) {
+        let actions = self.as_client().handle_event(request_response::Event::OutboundFailure {
+            peer,
+            connection_id,
+            request_id,
+            error,
+        });
+        self.pending_actions.extend(actions);
+    }
+
     fn as_client(&mut self) -> AsClient<'_> {
         AsClient {
             inner: &mut self.inner,

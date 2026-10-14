@@ -25,6 +25,10 @@
 
 mod behaviour;
 mod copy_future;
+#[cfg(feature = "fuzzing")]
+mod fuzz;
+#[cfg(feature = "fuzzing")]
+mod fuzz_handler;
 mod multiaddr_ext;
 mod priv_client;
 mod protocol;
@@ -41,6 +45,16 @@ mod proto {
 
 pub use behaviour::{
     Behaviour, CircuitId, Config, Event, Status, StatusCode, rate_limiter::RateLimiter,
+};
+#[cfg(feature = "fuzzing")]
+pub use fuzz::{
+    FuzzAction, MAX_ACTIONS, MAX_MSG_BYTES, PEER_POOL, StructuredHopKind, StructuredStopKind,
+    encode_structured_hop_wire, encode_structured_stop_wire, fuzz_behaviour, fuzz_local_peer_id,
+};
+#[cfg(feature = "fuzzing")]
+pub use fuzz_handler::{
+    ChunkFeed, MAX_HANDLER_POLLS, WriteFault, decode_hop_wire, decode_stop_wire,
+    inject_inbound_hop, inject_inbound_hop_ex, pump_handler,
 };
 pub use protocol::{HOP_PROTOCOL_NAME, STOP_PROTOCOL_NAME};
 

@@ -60,6 +60,19 @@ impl Config {
             client: crate::make_client_config(identity, None)?,
         })
     }
+
+    /// Fuzz-only: build from pre-generated (possibly mutated) cert material.
+    #[cfg(feature = "fuzzing")]
+    pub(crate) fn from_cert_key(
+        identity: &identity::Keypair,
+        certificate: rustls::pki_types::CertificateDer<'static>,
+        private_key: rustls::pki_types::PrivateKeyDer<'static>,
+    ) -> Result<Self, certificate::GenError> {
+        Ok(Self {
+            server: crate::make_server_config_with_material(certificate.clone(), &private_key)?,
+            client: crate::make_client_config_with_material(identity, certificate, &private_key, None)?,
+        })
+    }
 }
 
 impl UpgradeInfo for Config {
