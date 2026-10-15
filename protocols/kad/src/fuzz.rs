@@ -713,8 +713,18 @@ pub fn fuzz_behaviour_seeded(seed: FuzzSeed, actions: impl IntoIterator<Item = F
     }
     // Final drain: advance the query clock past the 60s query_timeout so every
     // outstanding query times out, then drain polls + encode handler responses.
-    kad.fuzz_advance_query_clock(Duration::from_secs(61));
-    drain_polls(&mut kad, &mut handlers);
+    // A Bootstrap query self-perpetuates: each timeout (or finish) advances it to
+    // the next bucket-to-refresh with a fresh start time, so a single
+    // advance+drain leaves the continuation in the pool. Loop until the pool
+    // drains; the bucket set is finite so this terminates (bounded by
+    // MAX_ACTIONS).
+    for _ in 0..=MAX_ACTIONS {
+        kad.fuzz_advance_query_clock(Duration::from_secs(61));
+        drain_polls(&mut kad, &mut handlers);
+        if kad.query_count() == 0 {
+            break;
+        }
+    }
     pump_all_handlers(&mut kad, &mut handlers, &conn_ids);
 
     let connected = kad.connected_peer_count();
