@@ -142,7 +142,10 @@ run_one() {
     local run_flag ttl
     if [ -n "$MAX_TOTAL_TIME" ]; then
         run_flag="-max_total_time=$MAX_TOTAL_TIME"
-        ttl=$((MAX_TOTAL_TIME + 60)) # build/startup buffer
+        # `timeout` is a hang-guard only: `-max_total_time` already stops the
+        # fuzzer cleanly, so use a generous margin (3x) for slow units that
+        # delay the between-unit timer check, plus build/startup overhead.
+        ttl=$((MAX_TOTAL_TIME * 3))
     else
         run_flag="-runs=$RUNS"
         ttl="$TIMEOUT_SECS"
@@ -151,7 +154,7 @@ run_one() {
     : > "$log"
     printf '  %-34s' "$target"
     if (cd "$dir" && timeout "$ttl" cargo +nightly fuzz run "$target" -- \
-            $run_flag -print_funcs=0 $extra) >> "$log" 2>&1; then
+            $run_flag -print_funcs=0 -timeout=60 $extra) >> "$log" 2>&1; then
         echo "ok"
         PASS=$((PASS + 1))
         return 0
