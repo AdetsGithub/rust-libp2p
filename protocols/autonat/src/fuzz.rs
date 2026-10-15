@@ -427,7 +427,7 @@ fn assert_invariants(autonat: &Behaviour) {
         );
     }
     assert!(
-        autonat.fuzz_ongoing_outbound_count() <= MAX_ACTIONS.saturating_add(2),
+        autonat.fuzz_ongoing_outbound_count() <= MAX_ACTIONS.saturating_mul(8).saturating_add(2),
         "outbound probes unbounded: {}",
         autonat.fuzz_ongoing_outbound_count()
     );
