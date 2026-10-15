@@ -711,7 +711,9 @@ pub fn fuzz_behaviour_seeded(seed: FuzzSeed, actions: impl IntoIterator<Item = F
             pump_all_handlers(&mut kad, &mut handlers, &conn_ids);
         }
     }
-    // Final drain: finish remaining queries / timeouts + handler response encode.
+    // Final drain: advance the query clock past the 60s query_timeout so every
+    // outstanding query times out, then drain polls + encode handler responses.
+    kad.fuzz_advance_query_clock(Duration::from_secs(61));
     drain_polls(&mut kad, &mut handlers);
     pump_all_handlers(&mut kad, &mut handlers, &conn_ids);
 
@@ -723,11 +725,9 @@ pub fn fuzz_behaviour_seeded(seed: FuzzSeed, actions: impl IntoIterator<Item = F
         connected <= PEER_POOL.saturating_mul(4).saturating_add(8),
         "connected peers grew unboundedly: {connected}"
     );
-    // After final AdvanceQueryClock drains + poll, queries should be reaped.
-    assert!(
-        queries <= MAX_ACTIONS,
-        "queries not reaped / pool grew unboundedly: {queries}"
-    );
+    // Every query carries a 60s timeout; after the clock advance + poll every
+    // one must be reaped. A non-zero remainder is a genuine query-pool leak.
+    assert_eq!(queries, 0, "queries not reaped after timeout: {queries}");
     assert!(
         kb_entries <= 256,
         "kbucket entries grew unboundedly: {kb_entries}"
