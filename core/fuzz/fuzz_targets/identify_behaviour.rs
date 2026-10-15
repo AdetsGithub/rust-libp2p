@@ -11,12 +11,15 @@ use libfuzzer_sys::{
     fuzz_target,
 };
 use libp2p_identify::{
-    FuzzAction, MAX_ACTIONS, MAX_MSG_BYTES, PEER_POOL, StructuredIdentifyKind,
-    encode_structured_wire, fuzz_behaviour,
+    FuzzAction, FuzzSeed, MAX_ACTIONS, MAX_MSG_BYTES, PEER_POOL, StructuredIdentifyKind,
+    encode_structured_wire, fuzz_behaviour_seeded,
 };
 
 #[derive(Debug)]
-struct ActionSeq(Vec<FuzzAction>);
+struct ActionSeq {
+    seed: FuzzSeed,
+    actions: Vec<FuzzAction>,
+}
 
 impl<'a> Arbitrary<'a> for ActionSeq {
     fn arbitrary(u: &mut Unstructured<'a>) -> arbitrary::Result<Self> {
@@ -26,7 +29,16 @@ impl<'a> Arbitrary<'a> for ActionSeq {
         for step in 0..n {
             actions.push(fuzz_action(u, step)?);
         }
-        Ok(ActionSeq(actions))
+        // Seed: ~½ start with live pre-connected handlers (skip Connect preamble).
+        let live_peers = if u.ratio(1, 2)? {
+            u.int_in_range(0u8..=PEER_POOL as u8)?
+        } else {
+            0
+        };
+        Ok(ActionSeq {
+            seed: FuzzSeed { live_peers },
+            actions,
+        })
     }
 }
 
@@ -120,5 +132,5 @@ fn fuzz_action(u: &mut Unstructured<'_>, step: usize) -> arbitrary::Result<FuzzA
 }
 
 fuzz_target!(|seq: ActionSeq| {
-    fuzz_behaviour(seq.0);
+    fuzz_behaviour_seeded(seq.seed, seq.actions);
 });

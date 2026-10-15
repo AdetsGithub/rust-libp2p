@@ -22,7 +22,7 @@ use libp2p_identity::{Keypair, PeerId};
 use libp2p_swarm::{
     ConnectionHandler, ConnectionId, DialError, NetworkBehaviour, Stream, ToSwarm,
     behaviour::{ConnectionClosed, ConnectionEstablished, DialFailure, FromSwarm, NewExternalAddrCandidate},
-    handler::{ConnectionEvent, FullyNegotiatedInbound},
+    handler::{ConnectionEvent, FullyNegotiatedInbound, FullyNegotiatedOutbound},
 };
 
 use crate::{
@@ -177,22 +177,22 @@ fn pump_relayed(handler: &mut RelayedHandler) -> Vec<relayed::Event> {
 
 /// Outbound write-side faults for hole-punch encode / flush depth.
 #[derive(Clone, Copy, Debug, PartialEq, Eq)]
-struct WriteFault {
-    write_cap: usize,
-    stall_every: usize,
-    err_every: usize,
-    flush_stall_every: usize,
+pub struct WriteFault {
+    pub write_cap: usize,
+    pub stall_every: usize,
+    pub err_every: usize,
+    pub flush_stall_every: usize,
 }
 
 impl WriteFault {
-    const NONE: Self = Self {
+    pub const NONE: Self = Self {
         write_cap: 0,
         stall_every: 0,
         err_every: 0,
         flush_stall_every: 0,
     };
 
-    fn stressed() -> Self {
+    pub fn stressed() -> Self {
         Self {
             write_cap: 1,
             stall_every: 2,
@@ -323,6 +323,193 @@ fn inject_inbound_holepunch_ex(handler: &mut RelayedHandler, wire: Vec<u8>, faul
             info: (),
         },
     ));
+}
+
+/// Mock outbound hole-punch stream: preloaded response bytes on read; the write
+/// side sinks (with optional [`WriteFault`]) the CONNECT / SYNC messages the
+/// [`protocol::outbound::handshake`] sends.
+struct OutboundMockIo {
+    response: Vec<u8>,
+    pos: usize,
+    write: OutboundWriteCtrl,
+}
+
+impl AsyncRead for OutboundMockIo {
+    fn poll_read(
+        self: Pin<&mut Self>,
+        _cx: &mut Context<'_>,
+        buf: &mut [u8],
+    ) -> Poll<io::Result<usize>> {
+        let this = self.get_mut();
+        let rem = &this.response[this.pos..];
+        let n = rem.len().min(buf.len());
+        buf[..n].copy_from_slice(&rem[..n]);
+        this.pos += n;
+        Poll::Ready(Ok(n)) // 0 → EOF after the response is consumed
+    }
+}
+
+impl AsyncWrite for OutboundMockIo {
+    fn poll_write(
+        self: Pin<&mut Self>,
+        _cx: &mut Context<'_>,
+        buf: &[u8],
+    ) -> Poll<io::Result<usize>> {
+        self.write.poll_write(buf)
+    }
+
+    fn poll_flush(self: Pin<&mut Self>, _cx: &mut Context<'_>) -> Poll<io::Result<()>> {
+        self.write.poll_flush()
+    }
+
+    fn poll_close(self: Pin<&mut Self>, _cx: &mut Context<'_>) -> Poll<io::Result<()>> {
+        Poll::Ready(Ok(()))
+    }
+}
+
+#[derive(Clone)]
+struct OutboundWriteCtrl {
+    inner: Arc<Mutex<OutboundWriteState>>,
+}
+
+struct OutboundWriteState {
+    writes: usize,
+    flushes: usize,
+    fault: WriteFault,
+    resume: bool,
+    flush_resume: bool,
+}
+
+impl OutboundWriteCtrl {
+    fn new(fault: WriteFault) -> Self {
+        Self {
+            inner: Arc::new(Mutex::new(OutboundWriteState {
+                writes: 0,
+                flushes: 0,
+                fault,
+                resume: false,
+                flush_resume: false,
+            })),
+        }
+    }
+
+    fn poll_write(&self, buf: &[u8]) -> Poll<io::Result<usize>> {
+        if buf.is_empty() {
+            return Poll::Ready(Ok(0));
+        }
+        let mut st = self.inner.lock().expect("outbound write");
+        if st.resume {
+            st.resume = false;
+        } else if st.fault.stall_every != 0 {
+            let next = st.writes.wrapping_add(1);
+            if next % st.fault.stall_every == 0 {
+                st.writes = next;
+                st.resume = true;
+                return Poll::Pending;
+            }
+        }
+        st.writes = st.writes.wrapping_add(1);
+        if st.fault.err_every != 0 && st.writes % st.fault.err_every == 0 {
+            return Poll::Ready(Err(io::ErrorKind::ConnectionReset.into()));
+        }
+        let n = if st.fault.write_cap == 0 {
+            buf.len()
+        } else {
+            buf.len().min(st.fault.write_cap.max(1))
+        };
+        Poll::Ready(Ok(n))
+    }
+
+    fn poll_flush(&self) -> Poll<io::Result<()>> {
+        let mut st = self.inner.lock().expect("outbound flush");
+        if st.fault.flush_stall_every == 0 {
+            return Poll::Ready(Ok(()));
+        }
+        if st.flush_resume {
+            st.flush_resume = false;
+            return Poll::Ready(Ok(()));
+        }
+        let next = st.flushes.wrapping_add(1);
+        st.flushes = next;
+        if next % st.fault.flush_stall_every == 0 {
+            st.flush_resume = true;
+            return Poll::Pending;
+        }
+        Poll::Ready(Ok(()))
+    }
+}
+
+fn inject_outbound_holepunch(
+    handler: &mut RelayedHandler,
+    response_wire: Vec<u8>,
+    write: WriteFault,
+) {
+    let stream = Stream::from_async_rw(OutboundMockIo {
+        response: response_wire,
+        pos: 0,
+        write: OutboundWriteCtrl::new(write),
+    });
+    handler.on_connection_event(ConnectionEvent::FullyNegotiatedOutbound(
+        FullyNegotiatedOutbound {
+            protocol: stream,
+            info: (),
+        },
+    ));
+}
+
+/// Standalone listener-side hole-punch driver.
+///
+/// Covers `protocol/outbound.rs` (0% before): the dialer-side `handshake` that
+/// sends CONNECT, reads + validates the peer's CONNECT response, sends SYNC, and
+/// waits RTT/2. Returns the [`relayed::Event`]s the handler produces
+/// (`OutboundConnectNegotiated` on success, `OutboundConnectFailed` on a
+/// malformed response / EOF / type mismatch).
+pub fn fuzz_outbound_holepunch(
+    response_wire: Vec<u8>,
+    candidates: Vec<Multiaddr>,
+    write: WriteFault,
+) -> Vec<relayed::Event> {
+    // Listener endpoint → `Command::Connect` emits an OutboundSubstreamRequest
+    // (per the DCUtR spec, the relayed listener initiates the direct upgrade).
+    let endpoint = ConnectedPoint::Listener {
+        local_addr: direct_addr(0),
+        send_back_addr: direct_addr(1),
+    };
+    let mut handler = RelayedHandler::new(endpoint, candidates);
+    handler.on_behaviour_event(relayed::Command::Connect);
+
+    let waker = noop_waker_ref();
+    let mut cx = Context::from_waker(waker);
+    let mut events = Vec::new();
+    let mut outbound_injected = false;
+    let mut idle_waits = 0u8;
+    for _ in 0..MAX_POLL_DRAIN {
+        match handler.poll(&mut cx) {
+            Poll::Ready(libp2p_swarm::ConnectionHandlerEvent::NotifyBehaviour(ev)) => {
+                events.push(ev);
+            }
+            Poll::Ready(libp2p_swarm::ConnectionHandlerEvent::OutboundSubstreamRequest { .. }) => {
+                if !outbound_injected {
+                    inject_outbound_holepunch(&mut handler, response_wire.clone(), write);
+                    outbound_injected = true;
+                }
+            }
+            Poll::Ready(_) => {}
+            Poll::Pending => {
+                // `outbound::handshake` ends with `Delay(rtt / 2)`; rtt is the
+                // (sub-microsecond) mock read latency, so the deadline is ~now.
+                // The global futures-timer thread fires it within a millisecond;
+                // sleep (bounded) rather than spin-yield so it reliably fires.
+                if idle_waits < 16 {
+                    idle_waits = idle_waits.saturating_add(1);
+                    std::thread::sleep(std::time::Duration::from_millis(1));
+                    continue;
+                }
+                break;
+            }
+        }
+    }
+    events
 }
 
 pub fn fuzz_behaviour(actions: impl IntoIterator<Item = FuzzAction>) {
@@ -747,6 +934,29 @@ fn drain_behaviour(
 #[cfg(test)]
 mod tests {
     use super::*;
+
+    #[test]
+    fn smoke_outbound_holepunch_success_and_fail() {
+        let candidates = vec![direct_addr(0), direct_addr(1)];
+        // Valid CONNECT response → OutboundConnectNegotiated.
+        let ok = fuzz_outbound_holepunch(
+            encode_structured_holepunch_wire(StructuredHolePunchKind::Connect, 1),
+            candidates.clone(),
+            WriteFault::NONE,
+        );
+        assert!(
+            ok.iter()
+                .any(|e| matches!(e, relayed::Event::OutboundConnectNegotiated { .. })),
+            "valid CONNECT response should negotiate: {ok:?}"
+        );
+        // Garbage / short frame → OutboundConnectFailed (no panic).
+        let bad = fuzz_outbound_holepunch(vec![0xAB, 0xCD], candidates, WriteFault::NONE);
+        assert!(
+            bad.iter()
+                .any(|e| matches!(e, relayed::Event::OutboundConnectFailed { .. })),
+            "malformed response should fail cleanly: {bad:?}"
+        );
+    }
 
     #[test]
     fn smoke_relayed_then_holepunch_inject() {

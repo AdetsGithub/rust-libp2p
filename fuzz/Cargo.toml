@@ -5,6 +5,9 @@ authors = ["Your Name <your.email@example.com>"]
 edition = "2021"
 publish = false
 
+[package.metadata]
+cargo-fuzz = true
+
 [[bin]]
 name = "gossipsub_structured"
 path = "../fuzz_targets/gossipsub_structured.rs"
@@ -12,7 +15,10 @@ path = "../fuzz_targets/gossipsub_structured.rs"
 [dependencies]
 libfuzzer-sys = "0.4"
 arbitrary = "1.0"
-rust-libp2p = { path = "..", features = ["fuzzing"] }
+# Direct dependency on the gossipsub protocol crate so the `fuzzing` feature is
+# actually enabled (the umbrella `libp2p` crate does not forward it). This also
+# matches how the `core/fuzz` crate wires up its gossipsub targets.
+libp2p-gossipsub = { path = "../protocols/gossipsub", features = ["fuzzing"] }
 
 # Enable fuzzing features
 [features]

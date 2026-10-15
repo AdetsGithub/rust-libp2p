@@ -458,6 +458,16 @@ pub enum FuzzMode {
     StrictSigned,
 }
 
+/// Pre-populated starting state so a fuzz input can skip the connect/subscribe
+/// preamble and jump into mid-protocol transitions (pre-meshed peers, warm mcache).
+#[derive(Clone, Copy, Debug, Default)]
+pub struct FuzzSeed {
+    /// Pre-`add_explicit_peer` this many peer-pool peers (mesh membership seeds).
+    pub explicit_peers: u8,
+    /// Pre-`publish` this many messages (warms mcache + duplicate cache).
+    pub pre_publish: u8,
+}
+
 /// Drive [`Behaviour`] with a sequence of actions (Author + Permissive).
 ///
 /// Invariants under test:
@@ -466,16 +476,28 @@ pub enum FuzzMode {
 /// - mcache size stays within a soft budget derived from config (assert soft —
 ///   if violated, treat as a DoS lead).
 pub fn fuzz_behaviour(actions: impl IntoIterator<Item = FuzzAction>) {
-    fuzz_behaviour_ex(actions, FuzzMode::AuthorPermissive);
+    fuzz_behaviour_ex(FuzzSeed::default(), actions, FuzzMode::AuthorPermissive);
+}
+
+/// [`fuzz_behaviour`] with a [`FuzzSeed`] pre-population step.
+pub fn fuzz_behaviour_seeded(
+    seed: FuzzSeed,
+    actions: impl IntoIterator<Item = FuzzAction>,
+) {
+    fuzz_behaviour_ex(seed, actions, FuzzMode::AuthorPermissive);
 }
 
 /// Drive [`Behaviour`] under [`ValidationMode::Strict`] +
 /// [`MessageAuthenticity::Signed`].
 pub fn fuzz_behaviour_strict_signed(actions: impl IntoIterator<Item = FuzzAction>) {
-    fuzz_behaviour_ex(actions, FuzzMode::StrictSigned);
+    fuzz_behaviour_ex(FuzzSeed::default(), actions, FuzzMode::StrictSigned);
 }
 
-fn fuzz_behaviour_ex(actions: impl IntoIterator<Item = FuzzAction>, mode: FuzzMode) {
+fn fuzz_behaviour_ex(
+    seed: FuzzSeed,
+    actions: impl IntoIterator<Item = FuzzAction>,
+    mode: FuzzMode,
+) {
     let local_kp = fuzz_local_keypair();
     let local_id = PeerId::from(local_kp.public());
     // Message ids = seqno BE bytes so IHAVE mids (`[mid_slot; 8]`) correlate with
@@ -548,6 +570,15 @@ fn fuzz_behaviour_ex(actions: impl IntoIterator<Item = FuzzAction>, mode: FuzzMo
 
     // Pre-subscribe so publishes and remote GRAFTs have a local topic context.
     let _ = gossip.subscribe(&topics[0]);
+
+    // Seed pre-population: explicit peers (mesh membership) + warm mcache.
+    for slot in 0..(seed.explicit_peers.min(PEER_POOL as u8)) {
+        gossip.add_explicit_peer(&peers[slot as usize]);
+    }
+    for slot in 0..(seed.pre_publish.min(16)) {
+        let data = vec![slot; 8];
+        let _ = gossip.publish(topics[0].clone(), data);
+    }
 
     let mut conn_ids: HashMap<PeerId, Vec<ConnectionId>> = HashMap::new();
     let mut handlers: HashMap<PeerId, Handler> = HashMap::new();
@@ -626,6 +657,7 @@ fn fuzz_behaviour_ex(actions: impl IntoIterator<Item = FuzzAction>, mode: FuzzMo
                             stall_every: 0,
                             err_every: 0,
                             flush_stall_every: 2,
+                            drop_every: 0,
                         }
                     } else {
                         WriteFault::NONE
@@ -1129,6 +1161,7 @@ mod tests {
             stall_every: 2,
             err_every: 0,
             flush_stall_every: 2,
+            drop_every: 0,
         };
         let events = fuzz_handler_io(
             std::iter::empty::<Vec<u8>>(),
@@ -1256,6 +1289,33 @@ mod tests {
             }
             other => panic!("unexpected event: {other:?}"),
         }
+    }
+
+    #[test]
+    fn smoke_seeded() {
+        // Pre-mesh explicit peers + warm mcache → publish/graft must land
+        // without the connect/subscribe preamble.
+        fuzz_behaviour_seeded(
+            FuzzSeed {
+                explicit_peers: 4,
+                pre_publish: 4,
+            },
+            [
+                FuzzAction::InjectWire {
+                    peer_slot: 0,
+                    wire_bytes: encode_structured_wire(StructuredRpcKind::Graft, 0, 0),
+                },
+                FuzzAction::InjectWire {
+                    peer_slot: 0,
+                    wire_bytes: encode_structured_wire(StructuredRpcKind::IHave, 0, 1),
+                },
+                FuzzAction::Publish {
+                    topic_slot: 0,
+                    data: vec![0xAB; 8],
+                },
+                FuzzAction::Heartbeat,
+            ],
+        );
     }
 
     #[test]

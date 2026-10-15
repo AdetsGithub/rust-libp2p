@@ -49,7 +49,8 @@ pub use behaviour::{
 #[cfg(feature = "fuzzing")]
 pub use fuzz::{
     FuzzAction, MAX_ACTIONS, MAX_MSG_BYTES, PEER_POOL, StructuredHopKind, StructuredStopKind,
-    encode_structured_hop_wire, encode_structured_stop_wire, fuzz_behaviour, fuzz_local_peer_id,
+    encode_structured_hop_wire, encode_structured_stop_wire, fuzz_behaviour,
+    fuzz_behaviour_rate_limited, fuzz_local_peer_id,
 };
 #[cfg(feature = "fuzzing")]
 pub use fuzz_handler::{

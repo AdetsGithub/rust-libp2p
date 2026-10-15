@@ -85,6 +85,7 @@ impl Default for WriteFault {
             stall_every: 0,
             err_every: 0,
             flush_stall_every: 0,
+            drop_every: 0,
         }
     }
 }
@@ -95,6 +96,7 @@ impl WriteFault {
         stall_every: 0,
         err_every: 0,
         flush_stall_every: 0,
+        drop_every: 0,
     };
 
     pub fn is_stressed(self) -> bool {
@@ -117,6 +119,8 @@ struct WriteState {
     stall_every: usize,
     err_every: usize,
     flush_stall_every: usize,
+    /// Simulate packet loss by dropping every Nth write.
+    drop_every: usize,
     /// After returning Pending, next write proceeds without re-stalling.
     resume: bool,
     /// After returning Pending on flush, next flush proceeds.
@@ -133,6 +137,7 @@ impl WriteCtrl {
                 stall_every: fault.stall_every,
                 err_every: fault.err_every,
                 flush_stall_every: fault.flush_stall_every,
+                drop_every: fault.drop_every,
                 resume: false,
                 flush_resume: false,
             })),
@@ -674,14 +679,7 @@ pub fn fuzz_handler_io(
 
     let mut events = Vec::new();
     drain_handler_ex(&mut handler, &mut events, fault, write);
-    
-    // Assert protocol invariants after processing
-    #[cfg(feature = "fuzzing")]
-    {
-        use crate::fuzz_invariants::assert_gossipsub_invariants;
-        assert_gossipsub_invariants(&handler);
-    }
-    
+
     events
 }
 

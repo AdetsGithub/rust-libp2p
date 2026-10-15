@@ -270,6 +270,14 @@ fn observed_addr(slot: u8) -> Multiaddr {
     a
 }
 
+/// Pre-populated starting state so a fuzz input can skip the Connect preamble and
+/// jump into push / inject / address-change transitions with live handlers.
+#[derive(Clone, Copy, Debug, Default)]
+pub struct FuzzSeed {
+    /// Pre-establish this many outbound connections + live push handlers.
+    pub live_peers: u8,
+}
+
 /// Drive [`Behaviour`] with a sequence of actions.
 ///
 /// Invariants: never panics; always terminates (bounded actions + poll drain).
@@ -277,6 +285,11 @@ fn observed_addr(slot: u8) -> Multiaddr {
 /// MismatchedPeer injects must not emit [`Event::Received`] for that peer.
 /// Discovered LRU peer count stays ≤ configured `cache_size`.
 pub fn fuzz_behaviour(actions: impl IntoIterator<Item = FuzzAction>) {
+    fuzz_behaviour_seeded(FuzzSeed::default(), actions);
+}
+
+/// [`fuzz_behaviour`] with a [`FuzzSeed`] pre-population step.
+pub fn fuzz_behaviour_seeded(seed: FuzzSeed, actions: impl IntoIterator<Item = FuzzAction>) {
     let local_kp = {
         let mut bytes = [0x41u8; 32];
         Keypair::ed25519_from_bytes(&mut bytes).expect("fixed local ed25519 seed")
@@ -298,6 +311,38 @@ pub fn fuzz_behaviour(actions: impl IntoIterator<Item = FuzzAction>) {
     let mut next_conn: usize = 1;
     let mut pending_fail: HashMap<PeerId, bool> = HashMap::new(); // timeout?
     let mut received_counts: HashMap<PeerId, u32> = HashMap::new();
+
+    // Seed pre-population: pre-established live connections + push handlers.
+    for slot in 0..(seed.live_peers.min(PEER_POOL as u8)) {
+        let peer = peers[slot as usize];
+        let cid = ConnectionId::new_unchecked(next_conn);
+        next_conn = next_conn.wrapping_add(1).max(1);
+        let remote = peer_addr(slot);
+        if let Ok(mut h) = identify.handle_established_outbound_connection(
+            cid, peer, &remote, Endpoint::Dialer, PortUse::Reuse,
+        ) {
+            let endpoint = ConnectedPoint::Dialer {
+                address: remote,
+                role_override: Endpoint::Dialer,
+                port_use: PortUse::Reuse,
+            };
+            let other = conn_ids.get(&peer).map(|v| v.len()).unwrap_or(0);
+            identify.on_swarm_event(FromSwarm::ConnectionEstablished(ConnectionEstablished {
+                peer_id: peer,
+                connection_id: cid,
+                endpoint: &endpoint,
+                failed_addresses: &[],
+                other_established: other,
+            }));
+            conn_ids.entry(peer).or_default().push((cid, endpoint));
+            let feed = attach_live_inbound_push_ex(&mut h, WriteFault::NONE);
+            for ev in pump_handler(&mut h) {
+                identify.on_connection_handler_event(peer, cid, ev);
+            }
+            inbound_feeds.insert(peer, feed);
+            handlers.insert(peer, h);
+        }
+    }
 
     for action in actions.into_iter().take(MAX_ACTIONS) {
         // Mismatch injects: Received count for that peer must not increase.
@@ -745,6 +790,28 @@ fn pump_with_optional_fail_and_wire(
 #[cfg(test)]
 mod tests {
     use super::*;
+
+    #[test]
+    fn smoke_seeded_live_peers() {
+        // Pre-established live handlers → push/inject must land without the
+        // Connect preamble.
+        fuzz_behaviour_seeded(
+            FuzzSeed { live_peers: 3 },
+            [
+                FuzzAction::NewListenAddr { port: 4001 },
+                FuzzAction::InjectStructured {
+                    peer_slot: 0,
+                    kind: StructuredIdentifyKind::LargeLists,
+                },
+                FuzzAction::Push { peer_slot: 1 },
+                FuzzAction::FailOutboundUpgrade {
+                    peer_slot: 2,
+                    timeout: true,
+                },
+                FuzzAction::Disconnect { peer_slot: 0 },
+            ],
+        );
+    }
 
     #[test]
     fn connect_identify_push_smoke() {

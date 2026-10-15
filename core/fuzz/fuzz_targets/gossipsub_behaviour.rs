@@ -13,13 +13,16 @@ use libfuzzer_sys::{
     fuzz_target,
 };
 use libp2p_gossipsub::{
-    FuzzAction, MAX_ACTIONS, MAX_RPC_BYTES, MAX_TRANSMIT_SIZE, PEER_POOL, RejectMsgIdReason,
-    ScheduleOp, StructuredRpcKind, encode_batch_rpc, encode_structured_rpc, encode_structured_wire,
-    fuzz_behaviour,
+    FuzzAction, FuzzSeed, MAX_ACTIONS, MAX_RPC_BYTES, MAX_TRANSMIT_SIZE, PEER_POOL,
+    RejectMsgIdReason, ScheduleOp, StructuredRpcKind, encode_batch_rpc, encode_structured_rpc,
+    encode_structured_wire, fuzz_behaviour_seeded,
 };
 
 #[derive(Debug)]
-struct ActionSeq(Vec<FuzzAction>);
+struct ActionSeq {
+    seed: FuzzSeed,
+    actions: Vec<FuzzAction>,
+}
 
 impl<'a> Arbitrary<'a> for ActionSeq {
     fn arbitrary(u: &mut Unstructured<'a>) -> arbitrary::Result<Self> {
@@ -29,7 +32,20 @@ impl<'a> Arbitrary<'a> for ActionSeq {
         for step in 0..n {
             actions.push(fuzz_action(u, step)?);
         }
-        Ok(ActionSeq(actions))
+        // Seed: ~½ pre-mesh explicit peers, ~⅓ pre-publish (warm mcache).
+        let seed = FuzzSeed {
+            explicit_peers: if u.ratio(1, 2)? {
+                u.int_in_range(0u8..=PEER_POOL as u8)?
+            } else {
+                0
+            },
+            pre_publish: if u.ratio(1, 3)? {
+                u.int_in_range(0u8..=8)?
+            } else {
+                0
+            },
+        };
+        Ok(ActionSeq { seed, actions })
     }
 }
 
@@ -220,5 +236,5 @@ fn fuzz_action(u: &mut Unstructured<'_>, step: usize) -> arbitrary::Result<FuzzA
 }
 
 fuzz_target!(|seq: ActionSeq| {
-    fuzz_behaviour(seq.0);
+    fuzz_behaviour_seeded(seq.seed, seq.actions);
 });

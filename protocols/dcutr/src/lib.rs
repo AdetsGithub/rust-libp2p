@@ -38,8 +38,8 @@ mod proto {
 pub use behaviour::{Behaviour, Error, Event};
 #[cfg(feature = "fuzzing")]
 pub use fuzz::{
-    FuzzAction, MAX_ACTIONS, MAX_MSG_BYTES, PEER_POOL, StructuredHolePunchKind,
-    encode_structured_holepunch_wire, fuzz_behaviour, fuzz_local_peer_id,
+    FuzzAction, WriteFault, MAX_ACTIONS, MAX_MSG_BYTES, PEER_POOL, StructuredHolePunchKind,
+    encode_structured_holepunch_wire, fuzz_behaviour, fuzz_local_peer_id, fuzz_outbound_holepunch,
 };
 pub use protocol::PROTOCOL_NAME;
 pub mod inbound {

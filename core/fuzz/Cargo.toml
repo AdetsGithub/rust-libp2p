@@ -267,6 +267,13 @@ doc = false
 bench = false
 
 [[bin]]
+name = "dcutr_outbound"
+path = "fuzz_targets/dcutr_outbound.rs"
+test = false
+doc = false
+bench = false
+
+[[bin]]
 name = "request_response_behaviour"
 path = "fuzz_targets/request_response_behaviour.rs"
 test = false

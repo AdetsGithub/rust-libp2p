@@ -11,7 +11,7 @@ use libfuzzer_sys::{
 };
 use libp2p_relay::{
     FuzzAction, MAX_ACTIONS, MAX_MSG_BYTES, PEER_POOL, StructuredHopKind, StructuredStopKind,
-    encode_structured_hop_wire, encode_structured_stop_wire, fuzz_behaviour,
+    encode_structured_hop_wire, encode_structured_stop_wire, fuzz_behaviour_rate_limited,
 };
 
 #[derive(Debug)]
@@ -181,5 +181,8 @@ fn fuzz_action(u: &mut Unstructured<'_>, step: usize) -> arbitrary::Result<FuzzA
 }
 
 fuzz_target!(|seq: ActionSeq| {
-    fuzz_behaviour(seq.0);
+    // Tight rate limiter (limit=2, 1h interval) so reservation/circuit floods
+    // deterministically trip the `rate_limiter.rs` token-bucket deny arms.
+    let limit = std::num::NonZeroU32::new(2).unwrap();
+    fuzz_behaviour_rate_limited(seq.0, limit);
 });

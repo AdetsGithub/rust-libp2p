@@ -302,6 +302,14 @@ enum FuzzAction {
     KadBootstrap { swarm: u8 },
     /// Active Identify push to a connected peer (or no-op if none).
     IdentifyPush { swarm: u8, peer_slot: u8 },
+    /// Flip the global identity-verify stub to always-fail / always-pass so a
+    /// single input drives both accepted and rejected signature lanes (e.g.
+    /// Noise AuthFailed, gossipsub InvalidSignature) without real crypto.
+    SetVerifyMode { always_fail: bool },
+    /// Burst-dial every other swarm from `swarm` under tight `connection_limits`
+    /// (max_established=1, max_pending_out=1) so the deny path and
+    /// `OutgoingConnectionError`/`DialFailure` bookkeeping stay warm.
+    LimitsFlood { swarm: u8 },
     /// Advance all swarms + tokio tasks.
     Poll { budget: u8 },
 }
@@ -418,13 +426,14 @@ fn fuzz_action(
         });
     }
 
-    // Coverage-biased weights (sum = 50):
+    // Coverage-biased weights (sum = 54):
     //   Dial(+Always) 8 | Poll(+time) 6 | MutateLimits(tight) 6 | Disconnect 4
     //   CloseConnection 4 | DialUnreachable 3 | Listen 2 | Add/RemoveExternal 3
     //   GossipPublish 3 | GossipHeartbeat 2 | GossipSubscribe 1
     //   KadGetRecord 2 | KadPutRecord 2 | KadAddAddress 1 | KadBootstrap 1
-    //   IdentifyPush 2
-    Ok(match u.int_in_range(0u8..=49)? {
+    //   IdentifyPush 2 | SetVerifyMode(fail) 1 | SetVerifyMode(pass) 1
+    //   LimitsFlood 2
+    Ok(match u.int_in_range(0u8..=53)? {
         0..=7 => FuzzAction::Dial {
             from: slot(u)?,
             to: slot(u)?,
@@ -495,10 +504,14 @@ fn fuzz_action(
             peer_slot: u.arbitrary()?,
         },
         47 => FuzzAction::KadBootstrap { swarm: slot(u)? },
-        _ => FuzzAction::IdentifyPush {
+        48..=49 => FuzzAction::IdentifyPush {
             swarm: slot(u)?,
             peer_slot: u.arbitrary()?,
         },
+        // Flip the verify stub mid-input so rejected-signature lanes stay warm.
+        50 => FuzzAction::SetVerifyMode { always_fail: true },
+        51 => FuzzAction::SetVerifyMode { always_fail: false },
+        _ => FuzzAction::LimitsFlood { swarm: slot(u)? },
     })
 }
 
@@ -863,6 +876,9 @@ async fn drive(world: &mut World, budget: usize) {
 
 async fn run(seq: ActionSeq) {
     let mut world = World::new(seq.n_swarms, seq.security, seq.transport_fault);
+    // Default: verify stub passes; SetVerifyMode actions flip it mid-input.
+    #[cfg(fuzzing)]
+    libp2p_identity::fuzz::set_verify_always_pass();
 
     for action in seq.actions {
         match action {
@@ -1050,6 +1066,47 @@ async fn run(seq: ActionSeq) {
                     .behaviour_mut()
                     .identify
                     .push([peer]);
+            }
+            FuzzAction::SetVerifyMode { always_fail } => {
+                #[cfg(fuzzing)]
+                {
+                    if always_fail {
+                        libp2p_identity::fuzz::set_verify_always_fail();
+                    } else {
+                        libp2p_identity::fuzz::set_verify_always_pass();
+                    }
+                }
+                #[cfg(not(fuzzing))]
+                let _ = always_fail;
+            }
+            FuzzAction::LimitsFlood { swarm } => {
+                let i = world.idx(swarm);
+                // Tighten limits first so the burst trips `ConnectionDenied`.
+                let limits = world.swarms[i].swarm.behaviour_mut().limits.limits_mut();
+                *limits = ConnectionLimits::default()
+                    .with_max_established(Some(1))
+                    .with_max_pending_outgoing(Some(1))
+                    .with_max_established_per_peer(Some(1))
+                    .with_max_established_incoming(Some(1))
+                    .with_max_established_outgoing(Some(1));
+                // Burst-dial every other swarm; `PeerCondition::Always` bypasses
+                // the pending-slot dedup so the pending/established caps engage.
+                for j in 0..world.swarms.len() {
+                    if j == i {
+                        continue;
+                    }
+                    if let Some(addr) = world.swarms[j].listen_addr.clone() {
+                        let peer = *world.swarms[j].swarm.local_peer_id();
+                        let _ = world.swarms[i].swarm.dial(
+                            DialOpts::peer_id(peer)
+                                .condition(PeerCondition::Always)
+                                .addresses(vec![addr])
+                                .build(),
+                        );
+                    }
+                }
+                // Drive so Denied dials surface as OutgoingConnectionError.
+                drive(&mut world, MAX_POLL_PER_ACTION).await;
             }
             FuzzAction::Poll { budget } => {
                 drive(&mut world, budget as usize).await;

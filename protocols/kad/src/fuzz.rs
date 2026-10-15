@@ -31,7 +31,7 @@ use crate::{
     handler::{Handler, HandlerEvent, HandlerQueryErr, RequestId},
     protocol::{Codec, KadRequestMsg, KadResponseMsg},
     proto,
-    record::store::{MemoryStore, MemoryStoreConfig},
+    record::store::{MemoryStore, MemoryStoreConfig, RecordStore},
 };
 
 /// Cap how many actions one fuzz input may drive.
@@ -218,11 +218,29 @@ pub enum FuzzAction {
     Bootstrap,
 }
 
+/// Pre-populated starting state so a fuzz input can skip the `Connect` / RT / store
+/// warm-up preamble and jump straight into mid-protocol transitions (deep query
+/// states, nearly-full kbuckets, pre-loaded records).
+#[derive(Clone, Copy, Debug, Default)]
+pub struct FuzzSeed {
+    /// Pre-`add_address` this many peer-pool peers into the routing table.
+    pub rt_peers: u8,
+    /// Pre-`put` this many records into the local store (GetRecord hits vs NotFound).
+    pub store_records: u8,
+    /// Pre-establish this many outbound connections + ProtocolConfirmed handlers.
+    pub live_peers: u8,
+}
+
 /// Drive [`Behaviour`] with a sequence of actions.
 ///
 /// Invariants: never panics; always terminates (bounded actions + poll drain).
 /// Soft budgets on connected peers / kbucket occupancy / query pool size.
 pub fn fuzz_behaviour(actions: impl IntoIterator<Item = FuzzAction>) {
+    fuzz_behaviour_seeded(FuzzSeed::default(), actions);
+}
+
+/// [`fuzz_behaviour`] with a [`FuzzSeed`] pre-population step.
+pub fn fuzz_behaviour_seeded(seed: FuzzSeed, actions: impl IntoIterator<Item = FuzzAction>) {
     let local_id = fuzz_local_peer_id();
 
     let mut config = Config::new(StreamProtocol::new("/ipfs/kad/1.0.0"));
@@ -265,6 +283,59 @@ pub fn fuzz_behaviour(actions: impl IntoIterator<Item = FuzzAction>) {
     let mut active_queries: Vec<QueryId> = Vec::new();
     // Peers successfully inserted into the RT via AddAddress (retention check).
     let mut routed_peers: std::collections::HashSet<PeerId> = std::collections::HashSet::new();
+
+    // Seed pre-population: RT peers, store records, and pre-established live
+    // connections/handlers so inputs skip the warm-up preamble.
+    for slot in 0..(seed.rt_peers.min(PEER_POOL as u8)) {
+        let peer = peers[slot as usize];
+        if matches!(
+            kad.add_address(&peer, peer_addr(slot)),
+            RoutingUpdate::Success | RoutingUpdate::Pending
+        ) {
+            routed_peers.insert(peer);
+        }
+    }
+    for slot in 0..(seed.store_records.min(64)) {
+        let record = Record::new(RecordKey::new(&key_bytes(slot)), vec![slot; 32]);
+        let _ = kad.store_mut().put(record);
+    }
+    for slot in 0..(seed.live_peers.min(PEER_POOL as u8)) {
+        let peer = peers[slot as usize];
+        let cid = ConnectionId::new_unchecked(next_conn);
+        next_conn = next_conn.wrapping_add(1).max(1);
+        let remote = peer_addr(slot);
+        if let Ok(mut h) = kad.handle_established_outbound_connection(
+            cid, peer, &remote, Endpoint::Dialer, PortUse::Reuse,
+        ) {
+            let endpoint = ConnectedPoint::Dialer {
+                address: remote,
+                role_override: Endpoint::Dialer,
+                port_use: PortUse::Reuse,
+            };
+            let other = conn_ids.get(&peer).map(|v| v.len()).unwrap_or(0);
+            kad.on_swarm_event(FromSwarm::ConnectionEstablished(ConnectionEstablished {
+                peer_id: peer,
+                connection_id: cid,
+                endpoint: &endpoint,
+                failed_addresses: &[],
+                other_established: other,
+            }));
+            conn_ids.entry(peer).or_default().push((cid, endpoint.clone()));
+            let feed = attach_live_inbound_ex(&mut h, WriteFault::NONE);
+            for ev in pump_handler(&mut h) {
+                kad.on_connection_handler_event(peer, cid, ev);
+            }
+            // Confirm protocol so the peer enters the routing table (as the
+            // Connect + ProtocolConfirmed preamble would).
+            kad.on_connection_handler_event(
+                peer,
+                cid,
+                HandlerEvent::ProtocolConfirmed { endpoint },
+            );
+            inbound_feeds.insert(peer, feed);
+            handlers.insert(peer, h);
+        }
+    }
 
     for action in actions.into_iter().take(MAX_ACTIONS) {
         // Skip drain after starting an outbound query so InjectResponse can
@@ -338,6 +409,7 @@ pub fn fuzz_behaviour(actions: impl IntoIterator<Item = FuzzAction>) {
                             stall_every: 0,
                             err_every: 0,
                             flush_stall_every: 2,
+                            zero_progress_once: false,
                         }
                     } else {
                         WriteFault::NONE
@@ -401,11 +473,30 @@ pub fn fuzz_behaviour(actions: impl IntoIterator<Item = FuzzAction>) {
                 } else {
                     &msg_bytes
                 };
-                let Some(event) = decode_inbound(bytes, RequestId::fuzz(next_req)) else {
-                    continue;
-                };
-                next_req = next_req.wrapping_add(1);
-                kad.on_connection_handler_event(peer, cid, event);
+                if let (Some(feed), Some(h)) =
+                    (inbound_feeds.get(&peer), handlers.get_mut(&peer))
+                {
+                    // Feed the raw protobuf through the handler's inbound codec
+                    // as a length-prefixed frame so it creates a real inbound
+                    // substream with a real RequestId (matches the InjectStructured
+                    // fix; the direct path used a synthetic RequestId that had no
+                    // substream, tripping `answer_pending_request`'s debug_assert).
+                    if decode_inbound(bytes, RequestId::fuzz(0)).is_some() {
+                        let mut wire = Vec::with_capacity(bytes.len() + 5);
+                        push_varint(&mut wire, bytes.len() as u64);
+                        wire.extend_from_slice(bytes);
+                        feed.push(&wire);
+                        for ev in pump_handler(h) {
+                            kad.on_connection_handler_event(peer, cid, ev);
+                        }
+                    }
+                } else {
+                    let Some(event) = decode_inbound(bytes, RequestId::fuzz(next_req)) else {
+                        continue;
+                    };
+                    next_req = next_req.wrapping_add(1);
+                    kad.on_connection_handler_event(peer, cid, event);
+                }
             }
             FuzzAction::InjectStructured {
                 peer_slot,
@@ -416,12 +507,30 @@ pub fn fuzz_behaviour(actions: impl IntoIterator<Item = FuzzAction>) {
                 let Some((cid, _)) = conn_ids.get(&peer).and_then(|v| v.first()).cloned() else {
                     continue;
                 };
-                let msg_bytes = encode_structured_inbound(kind, key_slot, Some(peer));
-                let Some(event) = decode_inbound(&msg_bytes, RequestId::fuzz(next_req)) else {
-                    continue;
-                };
-                next_req = next_req.wrapping_add(1);
-                kad.on_connection_handler_event(peer, cid, event);
+                let wire = encode_structured_wire(kind, key_slot, Some(peer));
+                if let (Some(feed), Some(h)) =
+                    (inbound_feeds.get(&peer), handlers.get_mut(&peer))
+                {
+                    // Real path: feed the length-prefixed request through the
+                    // handler's inbound codec so it creates an actual inbound
+                    // substream with a real RequestId. The Behaviour's queued
+                    // response can then be matched in `answer_pending_request`
+                    // (previously the synthetic RequestId had no substream and
+                    // tripped the handler's `debug_assert!`).
+                    feed.push(&wire);
+                    for ev in pump_handler(h) {
+                        kad.on_connection_handler_event(peer, cid, ev);
+                    }
+                } else {
+                    // No live handler for this peer — inject the decoded event
+                    // directly. The queued response is dropped (no handler to
+                    // deliver it to), so it cannot reach `answer_pending_request`.
+                    let Some(event) = decode_wire(&wire, RequestId::fuzz(next_req)) else {
+                        continue;
+                    };
+                    next_req = next_req.wrapping_add(1);
+                    kad.on_connection_handler_event(peer, cid, event);
+                }
             }
             FuzzAction::InjectWire {
                 peer_slot,
@@ -746,6 +855,15 @@ fn kad_peer_from_slot(peers: &[PeerId; PEER_POOL], slot: u8) -> KadPeer {
     }
 }
 
+/// LEB128 varint length prefix, matching `prost_codec`'s `unsigned_varint` framing.
+fn push_varint(buf: &mut Vec<u8>, mut n: u64) {
+    while n >= 0x80 {
+        buf.push((n as u8 & 0x7f) | 0x80);
+        n >>= 7;
+    }
+    buf.push(n as u8);
+}
+
 fn decode_inbound(bytes: &[u8], request_id: RequestId) -> Option<HandlerEvent> {
     let msg = proto::Message::decode(bytes).ok()?;
     let req = KadRequestMsg::try_from(msg).ok()?;
@@ -988,6 +1106,7 @@ mod tests {
             stall_every: 0,
             err_every: 0,
             flush_stall_every: 0,
+            zero_progress_once: false,
         };
         let events = crate::fuzz_handler_io(
             std::iter::empty::<Vec<u8>>(),
@@ -1010,6 +1129,7 @@ mod tests {
             stall_every: 2,
             err_every: 0,
             flush_stall_every: 0,
+            zero_progress_once: false,
         };
         let events = crate::fuzz_handler_io(
             std::iter::empty::<Vec<u8>>(),

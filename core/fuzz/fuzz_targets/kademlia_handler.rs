@@ -14,7 +14,7 @@ use libfuzzer_sys::{
 };
 use libp2p_kad::{
     MAX_MSG_BYTES, OutboundDrive, StructuredInboundKind, WriteFault, encode_structured_wire,
-    fuzz_handler_io,
+    fuzz_handler_io, fuzz_handler_io_faulty,
 };
 
 #[derive(Debug)]
@@ -25,6 +25,10 @@ struct Case {
     enqueue_outbound_find_node: bool,
     outbound: OutboundDrive,
     write: WriteFault,
+    /// Non-zero → use [`fuzz_handler_io_faulty`] with reorder / dup / drop faults.
+    reorder_window: usize,
+    dup_every: usize,
+    drop_every: usize,
 }
 
 impl<'a> Arbitrary<'a> for Case {
@@ -89,11 +93,15 @@ impl<'a> Arbitrary<'a> for Case {
                     write_cap: u.int_in_range(1usize..=8)?,
                     stall_every: 0,
                     err_every: 0,
+                    flush_stall_every: 0,
+                    zero_progress_once: false,
                 },
                 1 => WriteFault {
                     write_cap: 0,
                     stall_every: u.int_in_range(1usize..=4)?,
                     err_every: 0,
+                    flush_stall_every: 0,
+                    zero_progress_once: false,
                 },
                 _ => WriteFault {
                     write_cap: u.int_in_range(4usize..=16)?,
@@ -103,6 +111,8 @@ impl<'a> Arbitrary<'a> for Case {
                     } else {
                         0
                     },
+                    flush_stall_every: 0,
+                    zero_progress_once: false,
                 },
             }
         } else {
@@ -116,17 +126,47 @@ impl<'a> Arbitrary<'a> for Case {
             enqueue_outbound_find_node: write.is_stressed() || u.ratio(1, 2)?,
             outbound,
             write,
+            // ~¼ of inputs exercise reorder / dup / drop read faults.
+            reorder_window: if u.ratio(1, 4)? {
+                u.int_in_range(2usize..=16)?
+            } else {
+                0
+            },
+            dup_every: if u.ratio(1, 6)? {
+                u.int_in_range(2usize..=8)?
+            } else {
+                0
+            },
+            drop_every: if u.ratio(1, 6)? {
+                u.int_in_range(2usize..=8)?
+            } else {
+                0
+            },
         })
     }
 }
 
 fuzz_target!(|case: Case| {
-    let _ = fuzz_handler_io(
-        case.chunks,
-        case.chunk_cap,
-        case.reset_every,
-        case.enqueue_outbound_find_node,
-        case.outbound,
-        case.write,
-    );
+    if case.reorder_window > 0 || case.dup_every > 0 || case.drop_every > 0 {
+        let _ = fuzz_handler_io_faulty(
+            case.chunks,
+            case.chunk_cap,
+            case.reset_every,
+            case.reorder_window,
+            case.dup_every,
+            case.drop_every,
+            case.enqueue_outbound_find_node,
+            case.outbound,
+            case.write,
+        );
+    } else {
+        let _ = fuzz_handler_io(
+            case.chunks,
+            case.chunk_cap,
+            case.reset_every,
+            case.enqueue_outbound_find_node,
+            case.outbound,
+            case.write,
+        );
+    }
 });

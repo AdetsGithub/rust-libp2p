@@ -6,6 +6,7 @@
 
 use std::{
     collections::HashMap,
+    num::NonZeroU32,
     task::{Context, Poll},
     time::Duration,
 };
@@ -181,8 +182,8 @@ pub fn fuzz_local_peer_id() -> PeerId {
     )
 }
 
-fn fuzz_config() -> Config {
-    Config {
+fn fuzz_config(rate_limit: Option<(NonZeroU32, Duration)>) -> Config {
+    let mut config = Config {
         max_reservations: MAX_RESERVATIONS,
         max_reservations_per_peer: MAX_RESERVATIONS_PER_PEER,
         reservation_duration: Duration::from_secs(3600),
@@ -192,7 +193,18 @@ fn fuzz_config() -> Config {
         max_circuit_duration: Duration::from_secs(120),
         max_circuit_bytes: 1 << 17,
         circuit_src_rate_limiters: vec![],
+    };
+    if let Some((limit, interval)) = rate_limit {
+        // Enable all four limiter lanes (per-peer + per-IP for both reservation
+        // and circuit-src) so `rate_limiter.rs` token-bucket allow/deny arms run.
+        // Previously empty (0% coverage).
+        config = config
+            .reservation_rate_per_peer(limit, interval)
+            .reservation_rate_per_ip(limit, interval)
+            .circuit_src_per_peer(limit, interval)
+            .circuit_src_per_ip(limit, interval);
     }
+    config
 }
 
 fn peer_pool_keys() -> Vec<Keypair> {
@@ -284,8 +296,24 @@ fn endpoint_for(peer_slot: u8, outbound: bool) -> ConnectedPoint {
 
 /// Drive [`Behaviour`] with a sequence of actions.
 pub fn fuzz_behaviour(actions: impl IntoIterator<Item = FuzzAction>) {
+    fuzz_behaviour_ex(actions, None);
+}
+
+/// Like [`fuzz_behaviour`], but with tight per-peer + per-IP rate limiters so the
+/// `rate_limiter.rs` token-bucket deny arms fire under reservation / circuit floods.
+pub fn fuzz_behaviour_rate_limited(
+    actions: impl IntoIterator<Item = FuzzAction>,
+    limit: NonZeroU32,
+) {
+    fuzz_behaviour_ex(actions, Some((limit, Duration::from_secs(3600))));
+}
+
+fn fuzz_behaviour_ex(
+    actions: impl IntoIterator<Item = FuzzAction>,
+    rate_limit: Option<(NonZeroU32, Duration)>,
+) {
     let local = fuzz_local_peer_id();
-    let config = fuzz_config();
+    let config = fuzz_config(rate_limit);
     let mut relay = Behaviour::new(local, config);
     let peers = peer_pool();
     let mut conn_ids: HashMap<PeerId, Vec<(ConnectionId, ConnectedPoint)>> = HashMap::new();
@@ -778,6 +806,44 @@ mod tests {
                 dst_slot: 1,
             },
         ]);
+    }
+
+    #[test]
+    fn rate_limited_flood_denies_reservations() {
+        use std::num::NonZeroU32;
+        // Tight token bucket (limit=2) → the first two reservations per peer/IP
+        // are allowed; the flood beyond that trips the `rate_limiter.rs` deny arm.
+        fuzz_behaviour_rate_limited(
+            [
+                FuzzAction::ConfirmExternalAddr { slot: 0 },
+                FuzzAction::SetStatusEnable,
+                FuzzAction::Connect {
+                    peer_slot: 0,
+                    outbound: true,
+                },
+                FuzzAction::Connect {
+                    peer_slot: 1,
+                    outbound: true,
+                },
+                FuzzAction::Connect {
+                    peer_slot: 2,
+                    outbound: true,
+                },
+                FuzzAction::FloodReservations {
+                    peer_slot: 0,
+                    count: 7,
+                },
+                FuzzAction::FloodReservations {
+                    peer_slot: 1,
+                    count: 7,
+                },
+                FuzzAction::FloodReservations {
+                    peer_slot: 2,
+                    count: 7,
+                },
+            ],
+            NonZeroU32::new(2).unwrap(),
+        );
     }
 
     #[test]

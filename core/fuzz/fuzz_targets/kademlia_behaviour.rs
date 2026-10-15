@@ -12,12 +12,15 @@ use libfuzzer_sys::{
     fuzz_target,
 };
 use libp2p_kad::{
-    FuzzAction, MAX_ACTIONS, MAX_DATA_BYTES, MAX_MSG_BYTES, PEER_POOL, StructuredInboundKind,
-    StructuredResponseKind, encode_structured_wire, fuzz_behaviour,
+    FuzzAction, FuzzSeed, MAX_ACTIONS, MAX_DATA_BYTES, MAX_MSG_BYTES, PEER_POOL,
+    StructuredInboundKind, StructuredResponseKind, encode_structured_wire, fuzz_behaviour_seeded,
 };
 
 #[derive(Debug)]
-struct ActionSeq(Vec<FuzzAction>);
+struct ActionSeq {
+    seed: FuzzSeed,
+    actions: Vec<FuzzAction>,
+}
 
 impl<'a> Arbitrary<'a> for ActionSeq {
     fn arbitrary(u: &mut Unstructured<'a>) -> arbitrary::Result<Self> {
@@ -30,7 +33,26 @@ impl<'a> Arbitrary<'a> for ActionSeq {
         for step in 0..n {
             actions.push(fuzz_action(u, step)?);
         }
-        Ok(ActionSeq(actions))
+        // Seed so inputs skip the Connect/RT/store warm-up preamble: ~½ start with
+        // pre-routed peers and ~⅓ with pre-loaded records.
+        let seed = FuzzSeed {
+            rt_peers: if u.ratio(1, 2)? {
+                u.int_in_range(0u8..=PEER_POOL as u8)?
+            } else {
+                0
+            },
+            store_records: if u.ratio(1, 3)? {
+                u.int_in_range(0u8..=8)?
+            } else {
+                0
+            },
+            live_peers: if u.ratio(1, 4)? {
+                u.int_in_range(0u8..=2)?
+            } else {
+                0
+            },
+        };
+        Ok(ActionSeq { seed, actions })
     }
 }
 
@@ -209,5 +231,5 @@ fn fuzz_action(u: &mut Unstructured<'_>, step: usize) -> arbitrary::Result<FuzzA
 }
 
 fuzz_target!(|seq: ActionSeq| {
-    fuzz_behaviour(seq.0);
+    fuzz_behaviour_seeded(seq.seed, seq.actions);
 });

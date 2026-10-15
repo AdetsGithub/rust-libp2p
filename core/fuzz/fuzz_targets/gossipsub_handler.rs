@@ -97,11 +97,15 @@ impl<'a> Arbitrary<'a> for Case {
                     write_cap: u.int_in_range(1usize..=8)?,
                     stall_every: 0,
                     err_every: 0,
+                    flush_stall_every: 0,
+                    drop_every: 0,
                 },
                 1 => WriteFault {
                     write_cap: 0,
                     stall_every: u.int_in_range(1usize..=4)?,
                     err_every: 0,
+                    flush_stall_every: 0,
+                    drop_every: 0,
                 },
                 _ => WriteFault {
                     write_cap: u.int_in_range(4usize..=16)?,
@@ -111,6 +115,8 @@ impl<'a> Arbitrary<'a> for Case {
                     } else {
                         0
                     },
+                    flush_stall_every: 0,
+                    drop_every: 0,
                 },
             }
         } else {

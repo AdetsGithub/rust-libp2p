@@ -1,8 +1,23 @@
-use arbitrary::{Arbitrary, Unstructured};
-use libp2p_core::multihash::Multihash;
-use libp2p_gossipsub::{MessageId, TopicHash, ValidationMode};
+//! Structure-aware handler driver for Gossipsub (feature = `"fuzzing"`).
+//!
+//! Builds a structured [`GossipsubRpc`] from arbitrary bytes, encodes it into
+//! the protobuf wire format, and drives a fresh [`Handler`] through the inbound
+//! codec path (the same mock-I/O plumbing used by `fuzz_handler_io`).
 
-// Define a structured message type that represents a valid Gossipsub RPC.
+use arbitrary::{Arbitrary, Unstructured};
+use prost::Message as _;
+
+use crate::{
+    MessageId, TopicHash, ValidationMode,
+    fuzz_handler::{ChunkFeed, drain_handler, inject_inbound},
+    handler,
+    protocol,
+    queue,
+    rpc_proto::proto,
+    types::PeerKind,
+};
+
+/// A structured Gossipsub RPC generated from fuzz input.
 #[derive(Debug, Clone)]
 pub struct GossipsubRpc {
     pub message_id: MessageId,
@@ -15,14 +30,14 @@ pub struct GossipsubRpc {
     pub validated: bool,
 }
 
-// Implement Arbitrary to allow libFuzzer to generate valid instances.
+/// Implement Arbitrary to allow libFuzzer to generate structured instances.
 impl<'a> Arbitrary<'a> for GossipsubRpc {
     fn arbitrary(u: &mut Unstructured<'a>) -> arbitrary::Result<Self> {
         let message_id = MessageId::from(u.bytes(8)?);
         let topic = TopicHash::from_raw(String::arbitrary(u)?);
         let data = u.bytes(16)?.to_vec();
-        let sequence_number = u.option(|| u.u64())?;
-        let source = u.option(|| {
+        let sequence_number = if bool::arbitrary(u)? { Some(u64::arbitrary(u)?) } else { None };
+        let source = if bool::arbitrary(u)? {
             let mut bytes = [0u8; 32];
             for b in bytes.iter_mut() {
                 *b = u8::arbitrary(u)?;
@@ -32,11 +47,11 @@ impl<'a> Arbitrary<'a> for GossipsubRpc {
                     .map_err(|_| arbitrary::Error::IncorrectFormat)?
                     .public(),
             ))
-        })?;
-        let signature = u.option(|| u.bytes(64)?.to_vec())?;
-        let key = u.option(|| u.bytes(32)?.to_vec())?;
-        let validated = u.bool();
-        
+        } else { None };
+        let signature = if bool::arbitrary(u)? { Some(u.bytes(64)?.to_vec()) } else { None };
+        let key = if bool::arbitrary(u)? { Some(u.bytes(32)?.to_vec()) } else { None };
+        let validated = bool::arbitrary(u)?;
+
         Ok(GossipsubRpc {
             message_id,
             topic,
@@ -50,30 +65,38 @@ impl<'a> Arbitrary<'a> for GossipsubRpc {
     }
 }
 
-// The fuzzing entry point now takes a structured type.
-pub fn fuzz_handler_structured(rpc: GossipsubRpc) -> Vec<libp2p_gossipsub::handler::HandlerEvent> {
-    let mut handler = libp2p_gossipsub::handler::Handler::new(
-        fuzz_peer_id(), 
-        fuzz_protocol_config(), 
-        libp2p_gossipsub::queue::Queue::new(8)
+/// Encode the structured RPC into the wire format and drive a fresh [`Handler`].
+pub fn fuzz_handler_structured(rpc: GossipsubRpc) -> Vec<handler::HandlerEvent> {
+    let mut handler = handler::Handler::new(
+        fuzz_peer_id(),
+        fuzz_protocol_config(),
+        queue::Queue::new(8),
     );
-    
-    // Convert the structured input into the wire format.
-    let mut wire_bytes = Vec::new();
-    let mut codec = fuzz_codec();
-    codec.encode(rpc, &mut wire_bytes).unwrap();
-    
-    // Inject the now-valid message into the handler.
+
+    // Convert the structured input into a protobuf RPC and encode it to wire bytes.
+    let wire_rpc = proto::Rpc {
+        publish: vec![proto::Message {
+            from: rpc.source.map(|p| p.to_bytes()),
+            data: Some(rpc.data),
+            seqno: rpc.sequence_number.map(|n| n.to_be_bytes().to_vec()),
+            topic: rpc.topic.into_string(),
+            signature: rpc.signature,
+            key: rpc.key,
+        }],
+        ..Default::default()
+    };
+    let wire_bytes = wire_rpc.encode_to_vec();
+
+    // Inject the encoded message into the handler and drain its events.
     let feed = ChunkFeed::new(wire_bytes, 64, 0);
     feed.close();
-    inject_inbound(&mut handler, feed);
-    
+    inject_inbound(&mut handler, feed, PeerKind::Gossipsubv1_1);
+
     let mut events = Vec::new();
     drain_handler(&mut handler, &mut events);
     events
 }
 
-// Helper functions that need to be available
 fn fuzz_peer_id() -> libp2p_identity::PeerId {
     let mut bytes = [0x42u8; 32];
     libp2p_identity::PeerId::from(
@@ -83,9 +106,9 @@ fn fuzz_peer_id() -> libp2p_identity::PeerId {
     )
 }
 
-fn fuzz_protocol_config() -> libp2p_gossipsub::protocol::ProtocolConfig {
-    libp2p_gossipsub::protocol::ProtocolConfig {
-        protocol_ids: vec![libp2p_gossipsub::protocol::GOSSIPSUB_1_1_0_PROTOCOL],
+fn fuzz_protocol_config() -> protocol::ProtocolConfig {
+    protocol::ProtocolConfig {
+        protocol_ids: vec![protocol::GOSSIPSUB_1_1_0_PROTOCOL],
         validation_mode: ValidationMode::Permissive,
         default_max_transmit_size: 256,
         max_transmit_sizes: std::collections::HashMap::new(),
@@ -93,16 +116,3 @@ fn fuzz_protocol_config() -> libp2p_gossipsub::protocol::ProtocolConfig {
         max_control_message_size: 2048,
     }
 }
-
-fn fuzz_codec() -> libp2p_gossipsub::protocol::GossipsubCodec {
-    libp2p_gossipsub::protocol::GossipsubCodec::new(
-        256,
-        ValidationMode::Permissive,
-        std::collections::HashMap::new(),
-        64,
-        2048,
-    )
-}
-
-// Re-export needed types from the existing fuzz_handler
-use crate::fuzz_handler::{ChunkFeed, inject_inbound, drain_handler};

@@ -68,6 +68,8 @@ pub struct WriteFault {
     pub err_every: usize,
     /// Every Nth flush returns `Pending` once (`0` = never).
     pub flush_stall_every: usize,
+    /// Emit `Ok(0)` once (the AsyncWrite zero-progress trap) before resuming.
+    pub zero_progress_once: bool,
 }
 
 impl Default for WriteFault {
@@ -77,6 +79,7 @@ impl Default for WriteFault {
             stall_every: 0,
             err_every: 0,
             flush_stall_every: 0,
+            zero_progress_once: false,
         }
     }
 }
@@ -87,6 +90,7 @@ impl WriteFault {
         stall_every: 0,
         err_every: 0,
         flush_stall_every: 0,
+        zero_progress_once: false,
     };
 
     pub fn is_stressed(self) -> bool {
@@ -94,6 +98,7 @@ impl WriteFault {
             || self.stall_every > 0
             || self.err_every > 0
             || self.flush_stall_every > 0
+            || self.zero_progress_once
     }
 }
 
@@ -111,6 +116,7 @@ struct WriteState {
     flush_stall_every: usize,
     resume: bool,
     flush_resume: bool,
+    zero_progress_once: bool,
 }
 
 impl WriteCtrl {
@@ -125,6 +131,7 @@ impl WriteCtrl {
                 flush_stall_every: fault.flush_stall_every,
                 resume: false,
                 flush_resume: false,
+                zero_progress_once: fault.zero_progress_once,
             })),
         }
     }
@@ -134,6 +141,11 @@ impl WriteCtrl {
             return Poll::Ready(Ok(0));
         }
         let mut st = self.inner.lock().expect("write ctrl");
+        // Zero-progress trap: report Ok(0) once (AsyncWrite sink underflow).
+        if st.zero_progress_once {
+            st.zero_progress_once = false;
+            return Poll::Ready(Ok(0));
+        }
         if st.resume {
             st.resume = false;
         } else if st.stall_every != 0 {
@@ -188,6 +200,14 @@ struct ChunkState {
     reset_every: usize,
     pending_once: bool,
     closed: bool,
+    /// Reorder window: pop from the back instead of the front on even reads.
+    reorder_window: usize,
+    /// Re-emit the previous read's bytes on every Nth read (duplication).
+    dup_every: usize,
+    /// Drain `reorder_window` bytes as lost on every Nth read (drop).
+    drop_every: usize,
+    /// Bytes held for the next duplicate read.
+    dup_buf: Vec<u8>,
 }
 
 impl ChunkFeed {
@@ -195,6 +215,23 @@ impl ChunkFeed {
         bytes: impl IntoIterator<Item = u8>,
         chunk_cap: usize,
         reset_every: usize,
+    ) -> Self {
+        Self::faulty(bytes, chunk_cap, reset_every, 0, 0, 0)
+    }
+
+    /// Feed with read-side reorder / duplication / drop faults.
+    ///
+    /// - `reorder_window > 1`: every even read pops up to `chunk_cap` bytes from
+    ///   the back of the window instead of the front (out-of-order delivery).
+    /// - `dup_every > 0`: every Nth read re-emits the previous read's bytes.
+    /// - `drop_every > 0`: every Nth read drains `reorder_window` bytes as lost.
+    pub(crate) fn faulty(
+        bytes: impl IntoIterator<Item = u8>,
+        chunk_cap: usize,
+        reset_every: usize,
+        reorder_window: usize,
+        dup_every: usize,
+        drop_every: usize,
     ) -> Self {
         Self {
             inner: Arc::new(Mutex::new(ChunkState {
@@ -204,6 +241,10 @@ impl ChunkFeed {
                 reset_every,
                 pending_once: false,
                 closed: false,
+                reorder_window,
+                dup_every,
+                drop_every,
+                dup_buf: Vec::new(),
             })),
         }
     }
@@ -254,7 +295,20 @@ impl AsyncRead for ChunkIo {
         if st.reset_every != 0 && st.reads % st.reset_every == 0 {
             return Poll::Ready(Err(io::ErrorKind::ConnectionReset.into()));
         }
+        // Duplication fault: replay the previous read's bytes.
+        if st.dup_every != 0 && st.reads % st.dup_every == 0 && !st.dup_buf.is_empty() {
+            let n = st.dup_buf.len().min(buf.len());
+            buf[..n].copy_from_slice(&st.dup_buf[..n]);
+            return Poll::Ready(Ok(n));
+        }
+        // Drop fault: lose a window of bytes (simulate packet loss).
+        if st.drop_every != 0 && st.reads % st.drop_every == 0 {
+            for _ in 0..st.reorder_window {
+                st.q.pop_front();
+            }
+        }
         if st.q.is_empty() {
+            st.dup_buf.clear();
             return if st.closed {
                 Poll::Ready(Ok(0))
             } else {
@@ -262,8 +316,19 @@ impl AsyncRead for ChunkIo {
             };
         }
         let n = st.q.len().min(buf.len()).min(st.chunk_cap);
+        let reorder = st.reorder_window > 1 && st.reads % 2 == 0;
+        st.dup_buf.clear();
+        st.dup_buf.reserve(n);
         for b in buf.iter_mut().take(n) {
-            *b = st.q.pop_front().expect("len checked");
+            // Reorder fault: pull from the back of the window instead of the front.
+            let src = if reorder {
+                st.q.pop_back()
+            } else {
+                st.q.pop_front()
+            };
+            let byte = src.expect("len checked");
+            *b = byte;
+            st.dup_buf.push(byte);
         }
         Poll::Ready(Ok(n))
     }
@@ -350,9 +415,11 @@ fn fuzz_endpoint() -> ConnectedPoint {
 fn fuzz_protocol_config(outbound: OutboundDrive) -> ProtocolConfig {
     let mut cfg = ProtocolConfig::new(StreamProtocol::new("/ipfs/kad/1.0.0"));
     cfg.set_max_packet_size(MAX_PACKET);
-    // Idle-timeout arm needs Delay ready immediately; other arms need room for I/O.
+    // Idle-timeout arm: zero-duration Delay is already due, so the global
+    // futures-timer thread fires it on its next tick without any wall-clock
+    // sleep in the poll loop (deterministic vs `Duration::from_millis(1)`).
     let timeout = match outbound {
-        OutboundDrive::SubstreamIdleTimeout => Duration::from_millis(1),
+        OutboundDrive::SubstreamIdleTimeout => Duration::ZERO,
         _ => Duration::from_secs(60),
     };
     cfg.set_substreams_timeout(timeout);
@@ -512,7 +579,11 @@ pub(crate) fn drain_handler(
             Poll::Pending => {
                 if outbound == OutboundDrive::SubstreamIdleTimeout && idle_waits < 8 {
                     idle_waits = idle_waits.saturating_add(1);
-                    std::thread::sleep(Duration::from_millis(2));
+                    // The zero-duration Delay is already due; the global
+                    // futures-timer thread fires it within a millisecond. Sleep
+                    // (bounded) instead of spin-yield so it fires reliably even
+                    // under scheduler contention (yield_now flakes in CI).
+                    std::thread::sleep(Duration::from_millis(1));
                     continue;
                 }
                 if pending_retries > 0 {
@@ -530,6 +601,62 @@ pub fn fuzz_handler_io(
     wire_chunks: impl IntoIterator<Item = Vec<u8>>,
     chunk_cap: usize,
     reset_every: usize,
+    enqueue_outbound_find_node: bool,
+    outbound: OutboundDrive,
+    write: WriteFault,
+) -> Vec<HandlerEvent> {
+    let feed = collect_feed(wire_chunks, chunk_cap, reset_every);
+    fuzz_handler_io_with_feed(feed, enqueue_outbound_find_node, outbound, write)
+}
+
+/// Like [`fuzz_handler_io`] but with reorder / duplication / drop read faults and
+/// an optional AsyncWrite zero-progress trap, so the mock transport exercises
+/// out-of-order delivery, duplication, packet loss, and sink underflow.
+pub fn fuzz_handler_io_faulty(
+    wire_chunks: impl IntoIterator<Item = Vec<u8>>,
+    chunk_cap: usize,
+    reset_every: usize,
+    reorder_window: usize,
+    dup_every: usize,
+    drop_every: usize,
+    enqueue_outbound_find_node: bool,
+    outbound: OutboundDrive,
+    write: WriteFault,
+) -> Vec<HandlerEvent> {
+    let mut bytes = Vec::new();
+    for chunk in wire_chunks {
+        let take = chunk.len().min(MAX_PACKET);
+        bytes.extend_from_slice(&chunk[..take]);
+    }
+    let feed = ChunkFeed::faulty(
+        bytes,
+        chunk_cap.max(1),
+        reset_every,
+        reorder_window.max(1),
+        dup_every,
+        drop_every,
+    );
+    feed.close();
+    fuzz_handler_io_with_feed(feed, enqueue_outbound_find_node, outbound, write)
+}
+
+fn collect_feed(
+    wire_chunks: impl IntoIterator<Item = Vec<u8>>,
+    chunk_cap: usize,
+    reset_every: usize,
+) -> ChunkFeed {
+    let mut bytes = Vec::new();
+    for chunk in wire_chunks {
+        let take = chunk.len().min(MAX_PACKET);
+        bytes.extend_from_slice(&chunk[..take]);
+    }
+    let feed = ChunkFeed::new(bytes, chunk_cap.max(1), reset_every);
+    feed.close();
+    feed
+}
+
+fn fuzz_handler_io_with_feed(
+    feed: ChunkFeed,
     enqueue_outbound_find_node: bool,
     outbound: OutboundDrive,
     write: WriteFault,
@@ -566,13 +693,6 @@ pub fn fuzz_handler_io(
         _ => WriteFault::NONE,
     };
 
-    let mut bytes = Vec::new();
-    for chunk in wire_chunks {
-        let take = chunk.len().min(MAX_PACKET);
-        bytes.extend_from_slice(&chunk[..take]);
-    }
-    let feed = ChunkFeed::new(bytes, chunk_cap.max(1), reset_every);
-    feed.close();
     // Keep inbound writes unlimited so auto-respond encode cannot starve the
     // outbound request path; WriteFault applies to OutboundMockIo only.
     inject_inbound(&mut handler, feed, WriteFault::NONE);

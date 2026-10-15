@@ -1,5 +1,17 @@
 # Coverage: `kademlia_behaviour`
 
+Phase 33 — harness fix: `InjectInbound` / `InjectStructured` previously injected
+inbound requests (`HandlerEvent::*Req`) via `on_connection_handler_event` with a
+**synthetic** `RequestId::fuzz(next_req)` that had no matching inbound substream
+in the live `Handler`. When the Behaviour answered, `Handler::answer_pending_request`
+tripped its `debug_assert!("Cannot find inbound substream")` (handler.rs:870).
+Both actions now feed the request as a length-prefixed wire frame through the
+handler's real inbound codec (`ChunkFeed` + `pump_handler`), so a real substream
++ RequestId exist; the no-handler fallback injects directly but the queued
+response is dropped (`drain_polls` has no handler). Verified: crash artifact
+`artifacts/kademlia_behaviour/crash-4a2347e2…` now runs clean; 1000+ corpus seeds
+replay without the panic (previously died at ~128 seeds).
+
 Last deepened: Phase 28 — `AdvanceQueryClock` for deterministic query Timeouts
 (rewinds query starts + `fuzz_take_timed_out`, even while `Waiting(Some)`).
 Phase 27: live ConnectionHandler mock streams (InjectWire → ChunkFeed; drain

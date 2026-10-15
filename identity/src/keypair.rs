@@ -59,6 +59,42 @@ use crate::{
     error::{DecodingError, SigningError},
 };
 
+/// Fuzz-only knobs to steer [`PublicKey::verify`] from the harness (per input),
+/// so a single fuzz run can exercise both the accepted and the rejected
+/// signature lanes without paying for real crypto on the fast path.
+///
+/// The default (`ALWAYS_PASS`) is backwards compatible: under `--cfg fuzzing`
+/// (without `fuzzing-real-verify`) verification succeeds so handshake /
+/// identity consumers can explore past the crypto wall. Setting `ALWAYS_FAIL`
+/// makes *every* verify return `false`, driving the `AuthFailed` /
+/// `InvalidSignature` error arms on the stubbed lane.
+#[cfg(fuzzing)]
+pub mod fuzz {
+    use std::sync::atomic::{AtomicU8, Ordering};
+
+    /// Every verification succeeds (default).
+    pub const ALWAYS_PASS: u8 = 0;
+    /// Every verification fails.
+    pub const ALWAYS_FAIL: u8 = 1;
+
+    static VERIFY_MODE: AtomicU8 = AtomicU8::new(ALWAYS_PASS);
+
+    /// Make all subsequent [`PublicKey::verify`] calls succeed (default).
+    pub fn set_verify_always_pass() {
+        VERIFY_MODE.store(ALWAYS_PASS, Ordering::Relaxed);
+    }
+
+    /// Make all subsequent [`PublicKey::verify`] calls fail.
+    pub fn set_verify_always_fail() {
+        VERIFY_MODE.store(ALWAYS_FAIL, Ordering::Relaxed);
+    }
+
+    /// Current verification mode ([`ALWAYS_PASS`] or [`ALWAYS_FAIL`]).
+    pub(crate) fn verify_mode() -> u8 {
+        VERIFY_MODE.load(Ordering::Relaxed)
+    }
+}
+
 /// Identity keypair of a node.
 ///
 /// # Example: Generating RSA keys with OpenSSL
@@ -541,7 +577,10 @@ impl PublicKey {
         #[cfg(all(fuzzing, not(feature = "fuzzing-real-verify")))]
         {
             let _ = (msg, sig);
-            return true;
+            // Default always-pass; the harness may flip this per input to drive
+            // the rejected-signature lanes (e.g. Noise `AuthFailed`, gossipsub
+            // `InvalidSignature`) without the real-crypto `fuzzing-real-verify` lane.
+            return fuzz::verify_mode() == fuzz::ALWAYS_PASS;
         }
 
         #[cfg(any(not(fuzzing), feature = "fuzzing-real-verify"))]

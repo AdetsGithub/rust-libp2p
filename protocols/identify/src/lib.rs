@@ -62,8 +62,9 @@ mod proto {
 
 #[cfg(feature = "fuzzing")]
 pub use fuzz::{
-    FuzzAction, MAX_ACTIONS, MAX_ADDRS, MAX_MSG_BYTES, MAX_PROTOCOLS, PEER_POOL,
-    StructuredIdentifyKind, encode_structured_wire, fuzz_behaviour, fuzz_local_peer_id,
+    FuzzAction, FuzzSeed, MAX_ACTIONS, MAX_ADDRS, MAX_MSG_BYTES, MAX_PROTOCOLS, PEER_POOL,
+    StructuredIdentifyKind, encode_structured_wire, fuzz_behaviour, fuzz_behaviour_seeded,
+    fuzz_local_peer_id,
 };
 #[cfg(feature = "fuzzing")]
 pub use fuzz_handler::{
