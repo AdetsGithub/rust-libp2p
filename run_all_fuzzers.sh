@@ -1,19 +1,22 @@
 #!/usr/bin/env bash
 #
-# Run every fuzz target in rust-libp2p as a short smoke test.
+# Run every fuzz target in rust-libp2p.
 #
 # Targets:
 #   * core/fuzz/  — 30 cargo-fuzz targets (parsers, behaviours, transports)
 #   * fuzz/       —  1 cargo-fuzz target  (gossipsub_structured)
 #
-# Each target is built and then run for `RUNS` libFuzzer iterations so the
-# run self-terminates. Per-target logs land in `LOG_DIR`; a pass/fail summary
-# is printed at the end and the script exits non-zero if any target failed.
+# Each target is built and then run until either `RUNS` libFuzzer iterations
+# (default: smoke-test mode) or, when `MAX_TOTAL_TIME` is set, a per-target
+# time budget via libFuzzer's `-max_total_time` (clean exit, no `timeout`
+# kill). Per-target logs land in `LOG_DIR`; a pass/fail summary is printed at
+# the end and the script exits non-zero if any target failed.
 #
 # Usage:
-#   ./run_all_fuzzers.sh               # 20 iterations per target (default)
-#   RUNS=100 ./run_all_fuzzers.sh      # override iteration count
-#   TIMEOUT_SECS=600 ./run_all_fuzzers.sh
+#   ./run_all_fuzzers.sh                         # 20 iterations per target (default)
+#   RUNS=100 ./run_all_fuzzers.sh                # override iteration count
+#   MAX_TOTAL_TIME=120 ./run_all_fuzzers.sh      # 2 minutes per target (real run)
+#   TIMEOUT_SECS=600 ./run_all_fuzzers.sh        # safety-net timeout (per target)
 
 set -uo pipefail
 
@@ -22,9 +25,16 @@ CORE_FUZZ_DIR="$SCRIPT_DIR/core/fuzz"
 ROOT_FUZZ_DIR="$SCRIPT_DIR/fuzz"
 
 RUNS="${RUNS:-20}"
+MAX_TOTAL_TIME="${MAX_TOTAL_TIME:-}"
 TIMEOUT_SECS="${TIMEOUT_SECS:-300}"
 LOG_DIR="${LOG_DIR:-$SCRIPT_DIR/fuzz_run_logs}"
 SUMMARY="$LOG_DIR/summary.txt"
+
+if [ -n "$MAX_TOTAL_TIME" ]; then
+    RUN_DESC="$MAX_TOTAL_TIME sec/target"
+else
+    RUN_DESC="$RUNS runs/target"
+fi
 
 mkdir -p "$LOG_DIR"
 
@@ -127,10 +137,21 @@ run_one() {
     local extra="$3"
     local log="$LOG_DIR/$target.log"
 
+    # Stop condition: `-max_total_time` (clean libFuzzer exit) when a time
+    # budget is set, otherwise `-runs`. `timeout` remains a safety net only.
+    local run_flag ttl
+    if [ -n "$MAX_TOTAL_TIME" ]; then
+        run_flag="-max_total_time=$MAX_TOTAL_TIME"
+        ttl=$((MAX_TOTAL_TIME + 60)) # build/startup buffer
+    else
+        run_flag="-runs=$RUNS"
+        ttl="$TIMEOUT_SECS"
+    fi
+
     : > "$log"
     printf '  %-34s' "$target"
-    if (cd "$dir" && timeout "$TIMEOUT_SECS" cargo +nightly fuzz run "$target" -- \
-            -runs="$RUNS" -print_funcs=0 $extra) >> "$log" 2>&1; then
+    if (cd "$dir" && timeout "$ttl" cargo +nightly fuzz run "$target" -- \
+            $run_flag -print_funcs=0 $extra) >> "$log" 2>&1; then
         echo "ok"
         PASS=$((PASS + 1))
         return 0
@@ -160,13 +181,13 @@ fi
 echo "fuzz/ build ok"
 
 echo
-echo "=== Running core/fuzz targets (RUNS=$RUNS) ==="
+echo "=== Running core/fuzz targets ($RUN_DESC) ==="
 for t in "${CORE_TARGETS[@]}"; do
     run_one "$CORE_FUZZ_DIR" "$t" "$(core_args "$t")"
 done
 
 echo
-echo "=== Running fuzz/ targets (RUNS=$RUNS) ==="
+echo "=== Running fuzz/ targets ($RUN_DESC) ==="
 for t in "${ROOT_TARGETS[@]}"; do
     run_one "$ROOT_FUZZ_DIR" "$t" "-max_len=4096"
 done
@@ -179,7 +200,7 @@ done
     echo "rust-libp2p fuzz smoke-test summary"
     echo "==================================="
     echo "run id:       $(date -u +%Y-%m-%dT%H:%M:%SZ)"
-    echo "iterations:   $RUNS per target"
+    echo "duration:     $RUN_DESC"
     echo "passed:       $PASS"
     echo "failed:       $FAIL"
     if [ "$FAIL" -gt 0 ]; then
