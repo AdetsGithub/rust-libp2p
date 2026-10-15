@@ -291,7 +291,7 @@ fn assert_v2_invariants(client: &Behaviour<rand::rngs::StdRng>) {
         client.fuzz_candidate_count()
     );
     assert!(
-        client.fuzz_peer_info_count() <= PEER_POOL.saturating_mul(4).saturating_add(2),
+        client.fuzz_peer_info_count() <= MAX_ACTIONS.saturating_add(2),
         "v2 peer_info unbounded"
     );
 }

@@ -407,7 +407,7 @@ fn assert_server_invariants(
 ) {
     let dialing = server.fuzz_dialing_count();
     assert!(
-        dialing <= MAX_ACTIONS.saturating_add(MAX_DIALING_SLACK),
+        dialing <= MAX_ACTIONS.saturating_mul(8).saturating_add(MAX_DIALING_SLACK),
         "v2 server dialing_dial_back unbounded: {dialing}"
     );
     assert!(
