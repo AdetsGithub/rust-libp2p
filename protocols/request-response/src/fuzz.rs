@@ -222,7 +222,7 @@ struct PendingInbound {
 }
 
 struct PeerTrack {
-    active_outbound: Vec<OutboundRequestId>,
+    active_outbound: Vec<(OutboundRequestId, ConnectionId)>,
     pending_inbound: Vec<PendingInbound>,
 }
 
@@ -264,10 +264,12 @@ fn resolve_outbound_id(
     track: Option<&PeerTrack>,
     request_slot: u8,
     mismatch: bool,
-) -> Option<OutboundRequestId> {
+    fallback_cid: ConnectionId,
+) -> Option<(OutboundRequestId, ConnectionId)> {
     if mismatch {
-        return Some(OutboundRequestId::fuzz(
-            0xF000_0000u64.wrapping_add(u64::from(request_slot)),
+        return Some((
+            OutboundRequestId::fuzz(0xF000_0000u64.wrapping_add(u64::from(request_slot))),
+            fallback_cid,
         ));
     }
     let t = track?;
@@ -319,6 +321,13 @@ pub fn fuzz_behaviour(actions: impl IntoIterator<Item = FuzzAction>) {
     let mut handlers: HashMap<PeerId, Handler<FuzzCodec>> = HashMap::new();
     let mut tracks: HashMap<PeerId, PeerTrack> = HashMap::new();
     let mut next_conn: usize = 1;
+    // Inbound request ids are synthesized by the harness; they must be unique
+    // within the Behaviour (its ConnectionHandler uses a monotonic counter
+    // `next_inbound_id`, so real ids never collide). A deterministic id from
+    // `inbound_slot` (a u8) would reuse an id still pending on the same
+    // connection and trip `debug_assert!("Expect id of new request to be
+    // unknown")`.
+    let mut next_inbound: u64 = 0;
 
     for action in actions.into_iter().take(MAX_ACTIONS) {
         match action {
@@ -407,7 +416,7 @@ pub fn fuzz_behaviour(actions: impl IntoIterator<Item = FuzzAction>) {
                     &mut tracks,
                 );
                 if let Some(t) = snapshot {
-                    for id in t.active_outbound {
+                    for (id, _) in t.active_outbound {
                         assert!(
                             !behaviour.is_pending_outbound(&peer, &id),
                             "outbound still pending after disconnect: {id} peer={peer}"
@@ -418,16 +427,25 @@ pub fn fuzz_behaviour(actions: impl IntoIterator<Item = FuzzAction>) {
             FuzzAction::SendRequest { peer_slot, data } => {
                 let peer = peers[(peer_slot as usize) % PEER_POOL];
                 let id = behaviour.send_request(&peer, truncate(&data));
-                tracks
-                    .entry(peer)
-                    .or_insert_with(|| PeerTrack {
-                        active_outbound: Vec::new(),
-                        pending_inbound: Vec::new(),
-                    })
-                    .active_outbound
-                    .push(id);
-                if tracks[&peer].active_outbound.len() > MAX_ACTIONS {
-                    tracks.get_mut(&peer).unwrap().active_outbound.drain(0..1);
+                // Record the connection the request is sent over so later
+                // responses/timeouts are injected on the SAME connection. The
+                // behaviour tracks pending outbound responses per connection
+                // (try_send_request picks connections[id.0 % len]); injecting
+                // on conn_ids[peer].first() instead trips the production
+                // `request_id pending` debug_assert under connection churn.
+                let track = tracks.entry(peer).or_insert_with(|| PeerTrack {
+                    active_outbound: Vec::new(),
+                    pending_inbound: Vec::new(),
+                });
+                if let Some(ids) = conn_ids.get(&peer) {
+                    if !ids.is_empty() {
+                        let ix = (id.0 as usize) % ids.len();
+                        let conn = ids[ix].0;
+                        track.active_outbound.push((id, conn));
+                    }
+                }
+                if track.active_outbound.len() > MAX_ACTIONS {
+                    track.active_outbound.drain(0..1);
                 }
                 drain_behaviour(
                     &mut behaviour,
@@ -460,14 +478,15 @@ pub fn fuzz_behaviour(actions: impl IntoIterator<Item = FuzzAction>) {
             }
             FuzzAction::InjectRequest {
                 peer_slot,
-                inbound_slot,
+                inbound_slot: _,
                 data,
             } => {
                 let peer = peers[(peer_slot as usize) % PEER_POOL];
                 let Some((cid, _)) = conn_ids.get(&peer).and_then(|v| v.first()).cloned() else {
                     continue;
                 };
-                let request_id = InboundRequestId::fuzz(inbound_slot as u64 + 1000);
+                let request_id = InboundRequestId::fuzz(next_inbound);
+                next_inbound = next_inbound.wrapping_add(1);
                 let (tx, _rx) = oneshot::channel();
                 behaviour.on_connection_handler_event(
                     peer,
@@ -496,11 +515,13 @@ pub fn fuzz_behaviour(actions: impl IntoIterator<Item = FuzzAction>) {
                     continue;
                 }
                 let peer = peers[(peer_slot as usize) % PEER_POOL];
-                let Some((cid, _)) = conn_ids.get(&peer).and_then(|v| v.first()).cloned() else {
+                let Some((fallback_cid, _)) =
+                    conn_ids.get(&peer).and_then(|v| v.first()).cloned()
+                else {
                     continue;
                 };
-                let Some(request_id) =
-                    resolve_outbound_id(tracks.get(&peer), request_slot, mismatch)
+                let Some((request_id, cid)) =
+                    resolve_outbound_id(tracks.get(&peer), request_slot, mismatch, fallback_cid)
                 else {
                     continue;
                 };
@@ -514,7 +535,7 @@ pub fn fuzz_behaviour(actions: impl IntoIterator<Item = FuzzAction>) {
                 );
                 if !mismatch {
                     if let Some(t) = tracks.get_mut(&peer) {
-                        t.active_outbound.retain(|id| *id != request_id);
+                        t.active_outbound.retain(|(id, _)| *id != request_id);
                     }
                 }
                 drain_behaviour(
@@ -533,11 +554,13 @@ pub fn fuzz_behaviour(actions: impl IntoIterator<Item = FuzzAction>) {
                     continue;
                 }
                 let peer = peers[(peer_slot as usize) % PEER_POOL];
-                let Some((cid, _)) = conn_ids.get(&peer).and_then(|v| v.first()).cloned() else {
+                let Some((fallback_cid, _)) =
+                    conn_ids.get(&peer).and_then(|v| v.first()).cloned()
+                else {
                     continue;
                 };
-                let Some(request_id) =
-                    resolve_outbound_id(tracks.get(&peer), request_slot, mismatch)
+                let Some((request_id, cid)) =
+                    resolve_outbound_id(tracks.get(&peer), request_slot, mismatch, fallback_cid)
                 else {
                     continue;
                 };
@@ -548,7 +571,7 @@ pub fn fuzz_behaviour(actions: impl IntoIterator<Item = FuzzAction>) {
                 );
                 if !mismatch {
                     if let Some(t) = tracks.get_mut(&peer) {
-                        t.active_outbound.retain(|id| *id != request_id);
+                        t.active_outbound.retain(|(id, _)| *id != request_id);
                     }
                 }
                 drain_behaviour(
@@ -631,11 +654,13 @@ pub fn fuzz_behaviour(actions: impl IntoIterator<Item = FuzzAction>) {
                     continue;
                 }
                 let peer = peers[(peer_slot as usize) % PEER_POOL];
-                let Some((cid, _)) = conn_ids.get(&peer).and_then(|v| v.first()).cloned() else {
+                let Some((fallback_cid, _)) =
+                    conn_ids.get(&peer).and_then(|v| v.first()).cloned()
+                else {
                     continue;
                 };
-                let Some(request_id) =
-                    resolve_outbound_id(tracks.get(&peer), request_slot, mismatch)
+                let Some((request_id, cid)) =
+                    resolve_outbound_id(tracks.get(&peer), request_slot, mismatch, fallback_cid)
                 else {
                     continue;
                 };
@@ -649,7 +674,7 @@ pub fn fuzz_behaviour(actions: impl IntoIterator<Item = FuzzAction>) {
                 );
                 if !mismatch {
                     if let Some(t) = tracks.get_mut(&peer) {
-                        t.active_outbound.retain(|id| *id != request_id);
+                        t.active_outbound.retain(|(id, _)| *id != request_id);
                     }
                 }
                 drain_behaviour(
@@ -789,13 +814,13 @@ fn capture_event(ev: Event<Vec<u8>, Vec<u8>>, tracks: &mut HashMap<PeerId, PeerT
             }
             Message::Response { request_id, .. } => {
                 if let Some(t) = tracks.get_mut(&peer) {
-                    t.active_outbound.retain(|id| *id != request_id);
+                    t.active_outbound.retain(|(id, _)| *id != request_id);
                 }
             }
         },
         Event::OutboundFailure { peer, request_id, .. } => {
             if let Some(t) = tracks.get_mut(&peer) {
-                t.active_outbound.retain(|id| *id != request_id);
+                t.active_outbound.retain(|(id, _)| *id != request_id);
             }
         }
         Event::InboundFailure { peer, request_id, .. } => {
@@ -882,6 +907,66 @@ mod tests {
                 mismatch: false,
                 data: vec![8],
             },
+            FuzzAction::InjectOutboundTimeout {
+                peer_slot: 0,
+                request_slot: 0,
+                mismatch: false,
+            },
+        ]);
+    }
+
+    #[test]
+    fn inbound_request_duplicate_slot_unique_ids() {
+        // Two InjectRequest with the same `inbound_slot` must still produce
+        // unique inbound request ids (the harness synthesizes them with a
+        // monotonic counter), otherwise the second insert trips
+        // `debug_assert!("Expect id of new request to be unknown.")`.
+        fuzz_behaviour([
+            FuzzAction::Connect {
+                peer_slot: 0,
+                outbound: false,
+            },
+            FuzzAction::InjectRequest {
+                peer_slot: 0,
+                inbound_slot: 0,
+                data: vec![1],
+            },
+            FuzzAction::InjectRequest {
+                peer_slot: 0,
+                inbound_slot: 0,
+                data: vec![2],
+            },
+        ]);
+    }
+
+    /// Regression: connection churn must not trip the per-connection
+    /// `debug_assert!` in the OutboundTimeout arm. The behaviour tracks
+    /// pending outbound responses per connection and `try_send_request`
+    /// distributes requests via `connections[id.0 % len]`. The harness must
+    /// therefore inject the timeout on the SAME connection the request was
+    /// sent over, not `conn_ids[peer].first()`.
+    #[test]
+    fn outbound_timeout_connection_churn() {
+        fuzz_behaviour([
+            FuzzAction::Connect {
+                peer_slot: 0,
+                outbound: true,
+            },
+            FuzzAction::Connect {
+                peer_slot: 0,
+                outbound: true,
+            },
+            // id 0 -> connections[0], id 1 -> connections[1].
+            FuzzAction::SendRequest {
+                peer_slot: 0,
+                data: vec![1],
+            },
+            FuzzAction::SendRequest {
+                peer_slot: 0,
+                data: vec![2],
+            },
+            // Newest request (id 1) lives on connections[1]; a `.first()`
+            // injection would hit the debug_assert before the fix.
             FuzzAction::InjectOutboundTimeout {
                 peer_slot: 0,
                 request_slot: 0,
