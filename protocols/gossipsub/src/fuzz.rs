@@ -963,6 +963,14 @@ fn fuzz_behaviour_ex(
         "px_peers grew unboundedly: {px_peers}"
     );
 
+    // Reconcile the mesh with final scores before asserting: mesh pruning is
+    // heartbeat-granular, so a peer penalized below the graylist threshold after
+    // its last heartbeat is still in the mesh until the next heartbeat runs.
+    // Drive one last heartbeat + drain so `score < GRAYLIST_THRESHOLD` ⇒
+    // not-in-mesh holds at the point we assert it.
+    gossip.fuzz_heartbeat();
+    drain_polls(&mut gossip);
+
     // End-of-run: no mesh membership for peers we have fully disconnected.
     for peer in peers.iter() {
         if !conn_ids.contains_key(peer) {
