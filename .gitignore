@@ -1,1 +1,7 @@
 target
+
+# Local pi agent state (casefile ledger, evidence, todos)
+.pi/
+
+# Generated fuzz run logs
+fuzz_run_logs/
