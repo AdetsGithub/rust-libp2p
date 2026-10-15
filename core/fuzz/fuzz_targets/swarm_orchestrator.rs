@@ -1119,14 +1119,24 @@ async fn run(seq: ActionSeq) {
     world.check_invariants();
 }
 
+static RT: std::sync::OnceLock<tokio::runtime::Runtime> = std::sync::OnceLock::new();
+
 fuzz_target!(|seq: ActionSeq| {
-    let rt = tokio::runtime::Builder::new_current_thread()
-        .enable_all()
-        .build()
-        .expect("tokio current_thread runtime");
+    // Reuse a single runtime across iterations: a fresh
+    // `new_current_thread().enable_all()` per input leaks the I/O driver's
+    // epoll + eventfd fds (~2 fds/iteration), exhausting the process fd limit
+    // (EMFILE, "Too many open files") after a few hundred execs.
+    let rt = RT.get_or_init(|| {
+        tokio::runtime::Builder::new_current_thread()
+            .enable_all()
+            .build()
+            .expect("tokio current_thread runtime")
+    });
     rt.block_on(async {
         // Pause so `drive` can deterministically advance idle / dial timeouts.
         tokio::time::pause();
         run(seq).await;
+        // Reset the paused clock so the next input starts from a clean state.
+        tokio::time::resume();
     });
 });

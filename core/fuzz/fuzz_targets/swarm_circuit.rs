@@ -482,11 +482,19 @@ async fn drive(world: &mut World, budget: usize) {
     world.assert_invariants();
 }
 
+static RT: std::sync::OnceLock<tokio::runtime::Runtime> = std::sync::OnceLock::new();
+
 fn run(seq: ActionSeq) {
-    let rt = tokio::runtime::Builder::new_current_thread()
-        .enable_all()
-        .build()
-        .expect("tokio");
+    // Reuse a single runtime across iterations: a fresh
+    // `new_current_thread().enable_all()` per input leaks the I/O driver's
+    // epoll + eventfd fds (~2 fds/iteration), exhausting the process fd limit
+    // (EMFILE, "Too many open files") after a few hundred execs.
+    let rt = RT.get_or_init(|| {
+        tokio::runtime::Builder::new_current_thread()
+            .enable_all()
+            .build()
+            .expect("tokio")
+    });
     rt.block_on(async move {
         tokio::time::pause();
         let mut world = World::new(seq.n_clients);
@@ -606,6 +614,8 @@ fn run(seq: ActionSeq) {
                 .filter(|c| c.circuit_listen.is_some())
                 .count(),
         );
+        // Reset the paused clock so the next input starts from a clean state.
+        tokio::time::resume();
     });
 }
 
