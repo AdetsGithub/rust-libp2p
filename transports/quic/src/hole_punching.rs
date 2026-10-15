@@ -110,7 +110,11 @@ pub(crate) mod fuzz_book {
         const MAX_ADDRS: u8 = 8;
 
         for (i, &byte) in data.iter().take(MAX_STEPS).enumerate() {
-            let addr = SocketAddr::from(([198, 51, 100, 1 + (byte % MAX_ADDRS)], 4000 + u16::from(byte)));
+            // Single slot dimension so the address space stays bounded by MAX_ADDRS
+            // (the port previously varied over 256 values, so book.len() could
+            // legitimately exceed the MAX_ADDRS+2 assertion).
+            let slot = byte % MAX_ADDRS;
+            let addr = SocketAddr::from(([198, 51, 100, 1 + slot], 4000 + u16::from(slot)));
             match byte % 4 {
                 0 => {
                     // Register (may HolePunchInProgress).
