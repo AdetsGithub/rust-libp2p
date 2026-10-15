@@ -882,7 +882,7 @@ pub fn fuzz_behaviour(actions: impl IntoIterator<Item = FuzzAction>) {
             dcutr.fuzz_outgoing_attempt_count()
         );
         assert!(
-            dcutr.fuzz_direct_connection_count() <= PEER_POOL.saturating_mul(4).saturating_add(2),
+            dcutr.fuzz_direct_connection_count() <= MAX_ACTIONS.saturating_add(2),
             "direct connections unbounded: {}",
             dcutr.fuzz_direct_connection_count()
         );
@@ -894,7 +894,7 @@ pub fn fuzz_behaviour(actions: impl IntoIterator<Item = FuzzAction>) {
         dcutr.fuzz_outgoing_attempt_count()
     );
     assert!(
-        dcutr.fuzz_direct_connection_count() <= PEER_POOL.saturating_mul(4).saturating_add(2),
+        dcutr.fuzz_direct_connection_count() <= MAX_ACTIONS.saturating_add(2),
         "end-of-run direct connections unbounded: {}",
         dcutr.fuzz_direct_connection_count()
     );
