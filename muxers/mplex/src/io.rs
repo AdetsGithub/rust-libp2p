@@ -1178,6 +1178,7 @@ pub fn fuzz_multiplexed_io(data: &[u8]) {
         pin::Pin,
         rc::Rc,
         task::{Context, Poll},
+        time::{Duration, Instant},
     };
 
     use futures::{
@@ -1266,6 +1267,10 @@ pub fn fuzz_multiplexed_io(data: &[u8]) {
 
     const MAX_HELD: usize = 16;
     const MAX_POLLS: usize = 50_000;
+    // Wall-clock bound so a pathological loopback/credit cycle can't stall a
+    // single unit for tens of seconds (the fuzzer's between-unit
+    // `-max_total_time` check can't fire while one unit is running).
+    const MAX_DRIVE_TIME: Duration = Duration::from_secs(5);
     const MAX_IDLE_PENDING: usize = 64;
 
     let mut config = Config::new();
@@ -1298,8 +1303,12 @@ pub fn fuzz_multiplexed_io(data: &[u8]) {
         0
     };
     let mut close_round = 0usize;
+    let drive_deadline = Instant::now() + MAX_DRIVE_TIME;
 
     for _ in 0..MAX_POLLS {
+        if Instant::now() >= drive_deadline {
+            break;
+        }
         let mut progress = false;
 
         if outbound_left > 0 && streams.len() < MAX_HELD {
