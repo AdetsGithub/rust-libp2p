@@ -5,3 +5,5 @@ target
 
 # Generated fuzz run logs
 fuzz_run_logs/
+
+core/fuzz/advisories/
