@@ -372,6 +372,24 @@ impl Behaviour {
             .unwrap_or(false)
     }
 
+    /// Connection ids on which `peer` currently holds an active reservation.
+    ///
+    /// A [`handler::Event::ReservationTimedOut`] can only be emitted by a
+    /// connection's own handler for a reservation it holds; the harness must
+    /// therefore inject that event on one of these connections (or not at all).
+    #[cfg(feature = "fuzzing")]
+    pub fn fuzz_active_reservation_connections(&self, peer: &PeerId) -> Vec<ConnectionId> {
+        self.connections
+            .get(peer)
+            .map(|cs| {
+                cs.iter()
+                    .filter(|(_, status)| status.is_active())
+                    .map(|(cid, _)| *cid)
+                    .collect()
+            })
+            .unwrap_or_default()
+    }
+
     fn reconfigure_relay_status(&mut self) {
         if self.connections.is_empty() {
             return;

@@ -414,7 +414,17 @@ fn fuzz_behaviour_ex(
             }
             FuzzAction::InjectReservationTimedOut { peer_slot } => {
                 let peer = peers[(peer_slot as usize) % PEER_POOL];
-                let Some((cid, _)) = conn_ids.get(&peer).and_then(|v| v.first()).cloned() else {
+                // A real handler only times out a reservation it actually holds,
+                // on its own connection. Inject on an active-reservation
+                // connection rather than an arbitrary `conn_ids[peer].first()`;
+                // otherwise a peer whose reservation was already consumed (or
+                // never existed) would trip the behaviour's
+                // `Expect to track timed out reservation` unreachable! panic.
+                let Some(cid) = relay
+                    .fuzz_active_reservation_connections(&peer)
+                    .first()
+                    .copied()
+                else {
                     continue;
                 };
                 relay.on_connection_handler_event(
@@ -738,6 +748,24 @@ fn drain_behaviour(
 #[cfg(test)]
 mod tests {
     use super::*;
+
+    #[test]
+    fn minimal_relay_reservation_timedout_double_inject() {
+        fuzz_behaviour([
+            FuzzAction::ConfirmExternalAddr { slot: 0 },
+            FuzzAction::SetStatusEnable,
+            FuzzAction::Connect {
+                peer_slot: 4,
+                outbound: true,
+            },
+            FuzzAction::FloodReservations {
+                peer_slot: 4,
+                count: 1,
+            },
+            FuzzAction::InjectReservationTimedOut { peer_slot: 4 },
+            FuzzAction::InjectReservationTimedOut { peer_slot: 4 },
+        ]);
+    }
 
     #[test]
     fn smoke_connect_reserve_external_status() {
