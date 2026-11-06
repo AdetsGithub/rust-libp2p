@@ -390,6 +390,17 @@ impl Behaviour {
             .unwrap_or_default()
     }
 
+    /// Whether `peer`/`cid` is still present in the connection table.
+    ///
+    /// [`handler::Event::ReservationTimedOut`] removes the connection entry;
+    /// the harness must not feed follow-up reservation events for it.
+    #[cfg(feature = "fuzzing")]
+    pub fn fuzz_tracks_connection(&self, peer: &PeerId, cid: ConnectionId) -> bool {
+        self.connections
+            .get(peer)
+            .is_some_and(|cs| cs.contains_key(&cid))
+    }
+
     fn reconfigure_relay_status(&mut self) {
         if self.connections.is_empty() {
             return;

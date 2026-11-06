@@ -425,6 +425,29 @@ impl Handler {
         }
     }
 
+    /// Whether this handler currently holds an active reservation [`Delay`].
+    ///
+    /// A real [`Event::ReservationTimedOut`] is only emitted when that delay
+    /// fires; the fuzz harness must not synthesize timeout against the
+    /// behaviour's optimistic `Reservation::Active` alone.
+    #[cfg(feature = "fuzzing")]
+    pub fn fuzz_has_active_reservation(&self) -> bool {
+        self.active_reservation.is_some()
+    }
+
+    /// Install an active reservation delay (as after a successful Accept).
+    #[cfg(feature = "fuzzing")]
+    pub fn fuzz_arm_active_reservation(&mut self, duration: Duration) {
+        self.active_reservation = Some(Delay::new(duration));
+    }
+
+    /// Clear the active reservation delay, matching the handler poll path that
+    /// emits [`Event::ReservationTimedOut`].
+    #[cfg(feature = "fuzzing")]
+    pub fn fuzz_clear_active_reservation(&mut self) {
+        self.active_reservation = None;
+    }
+
     fn on_fully_negotiated_inbound(&mut self, stream: Stream) {
         if self
             .inbound_workers

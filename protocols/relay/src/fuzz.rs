@@ -314,6 +314,7 @@ fn fuzz_behaviour_ex(
 ) {
     let local = fuzz_local_peer_id();
     let config = fuzz_config(rate_limit);
+    let reservation_duration = config.reservation_duration;
     let mut relay = Behaviour::new(local, config);
     let peers = peer_pool();
     let mut conn_ids: HashMap<PeerId, Vec<(ConnectionId, ConnectedPoint)>> = HashMap::new();
@@ -406,6 +407,15 @@ fn fuzz_behaviour_ex(
                 let Some((cid, _)) = conn_ids.get(&peer).and_then(|v| v.first()).cloned() else {
                     continue;
                 };
+                // `ReservationTimedOut` drops the connection from the behaviour
+                // table; do not synthesize Accepted against a ghost entry.
+                if !relay.fuzz_tracks_connection(&peer, cid) {
+                    continue;
+                }
+                // Mirror a completed Accept: behaviour Active + handler Delay.
+                if let Some(h) = handlers.get_mut(&peer) {
+                    h.fuzz_arm_active_reservation(reservation_duration);
+                }
                 relay.on_connection_handler_event(
                     peer,
                     cid,
@@ -415,11 +425,11 @@ fn fuzz_behaviour_ex(
             FuzzAction::InjectReservationTimedOut { peer_slot } => {
                 let peer = peers[(peer_slot as usize) % PEER_POOL];
                 // A real handler only times out a reservation it actually holds,
-                // on its own connection. Inject on an active-reservation
-                // connection rather than an arbitrary `conn_ids[peer].first()`;
-                // otherwise a peer whose reservation was already consumed (or
-                // never existed) would trip the behaviour's
-                // `Expect to track timed out reservation` unreachable! panic.
+                // on its own connection — and only once its local Delay fires.
+                // Behaviour may mark `Reservation::Active` optimistically on
+                // `ReservationReqReceived` before Accept completes; synthesizing
+                // TimedOut against that alone desyncs the still-Accepting
+                // Handler and later trips `expect("valid connection")`.
                 let Some(cid) = relay
                     .fuzz_active_reservation_connections(&peer)
                     .first()
@@ -427,6 +437,13 @@ fn fuzz_behaviour_ex(
                 else {
                     continue;
                 };
+                let Some(h) = handlers.get_mut(&peer) else {
+                    continue;
+                };
+                if !h.fuzz_has_active_reservation() {
+                    continue;
+                }
+                h.fuzz_clear_active_reservation();
                 relay.on_connection_handler_event(
                     peer,
                     cid,
@@ -546,7 +563,7 @@ fn fuzz_behaviour_ex(
                     inject_inbound_hop_ex(h, bytes.to_vec(), fault);
                     for _ in 0..4 {
                         for ev in pump_handler(h) {
-                            relay.on_connection_handler_event(peer, cid, Either::Left(ev));
+                            deliver_handler_event(&mut relay, peer, cid, ev);
                         }
                     }
                 }
@@ -567,7 +584,7 @@ fn fuzz_behaviour_ex(
                     inject_inbound_hop_ex(h, bytes.to_vec(), fault);
                     for _ in 0..4 {
                         for ev in pump_handler(h) {
-                            relay.on_connection_handler_event(peer, cid, Either::Left(ev));
+                            deliver_handler_event(&mut relay, peer, cid, ev);
                         }
                     }
                 }
@@ -707,7 +724,7 @@ fn drain_behaviour(
                 h.on_behaviour_event(in_ev);
                 if let Some((cid, _)) = conn_ids.get(&peer_id).and_then(|v| v.first()) {
                     for ev in pump_handler(h) {
-                        relay.on_connection_handler_event(peer_id, *cid, Either::Left(ev));
+                        deliver_handler_event(relay, peer_id, *cid, ev);
                     }
                 }
             }
@@ -725,11 +742,7 @@ fn drain_behaviour(
                                 round = true;
                             }
                             for ev in evs {
-                                relay.on_connection_handler_event(
-                                    *peer,
-                                    *cid,
-                                    Either::Left(ev),
-                                );
+                                deliver_handler_event(relay, *peer, *cid, ev);
                             }
                         }
                     }
@@ -745,9 +758,204 @@ fn drain_behaviour(
     }
 }
 
+/// Forward handler events that are still valid against the behaviour table.
+///
+/// After [`handler::Event::ReservationTimedOut`] the behaviour drops the
+/// connection entry; a deferred [`handler::Event::ReservationReqAccepted`]
+/// from an in-flight Accept must not be delivered (harness artifact that
+/// trips `expect("valid connection")`).
+fn deliver_handler_event(
+    relay: &mut Behaviour,
+    peer: PeerId,
+    cid: ConnectionId,
+    ev: handler::Event,
+) {
+    match &ev {
+        handler::Event::ReservationReqAccepted { .. }
+        | handler::Event::ReservationTimedOut {}
+            if !relay.fuzz_tracks_connection(&peer, cid) => {}
+        _ => {
+            relay.on_connection_handler_event(peer, cid, Either::Left(ev));
+        }
+    }
+}
+
 #[cfg(test)]
 mod tests {
     use super::*;
+
+    /// Direct Behaviour↔Handler drive of the renewal / timeout race:
+    /// Delay expires while a renewal `AcceptReservationReq` is queued but not
+    /// yet polled → `ReservationTimedOut` removes the connection → subsequent
+    /// `ReservationReqAccepted` hits `expect("valid connection")`.
+    ///
+    /// This bypasses [`deliver_handler_event`]; it is a behaviour bug, not a
+    /// harness artifact.
+    fn trigger_renewal_timeout_race() {
+        let local = fuzz_local_peer_id();
+        let config = Config {
+            max_reservations: 8,
+            max_reservations_per_peer: 4,
+            reservation_duration: Duration::from_millis(30),
+            reservation_rate_limiters: vec![],
+            max_circuits: 8,
+            max_circuits_per_peer: 4,
+            max_circuit_duration: Duration::from_secs(120),
+            max_circuit_bytes: 1 << 17,
+            circuit_src_rate_limiters: vec![],
+        };
+        let mut relay = Behaviour::new(local, config);
+        let peer = peer_pool()[0];
+        let cid = ConnectionId::new_unchecked(1);
+        let remote = peer_addr(0);
+        let endpoint = endpoint_for(0, true);
+
+        let mut handler = match relay
+            .handle_established_outbound_connection(
+                cid,
+                peer,
+                &remote,
+                Endpoint::Dialer,
+                PortUse::Reuse,
+            )
+            .expect("handler")
+        {
+            Either::Left(h) => h,
+            Either::Right(_) => panic!("expected hop handler"),
+        };
+        relay.on_swarm_event(FromSwarm::ConnectionEstablished(ConnectionEstablished {
+            peer_id: peer,
+            connection_id: cid,
+            endpoint: &endpoint,
+            failed_addresses: &[],
+            other_established: 0,
+        }));
+        relay.set_status(Some(Status::Enable));
+
+        // 1) First reservation: Accept completes → handler Delay(30ms) armed.
+        inject_and_complete_accept(&mut relay, &mut handler, peer, cid, &endpoint);
+
+        // 2) Renewal Accept queued on the handler but not polled yet.
+        let stream = reservation_stream();
+        let req = inbound_hop::fuzz_reservation_req(stream).expect("reservation req");
+        relay.on_connection_handler_event(
+            peer,
+            cid,
+            Either::Left(handler::Event::ReservationReqReceived {
+                inbound_reservation_req: req,
+                endpoint: endpoint.clone(),
+                renewed: true,
+            }),
+        );
+        deliver_pending_accept_to_handler(&mut relay, &mut handler);
+
+        // 3) Let the first reservation's Delay expire while Accepting sits unpolled.
+        std::thread::sleep(Duration::from_millis(80));
+
+        // 4) Handler polls Delay before Accepting → TimedOut, then Accepted.
+        let mut saw_timeout = false;
+        let mut saw_accepted = false;
+        for _ in 0..64 {
+            let evs = pump_handler(&mut handler);
+            if evs.is_empty() {
+                if saw_timeout && !saw_accepted {
+                    // Accepting may need another wake after TimedOut returned.
+                    continue;
+                }
+                break;
+            }
+            for ev in evs {
+                match &ev {
+                    handler::Event::ReservationTimedOut {} => saw_timeout = true,
+                    handler::Event::ReservationReqAccepted { .. } => saw_accepted = true,
+                    _ => {}
+                }
+                // Deliver raw — no harness filter.
+                relay.on_connection_handler_event(peer, cid, Either::Left(ev));
+            }
+            if saw_timeout && saw_accepted {
+                break;
+            }
+        }
+        assert!(
+            saw_timeout,
+            "expected ReservationTimedOut after Delay expiry"
+        );
+        assert!(
+            saw_accepted,
+            "expected ReservationReqAccepted from renewal Accept after TimedOut"
+        );
+    }
+
+    fn inject_and_complete_accept(
+        relay: &mut Behaviour,
+        handler: &mut Handler,
+        peer: PeerId,
+        cid: ConnectionId,
+        endpoint: &ConnectedPoint,
+    ) {
+        let stream = reservation_stream();
+        let req = inbound_hop::fuzz_reservation_req(stream).expect("reservation req");
+        relay.on_connection_handler_event(
+            peer,
+            cid,
+            Either::Left(handler::Event::ReservationReqReceived {
+                inbound_reservation_req: req,
+                endpoint: endpoint.clone(),
+                renewed: false,
+            }),
+        );
+        deliver_pending_accept_to_handler(relay, handler);
+        let mut accepted = false;
+        for _ in 0..32 {
+            for ev in pump_handler(handler) {
+                if matches!(ev, handler::Event::ReservationReqAccepted { .. }) {
+                    accepted = true;
+                }
+                relay.on_connection_handler_event(peer, cid, Either::Left(ev));
+            }
+            if accepted {
+                break;
+            }
+        }
+        assert!(accepted, "first reservation Accept did not complete");
+        assert!(
+            handler.fuzz_has_active_reservation(),
+            "handler Delay not armed after Accept"
+        );
+    }
+
+    fn deliver_pending_accept_to_handler(relay: &mut Behaviour, handler: &mut Handler) {
+        let waker = noop_waker_ref();
+        let mut cx = Context::from_waker(waker);
+        for _ in 0..64 {
+            match NetworkBehaviour::poll(relay, &mut cx) {
+                Poll::Ready(ToSwarm::NotifyHandler { event, .. }) => {
+                    let Either::Left(in_ev) = event;
+                    handler.on_behaviour_event(in_ev);
+                }
+                Poll::Ready(_) => {}
+                Poll::Pending => break,
+            }
+        }
+    }
+
+    #[test]
+    fn renewal_accept_after_reservation_timeout_is_genuine_panic() {
+        let result = std::panic::catch_unwind(std::panic::AssertUnwindSafe(trigger_renewal_timeout_race));
+        let Err(payload) = result else {
+            panic!("expected panic from renewal Accept after ReservationTimedOut");
+        };
+        let msg = payload
+            .downcast_ref::<&str>()
+            .copied()
+            .or_else(|| payload.downcast_ref::<String>().map(String::as_str))
+            .unwrap_or("<non-string panic>");
+        assert!(
+            msg.contains("valid connection"),
+            "unexpected panic payload: {msg}"
+        );
+    }
 
     #[test]
     fn minimal_relay_reservation_timedout_double_inject() {
@@ -909,6 +1117,55 @@ mod tests {
             FuzzAction::FloodReservations {
                 peer_slot: 1,
                 count: 7,
+            },
+        ]);
+    }
+
+    /// Regression for crash-311159: TimedOut against optimistic Active (no
+    /// handler Delay) must not desync into a later stale Accepted panic.
+    #[test]
+    fn timedout_without_handler_delay_does_not_panic() {
+        fuzz_behaviour([
+            FuzzAction::ConfirmExternalAddr { slot: 0 },
+            FuzzAction::SetStatusEnable,
+            FuzzAction::Connect {
+                peer_slot: 6,
+                outbound: false,
+            },
+            // Marks behaviour Active via Received; Handler Delay is only
+            // installed after Accept completes — premature TimedOut is a no-op.
+            FuzzAction::InjectReservationReq { peer_slot: 6 },
+            FuzzAction::InjectReservationTimedOut { peer_slot: 6 },
+            FuzzAction::InjectReservationAccepted {
+                peer_slot: 6,
+                renewed: false,
+            },
+            FuzzAction::InjectHopWire {
+                peer_slot: 6,
+                wire: encode_structured_hop_wire(StructuredHopKind::Reserve, 6),
+            },
+        ]);
+    }
+
+    #[test]
+    fn accepted_after_real_timedout_is_dropped() {
+        fuzz_behaviour([
+            FuzzAction::ConfirmExternalAddr { slot: 0 },
+            FuzzAction::SetStatusEnable,
+            FuzzAction::Connect {
+                peer_slot: 1,
+                outbound: true,
+            },
+            // Arms handler Delay + behaviour Active so TimedOut is eligible.
+            FuzzAction::InjectReservationAccepted {
+                peer_slot: 1,
+                renewed: false,
+            },
+            FuzzAction::InjectReservationTimedOut { peer_slot: 1 },
+            // Ghost Accepted after TimedOut removed the connection — ignored.
+            FuzzAction::InjectReservationAccepted {
+                peer_slot: 1,
+                renewed: false,
             },
         ]);
     }
